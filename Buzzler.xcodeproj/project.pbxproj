@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A87692F6DF27D6E3FCAD8FBC /* Pods_Buzzler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288795313E0AC39D94157B71 /* Pods_Buzzler.framework */; };
 		AF3C0C221E0AA003002644DD /* BrowserWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3C0C211E0AA003002644DD /* BrowserWebViewController.swift */; };
 		AF3C0C241E0AA851002644DD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3C0C231E0AA851002644DD /* Config.swift */; };
 		AF69F0EB1E0E055D00735284 /* SideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF69F0EA1E0E055D00735284 /* SideMenuNavigationController.swift */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D7963327F11BA263C83AA0C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
+		288795313E0AC39D94157B71 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8549F4BE32D5A4600A90FD47 /* Pods-Gank.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gank.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gank/Pods-Gank.debug.xcconfig"; sourceTree = "<group>"; };
 		8D471DB23A1F471D67A6B0EE /* Pods-Gank.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gank.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gank/Pods-Gank.release.xcconfig"; sourceTree = "<group>"; };
 		AF3C0C211E0AA003002644DD /* BrowserWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserWebViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		AFBDB2611DF58F23003E8EE2 /* GankAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GankAPI.swift; sourceTree = "<group>"; };
 		AFCB661D1DF844DB00916E1B /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		AFE2BA991E8144000066474E /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		DB83C309C44CA59C88B58AAB /* Pods-Buzzler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.debug.xcconfig"; sourceTree = "<group>"; };
 		ECF6CC27851F092E4B160AF6 /* Pods_Gank.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gank.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -58,6 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2322ED0BDDB5547F4A1D973 /* Pods_Gank.framework in Frameworks */,
+				A87692F6DF27D6E3FCAD8FBC /* Pods_Buzzler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				ECF6CC27851F092E4B160AF6 /* Pods_Gank.framework */,
+				288795313E0AC39D94157B71 /* Pods_Buzzler.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -249,6 +255,8 @@
 			children = (
 				8549F4BE32D5A4600A90FD47 /* Pods-Gank.debug.xcconfig */,
 				8D471DB23A1F471D67A6B0EE /* Pods-Gank.release.xcconfig */,
+				DB83C309C44CA59C88B58AAB /* Pods-Buzzler.debug.xcconfig */,
+				1D7963327F11BA263C83AA0C /* Pods-Buzzler.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -383,7 +391,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Gank/Pods-Gank-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DDD2283C8D4D0F238A575BF0 /* [CP] Check Pods Manifest.lock */ = {
@@ -416,7 +424,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Gank/Pods-Gank-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -557,7 +565,7 @@
 		};
 		AFA7EC7D1DEEDEDC00138AEE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8549F4BE32D5A4600A90FD47 /* Pods-Gank.debug.xcconfig */;
+			baseConfigurationReference = DB83C309C44CA59C88B58AAB /* Pods-Buzzler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3PLZG2J4W7;
@@ -573,7 +581,7 @@
 		};
 		AFA7EC7E1DEEDEDC00138AEE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D471DB23A1F471D67A6B0EE /* Pods-Gank.release.xcconfig */;
+			baseConfigurationReference = 1D7963327F11BA263C83AA0C /* Pods-Buzzler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3PLZG2J4W7;

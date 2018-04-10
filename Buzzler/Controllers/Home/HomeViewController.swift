@@ -41,6 +41,8 @@ extension HomeViewController {
     // MARK: - Private Method
 
     fileprivate func configUI() {
+        
+        // set tableView UI
         title = "Buzzler"
         tableView.backgroundColor = Config.UI.themeColor
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -52,6 +54,10 @@ extension HomeViewController {
         tableView.snp.makeConstraints { (make) in
            make.edges.equalTo(view)
         }
+        
+        // set SideMenu UI
+        SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
+        SideMenuManager.menuShadowOpacity = 0
     }
     
     fileprivate func configBinding() {
