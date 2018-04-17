@@ -79,6 +79,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYG-y7-JYu">
                                 <rect key="frame" x="364" y="30.666666666666671" width="30" height="30"/>
                                 <state key="normal" title="등록"/>
+                                <connections>
+                                    <action selector="pressWrite:" destination="l2d-FS-koS" eventType="touchUpInside" id="sCs-EM-lJF"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dox-Zw-zqL" userLabel="Lbl univ">
                                 <rect key="frame" x="186" y="35" width="42" height="21"/>

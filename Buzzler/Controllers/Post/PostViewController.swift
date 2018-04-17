@@ -18,11 +18,15 @@ class PostViewController: UIViewController {
     @IBOutlet weak var txt_title: UITextField!
     @IBOutlet weak var txt_contents: UITextField!
     
+    var viewModel: PostViewModel!
+    
     // MARK: - Init
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.viewModel = PostViewModel()
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,4 +51,11 @@ class PostViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func pressWrite(_ sender: UIButton) {
+        guard let title = self.txt_title.text, let contents = self.txt_contents.text else {
+            print("should input")
+            return
+        }
+        self.viewModel.writePost(title: title, contents: contents, imageUrls: [])
+    }
 }

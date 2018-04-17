@@ -6,4 +6,19 @@
 //  Copyright © 2018년 Maru. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import RxSwift
+import RxCocoa
+import Moya
+import NSObject_Rx
+
+final class PostViewModel {
+    
+    func writePost(title: String, contents: String, imageUrls: [String]) {
+        gankApi.request(.writePost(title: title, contents: contents, imageUrls: imageUrls)) { result in
+            // do something with the result (read on for more details)
+            print(result)
+        }
+    }
+    
+}
