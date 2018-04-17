@@ -5,7 +5,6 @@ PODS:
   - Alamofire (4.5.1)
   - Differentiator (2.0.2)
   - EZSwiftExtensions (1.11)
-  - HMSegmentedControl (1.5.4)
   - Kingfisher (3.10.4)
   - Moya (8.0.5):
     - Moya/Core (= 8.0.5)
@@ -46,7 +45,6 @@ DEPENDENCIES:
   - Action (= 3.2.0)
   - Alamofire (= 4.5.1)
   - EZSwiftExtensions (= 1.11)
-  - HMSegmentedControl (= 1.5.4)
   - Kingfisher (~> 3.10.0)
   - Moya (= 8.0.5)
   - Moya/RxSwift
@@ -69,7 +67,6 @@ SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Differentiator: caa9b3957981a2ac8e6b2eac8a676af461caa604
   EZSwiftExtensions: 84000042202d9fd574f626cda3064143f27fa767
-  HMSegmentedControl: b25bc4ec44766e073d62c473188fb354ee244b76
   Kingfisher: dc3a4983e86d2dfa89513664983a82340c11a289
   Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
   NoticeBar: ba347fd0ec259e08480d781871648c6842ff8c57
@@ -88,6 +85,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: f04f739cca6826c5fb0f575fed8fa3293f76b83e
   Then: 823a7503a851737269ba8d40e688b4db874dbd2d
 
-PODFILE CHECKSUM: ae59b8fb813ec9cf403a38e168b43becd937ce5e
+PODFILE CHECKSUM: 74adb5c4a1fa8172a9d72d6b5cb1d8072d9dd688
 
 COCOAPODS: 1.1.1
