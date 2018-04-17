@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A87692F6DF27D6E3FCAD8FBC /* Pods_Buzzler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288795313E0AC39D94157B71 /* Pods_Buzzler.framework */; };
+		84F437A82085C3D500E71358 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F437A72085C3D500E71358 /* PostViewModel.swift */; };
+		84F437AA2085C3E700E71358 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F437A92085C3E700E71358 /* PostViewController.swift */; };
 		AF3C0C221E0AA003002644DD /* BrowserWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3C0C211E0AA003002644DD /* BrowserWebViewController.swift */; };
 		AF3C0C241E0AA851002644DD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3C0C231E0AA851002644DD /* Config.swift */; };
 		AF69F0EB1E0E055D00735284 /* SideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF69F0EA1E0E055D00735284 /* SideMenuNavigationController.swift */; };
@@ -25,14 +26,15 @@
 		AFBDB2621DF58F23003E8EE2 /* GankAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBDB2611DF58F23003E8EE2 /* GankAPI.swift */; };
 		AFCB661E1DF844DB00916E1B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCB661D1DF844DB00916E1B /* HomeViewModel.swift */; };
 		AFE2BA9A1E8144000066474E /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2BA991E8144000066474E /* ViewModelType.swift */; };
-		F2322ED0BDDB5547F4A1D973 /* Pods_Gank.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF6CC27851F092E4B160AF6 /* Pods_Gank.framework */; };
+		BEE6FE8AD2BB786D674EFA94 /* Pods_Buzzler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D7963327F11BA263C83AA0C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
-		288795313E0AC39D94157B71 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8549F4BE32D5A4600A90FD47 /* Pods-Gank.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gank.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gank/Pods-Gank.debug.xcconfig"; sourceTree = "<group>"; };
-		8D471DB23A1F471D67A6B0EE /* Pods-Gank.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gank.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gank/Pods-Gank.release.xcconfig"; sourceTree = "<group>"; };
+		08F076F0908B7F9506698A2F /* Pods-Buzzler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.debug.xcconfig"; sourceTree = "<group>"; };
+		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
+		84F437A72085C3D500E71358 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		84F437A92085C3E700E71358 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		AF3C0C211E0AA003002644DD /* BrowserWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserWebViewController.swift; sourceTree = "<group>"; };
 		AF3C0C231E0AA851002644DD /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		AF69F0EA1E0E055D00735284 /* SideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuNavigationController.swift; sourceTree = "<group>"; };
@@ -52,8 +54,6 @@
 		AFBDB2611DF58F23003E8EE2 /* GankAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GankAPI.swift; sourceTree = "<group>"; };
 		AFCB661D1DF844DB00916E1B /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		AFE2BA991E8144000066474E /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
-		DB83C309C44CA59C88B58AAB /* Pods-Buzzler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.debug.xcconfig"; sourceTree = "<group>"; };
-		ECF6CC27851F092E4B160AF6 /* Pods_Gank.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gank.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,21 +61,51 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2322ED0BDDB5547F4A1D973 /* Pods_Gank.framework in Frameworks */,
-				A87692F6DF27D6E3FCAD8FBC /* Pods_Buzzler.framework in Frameworks */,
+				BEE6FE8AD2BB786D674EFA94 /* Pods_Buzzler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		76D86625E43062857DEBD5A2 /* Frameworks */ = {
+		2250A685ACF966A63C6F44F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ECF6CC27851F092E4B160AF6 /* Pods_Gank.framework */,
-				288795313E0AC39D94157B71 /* Pods_Buzzler.framework */,
+				629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84F437A32085C3AC00E71358 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				84F437A92085C3E700E71358 /* PostViewController.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		84F437A62085C3CB00E71358 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				84F437A72085C3D500E71358 /* PostViewModel.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		84F437AC2085C40900E71358 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		877C792282C986DBB7283231 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				08F076F0908B7F9506698A2F /* Pods-Buzzler.debug.xcconfig */,
+				818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		AF3C0C201E0A9FBC002644DD /* Web */ = {
@@ -130,6 +160,7 @@
 		AF9F0FD51DF1A9B300FF8EC5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84F437AC2085C40900E71358 /* Post */,
 				AF9F0FD61DF1A9C100FF8EC5 /* Home */,
 			);
 			path = Views;
@@ -150,8 +181,8 @@
 			children = (
 				AFA7EC6C1DEEDEDC00138AEE /* Buzzler */,
 				AFA7EC6B1DEEDEDC00138AEE /* Products */,
-				B934ED3498AB176D331F2919 /* Pods */,
-				76D86625E43062857DEBD5A2 /* Frameworks */,
+				877C792282C986DBB7283231 /* Pods */,
+				2250A685ACF966A63C6F44F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +217,7 @@
 		AFA7EC7F1DEF4BB400138AEE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				84F437A32085C3AC00E71358 /* Post */,
 				AF69F0EE1E0E0C6D00735284 /* Side */,
 				AF69F0E91E0E052D00735284 /* Navigate */,
 				AF3C0C201E0A9FBC002644DD /* Web */,
@@ -229,6 +261,7 @@
 		AFCB661B1DF844B100916E1B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				84F437A62085C3CB00E71358 /* Post */,
 				AFCB661C1DF844C200916E1B /* Home */,
 			);
 			path = ViewModels;
@@ -250,17 +283,6 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		B934ED3498AB176D331F2919 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8549F4BE32D5A4600A90FD47 /* Pods-Gank.debug.xcconfig */,
-				8D471DB23A1F471D67A6B0EE /* Pods-Gank.release.xcconfig */,
-				DB83C309C44CA59C88B58AAB /* Pods-Buzzler.debug.xcconfig */,
-				1D7963327F11BA263C83AA0C /* Pods-Buzzler.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -268,12 +290,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFA7EC7C1DEEDEDC00138AEE /* Build configuration list for PBXNativeTarget "Buzzler" */;
 			buildPhases = (
-				DDD2283C8D4D0F238A575BF0 /* [CP] Check Pods Manifest.lock */,
+				4D0094C6CFD569CFDB968248 /* [CP] Check Pods Manifest.lock */,
 				AFA7EC661DEEDEDC00138AEE /* Sources */,
 				AFA7EC671DEEDEDC00138AEE /* Frameworks */,
 				AFA7EC681DEEDEDC00138AEE /* Resources */,
-				29E82F0B854670A68B44D42B /* [CP] Embed Pods Frameworks */,
-				FF63BD155A33A5B4498E7539 /* [CP] Copy Pods Resources */,
+				878B2B2B827A31A9B8A9EF1B /* [CP] Embed Pods Frameworks */,
+				ACAC591F8B4728B2371DB0A3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -334,85 +356,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		29E82F0B854670A68B44D42B /* [CP] Embed Pods Frameworks */ = {
+		4D0094C6CFD569CFDB968248 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Gank/Pods-Gank-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/EZSwiftExtensions/EZSwiftExtensions.framework",
-				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
-				"${BUILT_PRODUCTS_DIR}/NoticeBar/NoticeBar.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PullToRefresher/PullToRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftWebVC/SwiftWebVC.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
-				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZSwiftExtensions.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NoticeBar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PullToRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebVC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DDD2283C8D4D0F238A575BF0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Gank-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		FF63BD155A33A5B4498E7539 /* [CP] Copy Pods Resources */ = {
+		878B2B2B827A31A9B8A9EF1B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACAC591F8B4728B2371DB0A3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -434,6 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F437A82085C3D500E71358 /* PostViewModel.swift in Sources */,
 				AFBDB2621DF58F23003E8EE2 /* GankAPI.swift in Sources */,
 				AF3C0C221E0AA003002644DD /* BrowserWebViewController.swift in Sources */,
 				AFCB661E1DF844DB00916E1B /* HomeViewModel.swift in Sources */,
@@ -442,6 +417,7 @@
 				AFBBA5CD1E06F783003605D1 /* Response+ObjectMapper.swift in Sources */,
 				AFE2BA9A1E8144000066474E /* ViewModelType.swift in Sources */,
 				AF9F0FD91DF1A9E900FF8EC5 /* HomeTableViewCell.swift in Sources */,
+				84F437AA2085C3E700E71358 /* PostViewController.swift in Sources */,
 				AF69F0EB1E0E055D00735284 /* SideMenuNavigationController.swift in Sources */,
 				AF69F0ED1E0E08DE00735284 /* BaseNavigationController.swift in Sources */,
 				AF69F0F01E0E0C9400735284 /* SideViewController.swift in Sources */,
@@ -565,7 +541,7 @@
 		};
 		AFA7EC7D1DEEDEDC00138AEE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB83C309C44CA59C88B58AAB /* Pods-Buzzler.debug.xcconfig */;
+			baseConfigurationReference = 08F076F0908B7F9506698A2F /* Pods-Buzzler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3PLZG2J4W7;
@@ -574,6 +550,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.failnicely.buzzler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REEXPORTED_FRAMEWORK_NAMES = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
@@ -581,7 +558,7 @@
 		};
 		AFA7EC7E1DEEDEDC00138AEE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D7963327F11BA263C83AA0C /* Pods-Buzzler.release.xcconfig */;
+			baseConfigurationReference = 818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3PLZG2J4W7;
@@ -590,6 +567,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.failnicely.buzzler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REEXPORTED_FRAMEWORK_NAMES = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};

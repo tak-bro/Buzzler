@@ -52,12 +52,10 @@ extension HomeViewController {
         tableView.refreshControl?.backgroundColor = Config.UI.themeColor
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-           make.edges.equalTo(view)
+            make.edges.equalTo(view).inset(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10))
         }
-        
         // set SideMenu UI
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
-        SideMenuManager.menuShadowOpacity = 0
     }
     
     fileprivate func configBinding() {
@@ -110,7 +108,7 @@ extension HomeViewController {
             layer.shadowColor = UIColor.lightGray.cgColor
             layer.shadowOpacity = 0.5
             layer.frame = cell.frame
-        
+    
             return cell
         }
 
