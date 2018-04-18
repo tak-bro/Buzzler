@@ -7,13 +7,53 @@
 //
 
 import UIKit
+import Moya
+import RxSwift
+import RxCocoa
 
 class LoginViewController: UIViewController {
-
+    
+    let viewModel = LoginViewModel(provider: BuzzlerProvider)
+    
+    @IBOutlet weak var txt_email: UITextField!
+    @IBOutlet weak var txt_password: UITextField!
+    @IBOutlet weak var btn_login: UIButton!
+    @IBOutlet weak var lbl_enabled: UILabel!
+    
+    fileprivate let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        bindToRx()
+        print("test")
     }
-
+    
+    func bindToRx() {
+        txt_email.rx.text.orEmpty.bind(to: viewModel.email).addDisposableTo(disposeBag)
+        txt_password.rx.text.orEmpty.bind(to: viewModel.password).addDisposableTo(disposeBag)
+        btn_login.rx.tap.bind(to: viewModel.loginTaps).addDisposableTo(disposeBag)
+        
+        viewModel.loginEnabled
+            .drive(btn_login.rx.isEnabled)
+            .addDisposableTo(disposeBag)
+        
+        viewModel.loginExecuting.drive(onNext: { (executing) in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = executing
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.loginFinished.drive(onNext: { [weak self] loginResult in
+            switch loginResult {
+            case .failed(let message):
+                let alert = UIAlertController(title: "Oops!", message:message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
+                self?.present(alert, animated: true, completion: nil)
+            case .ok:
+                self?.dismiss(animated: true, completion: nil)
+            }
+        }).addDisposableTo(disposeBag)
+    }
+    
+    override func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

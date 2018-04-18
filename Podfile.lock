@@ -39,6 +39,7 @@ PODS:
   - SnapKit (3.0.2)
   - SwiftWebVC (0.4.1)
   - SwiftyBeaver (1.4.1)
+  - SwiftyJSON (3.1.4)
   - Then (2.1.1)
 
 DEPENDENCIES:
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - SnapKit (~> 3.0.2)
   - SwiftWebVC (= 0.4.1)
   - SwiftyBeaver (= 1.4.1)
+  - SwiftyJSON (= 3.1.4)
   - Then (~> 2.1)
 
 SPEC CHECKSUMS:
@@ -83,8 +85,9 @@ SPEC CHECKSUMS:
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SwiftWebVC: 17ad75e1fac143d421e0498fb40d7e37532f26d1
   SwiftyBeaver: f04f739cca6826c5fb0f575fed8fa3293f76b83e
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Then: 823a7503a851737269ba8d40e688b4db874dbd2d
 
-PODFILE CHECKSUM: 74adb5c4a1fa8172a9d72d6b5cb1d8072d9dd688
+PODFILE CHECKSUM: cde5c64ca991224246521bb8547f82fe6ccf87da
 
 COCOAPODS: 1.1.1
