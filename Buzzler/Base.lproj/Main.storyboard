@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,6 +25,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o55-94-qdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-745" y="-197"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="7hQ-vx-ZdT">
+            <objects>
+                <viewController id="49f-oW-Hw4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZXj-YO-Dko"/>
+                        <viewControllerLayoutGuide type="bottom" id="SkA-Ck-TUV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PJ9-ep-RI1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ALt-Yx-XW8">
+                                <rect key="frame" x="163" y="130" width="88" height="108"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="Ejh-DY-3Gk"/>
+                                    <constraint firstAttribute="height" constant="108" id="mj6-Ft-qRg"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="eoJ-TR-hEn">
+                                <rect key="frame" x="167" y="296.66666666666669" width="80" height="69"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="cWV-Jf-1wd"/>
+                                    <constraint firstAttribute="height" constant="69" id="duQ-ci-bEk"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NCb-Sf-FU0">
+                                <rect key="frame" x="154" y="418" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7DW-bZ-bH1">
+                                <rect key="frame" x="154" y="468" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57O-Ti-aE2">
+                                <rect key="frame" x="179" y="517" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YH-7O-ucK">
+                                <rect key="frame" x="183" y="584" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="eoJ-TR-hEn" firstAttribute="centerX" secondItem="PJ9-ep-RI1" secondAttribute="centerX" id="6ub-j2-sfx"/>
+                            <constraint firstItem="ALt-Yx-XW8" firstAttribute="centerY" secondItem="PJ9-ep-RI1" secondAttribute="centerY" multiplier="0.5" id="7zK-c1-nnO"/>
+                            <constraint firstItem="ALt-Yx-XW8" firstAttribute="centerX" secondItem="PJ9-ep-RI1" secondAttribute="centerX" id="Chv-e2-kql"/>
+                            <constraint firstItem="eoJ-TR-hEn" firstAttribute="centerY" secondItem="PJ9-ep-RI1" secondAttribute="centerY" multiplier="0.9" id="IY3-DM-fML"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MRm-z5-IJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-259" y="-949"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -283,5 +350,7 @@
     <resources>
         <image name="icon_side_menu" width="24" height="18"/>
         <image name="icon_write" width="24" height="24"/>
+        <image name="img_logo" width="88" height="108"/>
+        <image name="img_symbol" width="80" height="69"/>
     </resources>
 </document>
