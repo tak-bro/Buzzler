@@ -52,10 +52,10 @@ class PostViewController: UIViewController {
     }
     
     @IBAction func pressWrite(_ sender: UIButton) {
-        guard let title = self.txt_title.text, let contents = self.txt_contents.text else {
+        guard let title = self.txt_title.text, let content = self.txt_contents.text else {
             print("should input")
             return
         }
-        self.viewModel.writePost(title: title, contents: contents, imageUrls: [])
+        self.viewModel.writePost(title: title, content: content, imageUrls: [])
     }
 }

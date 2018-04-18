@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindToRx()
-        print("test")
+        setUI()
     }
     
     func bindToRx() {
@@ -56,4 +56,17 @@ class LoginViewController: UIViewController {
     override func dismissKeyboard() {
         view.endEditing(true)
     }
+}
+
+extension LoginViewController {
+    
+    func setUI() {
+        txt_email.placeholder = "Collage’s E-mail"
+        txt_email.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
+        
+        txt_password.placeholder = "Password"
+        txt_password.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+        
+    }
+    
 }

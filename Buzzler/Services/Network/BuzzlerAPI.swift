@@ -13,7 +13,7 @@ import RxSwift
 let BuzzlerProvider = RxMoyaProvider<Buzzler>(endpointClosure: endpointClosure, plugins: [NetworkLoggerPlugin(verbose: true)])
 
 public enum Buzzler {
-    case writePost(title: String, contents: String, imageUrls: [String])
+    case writePost(title: String, content: String, imageUrls: [String])
     case getPost
 }
 
@@ -42,8 +42,8 @@ extension Buzzler: TargetType {
     
     public var parameters: [String: Any]? {
         switch self {
-        case .writePost(let title, let contents, let imageUrls):
-            return ["title": title, "content": contents, "imageUrls": imageUrls]
+        case .writePost(let title, let content, let imageUrls):
+            return ["title": title, "content": content, "imageUrls": imageUrls]
         case .getPost:
             return nil
         }
@@ -70,8 +70,7 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
                                                parameters: target.parameters
     )
     switch target {
-    case .writePost(let title, let contents, let imageUrls):
-        print(title, contents, imageUrls)
+    case .writePost(let title, let content, let imageUrls):
         return endpoint
             .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newParameterEncoding: JSONEncoding.default)

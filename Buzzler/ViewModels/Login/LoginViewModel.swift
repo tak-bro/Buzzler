@@ -43,7 +43,7 @@ class LoginViewModel {
             .asObservable()
             .withLatestFrom(emailAndPassword)
             .flatMapLatest{ (email, password) in
-                provider.request(Buzzler.writePost(title: email, contents: password, imageUrls: ["", ""]))
+                provider.request(Buzzler.writePost(title: email, content: password, imageUrls: ["", ""]))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
             }

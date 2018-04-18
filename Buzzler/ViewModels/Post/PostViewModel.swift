@@ -14,8 +14,8 @@ import NSObject_Rx
 
 final class PostViewModel {
     
-    func writePost(title: String, contents: String, imageUrls: [String]) {
-        gankApi.request(.writePost(title: title, contents: contents, imageUrls: imageUrls)) { result in
+    func writePost(title: String, content: String, imageUrls: [String]) {
+        gankApi.request(.writePost(title: title, content: content, imageUrls: imageUrls)) { result in
             // do something with the result (read on for more details)
             print(result)
         }

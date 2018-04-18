@@ -50,7 +50,7 @@ enum GankAPI {
     }
 
     case data(type: GankCategory, size: Int64, index: Int64)
-    case writePost(title: String, contents: String, imageUrls: [String])
+    case writePost(title: String, content: String, imageUrls: [String])
 }
 
 extension GankAPI: TargetType {
@@ -87,10 +87,10 @@ extension GankAPI: TargetType {
 
     var parameters: [String : Any]? {
         switch self {
-        case .writePost(let title, let contents, let imageUrls):
+        case .writePost(let title, let content, let imageUrls):
             var parameters = [String: Any]()
             parameters["title"] = title
-            parameters["contents"] = contents
+            parameters["content"] = content
             parameters["imageUrls"] = imageUrls
             return parameters
         default:
