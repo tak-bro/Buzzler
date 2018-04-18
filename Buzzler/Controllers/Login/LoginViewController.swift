@@ -10,6 +10,7 @@ import UIKit
 import Moya
 import RxSwift
 import RxCocoa
+import RxKeyboard
 
 class LoginViewController: UIViewController {
     
@@ -18,8 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var txt_email: UITextField!
     @IBOutlet weak var txt_password: UITextField!
     @IBOutlet weak var btn_login: UIButton!
-    @IBOutlet weak var lbl_enabled: UILabel!
-    
+   
     fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -28,13 +28,20 @@ class LoginViewController: UIViewController {
         setUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     func bindToRx() {
         txt_email.rx.text.orEmpty.bind(to: viewModel.email).addDisposableTo(disposeBag)
         txt_password.rx.text.orEmpty.bind(to: viewModel.password).addDisposableTo(disposeBag)
         btn_login.rx.tap.bind(to: viewModel.loginTaps).addDisposableTo(disposeBag)
         
         viewModel.loginEnabled
-            .drive(btn_login.rx.isEnabled)
+            .drive(onNext: { (valid) in
+                self.btn_login.isEnabled = valid
+                self.btn_login.layer.borderColor = valid ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
+            })
             .addDisposableTo(disposeBag)
         
         viewModel.loginExecuting.drive(onNext: { (executing) in
@@ -61,12 +68,16 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     
     func setUI() {
+        // textfield
         txt_email.placeholder = "Collage’s E-mail"
         txt_email.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
-        
         txt_password.placeholder = "Password"
-        txt_password.addBorderBottom(height: 1.0, color: UIColor.lightGray)
+        txt_password.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
         
+        // button
+        btn_login.setTitleColor(Config.UI.buttonActiveColor, for: UIControlState.normal)
+        btn_login.setTitleColor(Config.UI.buttonInActiveColor, for: UIControlState.disabled)
+        btn_login.layer.borderWidth = 2.5
+        btn_login.layer.borderColor = Config.UI.buttonInActiveColor.cgColor
     }
-    
 }

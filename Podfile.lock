@@ -31,6 +31,9 @@ PODS:
     - Differentiator (~> 2.0)
     - RxCocoa (>= 3.6.1)
     - RxSwift (>= 3.6.1)
+  - RxKeyboard (0.6.2):
+    - RxCocoa (>= 3.4)
+    - RxSwift (>= 3.4)
   - RxOptional (3.2.0):
     - RxCocoa
     - RxSwift
@@ -55,6 +58,7 @@ DEPENDENCIES:
   - PullToRefresher (~> 2.0)
   - Reusable (= 3.0.0)
   - RxDataSources (= 2.0.2)
+  - RxKeyboard
   - RxOptional (= 3.2.0)
   - RxSwift (= 3.6.1)
   - SideMenu (= 2.3.3)
@@ -79,6 +83,7 @@ SPEC CHECKSUMS:
   Reusable: ab77c4c51a4b9606946df70e30cb8ad9cf75c226
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxDataSources: 7f190474a93a206c082c2d74c4cc9c8f7bea4feb
+  RxKeyboard: '09e6bd45070888cd9701e941b2324a49cc974a1b'
   RxOptional: d2d6a68064bc16b4801332c40663967f481b0234
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
   SideMenu: a447554ae5c982e8077666389e1c8b0c8656e065
@@ -88,6 +93,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Then: 823a7503a851737269ba8d40e688b4db874dbd2d
 
-PODFILE CHECKSUM: cde5c64ca991224246521bb8547f82fe6ccf87da
+PODFILE CHECKSUM: 56883d0205b7ac667d4972a7e4877a9ce5c09be2
 
 COCOAPODS: 1.1.1

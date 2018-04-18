@@ -34,7 +34,7 @@ class LoginViewModel {
         let emailObservable = email.asObservable()
         let passwordObservable = password.asObservable()
         
-        loginEnabled = Observable.combineLatest(emailObservable, passwordObservable) { $0.characters.count > 0 && $1.characters.count > 6 }
+        loginEnabled = Observable.combineLatest(emailObservable, passwordObservable) { $0.characters.count > 3 && $1.characters.count > 3 }
             .asDriver(onErrorJustReturn: false)
         
         let emailAndPassword = Observable.combineLatest(emailObservable, passwordObservable){ ($0, $1) }
@@ -42,7 +42,7 @@ class LoginViewModel {
         loginFinished = loginTaps
             .asObservable()
             .withLatestFrom(emailAndPassword)
-            .flatMapLatest{ (email, password) in
+            .flatMapLatest{(email, password) in
                 provider.request(Buzzler.writePost(title: email, content: password, imageUrls: ["", ""]))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
@@ -64,11 +64,5 @@ class LoginViewModel {
             }
             .asDriver(onErrorJustReturn: LoginResult.failed(message: "Oops, something went wrong")).debug()
     }
-    /*
-    var isValid: Observable<Bool> {
-        return Observable.combineLatest(email.asObservable(), password.asObservable()) { email, password in
-            email.characters.count >= 3 && password.characters.count >= 3
-        }
-    }
-    */
+  
 }

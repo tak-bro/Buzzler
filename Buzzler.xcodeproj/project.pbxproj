@@ -301,9 +301,9 @@
 			children = (
 				AFBDB2611DF58F23003E8EE2 /* GankAPI.swift */,
 				84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */,
-				84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */,
-				84BA76F62086FC4B0097FFD2 /* Decodable.swift */,
 				84BA76F82086FC7D0097FFD2 /* BuzzlerError.swift */,
+				84BA76F62086FC4B0097FFD2 /* Decodable.swift */,
+				84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
