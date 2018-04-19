@@ -42,13 +42,6 @@ class LoginViewModel {
         loginFinished = loginTaps
             .asObservable()
             .withLatestFrom(emailAndPassword)
-            .flatMapLatest{(email, password) in
-                provider.request(Buzzler.writePost(title: email, content: password, imageUrls: ["", ""]))
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-            }
-            .checkIfRateLimitExceeded()
-            .mapJSON()
             .do(onNext: { json in
                 // var appToken = Token()
                 //                appToken.token = json["token"] as? String
@@ -64,5 +57,6 @@ class LoginViewModel {
             }
             .asDriver(onErrorJustReturn: LoginResult.failed(message: "Oops, something went wrong")).debug()
     }
+    
   
 }

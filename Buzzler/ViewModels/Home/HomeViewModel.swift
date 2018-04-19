@@ -46,6 +46,7 @@ final class HomeViewModel: NSObject, ViewModelType {
             return [HomeSection(items: bricks)]
         })
         .asDriver(onErrorJustReturn: [])
+        
         let output = Output(homeSection: section)
         output.refreshCommand
             .flatMapLatest { gankApi.request(.data(type: GankType.mapCategory(with: $0), size: 20, index: 0)) }

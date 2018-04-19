@@ -20,7 +20,7 @@ extension UIStoryboard {
 class GlobalUIManager {
     class func loadHomeVC() {
         let kWindow: UIWindow = UIApplication.shared.keyWindow!
-        let rootVC = UIStoryboard.vcInMainSB("MainTabBarController")
+        let rootVC = UIStoryboard.vcInMainSB("HomeNavigationController")
         rootVC.modalTransitionStyle = .crossDissolve
         UIView.transition(with: kWindow,
                           duration: 1,

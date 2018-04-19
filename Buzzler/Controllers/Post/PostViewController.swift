@@ -18,44 +18,48 @@ class PostViewController: UIViewController {
     @IBOutlet weak var txt_title: UITextField!
     @IBOutlet weak var txt_contents: UITextField!
     
-    var viewModel: PostViewModel!
+   let viewModel = PostViewModel(provider: BuzzlerProvider)
     
     // MARK: - Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        self.viewModel = PostViewModel()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func dismissKeyboard() {
+        view.endEditing(true)
     }
-    */
-    
+
     // MARK: - Actions
     
     @IBAction func pressDismiss(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func pressWrite(_ sender: UIButton) {
-        guard let title = self.txt_title.text, let content = self.txt_contents.text else {
-            print("should input")
-            return
-        }
-        self.viewModel.writePost(title: title, content: content, imageUrls: [])
+}
+
+extension PostViewController {
+    
+    func bindToRx() {
+        txt_title.rx.text.orEmpty.bind(to: viewModel.title).addDisposableTo(disposeBag)
+        txt_contents.rx.text.orEmpty.bind(to: viewModel.content).addDisposableTo(disposeBag)
+        btn_post.rx.tap.bind(to: viewModel.postTaps).addDisposableTo(disposeBag)
+        
+        viewModel.postExecuting.drive(onNext: { (executing) in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = executing
+        }).addDisposableTo(disposeBag)
+        
+        viewModel.postFinished.drive(onNext: { [weak self] postResult in
+            switch postResult {
+            case .failed(let message):
+                let alert = UIAlertController(title: "Oops!", message:message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
+                self?.present(alert, animated: true, completion: nil)
+            case .ok:
+                self?.dismiss(animated: true, completion: nil)
+            }
+        }).addDisposableTo(disposeBag)
     }
+    
 }

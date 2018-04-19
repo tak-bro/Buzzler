@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
     }
     
-    func bindToRx() {
+     func bindToRx() {
         txt_email.rx.text.orEmpty.bind(to: viewModel.email).addDisposableTo(disposeBag)
         txt_password.rx.text.orEmpty.bind(to: viewModel.password).addDisposableTo(disposeBag)
         btn_login.rx.tap.bind(to: viewModel.loginTaps).addDisposableTo(disposeBag)
@@ -49,14 +49,8 @@ class LoginViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         
         viewModel.loginFinished.drive(onNext: { [weak self] loginResult in
-            switch loginResult {
-            case .failed(let message):
-                let alert = UIAlertController(title: "Oops!", message:message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
-                self?.present(alert, animated: true, completion: nil)
-            case .ok:
-                self?.dismiss(animated: true, completion: nil)
-            }
+            print(loginResult)
+            GlobalUIManager.loadHomeVC()
         }).addDisposableTo(disposeBag)
     }
     
@@ -80,4 +74,21 @@ extension LoginViewController {
         btn_login.layer.borderWidth = 2.5
         btn_login.layer.borderColor = Config.UI.buttonInActiveColor.cgColor
     }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
 }
