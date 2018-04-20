@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var txt_email: UITextField!
     @IBOutlet weak var txt_password: UITextField!
     @IBOutlet weak var btn_login: UIButton!
-   
+    
     fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -49,9 +49,16 @@ class LoginViewController: UIViewController {
         }).addDisposableTo(disposeBag)
         
         viewModel.loginFinished.drive(onNext: { [weak self] loginResult in
-            print(loginResult)
             GlobalUIManager.loadHomeVC()
         }).addDisposableTo(disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
+            .drive(onNext: { [weak self] keyboardVisibleHeight in
+                guard let `self` = self else {return}
+
+                self.view.bounds.origin.y = keyboardVisibleHeight
+                self.view.layoutIfNeeded()
+            }).addDisposableTo(disposeBag)
     }
     
     override func dismissKeyboard() {
@@ -75,20 +82,5 @@ extension LoginViewController {
         btn_login.layer.borderColor = Config.UI.buttonInActiveColor.cgColor
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
-    }
     
 }

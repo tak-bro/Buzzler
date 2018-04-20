@@ -24,7 +24,7 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        bindToRx()
     }
     
     override func dismissKeyboard() {
