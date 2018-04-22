@@ -23,7 +23,6 @@ class StartSignUpViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 }
 
 extension StartSignUpViewController {
@@ -34,5 +33,4 @@ extension StartSignUpViewController {
         btn_getStarted.layer.borderWidth = 2.5
         btn_getStarted.layer.borderColor = Config.UI.buttonActiveColor.cgColor
     }
-    
 }

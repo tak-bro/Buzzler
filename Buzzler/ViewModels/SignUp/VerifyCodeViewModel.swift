@@ -19,7 +19,7 @@ class VerifyCodeViewModel {
     
     // Output
     let nextEnabled: Driver<Bool>
-    let nextFinished: Driver<LoginResult>
+    let nextFinished: Driver<SignUpResult>
     let nextExecuting: Driver<Bool>
     
     // Private
@@ -34,7 +34,7 @@ class VerifyCodeViewModel {
         
         nextEnabled = codeObservable
             .map { text in
-                return text.characters.count > 4 ? true : false
+                return text.characters.count > 2 ? true : false
             }
             .asDriver(onErrorJustReturn: false)
         
@@ -51,9 +51,9 @@ class VerifyCodeViewModel {
                 //                } else {
                 //                    return LoginResult.ok
                 //                }
-                return LoginResult.ok
+                return SignUpResult.ok
             }
-            .asDriver(onErrorJustReturn: LoginResult.failed(message: "Oops, something went wrong")).debug()
+            .asDriver(onErrorJustReturn: SignUpResult.failed(message: "Oops, something went wrong")).debug()
     }
     
     

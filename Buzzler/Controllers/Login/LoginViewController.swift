@@ -71,9 +71,13 @@ extension LoginViewController {
     func setUI() {
         // textfield
         txt_email.placeholder = "Collage’s E-mail"
-        txt_email.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
         txt_password.placeholder = "Password"
-        txt_password.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
+        // txt_password.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
+        
+        setBorderAndCornerRadius(layer: txt_email.layer, width: 1, radius: 25, color: Config.UI.textFieldColor)
+        setBorderAndCornerRadius(layer: txt_password.layer, width: 1, radius: 25, color: Config.UI.textFieldColor)
+        setLeftPadding(textField: txt_email)
+        setLeftPadding(textField: txt_password)
         
         // button
         btn_login.setTitleColor(Config.UI.buttonActiveColor, for: UIControlState.normal)

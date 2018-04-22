@@ -21,7 +21,7 @@ class SignUpViewModel {
     
     // Output
     let nextEnabled: Driver<Bool>
-    let nextFinished: Driver<LoginResult>
+    let nextFinished: Driver<SignUpResult>
     let nextExecuting: Driver<Bool>
     
     // Private
@@ -36,7 +36,7 @@ class SignUpViewModel {
         let emailObservable = email.asObservable()
         let passwordObservable = password.asObservable()
         
-        nextEnabled = Observable.combineLatest(nickNameObservable, emailObservable, passwordObservable) { $0.characters.count > 4 && $1.characters.count > 5 && $2.characters.count > 5 }
+        nextEnabled = Observable.combineLatest(nickNameObservable, emailObservable, passwordObservable) { $0.characters.count > 2 && $1.characters.count > 2 && $2.characters.count > 2 }
             .asDriver(onErrorJustReturn: false)
         
         let combineData = Observable.combineLatest(nickNameObservable, emailObservable, passwordObservable){ ($0, $1, $2) }
@@ -55,9 +55,9 @@ class SignUpViewModel {
                 //                } else {
                 //                    return LoginResult.ok
                 //                }
-                return LoginResult.ok
+                return SignUpResult.ok
             }
-            .asDriver(onErrorJustReturn: LoginResult.failed(message: "Oops, something went wrong")).debug()
+            .asDriver(onErrorJustReturn: SignUpResult.failed(message: "Oops, something went wrong")).debug()
     }
     
     

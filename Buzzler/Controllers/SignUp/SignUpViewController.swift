@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController {
         case finish
     }
     
-    let router = DefaultSignUpRouter()
+    let router = SignUpRouter()
     let viewModel = SignUpViewModel(provider: BuzzlerProvider)
     
     @IBOutlet weak var txt_nickName: UITextField!
@@ -72,6 +72,10 @@ class SignUpViewController: UIViewController {
     override func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    @IBAction func pressDismiss(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension SignUpViewController {
@@ -82,7 +86,14 @@ extension SignUpViewController {
         btn_next.setTitleColor(Config.UI.buttonInActiveColor, for: UIControlState.disabled)
         btn_next.layer.borderWidth = 2.5
         btn_next.layer.borderColor = Config.UI.buttonInActiveColor.cgColor
+        
+        setBorderAndCornerRadius(layer: txt_nickName.layer, width: 1, radius: 25, color: Config.UI.textFieldColor)
+        setBorderAndCornerRadius(layer: txt_email.layer, width: 1, radius: 25, color: Config.UI.textFieldColor)
+        setBorderAndCornerRadius(layer: txt_password.layer, width: 1, radius: 25, color: Config.UI.textFieldColor)
+        
+        setLeftPadding(textField: txt_nickName)
+        setLeftPadding(textField: txt_email)
+        setLeftPadding(textField: txt_password)
     }
-    
 }
 

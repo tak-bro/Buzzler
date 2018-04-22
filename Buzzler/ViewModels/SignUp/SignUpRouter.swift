@@ -10,32 +10,34 @@ import Foundation
 import UIKit
 
 enum SignUpSegue {
-    case signUp
     case verifyCode
+    case done
 }
 
-protocol SignUpRouter {
-    func perform(_ segue: SignUpSegue, from source: SignUpViewController)
-}
-
-class DefaultSignUpRouter: SignUpRouter {
+class SignUpRouter {
     
-    func perform(_ segue: SignUpSegue, from source: SignUpViewController) {
+    func perform(_ segue: SignUpSegue, from source: UIViewController) {
         switch segue {
-        case .signUp:
-            print("test")
         case .verifyCode:
-            let vc = DefaultSignUpRouter.makeVerifyCodeViewController()
-            source.navigationController?.pushViewController(vc, animated: true)
+            let verifyCodeVC = SignUpRouter.makeVerifyCodeViewController()
+            source.navigationController?.pushViewController(verifyCodeVC, animated: true)
+        case .done:
+            let signUpDoneVC = SignUpRouter.makeSignUpDoneViewController()
+            source.navigationController?.pushViewController(signUpDoneVC, animated: true)
         }
     }
 }
 
 // MARK: Helpers
-private extension DefaultSignUpRouter {
+private extension SignUpRouter {
 
     static func makeVerifyCodeViewController() -> VerifyCodeViewController {
         let verifyCodeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VerifyCodeViewController") as! VerifyCodeViewController
         return verifyCodeVC
+    }
+    
+    static func makeSignUpDoneViewController() -> SignUpDoneViewController {
+        let signUpDoneVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpDoneViewController") as! SignUpDoneViewController
+        return signUpDoneVC
     }
 }

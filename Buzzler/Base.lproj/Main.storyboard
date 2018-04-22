@@ -87,7 +87,7 @@
                                     <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="LWG-j1-feB" kind="show" id="FRg-Dr-LeA"/>
+                                    <segue destination="swR-uG-AhO" kind="presentation" id="s5J-Wt-ywf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -205,17 +205,25 @@ a “Verify Code” to your inbox.</string>
                             <constraint firstItem="0X7-yH-nKs" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.4" id="yQe-qn-nTD"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="6LK-PU-epb">
+                        <barButtonItem key="leftBarButtonItem" image="btn_dismiss" id="xuo-kI-6rG">
+                            <color key="tintColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="pressDismiss:" destination="LWG-j1-feB" id="KGi-dI-bLb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btn_next" destination="anP-1s-02X" id="Qsx-qz-SU0"/>
                         <outlet property="txt_email" destination="uKK-Za-7Ob" id="RVC-fg-2qT"/>
                         <outlet property="txt_nickName" destination="Gow-Yt-zxb" id="h9i-hs-fvB"/>
                         <outlet property="txt_password" destination="aa7-nr-Wbq" id="B1f-3I-1Zg"/>
-                        <segue destination="SIh-1I-GRI" kind="show" id="RyL-EX-bml"/>
+                        <segue destination="SIh-1I-GRI" kind="show" id="Kel-Ul-N1R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhQ-Ro-m0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1673.913043478261" y="-1978.5326086956522"/>
+            <point key="canvasLocation" x="2580" y="-1979"/>
         </scene>
         <!--Verify Code View Controller-->
         <scene sceneID="95A-Oh-OpV">
@@ -282,16 +290,84 @@ you just entered with a verification code.</string>
                     <connections>
                         <outlet property="btn_next" destination="N2B-QJ-Zcq" id="HzX-Jd-hhl"/>
                         <outlet property="txt_code" destination="SzL-Wa-DGo" id="IQB-St-rM7"/>
+                        <segue destination="rOx-L5-hp1" kind="show" id="JGN-Za-bPF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zwa-Yw-sCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2417" y="-1979"/>
+            <point key="canvasLocation" x="3399" y="-1979"/>
+        </scene>
+        <!--Sign Up Done View Controller-->
+        <scene sceneID="oC3-fU-QDr">
+            <objects>
+                <viewController storyboardIdentifier="SignUpDoneViewController" id="rOx-L5-hp1" customClass="SignUpDoneViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b5K-q6-vUy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Txk-Zd-r3n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bYt-z2-fDF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_done_check" translatesAutoresizingMaskIntoConstraints="NO" id="Av7-qK-IBT">
+                                <rect key="frame" x="165" y="215.66666666666663" width="84" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="6Ws-qD-HH8"/>
+                                    <constraint firstAttribute="width" constant="84" id="izf-UG-SYp"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Buzzler!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vaG-gu-J4w">
+                                <rect key="frame" x="99.333333333333329" y="355.33333333333331" width="216.33333333333337" height="26.333333333333314"/>
+                                <fontDescription key="fontDescription" name="AvenirLT-Black" family="Avenir LT 65 Medium" pointSize="22"/>
+                                <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9P-Lf-6pR">
+                                <rect key="frame" x="87" y="491.33333333333326" width="240" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="1UP-xN-Njg"/>
+                                    <constraint firstAttribute="height" constant="48" id="2to-Al-Jbc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirLT-Black" family="Avenir LT 65 Medium" pointSize="16"/>
+                                <state key="normal" title="START!">
+                                    <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressDone:" destination="rOx-L5-hp1" eventType="touchUpInside" id="0JZ-Ne-eFB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="o9P-Lf-6pR" firstAttribute="centerX" secondItem="bYt-z2-fDF" secondAttribute="centerX" id="Hv0-pQ-XON"/>
+                            <constraint firstItem="Av7-qK-IBT" firstAttribute="centerY" secondItem="bYt-z2-fDF" secondAttribute="centerY" multiplier="0.7" id="MZB-9O-DFc"/>
+                            <constraint firstItem="vaG-gu-J4w" firstAttribute="centerX" secondItem="bYt-z2-fDF" secondAttribute="centerX" id="bRH-Wp-kRa"/>
+                            <constraint firstItem="vaG-gu-J4w" firstAttribute="width" secondItem="bYt-z2-fDF" secondAttribute="height" multiplier="27:92" id="cbP-dC-LFt"/>
+                            <constraint firstItem="Av7-qK-IBT" firstAttribute="centerX" secondItem="bYt-z2-fDF" secondAttribute="centerX" id="dQm-cv-RqB"/>
+                            <constraint firstItem="o9P-Lf-6pR" firstAttribute="centerY" secondItem="bYt-z2-fDF" secondAttribute="centerY" multiplier="1.4" id="qtu-Gy-IIT"/>
+                            <constraint firstItem="vaG-gu-J4w" firstAttribute="centerY" secondItem="bYt-z2-fDF" secondAttribute="centerY" id="rSN-r5-2ke"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gBG-o4-2eh">
+                        <barButtonItem key="leftBarButtonItem" image="btn_dismiss" id="xms-KY-9lv">
+                            <color key="tintColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="pressBackBtn:" destination="rOx-L5-hp1" id="zqf-1A-jIk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="btn_done" destination="o9P-Lf-6pR" id="W7p-xB-mrw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tve-Kk-1hr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4178" y="-1978"/>
         </scene>
         <!-- -->
         <scene sceneID="7hQ-vx-ZdT">
             <objects>
-                <viewController id="49f-oW-Hw4" customClass="LoginViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="49f-oW-Hw4" customClass="LoginViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZXj-YO-Dko"/>
                         <viewControllerLayoutGuide type="bottom" id="SkA-Ck-TUV"/>
@@ -309,7 +385,7 @@ you just entered with a verification code.</string>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
                                 <state key="normal" title="LOG IN"/>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7DW-bZ-bH1">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7DW-bZ-bH1">
                                 <rect key="frame" x="87" y="445" width="240" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="99a-rm-rVX"/>
@@ -319,7 +395,7 @@ you just entered with a verification code.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NCb-Sf-FU0">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NCb-Sf-FU0">
                                 <rect key="frame" x="87" y="389.66666666666669" width="240" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="NCb-Sf-FU0" secondAttribute="height" multiplier="8:1" id="SJp-A8-XBP"/>
@@ -399,13 +475,13 @@ you just entered with a verification code.</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8dh-5E-zKM">
-                        <barButtonItem key="leftBarButtonItem" image="icon_side_menu" style="plain" id="OcZ-YA-ND1">
+                        <barButtonItem key="leftBarButtonItem" image="btn_side_menu" style="plain" id="OcZ-YA-ND1">
                             <color key="tintColor" red="0.71372549019607845" green="0.86274509803921573" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="M8c-wV-6N3" kind="presentation" id="BrT-2e-r93"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="icon_write" style="plain" id="TvB-wL-RJL">
+                        <barButtonItem key="rightBarButtonItem" image="btn_write" style="plain" id="TvB-wL-RJL">
                             <color key="tintColor" red="0.71372549019999998" green="0.86274509799999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="l2d-FS-koS" kind="presentation" id="y9G-8a-nQc"/>
@@ -672,10 +748,30 @@ you just entered with a verification code.</string>
             </objects>
             <point key="canvasLocation" x="-145" y="-1635"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lJd-zZ-izv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="swR-uG-AhO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Btz-sC-i8g">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LWG-j1-feB" kind="relationship" relationship="rootViewController" id="JbG-Xh-xQT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Tc-Bm-D4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1673.913043478261" y="-1978.5326086956522"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="icon_side_menu" width="24" height="18"/>
-        <image name="icon_write" width="24" height="24"/>
+        <image name="btn_dismiss" width="20" height="20"/>
+        <image name="btn_side_menu" width="24" height="18"/>
+        <image name="btn_write" width="24" height="24"/>
+        <image name="img_done_check" width="84" height="84"/>
         <image name="img_logo" width="88" height="108"/>
         <image name="img_symbol" width="80" height="69"/>
     </resources>

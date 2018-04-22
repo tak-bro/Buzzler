@@ -19,7 +19,7 @@ class VerifyCodeViewController: UIViewController {
     
     fileprivate let disposeBag = DisposeBag()
     
-    let router = DefaultSignUpRouter()
+    let router = SignUpRouter()
     let viewModel = VerifyCodeViewModel(provider: BuzzlerProvider)
     
     override func viewDidLoad() {
@@ -48,7 +48,7 @@ class VerifyCodeViewController: UIViewController {
         viewModel.nextFinished.drive(onNext: { [weak self] loginResult in
             // push view controller
             guard let strongSelf = self else { return }
-            // strongSelf.router.perform(.verifyCode, from: strongSelf)
+            strongSelf.router.perform(.done, from: strongSelf)
         }).addDisposableTo(disposeBag)
 
     }
@@ -66,6 +66,9 @@ extension VerifyCodeViewController {
         btn_next.setTitleColor(Config.UI.buttonInActiveColor, for: UIControlState.disabled)
         btn_next.layer.borderWidth = 2.5
         btn_next.layer.borderColor = Config.UI.buttonInActiveColor.cgColor
+        
+        setBorderAndCornerRadius(layer: txt_code.layer, width: 1, radius: 25, color: Config.UI.textFieldColor)
+        setLeftPadding(textField: txt_code)
     }
     
 }
