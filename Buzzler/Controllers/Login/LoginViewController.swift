@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
             .drive(onNext: { [weak self] keyboardVisibleHeight in
                 guard let `self` = self else {return}
 
-                self.view.bounds.origin.y = keyboardVisibleHeight
+                self.view.bounds.origin.y = keyboardVisibleHeight * 0.7
                 self.view.layoutIfNeeded()
             }).addDisposableTo(disposeBag)
     }
