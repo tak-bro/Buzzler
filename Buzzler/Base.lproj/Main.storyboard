@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -460,21 +459,7 @@ you just entered with a verification code.</string>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgH-RJ-F3U">
-                                <rect key="frame" x="231" y="340" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="wgH-RJ-F3U" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="211" id="RZj-87-7Rr"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wgH-RJ-F3U" secondAttribute="bottom" constant="375" id="TMo-Q3-cf3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="wgH-RJ-F3U" secondAttribute="trailing" constant="121" id="c0d-uC-jiY"/>
-                            <constraint firstItem="wgH-RJ-F3U" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="276" id="qi5-fM-zpw"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8dh-5E-zKM">
                         <barButtonItem key="leftBarButtonItem" image="btn_side_menu" style="plain" id="OcZ-YA-ND1">
@@ -493,7 +478,7 @@ you just entered with a verification code.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="414.49275362318843" y="-197.28260869565219"/>
+            <point key="canvasLocation" x="714" y="-197"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="Nvw-GY-BVG">
@@ -532,7 +517,7 @@ you just entered with a verification code.</string>
                                 <rect key="frame" x="15" y="68" width="384" height="648"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="제목..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-AQ-X3A">
-                                        <rect key="frame" x="10" y="8" width="364" height="30"/>
+                                        <rect key="frame" x="10" y="8" width="359" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bsd-90-DG1"/>
                                         </constraints>
@@ -577,7 +562,7 @@ you just entered with a verification code.</string>
                                     <constraint firstAttribute="trailing" secondItem="ZGw-rE-b34" secondAttribute="trailing" constant="5" id="Npg-QE-Ax3"/>
                                     <constraint firstAttribute="bottom" secondItem="OJA-B4-CRo" secondAttribute="bottom" constant="22" id="S5s-PH-WhO"/>
                                     <constraint firstItem="ZGw-rE-b34" firstAttribute="leading" secondItem="LXG-eY-md5" secondAttribute="leading" constant="5" id="Wob-Fq-iD2"/>
-                                    <constraint firstAttribute="trailing" secondItem="nj9-AQ-X3A" secondAttribute="trailing" constant="10" id="YCd-MH-UYf"/>
+                                    <constraint firstAttribute="trailing" secondItem="nj9-AQ-X3A" secondAttribute="trailing" constant="15" id="YCd-MH-UYf"/>
                                     <constraint firstItem="Ec6-er-0aI" firstAttribute="leading" secondItem="GX1-Xz-MFs" secondAttribute="trailing" constant="15" id="dPj-SH-mrc"/>
                                     <constraint firstItem="nj9-AQ-X3A" firstAttribute="leading" secondItem="LXG-eY-md5" secondAttribute="leading" constant="10" id="h88-Ng-GgB"/>
                                     <constraint firstAttribute="bottom" secondItem="GX1-Xz-MFs" secondAttribute="bottom" constant="20" id="kNQ-0k-V4o"/>
@@ -612,7 +597,7 @@ you just entered with a verification code.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s3v-78-csC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1481.1594202898552" y="-197.28260869565219"/>
+            <point key="canvasLocation" x="1629" y="-197"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="NiI-T8-wYa">
@@ -742,7 +727,7 @@ you just entered with a verification code.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3U-PH-IHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="200.80000000000001" y="574.13793103448279"/>
+            <point key="canvasLocation" x="714" y="674"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="25J-lM-d5o">
@@ -761,7 +746,7 @@ you just entered with a verification code.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ku-F7-i34" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-649" y="574"/>
+            <point key="canvasLocation" x="-146" y="675"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="F3a-SF-K25">
@@ -779,7 +764,7 @@ you just entered with a verification code.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdY-dG-eTF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-649" y="-198"/>
+            <point key="canvasLocation" x="-146" y="-197"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aPO-Ss-0KZ">

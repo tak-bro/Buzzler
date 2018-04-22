@@ -67,7 +67,7 @@ extension VerifyCodeViewController {
         btn_next.layer.borderWidth = 2.5
         btn_next.layer.borderColor = Config.UI.buttonInActiveColor.cgColor
         
-        setBorderAndCornerRadius(layer: txt_code.layer, width: 1, radius: 15, color: Config.UI.textFieldColor)
+        setBorderAndCornerRadius(layer: txt_code.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setLeftPadding(textField: txt_code)
     }
     

@@ -23,6 +23,9 @@
 		844BC386208C462900666486 /* SignUpDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC385208C462900666486 /* SignUpDoneViewController.swift */; };
 		844BC388208C539A00666486 /* SignUpResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC387208C539A00666486 /* SignUpResult.swift */; };
 		844BC38A208C573000666486 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC389208C573000666486 /* HelperFunctions.swift */; };
+		84A1BFC3208C67AD00D0ADC7 /* BuzzlerPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */; };
+		84A1BFC6208C7C6200D0ADC7 /* HomeImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */; };
+		84A1BFC7208C7C6200D0ADC7 /* HomeImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */; };
 		84BA76F12086E0B10097FFD2 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F02086E0B10097FFD2 /* LoginResult.swift */; };
 		84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */; };
 		84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */; };
@@ -70,6 +73,9 @@
 		844BC385208C462900666486 /* SignUpDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDoneViewController.swift; sourceTree = "<group>"; };
 		844BC387208C539A00666486 /* SignUpResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResult.swift; sourceTree = "<group>"; };
 		844BC389208C573000666486 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerPost.swift; sourceTree = "<group>"; };
+		84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageTableViewCell.swift; sourceTree = "<group>"; };
+		84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeImageTableViewCell.xib; sourceTree = "<group>"; };
 		84BA76F02086E0B10097FFD2 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
 		84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerAPI.swift; sourceTree = "<group>"; };
 		84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Rx.swift"; sourceTree = "<group>"; };
@@ -244,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				AF9F0FD01DF1A6CD00FF8EC5 /* Brick.swift */,
+				84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -270,6 +277,8 @@
 			children = (
 				AF9F0FD71DF1A9E900FF8EC5 /* HomeTableViewCell.swift */,
 				AF9F0FD81DF1A9E900FF8EC5 /* HomeTableViewCell.xib */,
+				84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */,
+				84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */,
 			);
 			name = Home;
 			path = home;
@@ -459,6 +468,7 @@
 			files = (
 				AFA7EC781DEEDEDC00138AEE /* LaunchScreen.storyboard in Resources */,
 				AFA7EC751DEEDEDC00138AEE /* Assets.xcassets in Resources */,
+				84A1BFC7208C7C6200D0ADC7 /* HomeImageTableViewCell.xib in Resources */,
 				844BC377208AF17800666486 /* Avenir LT 95 Black.ttf in Resources */,
 				844BC378208AF17800666486 /* AvenirLTStd-Book.otf in Resources */,
 				AF9F0FDA1DF1A9E900FF8EC5 /* HomeTableViewCell.xib in Resources */,
@@ -543,6 +553,8 @@
 				844BC384208B0C8300666486 /* VerifyCodeViewModel.swift in Sources */,
 				84BA76F92086FC7D0097FFD2 /* BuzzlerError.swift in Sources */,
 				844BC38A208C573000666486 /* HelperFunctions.swift in Sources */,
+				84A1BFC3208C67AD00D0ADC7 /* BuzzlerPost.swift in Sources */,
+				84A1BFC6208C7C6200D0ADC7 /* HomeImageTableViewCell.swift in Sources */,
 				844BC380208B065200666486 /* SignUpRouter.swift in Sources */,
 				84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */,
 				84BA76F12086E0B10097FFD2 /* LoginResult.swift in Sources */,

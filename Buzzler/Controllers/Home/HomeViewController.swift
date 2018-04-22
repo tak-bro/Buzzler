@@ -18,13 +18,14 @@ final class HomeViewController: UIViewController {
 
     let tableView = UITableView().then {
         $0.register(cellType: HomeTableViewCell.self)
+        $0.register(cellType: HomeImageTableViewCell.self)
     }
 
     let refreshControl = PullToRefresh()
 
     let homeVM = HomeViewModel()
 
-    let dataSource = RxTableViewSectionedReloadDataSource<HomeSection>()
+    let dataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
 
     // MARK: - Life Cycle
 
@@ -43,7 +44,7 @@ extension HomeViewController {
     fileprivate func configUI() {
         
         // set tableView UI
-        title = "Buzzler"
+        title = " "
         tableView.backgroundColor = Config.UI.themeColor
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
@@ -52,7 +53,7 @@ extension HomeViewController {
         tableView.refreshControl?.backgroundColor = Config.UI.themeColor
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view).inset(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10))
+            make.edges.equalTo(view)
         }
         // set SideMenu UI
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
@@ -96,20 +97,41 @@ extension HomeViewController {
 
         // Configure
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
-            let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
-            cell.gankTitle?.text = item.desc
-            cell.gankAuthor.text = item.who
-            cell.gankTime.text = item.publishedAt.toString(format: "YYYY/MM/DD")
-            
-            // set shadow
-            let layer = cell.layer
-            layer.shadowOffset = CGSize(width: 1, height: 1)
-            layer.shadowRadius = 5
-            layer.shadowColor = UIColor.lightGray.cgColor
-            layer.shadowOpacity = 0.5
-            layer.frame = cell.frame
-    
-            return cell
+            if item.imageUrls.count > 0 {
+                let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
+                imgCell.lbl_title.text = item.title
+                imgCell.lbl_content.text = item.content
+                imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                imgCell.lbl_likeCount.text = String(item.likeCount)
+                imgCell.lbl_author.text = "익명"
+                
+                // set shadow
+                let layer = imgCell.layer
+                layer.shadowOffset = CGSize(width: 1, height: 1)
+                layer.shadowRadius = 5
+                layer.shadowColor = UIColor.lightGray.cgColor
+                layer.shadowOpacity = 0.5
+                layer.frame = imgCell.frame
+                
+                return imgCell
+            } else {
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
+                cell.lbl_title.text = item.title
+                cell.lbl_content.text = item.content
+                cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                cell.lbl_likeCount.text = String(item.likeCount)
+                cell.lbl_author.text = "익명"
+                
+                // set shadow
+                let layer = cell.layer
+                layer.shadowOffset = CGSize(width: 1, height: 1)
+                layer.shadowRadius = 5
+                layer.shadowColor = UIColor.lightGray.cgColor
+                layer.shadowOpacity = 0.5
+                layer.frame = cell.frame
+                
+                return cell
+            }
         }
 
         outputStuff.section
