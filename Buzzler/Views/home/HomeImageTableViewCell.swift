@@ -18,6 +18,8 @@ final class HomeImageTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var lbl_commentCount: UILabel!
     @IBOutlet weak var lbl_remainTime: UILabel!
     @IBOutlet weak var lbl_author: UILabel!
+    @IBOutlet weak var lbl_remainImgCnt: UILabel!
+    @IBOutlet weak var vw_remainLabelContainer: UIView!
     
     static let height: CGFloat = UITableViewAutomaticDimension
     

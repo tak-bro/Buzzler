@@ -104,6 +104,10 @@ extension HomeViewController {
                 imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
                 imgCell.lbl_likeCount.text = String(item.likeCount)
                 imgCell.lbl_author.text = "익명"
+                imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
+                if item.imageUrls.count == 1 {
+                    imgCell.vw_remainLabelContainer.isHidden = true
+                }
                 
                 // set shadow
                 let layer = imgCell.layer
