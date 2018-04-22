@@ -107,6 +107,8 @@ extension HomeViewController {
                 imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
                 if item.imageUrls.count == 1 {
                     imgCell.vw_remainLabelContainer.isHidden = true
+                } else {
+                    imgCell.vw_remainLabelContainer.isHidden = false
                 }
                 
                 // set shadow
