@@ -12,11 +12,12 @@ class PostViewController: UIViewController {
 
     // MARK: - Outlets
     
+    @IBOutlet weak var vw_container: UIView!
     @IBOutlet weak var lbl_univ: UILabel!
     @IBOutlet weak var btn_post: UIButton!
     @IBOutlet weak var btn_dismiss: UIButton!
     @IBOutlet weak var txt_title: UITextField!
-    @IBOutlet weak var txt_contents: UITextField!
+    @IBOutlet weak var txt_contents: UITextView!
     
    let viewModel = PostViewModel(provider: BuzzlerProvider)
     
@@ -25,12 +26,18 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindToRx()
+        setUI()
+        setToolbar()
     }
     
     override func dismissKeyboard() {
         view.endEditing(true)
     }
 
+    func addImage() {
+        print("test")
+    }
+    
     // MARK: - Actions
     
     @IBAction func pressDismiss(_ sender: UIButton) {
@@ -60,6 +67,26 @@ extension PostViewController {
                 self?.dismiss(animated: true, completion: nil)
             }
         }).addDisposableTo(disposeBag)
+    }
+    
+    func setUI() {
+        txt_title.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
+    }
+    
+    func setToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
+        toolbar.sizeToFit()
+        
+        let fixedSpaceButton = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        let nextButton  = UIBarButtonItem(image: UIImage(named: "btn_upload_img"), style: .plain, target: self, action: #selector(addImage))
+  
+        toolbar.setItems([fixedSpaceButton, nextButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        txt_title.inputAccessoryView = toolbar
+        txt_contents.inputAccessoryView = toolbar
     }
     
 }

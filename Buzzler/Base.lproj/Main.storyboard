@@ -382,23 +382,25 @@ you just entered with a verification code.</string>
                                     <constraint firstAttribute="height" constant="48" id="4Xg-mu-RbQ"/>
                                     <constraint firstAttribute="width" constant="240" id="hRr-fs-pMF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
-                                <state key="normal" title="LOG IN"/>
+                                <fontDescription key="fontDescription" name="AvenirLT-Black" family="Avenir LT 65 Medium" pointSize="16"/>
+                                <state key="normal" title="LOG IN">
+                                    <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7DW-bZ-bH1">
-                                <rect key="frame" x="87" y="445" width="240" height="30"/>
+                                <rect key="frame" x="87" y="440" width="240" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="99a-rm-rVX"/>
-                                    <constraint firstAttribute="width" secondItem="7DW-bZ-bH1" secondAttribute="height" multiplier="8:1" id="dPg-2R-DxM"/>
+                                    <constraint firstAttribute="height" constant="40" id="Jov-Vw-6aD"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NCb-Sf-FU0">
-                                <rect key="frame" x="87" y="389.66666666666669" width="240" height="30"/>
+                                <rect key="frame" x="87" y="384.66666666666669" width="240" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="NCb-Sf-FU0" secondAttribute="height" multiplier="8:1" id="SJp-A8-XBP"/>
+                                    <constraint firstAttribute="height" constant="40" id="gYb-pk-ZfX"/>
                                     <constraint firstAttribute="width" constant="240" id="iTT-9y-ULf"/>
                                 </constraints>
                                 <nil key="textColor"/>
@@ -466,7 +468,7 @@ you just entered with a verification code.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wgH-RJ-F3U" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="211" id="RZj-87-7Rr"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wgH-RJ-F3U" secondAttribute="bottom" constant="375" id="TMo-Q3-cf3"/>
@@ -507,14 +509,18 @@ you just entered with a verification code.</string>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmB-jG-KB1">
                                 <rect key="frame" x="20" y="30.666666666666671" width="30" height="30"/>
-                                <state key="normal" title="취소"/>
+                                <state key="normal" title="취소">
+                                    <color key="titleColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="pressDismiss:" destination="l2d-FS-koS" eventType="touchUpInside" id="AGe-av-YXT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYG-y7-JYu">
                                 <rect key="frame" x="364" y="30.666666666666671" width="30" height="30"/>
-                                <state key="normal" title="등록"/>
+                                <state key="normal" title="등록">
+                                    <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dox-Zw-zqL" userLabel="Lbl univ">
                                 <rect key="frame" x="186" y="35" width="42" height="21"/>
@@ -522,32 +528,76 @@ you just entered with a verification code.</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-AQ-X3A">
-                                <rect key="frame" x="15" y="80.666666666666671" width="384" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uyA-BN-ndB">
-                                <rect key="frame" x="15" y="125.66666666666669" width="384" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXG-eY-md5">
+                                <rect key="frame" x="15" y="68" width="384" height="648"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="제목..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-AQ-X3A">
+                                        <rect key="frame" x="10" y="8" width="364" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="bsd-90-DG1"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GX1-Xz-MFs">
+                                        <rect key="frame" x="12" y="605" width="28" height="23"/>
+                                        <state key="normal" image="btn_upload_img"/>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ec6-er-0aI">
+                                        <rect key="frame" x="55" y="607" width="1" height="20"/>
+                                        <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="6A1-FJ-CSS"/>
+                                            <constraint firstAttribute="height" constant="20" id="xy7-Wv-8eK"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="소속학교 비노출 ▾" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJA-B4-CRo">
+                                        <rect key="frame" x="71" y="609" width="150" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="iWa-eh-EbG"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="글쓰기..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZGw-rE-b34">
+                                        <rect key="frame" x="5" y="40" width="374" height="559"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Ec6-er-0aI" secondAttribute="bottom" constant="21" id="DMJ-kH-HWJ"/>
+                                    <constraint firstItem="OJA-B4-CRo" firstAttribute="top" secondItem="ZGw-rE-b34" secondAttribute="bottom" constant="10" id="Dl1-Xt-T8q"/>
+                                    <constraint firstItem="GX1-Xz-MFs" firstAttribute="leading" secondItem="LXG-eY-md5" secondAttribute="leading" constant="12" id="Ik2-2U-FaL"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZGw-rE-b34" secondAttribute="trailing" constant="5" id="Npg-QE-Ax3"/>
+                                    <constraint firstAttribute="bottom" secondItem="OJA-B4-CRo" secondAttribute="bottom" constant="22" id="S5s-PH-WhO"/>
+                                    <constraint firstItem="ZGw-rE-b34" firstAttribute="leading" secondItem="LXG-eY-md5" secondAttribute="leading" constant="5" id="Wob-Fq-iD2"/>
+                                    <constraint firstAttribute="trailing" secondItem="nj9-AQ-X3A" secondAttribute="trailing" constant="10" id="YCd-MH-UYf"/>
+                                    <constraint firstItem="Ec6-er-0aI" firstAttribute="leading" secondItem="GX1-Xz-MFs" secondAttribute="trailing" constant="15" id="dPj-SH-mrc"/>
+                                    <constraint firstItem="nj9-AQ-X3A" firstAttribute="leading" secondItem="LXG-eY-md5" secondAttribute="leading" constant="10" id="h88-Ng-GgB"/>
+                                    <constraint firstAttribute="bottom" secondItem="GX1-Xz-MFs" secondAttribute="bottom" constant="20" id="kNQ-0k-V4o"/>
+                                    <constraint firstItem="ZGw-rE-b34" firstAttribute="top" secondItem="nj9-AQ-X3A" secondAttribute="bottom" constant="2" id="l7a-bU-vbe"/>
+                                    <constraint firstItem="OJA-B4-CRo" firstAttribute="leading" secondItem="Ec6-er-0aI" secondAttribute="trailing" constant="15" id="nlD-9A-yK8"/>
+                                    <constraint firstItem="nj9-AQ-X3A" firstAttribute="top" secondItem="LXG-eY-md5" secondAttribute="top" constant="8" id="r8L-80-04H"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="uyA-BN-ndB" secondAttribute="trailing" constant="15" id="Ajr-yV-clJ"/>
                             <constraint firstItem="Dox-Zw-zqL" firstAttribute="top" secondItem="9qg-gZ-cCZ" secondAttribute="bottom" constant="15" id="B8J-FF-GoM"/>
                             <constraint firstAttribute="trailing" secondItem="hYG-y7-JYu" secondAttribute="trailing" constant="20" id="MDR-Kg-Klf"/>
-                            <constraint firstItem="nj9-AQ-X3A" firstAttribute="leading" secondItem="ZHN-6L-6ds" secondAttribute="leading" constant="15" id="SkS-tD-Dhb"/>
+                            <constraint firstAttribute="trailing" secondItem="LXG-eY-md5" secondAttribute="trailing" constant="15" id="PcR-B0-evM"/>
                             <constraint firstItem="Dox-Zw-zqL" firstAttribute="centerX" secondItem="ZHN-6L-6ds" secondAttribute="centerX" id="UnQ-0P-Jpm"/>
                             <constraint firstItem="tmB-jG-KB1" firstAttribute="leading" secondItem="ZHN-6L-6ds" secondAttribute="leading" constant="20" id="XzB-zX-dlA"/>
+                            <constraint firstItem="LXG-eY-md5" firstAttribute="top" secondItem="Dox-Zw-zqL" secondAttribute="bottom" constant="12" id="dsA-Kb-lMW"/>
                             <constraint firstItem="tmB-jG-KB1" firstAttribute="centerY" secondItem="Dox-Zw-zqL" secondAttribute="centerY" id="fJk-hv-Ndc"/>
-                            <constraint firstItem="uyA-BN-ndB" firstAttribute="leading" secondItem="ZHN-6L-6ds" secondAttribute="leading" constant="15" id="hiI-Bc-QIm"/>
-                            <constraint firstAttribute="trailing" secondItem="nj9-AQ-X3A" secondAttribute="trailing" constant="15" id="sTy-ni-gXM"/>
-                            <constraint firstItem="uyA-BN-ndB" firstAttribute="top" secondItem="nj9-AQ-X3A" secondAttribute="bottom" constant="15" id="stc-D5-Ifw"/>
-                            <constraint firstItem="nj9-AQ-X3A" firstAttribute="top" secondItem="tmB-jG-KB1" secondAttribute="bottom" constant="20" id="tuH-lD-w2N"/>
+                            <constraint firstItem="LXG-eY-md5" firstAttribute="leading" secondItem="ZHN-6L-6ds" secondAttribute="leading" constant="15" id="gdE-mi-oG0"/>
+                            <constraint firstItem="VeU-VM-x9q" firstAttribute="top" secondItem="LXG-eY-md5" secondAttribute="bottom" constant="20" id="s8o-um-JHL"/>
                             <constraint firstItem="hYG-y7-JYu" firstAttribute="centerY" secondItem="Dox-Zw-zqL" secondAttribute="centerY" id="xkg-7Z-WgC"/>
                         </constraints>
                     </view>
@@ -555,8 +605,9 @@ you just entered with a verification code.</string>
                         <outlet property="btn_dismiss" destination="tmB-jG-KB1" id="pdo-bf-RhM"/>
                         <outlet property="btn_post" destination="hYG-y7-JYu" id="5rM-ha-q8v"/>
                         <outlet property="lbl_univ" destination="Dox-Zw-zqL" id="gqY-9j-Nrg"/>
-                        <outlet property="txt_contents" destination="uyA-BN-ndB" id="zxl-tH-OAi"/>
+                        <outlet property="txt_contents" destination="ZGw-rE-b34" id="SgL-7M-4PW"/>
                         <outlet property="txt_title" destination="nj9-AQ-X3A" id="pdn-Ro-9Wb"/>
+                        <outlet property="vw_container" destination="LXG-eY-md5" id="k9v-1P-hbb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s3v-78-csC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -574,12 +625,12 @@ you just entered with a verification code.</string>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="vOV-tv-ZJ8">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="189"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.94901960784313721" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="aO4-vX-pY6">
                             <rect key="frame" x="0.0" y="409" width="414" height="400"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.94901960784313721" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <sections>
                             <tableViewSection id="CS3-fg-YC4">
@@ -770,7 +821,8 @@ you just entered with a verification code.</string>
     <resources>
         <image name="btn_dismiss" width="20" height="20"/>
         <image name="btn_side_menu" width="24" height="18"/>
-        <image name="btn_write" width="24" height="24"/>
+        <image name="btn_upload_img" width="28" height="23"/>
+        <image name="btn_write" width="25" height="22"/>
         <image name="img_done_check" width="84" height="84"/>
         <image name="img_logo" width="88" height="108"/>
         <image name="img_symbol" width="80" height="69"/>
