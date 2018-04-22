@@ -11,10 +11,14 @@ import Reusable
 
 final class HomeTableViewCell: UITableViewCell, NibReusable {
 
-    @IBOutlet weak var gankTitle: UILabel!
-    @IBOutlet weak var gankAuthor: UILabel!
-    @IBOutlet weak var gankTime: UILabel!
-
+    @IBOutlet weak var lbl_content: UILabel!
+    @IBOutlet weak var lbl_title: UILabel!
+    @IBOutlet weak var lbl_time: UILabel!
+    @IBOutlet weak var lbl_likeCount: UILabel!
+    @IBOutlet weak var lbl_commentCount: UILabel!
+    @IBOutlet weak var lbl_remainTime: UILabel!
+    @IBOutlet weak var lbl_author: UILabel!
+    
     static let height: CGFloat = UITableViewAutomaticDimension
 
     required init?(coder aDecoder: NSCoder) {

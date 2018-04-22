@@ -7,6 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421B2C92086D1A900CBF4E3 /* LoginViewController.swift */; };
+		8421B2CE2086D6CE00CBF4E3 /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421B2CD2086D6CE00CBF4E3 /* UIKit+Extensions.swift */; };
+		8421B2D12086D82C00CBF4E3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421B2D02086D82C00CBF4E3 /* LoginViewModel.swift */; };
+		8421B2D42086DB7700CBF4E3 /* GlobalUIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421B2D32086DB7700CBF4E3 /* GlobalUIManager.swift */; };
+		844BC372208AF05500666486 /* StartSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC371208AF05500666486 /* StartSignUpViewController.swift */; };
+		844BC377208AF17800666486 /* Avenir LT 95 Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 844BC374208AF17800666486 /* Avenir LT 95 Black.ttf */; };
+		844BC378208AF17800666486 /* AvenirLTStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 844BC375208AF17800666486 /* AvenirLTStd-Book.otf */; };
+		844BC379208AF17800666486 /* AvenirLTStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 844BC376208AF17800666486 /* AvenirLTStd-Medium.otf */; };
+		844BC37B208AF8FE00666486 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC37A208AF8FE00666486 /* SignUpViewController.swift */; };
+		844BC37E208AFAC100666486 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC37D208AFAC100666486 /* SignUpViewModel.swift */; };
+		844BC380208B065200666486 /* SignUpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC37F208B065200666486 /* SignUpRouter.swift */; };
+		844BC382208B083600666486 /* VerifyCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC381208B083600666486 /* VerifyCodeViewController.swift */; };
+		844BC384208B0C8300666486 /* VerifyCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC383208B0C8300666486 /* VerifyCodeViewModel.swift */; };
+		844BC386208C462900666486 /* SignUpDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC385208C462900666486 /* SignUpDoneViewController.swift */; };
+		844BC388208C539A00666486 /* SignUpResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC387208C539A00666486 /* SignUpResult.swift */; };
+		844BC38A208C573000666486 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC389208C573000666486 /* HelperFunctions.swift */; };
+		84A1BFC3208C67AD00D0ADC7 /* BuzzlerPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */; };
+		84A1BFC6208C7C6200D0ADC7 /* HomeImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */; };
+		84A1BFC7208C7C6200D0ADC7 /* HomeImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */; };
+		84BA76F12086E0B10097FFD2 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F02086E0B10097FFD2 /* LoginResult.swift */; };
+		84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */; };
+		84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */; };
+		84BA76F72086FC4B0097FFD2 /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F62086FC4B0097FFD2 /* Decodable.swift */; };
+		84BA76F92086FC7D0097FFD2 /* BuzzlerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F82086FC7D0097FFD2 /* BuzzlerError.swift */; };
 		84F437A82085C3D500E71358 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F437A72085C3D500E71358 /* PostViewModel.swift */; };
 		84F437AA2085C3E700E71358 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F437A92085C3E700E71358 /* PostViewController.swift */; };
 		AF3C0C221E0AA003002644DD /* BrowserWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3C0C211E0AA003002644DD /* BrowserWebViewController.swift */; };
@@ -33,6 +57,30 @@
 		08F076F0908B7F9506698A2F /* Pods-Buzzler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.debug.xcconfig"; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
+		8421B2C92086D1A900CBF4E3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8421B2CD2086D6CE00CBF4E3 /* UIKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
+		8421B2D02086D82C00CBF4E3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		8421B2D32086DB7700CBF4E3 /* GlobalUIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalUIManager.swift; sourceTree = "<group>"; };
+		844BC371208AF05500666486 /* StartSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSignUpViewController.swift; sourceTree = "<group>"; };
+		844BC374208AF17800666486 /* Avenir LT 95 Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 95 Black.ttf"; path = "../../../../Downloads/Avenir LT 95 Black.ttf"; sourceTree = "<group>"; };
+		844BC375208AF17800666486 /* AvenirLTStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AvenirLTStd-Book.otf"; path = "../../../../Downloads/AvenirLTStd-Book.otf"; sourceTree = "<group>"; };
+		844BC376208AF17800666486 /* AvenirLTStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AvenirLTStd-Medium.otf"; path = "../../../../Downloads/AvenirLTStd-Medium.otf"; sourceTree = "<group>"; };
+		844BC37A208AF8FE00666486 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		844BC37D208AFAC100666486 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpViewModel.swift; path = Buzzler/ViewModels/Post/SignUpViewModel.swift; sourceTree = SOURCE_ROOT; };
+		844BC37F208B065200666486 /* SignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
+		844BC381208B083600666486 /* VerifyCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeViewController.swift; sourceTree = "<group>"; };
+		844BC383208B0C8300666486 /* VerifyCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeViewModel.swift; sourceTree = "<group>"; };
+		844BC385208C462900666486 /* SignUpDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDoneViewController.swift; sourceTree = "<group>"; };
+		844BC387208C539A00666486 /* SignUpResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResult.swift; sourceTree = "<group>"; };
+		844BC389208C573000666486 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerPost.swift; sourceTree = "<group>"; };
+		84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageTableViewCell.swift; sourceTree = "<group>"; };
+		84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeImageTableViewCell.xib; sourceTree = "<group>"; };
+		84BA76F02086E0B10097FFD2 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
+		84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerAPI.swift; sourceTree = "<group>"; };
+		84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Rx.swift"; sourceTree = "<group>"; };
+		84BA76F62086FC4B0097FFD2 /* Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
+		84BA76F82086FC7D0097FFD2 /* BuzzlerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerError.swift; sourceTree = "<group>"; };
 		84F437A72085C3D500E71358 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		84F437A92085C3E700E71358 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		AF3C0C211E0AA003002644DD /* BrowserWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserWebViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +122,63 @@
 				629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8421B2C82086D19700CBF4E3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8421B2C92086D1A900CBF4E3 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8421B2CF2086D81F00CBF4E3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8421B2D02086D82C00CBF4E3 /* LoginViewModel.swift */,
+				84BA76F02086E0B10097FFD2 /* LoginResult.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8421B2D22086DB6000CBF4E3 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				8421B2D32086DB7700CBF4E3 /* GlobalUIManager.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		844BC370208AF03500666486 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				844BC371208AF05500666486 /* StartSignUpViewController.swift */,
+				844BC37A208AF8FE00666486 /* SignUpViewController.swift */,
+				844BC381208B083600666486 /* VerifyCodeViewController.swift */,
+				844BC385208C462900666486 /* SignUpDoneViewController.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		844BC373208AF16000666486 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				844BC374208AF17800666486 /* Avenir LT 95 Black.ttf */,
+				844BC375208AF17800666486 /* AvenirLTStd-Book.otf */,
+				844BC376208AF17800666486 /* AvenirLTStd-Medium.otf */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		844BC37C208AFAA400666486 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				844BC37F208B065200666486 /* SignUpRouter.swift */,
+				844BC37D208AFAC100666486 /* SignUpViewModel.swift */,
+				844BC383208B0C8300666486 /* VerifyCodeViewModel.swift */,
+				844BC387208C539A00666486 /* SignUpResult.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		84F437A32085C3AC00E71358 /* Post */ = {
@@ -145,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				AF9F0FD01DF1A6CD00FF8EC5 /* Brick.swift */,
+				84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -171,6 +277,8 @@
 			children = (
 				AF9F0FD71DF1A9E900FF8EC5 /* HomeTableViewCell.swift */,
 				AF9F0FD81DF1A9E900FF8EC5 /* HomeTableViewCell.xib */,
+				84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */,
+				84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */,
 			);
 			name = Home;
 			path = home;
@@ -197,6 +305,7 @@
 		AFA7EC6C1DEEDEDC00138AEE /* Buzzler */ = {
 			isa = PBXGroup;
 			children = (
+				844BC373208AF16000666486 /* Resource */,
 				AFA7EC821DEF4CA600138AEE /* Config */,
 				AF9F0FD51DF1A9B300FF8EC5 /* Views */,
 				AF9F0FCE1DF1A66300FF8EC5 /* Models */,
@@ -217,6 +326,8 @@
 		AFA7EC7F1DEF4BB400138AEE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				844BC370208AF03500666486 /* SignUp */,
+				8421B2C82086D19700CBF4E3 /* Login */,
 				84F437A32085C3AC00E71358 /* Post */,
 				AF69F0EE1E0E0C6D00735284 /* Side */,
 				AF69F0E91E0E052D00735284 /* Navigate */,
@@ -238,6 +349,8 @@
 			isa = PBXGroup;
 			children = (
 				AFBBA5CC1E06F783003605D1 /* Response+ObjectMapper.swift */,
+				8421B2CD2086D6CE00CBF4E3 /* UIKit+Extensions.swift */,
+				844BC389208C573000666486 /* HelperFunctions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -245,6 +358,7 @@
 		AFBDB25F1DF58ED9003E8EE2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8421B2D22086DB6000CBF4E3 /* Navigation */,
 				AFBDB2601DF58EF1003E8EE2 /* Network */,
 			);
 			path = Services;
@@ -254,6 +368,10 @@
 			isa = PBXGroup;
 			children = (
 				AFBDB2611DF58F23003E8EE2 /* GankAPI.swift */,
+				84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */,
+				84BA76F82086FC7D0097FFD2 /* BuzzlerError.swift */,
+				84BA76F62086FC4B0097FFD2 /* Decodable.swift */,
+				84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -261,6 +379,8 @@
 		AFCB661B1DF844B100916E1B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				844BC37C208AFAA400666486 /* SignUp */,
+				8421B2CF2086D81F00CBF4E3 /* Login */,
 				84F437A62085C3CB00E71358 /* Post */,
 				AFCB661C1DF844C200916E1B /* Home */,
 			);
@@ -348,8 +468,12 @@
 			files = (
 				AFA7EC781DEEDEDC00138AEE /* LaunchScreen.storyboard in Resources */,
 				AFA7EC751DEEDEDC00138AEE /* Assets.xcassets in Resources */,
+				84A1BFC7208C7C6200D0ADC7 /* HomeImageTableViewCell.xib in Resources */,
+				844BC377208AF17800666486 /* Avenir LT 95 Black.ttf in Resources */,
+				844BC378208AF17800666486 /* AvenirLTStd-Book.otf in Resources */,
 				AF9F0FDA1DF1A9E900FF8EC5 /* HomeTableViewCell.xib in Resources */,
 				AFA7EC731DEEDEDC00138AEE /* Main.storyboard in Resources */,
+				844BC379208AF17800666486 /* AvenirLTStd-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,19 +534,39 @@
 			files = (
 				84F437A82085C3D500E71358 /* PostViewModel.swift in Sources */,
 				AFBDB2621DF58F23003E8EE2 /* GankAPI.swift in Sources */,
+				844BC388208C539A00666486 /* SignUpResult.swift in Sources */,
 				AF3C0C221E0AA003002644DD /* BrowserWebViewController.swift in Sources */,
 				AFCB661E1DF844DB00916E1B /* HomeViewModel.swift in Sources */,
 				AFA7EC6E1DEEDEDC00138AEE /* AppDelegate.swift in Sources */,
 				AF9F0FD11DF1A6CD00FF8EC5 /* Brick.swift in Sources */,
 				AFBBA5CD1E06F783003605D1 /* Response+ObjectMapper.swift in Sources */,
+				84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */,
 				AFE2BA9A1E8144000066474E /* ViewModelType.swift in Sources */,
+				844BC372208AF05500666486 /* StartSignUpViewController.swift in Sources */,
+				8421B2D12086D82C00CBF4E3 /* LoginViewModel.swift in Sources */,
 				AF9F0FD91DF1A9E900FF8EC5 /* HomeTableViewCell.swift in Sources */,
+				844BC382208B083600666486 /* VerifyCodeViewController.swift in Sources */,
+				844BC386208C462900666486 /* SignUpDoneViewController.swift in Sources */,
+				8421B2D42086DB7700CBF4E3 /* GlobalUIManager.swift in Sources */,
+				844BC37E208AFAC100666486 /* SignUpViewModel.swift in Sources */,
 				84F437AA2085C3E700E71358 /* PostViewController.swift in Sources */,
+				844BC384208B0C8300666486 /* VerifyCodeViewModel.swift in Sources */,
+				84BA76F92086FC7D0097FFD2 /* BuzzlerError.swift in Sources */,
+				844BC38A208C573000666486 /* HelperFunctions.swift in Sources */,
+				84A1BFC3208C67AD00D0ADC7 /* BuzzlerPost.swift in Sources */,
+				84A1BFC6208C7C6200D0ADC7 /* HomeImageTableViewCell.swift in Sources */,
+				844BC380208B065200666486 /* SignUpRouter.swift in Sources */,
+				84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */,
+				84BA76F12086E0B10097FFD2 /* LoginResult.swift in Sources */,
 				AF69F0EB1E0E055D00735284 /* SideMenuNavigationController.swift in Sources */,
+				84BA76F72086FC4B0097FFD2 /* Decodable.swift in Sources */,
 				AF69F0ED1E0E08DE00735284 /* BaseNavigationController.swift in Sources */,
+				8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */,
 				AF69F0F01E0E0C9400735284 /* SideViewController.swift in Sources */,
 				AF3C0C241E0AA851002644DD /* Config.swift in Sources */,
 				AF9F0FD41DF1A91300FF8EC5 /* HomeViewController.swift in Sources */,
+				844BC37B208AF8FE00666486 /* SignUpViewController.swift in Sources */,
+				8421B2CE2086D6CE00CBF4E3 /* UIKit+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,8 @@ def shared_pods
     pod 'SideMenu', '2.3.3'
     pod 'SwiftyBeaver', '1.4.1'
     pod 'NSObject+Rx', '3.0.0'
+    pod 'SwiftyJSON', '3.1.4'
+    pod 'RxKeyboard'
 end
 
 target :'Buzzler' do

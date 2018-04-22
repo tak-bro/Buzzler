@@ -50,6 +50,7 @@ enum GankAPI {
     }
 
     case data(type: GankCategory, size: Int64, index: Int64)
+    case writePost(title: String, content: String, imageUrls: [String])
 }
 
 extension GankAPI: TargetType {
@@ -60,17 +61,21 @@ extension GankAPI: TargetType {
     }
 
 
-    var baseURL: URL { return URL(string: "http://gank.io")! }
+    var baseURL: URL { return URL(string: "http://audiga-admin.failnicely.com:8081")! }
 
     var path: String {
         switch self {
         case .data(let type, let size, let index):
             return "/api/data/\(type.rawValue)/\(size)/\(index)"
+        case .writePost:
+            return "/v1/posts"
         }
     }
 
     var method: Moya.Method {
         switch self {
+        case .writePost:
+            return .post
         default:
             return .get
         }
@@ -81,14 +86,26 @@ extension GankAPI: TargetType {
     }
 
     var parameters: [String : Any]? {
-        return nil
+        switch self {
+        case .writePost(let title, let content, let imageUrls):
+            var parameters = [String: Any]()
+            parameters["title"] = title
+            parameters["content"] = content
+            parameters["imageUrls"] = imageUrls
+            return parameters
+        default:
+            return nil
+        }
     }
 
     var task: Task {
+        return .request
+        /*
         switch self {
         case .data(_, _, _):
             return .request
         }
+        */
     }
 }
 

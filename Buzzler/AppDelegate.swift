@@ -29,6 +29,8 @@ extension AppDelegate {
             UINavigationBar.appearance().isTranslucent = false
             UINavigationBar.appearance().barTintColor = Config.UI.themeColor
             UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: Config.UI.titleColor]
+            UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+            UINavigationBar.appearance().shadowImage = UIImage()
         }
 
         do /** SideMenu Config */ {
