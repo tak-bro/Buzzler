@@ -22,10 +22,10 @@ final class HomeViewController: UIViewController {
     }
 
     let refreshControl = PullToRefresh()
-
     let homeVM = HomeViewModel()
-
     let dataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
+    
+    let header = StretchHeader()
 
     // MARK: - Life Cycle
 
@@ -34,6 +34,7 @@ final class HomeViewController: UIViewController {
         configUI()
         configBinding()
         configNotification()
+        setupHeaderView()
     }
 }
 
@@ -111,13 +112,13 @@ extension HomeViewController {
                     imgCell.vw_remainLabelContainer.isHidden = false
                 }
                 
-                // set shadow
-                let layer = imgCell.layer
-                layer.shadowOffset = CGSize(width: 1, height: 1)
-                layer.shadowRadius = 5
-                layer.shadowColor = UIColor.lightGray.cgColor
-                layer.shadowOpacity = 0.5
-                layer.frame = imgCell.frame
+//                // set shadow
+//                let layer = imgCell.layer
+//                layer.shadowOffset = CGSize(width: 1, height: 1)
+//                layer.shadowRadius = 5
+//                layer.shadowColor = UIColor.lightGray.cgColor
+//                layer.shadowOpacity = 0.5
+//                layer.frame = imgCell.frame
                 
                 return imgCell
             } else {
@@ -127,14 +128,15 @@ extension HomeViewController {
                 cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
                 cell.lbl_likeCount.text = String(item.likeCount)
                 cell.lbl_author.text = "익명"
+
                 
-                // set shadow
-                let layer = cell.layer
-                layer.shadowOffset = CGSize(width: 1, height: 1)
-                layer.shadowRadius = 5
-                layer.shadowColor = UIColor.lightGray.cgColor
-                layer.shadowOpacity = 0.5
-                layer.frame = cell.frame
+//                // set shadow
+//                let layer = cell.layer
+//                layer.shadowOffset = CGSize(width: 1, height: 1)
+//                layer.shadowRadius = 5
+//                layer.shadowColor = UIColor.lightGray.cgColor
+//                layer.shadowOpacity = 0.5
+//                layer.frame = cell.frame
                 
                 return cell
             }
@@ -170,23 +172,10 @@ extension HomeViewController {
     }
 }
 
-extension HomeViewController {
-
-    // MARK: - Private Methpd
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-}
-
 extension HomeViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return HomeTableViewCell.height
-    }
-
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -194,4 +183,54 @@ extension HomeViewController: UITableViewDelegate {
         let webActivity = BrowserWebViewController(url: homeVM.itemURLs.value[indexPath.row])
         navigationController?.pushViewController(webActivity, animated: true)
     }
+    
+}
+
+extension HomeViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    func setupHeaderView() {
+        let options = StretchHeaderOptions()
+        options.position = .fullScreenTop
+        header.stretchHeaderSize(headerSize: CGSize(width: view.frame.size.width, height: 100),
+                                 imageSize: CGSize(width: view.frame.size.width, height: 100),
+                                 controller: self,
+                                 options: options)
+        
+        // header label
+        var headerLabel = HeaderLabel()
+        headerLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
+        headerLabel.text = "Seoul Univ."
+        header.addSubview(headerLabel)
+        header.backgroundColor = Config.UI.themeColor
+        headerLabel.snp.makeConstraints { (make) -> Void in
+            make.center.equalTo(header)
+        }
+        tableView.tableHeaderView = header
+    }
+    
+    // MARK: - ScrollView Delegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        header.updateScrollViewOffset(scrollView)
+        
+        // NavigationHeader alpha update
+        let offset: CGFloat = scrollView.contentOffset.y
+        if (offset > 50) {
+            let navFrame = self.navigationController?.navigationBar.frame
+            let alpha: CGFloat = min(CGFloat(1), CGFloat(1) - (CGFloat(50) + (navFrame!.height) - offset) / (navFrame!.height))
+            self.navigationController?.navigationBar.alpha = CGFloat(alpha)
+            // set header
+            title = "Seoul Univ."
+            self.navigationController?.navigationBar.backgroundColor = UIColor.white
+        } else {
+            header.backgroundColor = Config.UI.themeColor
+          //  self.navigationController?.navigationBar.alpha = 0.0
+            self.navigationController?.navigationBar.backgroundColor = Config.UI.themeColor
+            title = "  "
+        }
+    }
+    
 }

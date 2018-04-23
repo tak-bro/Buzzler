@@ -26,6 +26,9 @@
 		84A1BFC3208C67AD00D0ADC7 /* BuzzlerPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */; };
 		84A1BFC6208C7C6200D0ADC7 /* HomeImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */; };
 		84A1BFC7208C7C6200D0ADC7 /* HomeImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */; };
+		84A1BFCA208C898D00D0ADC7 /* StretchHeaderOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFC9208C898D00D0ADC7 /* StretchHeaderOptions.swift */; };
+		84A1BFCC208C899B00D0ADC7 /* StretchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFCB208C899B00D0ADC7 /* StretchHeader.swift */; };
+		84A1BFCE208C8D8400D0ADC7 /* HeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFCD208C8D8400D0ADC7 /* HeaderLabel.swift */; };
 		84BA76F12086E0B10097FFD2 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F02086E0B10097FFD2 /* LoginResult.swift */; };
 		84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */; };
 		84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */; };
@@ -76,6 +79,9 @@
 		84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerPost.swift; sourceTree = "<group>"; };
 		84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageTableViewCell.swift; sourceTree = "<group>"; };
 		84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeImageTableViewCell.xib; sourceTree = "<group>"; };
+		84A1BFC9208C898D00D0ADC7 /* StretchHeaderOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchHeaderOptions.swift; sourceTree = "<group>"; };
+		84A1BFCB208C899B00D0ADC7 /* StretchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchHeader.swift; sourceTree = "<group>"; };
+		84A1BFCD208C8D8400D0ADC7 /* HeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabel.swift; sourceTree = "<group>"; };
 		84BA76F02086E0B10097FFD2 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
 		84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerAPI.swift; sourceTree = "<group>"; };
 		84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Rx.swift"; sourceTree = "<group>"; };
@@ -181,6 +187,15 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		84A1BFC8208C897600D0ADC7 /* StretchHeader */ = {
+			isa = PBXGroup;
+			children = (
+				84A1BFC9208C898D00D0ADC7 /* StretchHeaderOptions.swift */,
+				84A1BFCB208C899B00D0ADC7 /* StretchHeader.swift */,
+			);
+			path = StretchHeader;
+			sourceTree = "<group>";
+		};
 		84F437A32085C3AC00E71358 /* Post */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +294,7 @@
 				AF9F0FD81DF1A9E900FF8EC5 /* HomeTableViewCell.xib */,
 				84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */,
 				84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */,
+				84A1BFCD208C8D8400D0ADC7 /* HeaderLabel.swift */,
 			);
 			name = Home;
 			path = home;
@@ -358,6 +374,7 @@
 		AFBDB25F1DF58ED9003E8EE2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				84A1BFC8208C897600D0ADC7 /* StretchHeader */,
 				8421B2D22086DB6000CBF4E3 /* Navigation */,
 				AFBDB2601DF58EF1003E8EE2 /* Network */,
 			);
@@ -539,6 +556,7 @@
 				AFCB661E1DF844DB00916E1B /* HomeViewModel.swift in Sources */,
 				AFA7EC6E1DEEDEDC00138AEE /* AppDelegate.swift in Sources */,
 				AF9F0FD11DF1A6CD00FF8EC5 /* Brick.swift in Sources */,
+				84A1BFCA208C898D00D0ADC7 /* StretchHeaderOptions.swift in Sources */,
 				AFBBA5CD1E06F783003605D1 /* Response+ObjectMapper.swift in Sources */,
 				84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */,
 				AFE2BA9A1E8144000066474E /* ViewModelType.swift in Sources */,
@@ -562,11 +580,13 @@
 				84BA76F72086FC4B0097FFD2 /* Decodable.swift in Sources */,
 				AF69F0ED1E0E08DE00735284 /* BaseNavigationController.swift in Sources */,
 				8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */,
+				84A1BFCC208C899B00D0ADC7 /* StretchHeader.swift in Sources */,
 				AF69F0F01E0E0C9400735284 /* SideViewController.swift in Sources */,
 				AF3C0C241E0AA851002644DD /* Config.swift in Sources */,
 				AF9F0FD41DF1A91300FF8EC5 /* HomeViewController.swift in Sources */,
 				844BC37B208AF8FE00666486 /* SignUpViewController.swift in Sources */,
 				8421B2CE2086D6CE00CBF4E3 /* UIKit+Extensions.swift in Sources */,
+				84A1BFCE208C8D8400D0ADC7 /* HeaderLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

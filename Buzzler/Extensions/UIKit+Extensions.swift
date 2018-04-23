@@ -18,3 +18,14 @@ extension UITextField {
         self.layer.addSublayer(border)
     }
 }
+
+extension UIView {
+    func dropShadow(width: Int = 1, height: Int = 1) {
+        self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+        self.layer.shadowOffset = CGSize(width: width, height: height)
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 2.0
+        self.layer.masksToBounds = false
+    }
+}
+

@@ -20,6 +20,8 @@ final class HomeImageTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var lbl_author: UILabel!
     @IBOutlet weak var lbl_remainImgCnt: UILabel!
     @IBOutlet weak var vw_remainLabelContainer: UIView!
+    @IBOutlet weak var vw_container: UIView!
+    
     
     static let height: CGFloat = UITableViewAutomaticDimension
     
@@ -33,6 +35,7 @@ final class HomeImageTableViewCell: UITableViewCell, NibReusable {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        vw_container.dropShadow(width: 1, height: 1)
     }
     
     override func awakeFromNib() {
