@@ -136,16 +136,30 @@
                                 <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0X7-yH-nKs">
-                                <rect key="frame" x="82.666666666666686" y="134.33333333333334" width="250" height="26"/>
-                                <string key="text">Enter your Collage’s E-mail, and we’ll send 
-a “Verify Code” to your inbox.</string>
-                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="13"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0X7-yH-nKs">
+                                <rect key="frame" x="92.333333333333314" y="133" width="231" height="30"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Enter your Collage’s E-mail, and we’ll send 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="a “Verify Code” to your inbox.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nickname" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Gow-Yt-zxb">
-                                <rect key="frame" x="67.666666666666686" y="200.66666666666666" width="280" height="40"/>
+                                <rect key="frame" x="67.666666666666686" y="219.33333333333334" width="280" height="40.000000000000028"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="UfY-10-TkM"/>
                                     <constraint firstAttribute="height" constant="40" id="fGW-Uc-tt1"/>
@@ -155,7 +169,7 @@ a “Verify Code” to your inbox.</string>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Collage’s E-mail" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="uKK-Za-7Ob">
-                                <rect key="frame" x="67" y="256" width="280" height="40"/>
+                                <rect key="frame" x="67" y="274.33333333333331" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="92Q-bU-CCs"/>
                                     <constraint firstAttribute="width" constant="280" id="mR1-n6-ugh"/>
@@ -165,7 +179,7 @@ a “Verify Code” to your inbox.</string>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="aa7-nr-Wbq">
-                                <rect key="frame" x="67" y="311.33333333333331" width="280" height="40"/>
+                                <rect key="frame" x="67" y="329.66666666666669" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="TSn-hN-yt0"/>
                                     <constraint firstAttribute="height" constant="40" id="hr5-NK-3Hs"/>
@@ -175,7 +189,7 @@ a “Verify Code” to your inbox.</string>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anP-1s-02X">
-                                <rect key="frame" x="87" y="417.66666666666669" width="240" height="48"/>
+                                <rect key="frame" x="87" y="436" width="240" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="bAF-0M-cHf"/>
                                     <constraint firstAttribute="height" constant="48" id="duh-sX-b9Z"/>
@@ -188,15 +202,15 @@ a “Verify Code” to your inbox.</string>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="anP-1s-02X" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="1.2" id="0lw-Sv-gx0"/>
-                            <constraint firstItem="uKK-Za-7Ob" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.75" id="5a0-K9-luC"/>
-                            <constraint firstItem="Gow-Yt-zxb" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.6" id="7Qn-pD-HCo"/>
+                            <constraint firstItem="anP-1s-02X" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="1.25" id="0lw-Sv-gx0"/>
+                            <constraint firstItem="uKK-Za-7Ob" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.8" id="5a0-K9-luC"/>
+                            <constraint firstItem="Gow-Yt-zxb" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.65" id="7Qn-pD-HCo"/>
                             <constraint firstItem="aa7-nr-Wbq" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="Bja-zu-W0I"/>
                             <constraint firstItem="uKK-Za-7Ob" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="DVx-GS-Ml5"/>
                             <constraint firstItem="Gow-Yt-zxb" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="EuR-aT-6za"/>
                             <constraint firstItem="0G9-1A-3BN" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="FZl-Lx-BaI"/>
                             <constraint firstItem="anP-1s-02X" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="KzG-2U-INp"/>
-                            <constraint firstItem="aa7-nr-Wbq" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.9" id="RRA-Fc-H1A"/>
+                            <constraint firstItem="aa7-nr-Wbq" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.95" id="RRA-Fc-H1A"/>
                             <constraint firstItem="0X7-yH-nKs" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="kdb-RH-My5"/>
                             <constraint firstItem="0G9-1A-3BN" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.2" id="mdg-bt-XFY"/>
                             <constraint firstItem="0X7-yH-nKs" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.4" id="yQe-qn-nTD"/>
@@ -240,16 +254,30 @@ a “Verify Code” to your inbox.</string>
                                 <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Dde-TW-mYu">
-                                <rect key="frame" x="89.333333333333329" y="134.33333333333334" width="235.33333333333337" height="26"/>
-                                <string key="text">Your reciving a text on the number
-you just entered with a verification code.</string>
-                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="13"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dde-TW-mYu">
+                                <rect key="frame" x="98.666666666666671" y="132.33333333333334" width="217.33333333333331" height="30"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Your reciving a text on the number
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="you just entered with a verification code.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="SzL-Wa-DGo">
-                                <rect key="frame" x="67" y="200.66666666666666" width="280" height="40"/>
+                                <rect key="frame" x="67" y="219.33333333333334" width="280" height="40.000000000000028"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Y6A-oc-ifZ"/>
                                     <constraint firstAttribute="width" constant="280" id="q8c-Km-efR"/>
@@ -259,7 +287,7 @@ you just entered with a verification code.</string>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2B-QJ-Zcq">
-                                <rect key="frame" x="87" y="344" width="240" height="48"/>
+                                <rect key="frame" x="87" y="325.66666666666669" width="240" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="C5c-XN-v1c"/>
                                     <constraint firstAttribute="width" constant="240" id="NPu-NL-rYR"/>
@@ -273,13 +301,13 @@ you just entered with a verification code.</string>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="AGI-Nv-xtB"/>
-                            <constraint firstItem="SzL-Wa-DGo" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.6" id="BMy-aS-9Bh"/>
+                            <constraint firstItem="SzL-Wa-DGo" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.65" id="BMy-aS-9Bh"/>
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.4" id="J1g-eB-G5H"/>
                             <constraint firstItem="SzL-Wa-DGo" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="MxO-zh-H9f"/>
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="PxO-1r-xee"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="Uhn-Qc-qAO"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.2" id="dph-oq-tuh"/>
-                            <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" id="ezq-PR-7gt"/>
+                            <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.95" id="ezq-PR-7gt"/>
                         </constraints>
                     </view>
                     <connections>
