@@ -19,7 +19,6 @@ struct BuzzlerPost: Equatable, Mappable {
     var likeCount: Int = 0
     var createdAt: Date = Date()
     var authorId: Int = 0
-    var url: String = "" // temp value
     
     public static func == (lhs: BuzzlerPost, rhs: BuzzlerPost) -> Bool {
         return lhs.id == rhs.id ? true : false

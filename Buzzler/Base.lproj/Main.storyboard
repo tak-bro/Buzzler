@@ -131,7 +131,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up with email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0G9-1A-3BN">
-                                <rect key="frame" x="132.33333333333334" y="64.666666666666671" width="151.00000000000003" height="18"/>
+                                <rect key="frame" x="131" y="64.666666666666671" width="152" height="18"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="18"/>
                                 <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -197,8 +197,6 @@ a “Verify Code” to your inbox.</string>
                             <constraint firstItem="0G9-1A-3BN" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="FZl-Lx-BaI"/>
                             <constraint firstItem="anP-1s-02X" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="KzG-2U-INp"/>
                             <constraint firstItem="aa7-nr-Wbq" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.9" id="RRA-Fc-H1A"/>
-                            <constraint firstItem="0G9-1A-3BN" firstAttribute="width" secondItem="LqH-Sr-RG5" secondAttribute="height" multiplier="151:736" id="Rsn-83-Hck"/>
-                            <constraint firstItem="0X7-yH-nKs" firstAttribute="width" secondItem="LqH-Sr-RG5" secondAttribute="height" multiplier="125:368" id="dtD-z0-C4m"/>
                             <constraint firstItem="0X7-yH-nKs" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="kdb-RH-My5"/>
                             <constraint firstItem="0G9-1A-3BN" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.2" id="mdg-bt-XFY"/>
                             <constraint firstItem="0X7-yH-nKs" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.4" id="yQe-qn-nTD"/>
@@ -279,9 +277,7 @@ you just entered with a verification code.</string>
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.4" id="J1g-eB-G5H"/>
                             <constraint firstItem="SzL-Wa-DGo" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="MxO-zh-H9f"/>
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="PxO-1r-xee"/>
-                            <constraint firstItem="Dde-TW-mYu" firstAttribute="width" secondItem="BKZ-ey-JXG" secondAttribute="height" multiplier="235:736" id="Q8j-1s-sSC"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="Uhn-Qc-qAO"/>
-                            <constraint firstItem="Ueq-xr-wIr" firstAttribute="width" secondItem="BKZ-ey-JXG" secondAttribute="height" multiplier="145:736" id="d1g-un-tOW"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.2" id="dph-oq-tuh"/>
                             <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" id="ezq-PR-7gt"/>
                         </constraints>
@@ -341,7 +337,6 @@ you just entered with a verification code.</string>
                             <constraint firstItem="o9P-Lf-6pR" firstAttribute="centerX" secondItem="bYt-z2-fDF" secondAttribute="centerX" id="Hv0-pQ-XON"/>
                             <constraint firstItem="Av7-qK-IBT" firstAttribute="centerY" secondItem="bYt-z2-fDF" secondAttribute="centerY" multiplier="0.7" id="MZB-9O-DFc"/>
                             <constraint firstItem="vaG-gu-J4w" firstAttribute="centerX" secondItem="bYt-z2-fDF" secondAttribute="centerX" id="bRH-Wp-kRa"/>
-                            <constraint firstItem="vaG-gu-J4w" firstAttribute="width" secondItem="bYt-z2-fDF" secondAttribute="height" multiplier="27:92" id="cbP-dC-LFt"/>
                             <constraint firstItem="Av7-qK-IBT" firstAttribute="centerX" secondItem="bYt-z2-fDF" secondAttribute="centerX" id="dQm-cv-RqB"/>
                             <constraint firstItem="o9P-Lf-6pR" firstAttribute="centerY" secondItem="bYt-z2-fDF" secondAttribute="centerY" multiplier="1.4" id="qtu-Gy-IIT"/>
                             <constraint firstItem="vaG-gu-J4w" firstAttribute="centerY" secondItem="bYt-z2-fDF" secondAttribute="centerY" id="rSN-r5-2ke"/>
@@ -392,8 +387,8 @@ you just entered with a verification code.</string>
                                     <constraint firstAttribute="width" constant="240" id="99a-rm-rVX"/>
                                     <constraint firstAttribute="height" constant="40" id="Jov-Vw-6aD"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.70980392160000005" green="0.70980392160000005" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NCb-Sf-FU0">
@@ -402,8 +397,8 @@ you just entered with a verification code.</string>
                                     <constraint firstAttribute="height" constant="40" id="gYb-pk-ZfX"/>
                                     <constraint firstAttribute="width" constant="240" id="iTT-9y-ULf"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.70980392160000005" green="0.70980392160000005" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="eoJ-TR-hEn">
@@ -517,7 +512,7 @@ you just entered with a verification code.</string>
                                 <rect key="frame" x="15" y="68" width="384" height="648"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="제목..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-AQ-X3A">
-                                        <rect key="frame" x="10" y="8" width="359" height="30"/>
+                                        <rect key="frame" x="10" y="8" width="364" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bsd-90-DG1"/>
                                         </constraints>
@@ -562,11 +557,11 @@ you just entered with a verification code.</string>
                                     <constraint firstAttribute="trailing" secondItem="ZGw-rE-b34" secondAttribute="trailing" constant="5" id="Npg-QE-Ax3"/>
                                     <constraint firstAttribute="bottom" secondItem="OJA-B4-CRo" secondAttribute="bottom" constant="22" id="S5s-PH-WhO"/>
                                     <constraint firstItem="ZGw-rE-b34" firstAttribute="leading" secondItem="LXG-eY-md5" secondAttribute="leading" constant="5" id="Wob-Fq-iD2"/>
-                                    <constraint firstAttribute="trailing" secondItem="nj9-AQ-X3A" secondAttribute="trailing" constant="15" id="YCd-MH-UYf"/>
                                     <constraint firstItem="Ec6-er-0aI" firstAttribute="leading" secondItem="GX1-Xz-MFs" secondAttribute="trailing" constant="15" id="dPj-SH-mrc"/>
                                     <constraint firstItem="nj9-AQ-X3A" firstAttribute="leading" secondItem="LXG-eY-md5" secondAttribute="leading" constant="10" id="h88-Ng-GgB"/>
                                     <constraint firstAttribute="bottom" secondItem="GX1-Xz-MFs" secondAttribute="bottom" constant="20" id="kNQ-0k-V4o"/>
                                     <constraint firstItem="ZGw-rE-b34" firstAttribute="top" secondItem="nj9-AQ-X3A" secondAttribute="bottom" constant="2" id="l7a-bU-vbe"/>
+                                    <constraint firstAttribute="trailing" secondItem="nj9-AQ-X3A" secondAttribute="trailing" constant="10" id="mbR-PU-Uiw"/>
                                     <constraint firstItem="OJA-B4-CRo" firstAttribute="leading" secondItem="Ec6-er-0aI" secondAttribute="trailing" constant="15" id="nlD-9A-yK8"/>
                                     <constraint firstItem="nj9-AQ-X3A" firstAttribute="top" secondItem="LXG-eY-md5" secondAttribute="top" constant="8" id="r8L-80-04H"/>
                                 </constraints>

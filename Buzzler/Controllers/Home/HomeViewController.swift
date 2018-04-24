@@ -180,8 +180,8 @@ extension HomeViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let webActivity = BrowserWebViewController(url: homeVM.itemURLs.value[indexPath.row])
-        navigationController?.pushViewController(webActivity, animated: true)
+       // let webActivity = BrowserWebViewController(url: homeVM.itemURLs.value[indexPath.row])
+        //navigationController?.pushViewController(webActivity, animated: true)
     }
     
 }
