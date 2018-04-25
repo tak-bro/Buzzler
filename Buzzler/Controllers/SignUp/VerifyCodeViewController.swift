@@ -16,6 +16,11 @@ class VerifyCodeViewController: UIViewController {
 
     @IBOutlet weak var txt_code: UITextField!
     @IBOutlet weak var btn_next: UIButton!
+    @IBOutlet weak var lbl_timer: UILabel!
+    
+    //timer
+    var mTimer: Timer?
+    var remainTime: Int = 300
     
     fileprivate let disposeBag = DisposeBag()
     
@@ -28,6 +33,7 @@ class VerifyCodeViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = " "
         bindToRx()
         setUI()
+        setTimer()
     }
     
     func bindToRx() {
@@ -70,7 +76,34 @@ extension VerifyCodeViewController {
         setBorderAndCornerRadius(layer: txt_code.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setLeftPadding(textField: txt_code)
     }
-    
-}
 
+    func setTimer() {
+        if let timer = mTimer {
+            if !timer.isValid {
+                mTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+            }
+        } else {
+            mTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
+        }
+    }
+
+    func timerCallback() {
+        remainTime -= 1
+        if (remainTime <= 0) {
+            timerEnd()
+        }
+        lbl_timer.text = seconds2Timestamp(intSeconds: remainTime)
+    }
+    
+    func timerEnd() {
+        if let timer = mTimer {
+            if(timer.isValid) {
+                    timer.invalidate()
+                }
+        }
+        remainTime = 0
+        lbl_timer.text = String(remainTime)
+    }
+
+}
 

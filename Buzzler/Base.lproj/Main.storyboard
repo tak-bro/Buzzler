@@ -297,14 +297,31 @@
                                     <color key="titleColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiR-yP-Rpa">
+                                <rect key="frame" x="297" y="233.66666666666666" width="3.6666666666666856" height="12"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="12"/>
+                                <color key="textColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0CW-vw-SPm">
+                                <rect key="frame" x="167.66666666666666" y="447.66666666666669" width="79" height="25"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="13"/>
+                                <state key="normal" title="Resend Code">
+                                    <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="0CW-vw-SPm" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="3Gn-Nh-9zZ"/>
+                            <constraint firstItem="wiR-yP-Rpa" firstAttribute="centerY" secondItem="SzL-Wa-DGo" secondAttribute="centerY" id="A7S-wo-8Yq"/>
                             <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="AGI-Nv-xtB"/>
                             <constraint firstItem="SzL-Wa-DGo" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.65" id="BMy-aS-9Bh"/>
+                            <constraint firstItem="wiR-yP-Rpa" firstAttribute="leading" secondItem="SzL-Wa-DGo" secondAttribute="trailing" constant="-50" id="Cab-Ab-tKD"/>
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.4" id="J1g-eB-G5H"/>
                             <constraint firstItem="SzL-Wa-DGo" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="MxO-zh-H9f"/>
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="PxO-1r-xee"/>
+                            <constraint firstItem="0CW-vw-SPm" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="1.25" id="QBi-Sd-HqA"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="Uhn-Qc-qAO"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.2" id="dph-oq-tuh"/>
                             <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.95" id="ezq-PR-7gt"/>
@@ -312,6 +329,7 @@
                     </view>
                     <connections>
                         <outlet property="btn_next" destination="N2B-QJ-Zcq" id="HzX-Jd-hhl"/>
+                        <outlet property="lbl_timer" destination="wiR-yP-Rpa" id="BZX-Bv-Fuf"/>
                         <outlet property="txt_code" destination="SzL-Wa-DGo" id="IQB-St-rM7"/>
                         <segue destination="rOx-L5-hp1" kind="show" id="JGN-Za-bPF"/>
                     </connections>
