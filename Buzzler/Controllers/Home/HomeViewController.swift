@@ -26,11 +26,13 @@ final class HomeViewController: UIViewController {
     let dataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
     
     let header = StretchHeader()
+    let router = HomeRouter()
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configUI()
         configBinding()
         configNotification()
@@ -50,8 +52,8 @@ extension HomeViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
-    //    tableView.refreshControl = UIRefreshControl()
-    //    tableView.refreshControl?.backgroundColor = Config.UI.themeColor
+        // tableView.refreshControl = UIRefreshControl()
+        // tableView.refreshControl?.backgroundColor = Config.UI.themeColor
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -67,12 +69,11 @@ extension HomeViewController {
         let outputStuff = homeVM.transform(input: inputStuff)
 
         // DataBinding
-        /*
         tableView.refreshControl?.rx.controlEvent(.allEvents)
             .flatMap({ inputStuff.category.asObservable() })
             .bind(to: outputStuff.refreshCommand)
             .addDisposableTo(rx.disposeBag)
- */
+        
 
         NotificationCenter.default.rx.notification(Notification.Name.category)
             .map({ (notification) -> Int in
@@ -100,6 +101,7 @@ extension HomeViewController {
 
         // Configure
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
+            let defaultCell: UITableViewCell
             if item.imageUrls.count > 0 {
                 let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                 imgCell.lbl_title.text = item.title
@@ -113,8 +115,7 @@ extension HomeViewController {
                 } else {
                     imgCell.vw_remainLabelContainer.isHidden = false
                 }
-        
-                return imgCell
+                defaultCell = imgCell
             } else {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                 cell.lbl_title.text = item.title
@@ -123,8 +124,9 @@ extension HomeViewController {
                 cell.lbl_likeCount.text = String(item.likeCount)
                 cell.lbl_author.text = "익명"
                 
-                return cell
+                defaultCell = cell
             }
+            return defaultCell
         }
 
         outputStuff.section
@@ -165,8 +167,12 @@ extension HomeViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-       // let webActivity = BrowserWebViewController(url: homeVM.itemURLs.value[indexPath.row])
-        //navigationController?.pushViewController(webActivity, animated: true)
+
+        let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
+        navigationController?.pushViewController(postVC, animated: true)
+        
+        // let webActivity = BrowserWebViewController(url: homeVM.itemURLs.value[indexPath.row])
+        // navigationController?.pushViewController(webActivity, animated: true)
     }
     
 }
@@ -204,7 +210,6 @@ extension HomeViewController {
         // NavigationHeader alpha update
         let offset: CGFloat = scrollView.contentOffset.y
         if (offset > 50) {
-            // let alpha: CGFloat = min(CGFloat(1), CGFloat(1) - (CGFloat(50) + (self.navigationBarHeight) - offset) / (self.navigationBarHeight))
             self.navigationController?.navigationBar.barTintColor = UIColor.white
             addShadowToNav()
             title = "Seoul Univ."

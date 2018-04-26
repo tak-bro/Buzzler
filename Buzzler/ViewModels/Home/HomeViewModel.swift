@@ -37,8 +37,7 @@ final class HomeViewModel: NSObject, ViewModelType {
 
     // Public  Stuff
     var itemURLs = Variable<[URL]>([])
-    // Private Stuff
-    fileprivate let _posts = Variable<[BuzzlerPost]>([])
+    let _posts = Variable<[BuzzlerPost]>([])
 
     /// Tansform Action for DataBinding
     func transform(input: HomeViewModel.Input) -> HomeViewModel.Output {

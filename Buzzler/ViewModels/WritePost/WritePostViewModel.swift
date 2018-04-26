@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class PostViewModel {
+class WritePostViewModel {
     
     // Input
     var title = Variable<String>("")

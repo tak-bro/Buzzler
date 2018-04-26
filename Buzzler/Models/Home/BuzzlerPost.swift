@@ -37,12 +37,11 @@ struct BuzzlerPost: Equatable, Mappable {
         createdAt <- map["createdAt"]
         authorId <- map["authorId"]
     }
-    
 }
 
 struct BuzzlerSection {
     
-    var items: [Item]
+    var items: [BuzzlerPost]
 }
 
 extension BuzzlerSection: SectionModelType {

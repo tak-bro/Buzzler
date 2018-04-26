@@ -2,91 +2,211 @@
 //  PostViewController.swift
 //  Buzzler
 //
-//  Created by 진형탁 on 2018. 4. 17..
+//  Created by 진형탁 on 2018. 4. 25..
 //  Copyright © 2018년 Maru. All rights reserved.
 //
 
 import UIKit
+import EZSwiftExtensions
+import Reusable
+import RxSwift
+import RxCocoa
+import Kingfisher
+import NoticeBar
+import RxDataSources
+import Differentiator
 
 class PostViewController: UIViewController {
 
-    // MARK: - Outlets
+
+    @IBOutlet weak var commentBottom: NSLayoutConstraint!
+    @IBOutlet weak var textViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var txt_vw_comment: UITextView!
+    @IBOutlet weak var tbl_post: UITableView!
     
-    @IBOutlet weak var vw_container: UIView!
-    @IBOutlet weak var lbl_univ: UILabel!
-    @IBOutlet weak var btn_post: UIButton!
-    @IBOutlet weak var btn_dismiss: UIButton!
-    @IBOutlet weak var txt_title: UITextField!
-    @IBOutlet weak var txt_contents: UITextView!
+    let homeVM = HomeViewModel()
+    let originDataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
+    let disposeBag = DisposeBag()
     
-   let viewModel = PostViewModel(provider: BuzzlerProvider)
-    
-    // MARK: - Init
-    
+    let tmpDataSource = RxTableViewSectionedReloadDataSource<MultipleSectionModel>()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindToRx()
-        setUI()
-        setToolbar()
-    }
-    
-    override func dismissKeyboard() {
-        view.endEditing(true)
+        configUI()
+        // configBinding()
+        setTempData()
     }
 
-    func addImage() {
-        print("test")
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
-    
-    // MARK: - Actions
-    
-    @IBAction func pressDismiss(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
 }
 
 extension PostViewController {
     
-    func bindToRx() {
-        txt_title.rx.text.orEmpty.bind(to: viewModel.title).addDisposableTo(disposeBag)
-        txt_contents.rx.text.orEmpty.bind(to: viewModel.content).addDisposableTo(disposeBag)
-        btn_post.rx.tap.bind(to: viewModel.postTaps).addDisposableTo(disposeBag)
-        
-        viewModel.postExecuting.drive(onNext: { (executing) in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = executing
-        }).addDisposableTo(disposeBag)
-        
-        viewModel.postFinished.drive(onNext: { [weak self] postResult in
-            switch postResult {
-            case .failed(let message):
-                let alert = UIAlertController(title: "Oops!", message:message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
-                self?.present(alert, animated: true, completion: nil)
-            case .ok:
-                self?.dismiss(animated: true, completion: nil)
+    // MARK: - Private Method
+    
+    fileprivate func configUI() {
+        // set tableView UI
+        title = "Post"
+        tbl_post.register(cellType: HomeTableViewCell.self)
+        tbl_post.register(cellType: HomeImageTableViewCell.self)
+        tbl_post.backgroundColor = Config.UI.themeColor
+        tbl_post.rowHeight = UITableViewAutomaticDimension
+        tbl_post.estimatedRowHeight = 200
+        tbl_post.separatorStyle = .none
+    }
+    
+    fileprivate func configBinding() {
+         // Input
+        let inputStuff  = HomeViewModel.HomeInput()
+        // Output
+        let outputStuff = homeVM.transform(input: inputStuff)
+         
+        // Configure
+        originDataSource.configureCell = { dataSource, tableView, indexPath, item in
+            let defaultCell: UITableViewCell
+            
+            if item.imageUrls.count > 0 {
+                let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
+                imgCell.lbl_title.text = item.title
+                imgCell.lbl_title.numberOfLines = 0
+                imgCell.lbl_content.text = item.content
+                imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                imgCell.lbl_likeCount.text = String(item.likeCount)
+                imgCell.lbl_author.text = "익명"
+                imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
+                if item.imageUrls.count == 1 {
+                    imgCell.vw_remainLabelContainer.isHidden = true
+                } else {
+                    imgCell.vw_remainLabelContainer.isHidden = false
+                }
+                defaultCell = imgCell
+            } else {
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
+                cell.lbl_title.text = item.title
+                cell.lbl_title.numberOfLines = 0
+                cell.lbl_content.text = item.content
+                cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                cell.lbl_likeCount.text = String(item.likeCount)
+                cell.lbl_author.text = "익명"
+                
+                defaultCell = cell
             }
-        }).addDisposableTo(disposeBag)
+            return defaultCell
+        }
+        
+        outputStuff.section
+            .drive(tbl_post.rx.items(dataSource: originDataSource))
+            .addDisposableTo(rx.disposeBag)
+        
+        tbl_post.rx.setDelegate(self)
+            .addDisposableTo(rx.disposeBag)
+    }
+}
+
+extension PostViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return HomeTableViewCell.height
     }
     
-    func setUI() {
-        txt_title.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+extension PostViewController {
+    // temp
     
-    func setToolbar() {
-        let toolbar = UIToolbar()
-        toolbar.barStyle = .default
-        toolbar.isTranslucent = true
-        toolbar.sizeToFit()
+    func setTempData() {
+        let sections: [MultipleSectionModel] = [
+            .ImageProvidableSection(title: "Section 1",
+                                    items: [.ImageSectionItem(image: UIImage(named: "img_tmp")!, title: "General")]),
+            .ToggleableSection(title: "Section 2",
+                               items: [.ToggleableSectionItem(title: "On", enabled: true)]),
+            .StepperableSection(title: "Section 3",
+                                items: [.StepperSectionItem(title: "1")])
+        ]
         
-        let fixedSpaceButton = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        let nextButton  = UIBarButtonItem(image: UIImage(named: "btn_upload_img"), style: .plain, target: self, action: #selector(addImage))
-  
-        toolbar.setItems([fixedSpaceButton, nextButton], animated: false)
-        toolbar.isUserInteractionEnabled = true
+        tmpDataSource.configureCell  = { dataSource, tableView, indexPath, item in
+
+            switch dataSource[indexPath] {
+            case let .ImageSectionItem(image, title):
+                let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
+                imgCell.lbl_title.text = title
+                imgCell.lbl_author.text = title
+     
+                return imgCell
+            case let .StepperSectionItem(title):
+                let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
+                imgCell.lbl_title.text = title
+                
+                return imgCell
+            case let .ToggleableSectionItem(title, enabled):
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
+                cell.lbl_title.text = title
+                return cell
+            }
+        }
         
-        txt_title.inputAccessoryView = toolbar
-        txt_contents.inputAccessoryView = toolbar
+        
+        Observable.just(sections)
+            .bind(to: tbl_post.rx.items(dataSource: tmpDataSource))
+            .disposed(by: disposeBag)
     }
     
 }
+
+
+enum MultipleSectionModel {
+    case ImageProvidableSection(title: String, items: [SectionItem])
+    case ToggleableSection(title: String, items: [SectionItem])
+    case StepperableSection(title: String, items: [SectionItem])
+}
+
+enum SectionItem {
+    case ImageSectionItem(image: UIImage, title: String)
+    case ToggleableSectionItem(title: String, enabled: Bool)
+    case StepperSectionItem(title: String)
+}
+
+extension MultipleSectionModel: SectionModelType {
+    typealias Item = SectionItem
+    
+    var items: [SectionItem] {
+        switch  self {
+        case .ImageProvidableSection(title: _, items: let items):
+            return items.map {$0}
+        case .StepperableSection(title: _, items: let items):
+            return items.map {$0}
+        case .ToggleableSection(title: _, items: let items):
+            return items.map {$0}
+        }
+    }
+    
+    init(original: MultipleSectionModel, items: [Item]) {
+        switch original {
+        case let .ImageProvidableSection(title: title, items: _):
+            self = .ImageProvidableSection(title: title, items: items)
+        case let .StepperableSection(title, _):
+            self = .StepperableSection(title: title, items: items)
+        case let .ToggleableSection(title, _):
+            self = .ToggleableSection(title: title, items: items)
+        }
+    }
+}
+
+extension MultipleSectionModel {
+    var title: String {
+        switch self {
+        case .ImageProvidableSection(title: let title, items: _):
+            return title
+        case .StepperableSection(title: let title, items: _):
+            return title
+        case .ToggleableSection(title: let title, items: _):
+            return title
+        }
+    }
+}
+
