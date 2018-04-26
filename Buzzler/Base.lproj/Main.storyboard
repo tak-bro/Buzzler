@@ -304,9 +304,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0CW-vw-SPm">
-                                <rect key="frame" x="160.66666666666666" y="453.66666666666669" width="94" height="14"/>
+                                <rect key="frame" x="159.66666666666666" y="453.33333333333331" width="96" height="15"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="12"/>
-                                <state key="normal" title="  Resend Code" image="icon_like">
+                                <state key="normal" title="  Resend Code" image="btn_resend">
                                     <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
@@ -931,10 +931,10 @@
     </scenes>
     <resources>
         <image name="btn_dismiss" width="20" height="20"/>
+        <image name="btn_resend" width="16" height="15"/>
         <image name="btn_side_menu" width="24" height="18"/>
         <image name="btn_upload_img" width="28" height="23"/>
         <image name="btn_write" width="25" height="22"/>
-        <image name="icon_like" width="14" height="14"/>
         <image name="img_done_check" width="84" height="84"/>
         <image name="img_logo" width="88" height="108"/>
         <image name="img_symbol" width="80" height="69"/>
