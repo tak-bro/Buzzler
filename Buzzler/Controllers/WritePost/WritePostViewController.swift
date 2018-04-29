@@ -71,6 +71,8 @@ extension WritePostViewController {
     
     func setUI() {
         txt_title.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
+        vw_container.dropShadow(color: UIColor.black, offSet: CGSize(width: -1, height: 1))
+        vw_container.setCornerRadius(radius: 10)
     }
     
     func setToolbar() {
