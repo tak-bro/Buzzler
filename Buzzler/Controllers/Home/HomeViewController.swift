@@ -53,8 +53,8 @@ extension HomeViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.backgroundColor = Config.UI.themeColor
+     //   tableView.refreshControl = UIRefreshControl()
+     //   tableView.refreshControl?.backgroundColor = Config.UI.themeColor
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -124,7 +124,6 @@ extension HomeViewController {
                 cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
                 cell.lbl_likeCount.text = String(item.likeCount)
                 cell.lbl_author.text = "익명"
-                
                 defaultCell = cell
             }
             return defaultCell
@@ -232,7 +231,6 @@ extension HomeViewController {
             make.centerX.equalTo(header)
             make.centerY.equalTo(header).multipliedBy(1.4)
         }
- 
         
         tableView.tableHeaderView = header
     }

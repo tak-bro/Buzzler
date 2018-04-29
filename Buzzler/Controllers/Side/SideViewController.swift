@@ -10,15 +10,22 @@ import UIKit
 
 class SideViewController: UITableViewController {
 
+    @IBOutlet weak var vw_header: UIView!
+    @IBOutlet weak var vw_footer: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        vw_header.backgroundColor = Config.UI.themeColor
+        vw_footer.backgroundColor = Config.UI.themeColor
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func pressDismiss(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
 }
 

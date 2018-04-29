@@ -36,6 +36,8 @@
 		84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */; };
 		84BA76F72086FC4B0097FFD2 /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F62086FC4B0097FFD2 /* Decodable.swift */; };
 		84BA76F92086FC7D0097FFD2 /* BuzzlerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F82086FC7D0097FFD2 /* BuzzlerError.swift */; };
+		84C4DED02095931600FD6BFD /* SideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4DECE2095931600FD6BFD /* SideTableViewCell.swift */; };
+		84C4DED12095931600FD6BFD /* SideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C4DECF2095931600FD6BFD /* SideTableViewCell.xib */; };
 		84F437A82085C3D500E71358 /* WritePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F437A72085C3D500E71358 /* WritePostViewModel.swift */; };
 		84F437AA2085C3E700E71358 /* WritePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F437A92085C3E700E71358 /* WritePostViewController.swift */; };
 		AF3C0C221E0AA003002644DD /* BrowserWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3C0C211E0AA003002644DD /* BrowserWebViewController.swift */; };
@@ -91,6 +93,8 @@
 		84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Rx.swift"; sourceTree = "<group>"; };
 		84BA76F62086FC4B0097FFD2 /* Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
 		84BA76F82086FC7D0097FFD2 /* BuzzlerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerError.swift; sourceTree = "<group>"; };
+		84C4DECE2095931600FD6BFD /* SideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTableViewCell.swift; sourceTree = "<group>"; };
+		84C4DECF2095931600FD6BFD /* SideTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideTableViewCell.xib; sourceTree = "<group>"; };
 		84F437A72085C3D500E71358 /* WritePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostViewModel.swift; sourceTree = "<group>"; };
 		84F437A92085C3E700E71358 /* WritePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostViewController.swift; sourceTree = "<group>"; };
 		AF3C0C211E0AA003002644DD /* BrowserWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserWebViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +212,15 @@
 			path = StretchHeader;
 			sourceTree = "<group>";
 		};
+		84C4DEC920958BC000FD6BFD /* Side */ = {
+			isa = PBXGroup;
+			children = (
+				84C4DECE2095931600FD6BFD /* SideTableViewCell.swift */,
+				84C4DECF2095931600FD6BFD /* SideTableViewCell.xib */,
+			);
+			path = Side;
+			sourceTree = "<group>";
+		};
 		84F437A32085C3AC00E71358 /* WritePost */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +306,7 @@
 		AF9F0FD51DF1A9B300FF8EC5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84C4DEC920958BC000FD6BFD /* Side */,
 				84F437AC2085C40900E71358 /* Post */,
 				AF9F0FD61DF1A9C100FF8EC5 /* Home */,
 			);
@@ -498,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFA7EC781DEEDEDC00138AEE /* LaunchScreen.storyboard in Resources */,
+				84C4DED12095931600FD6BFD /* SideTableViewCell.xib in Resources */,
 				AFA7EC751DEEDEDC00138AEE /* Assets.xcassets in Resources */,
 				84A1BFC7208C7C6200D0ADC7 /* HomeImageTableViewCell.xib in Resources */,
 				844BC377208AF17800666486 /* Avenir LT 95 Black.ttf in Resources */,
@@ -601,6 +616,7 @@
 				AF3C0C241E0AA851002644DD /* Config.swift in Sources */,
 				AF9F0FD41DF1A91300FF8EC5 /* HomeViewController.swift in Sources */,
 				844BC37B208AF8FE00666486 /* SignUpViewController.swift in Sources */,
+				84C4DED02095931600FD6BFD /* SideTableViewCell.swift in Sources */,
 				8421B2CE2086D6CE00CBF4E3 /* UIKit+Extensions.swift in Sources */,
 				84A1BFCE208C8D8400D0ADC7 /* HeaderLabel.swift in Sources */,
 			);

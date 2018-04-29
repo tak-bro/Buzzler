@@ -746,14 +746,57 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2qU-yR-eKM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="vOV-tv-ZJ8">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="189"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaY-lX-M8L">
+                                    <rect key="frame" x="336" y="15" width="24" height="24"/>
+                                    <state key="normal" image="btn_side_close"/>
+                                    <connections>
+                                        <action selector="pressDismiss:" destination="yAu-Xg-JfC" eventType="touchUpInside" id="rwd-EY-eWt"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Judy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVq-ea-Rab">
+                                    <rect key="frame" x="20" y="50" width="39" height="18"/>
+                                    <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="18"/>
+                                    <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서울대학교 경영학과" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dS5-jb-RtG">
+                                    <rect key="frame" x="20" y="78" width="97" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQu-df-hXH">
+                                    <rect key="frame" x="20" y="106.5" width="20" height="22"/>
+                                    <state key="normal" image="btn_side_coin"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8r-oy-EpB">
+                                    <rect key="frame" x="48" y="110.5" width="31.5" height="14"/>
+                                    <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="14"/>
+                                    <color key="textColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
                             <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="PaY-lX-M8L" firstAttribute="top" secondItem="vOV-tv-ZJ8" secondAttribute="top" constant="15" id="0BV-nA-ZWQ"/>
+                                <constraint firstItem="Q8r-oy-EpB" firstAttribute="leading" secondItem="GQu-df-hXH" secondAttribute="trailing" constant="8" id="1kU-Ht-0lS"/>
+                                <constraint firstItem="Q8r-oy-EpB" firstAttribute="centerY" secondItem="GQu-df-hXH" secondAttribute="centerY" id="Csl-VE-y1Z"/>
+                                <constraint firstItem="dS5-jb-RtG" firstAttribute="top" secondItem="kVq-ea-Rab" secondAttribute="bottom" constant="10" id="EDc-Wl-xJO"/>
+                                <constraint firstItem="GQu-df-hXH" firstAttribute="leading" secondItem="vOV-tv-ZJ8" secondAttribute="leading" constant="20" id="Y6N-Tm-CCN"/>
+                                <constraint firstAttribute="trailing" secondItem="PaY-lX-M8L" secondAttribute="trailing" constant="15" id="ZDJ-LD-OH4"/>
+                                <constraint firstItem="dS5-jb-RtG" firstAttribute="leading" secondItem="vOV-tv-ZJ8" secondAttribute="leading" constant="20" id="a3a-mK-7wq"/>
+                                <constraint firstItem="kVq-ea-Rab" firstAttribute="top" secondItem="vOV-tv-ZJ8" secondAttribute="top" constant="50" id="grN-w4-mlP"/>
+                                <constraint firstItem="GQu-df-hXH" firstAttribute="top" secondItem="dS5-jb-RtG" secondAttribute="bottom" constant="14" id="lXg-Tb-t2D"/>
+                                <constraint firstItem="kVq-ea-Rab" firstAttribute="leading" secondItem="vOV-tv-ZJ8" secondAttribute="leading" constant="20" id="ue8-Jf-J73"/>
+                            </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="aO4-vX-pY6">
-                            <rect key="frame" x="0.0" y="409" width="375" height="400"/>
+                            <rect key="frame" x="0.0" y="370" width="375" height="400"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
@@ -761,7 +804,7 @@
                             <tableViewSection id="CS3-fg-YC4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Trc-ez-7E7" style="IBUITableViewCellStyleDefault" id="Xak-uY-26g">
-                                        <rect key="frame" x="0.0" y="189" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="150" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xak-uY-26g" id="mgG-xv-dRD">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -770,18 +813,18 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Seoul Univ." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Trc-ez-7E7">
                                                     <rect key="frame" x="15" y="0.0" width="344" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
+                                                    <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.94901960784313721" green="0.96078431372549022" blue="0.96078431372549022" alpha="0.0" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.94901960784313721" green="0.96078431372549022" blue="0.96078431372549022" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="naV-Qt-kk4" style="IBUITableViewCellStyleDefault" id="J6h-Wn-ffJ">
-                                        <rect key="frame" x="0.0" y="233" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="194" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J6h-Wn-ffJ" id="AJQ-VN-Jz5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -790,17 +833,17 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Economics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="naV-Qt-kk4">
                                                     <rect key="frame" x="15" y="0.0" width="344" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
+                                                    <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="zfu-VX-3ht" style="IBUITableViewCellStyleDefault" id="CVi-Ek-oPO">
-                                        <rect key="frame" x="0.0" y="277" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="238" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CVi-Ek-oPO" id="ilm-cd-TfY">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -809,17 +852,17 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Anonymous" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zfu-VX-3ht">
                                                     <rect key="frame" x="15" y="0.0" width="344" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
+                                                    <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Zw5-BE-di3" style="IBUITableViewCellStyleDefault" id="5rV-K8-eEw">
-                                        <rect key="frame" x="0.0" y="321" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="282" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5rV-K8-eEw" id="qFh-wh-1Rg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -828,17 +871,17 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="My Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zw5-BE-di3">
                                                     <rect key="frame" x="15" y="0.0" width="344" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
+                                                    <color key="textColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Ww6-SJ-scd" style="IBUITableViewCellStyleDefault" id="XV2-qH-9ud">
-                                        <rect key="frame" x="0.0" y="365" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="326" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XV2-qH-9ud" id="mNH-KI-yai">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -847,13 +890,13 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ww6-SJ-scd">
                                                     <rect key="frame" x="15" y="0.0" width="344" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
+                                                    <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </cells>
@@ -864,10 +907,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="7jM-hT-bxd"/>
+                    <connections>
+                        <outlet property="vw_footer" destination="aO4-vX-pY6" id="cfG-0E-QGO"/>
+                        <outlet property="vw_header" destination="vOV-tv-ZJ8" id="YSP-ta-aFW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3U-PH-IHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1874" y="1178"/>
+            <point key="canvasLocation" x="1872.8" y="1177.961019490255"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="25J-lM-d5o">
@@ -946,6 +993,8 @@
     <resources>
         <image name="btn_dismiss" width="20" height="20"/>
         <image name="btn_resend" width="16" height="15"/>
+        <image name="btn_side_close" width="24" height="24"/>
+        <image name="btn_side_coin" width="20" height="18"/>
         <image name="btn_side_menu" width="24" height="18"/>
         <image name="btn_upload_img" width="28" height="23"/>
         <image name="btn_write" width="25" height="22"/>
