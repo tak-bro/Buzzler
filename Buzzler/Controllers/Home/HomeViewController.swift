@@ -13,6 +13,7 @@ import NoticeBar
 import SideMenu
 import PullToRefresh
 import RxDataSources
+import SwiftyAttributes
 
 final class HomeViewController: UIViewController {
 
@@ -33,10 +34,10 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupHeaderView()
         configUI()
         configBinding()
         configNotification()
-        setupHeaderView()
     }
 }
 
@@ -52,8 +53,8 @@ extension HomeViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
-        // tableView.refreshControl = UIRefreshControl()
-        // tableView.refreshControl?.backgroundColor = Config.UI.themeColor
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.backgroundColor = Config.UI.themeColor
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -186,20 +187,53 @@ extension HomeViewController {
     func setupHeaderView() {
         let options = StretchHeaderOptions()
         options.position = .fullScreenTop
-        header.stretchHeaderSize(headerSize: CGSize(width: view.frame.size.width, height: 100),
-                                 imageSize: CGSize(width: view.frame.size.width, height: 100),
+        header.stretchHeaderSize(headerSize: CGSize(width: view.frame.size.width, height: 90),
+                                 imageSize: CGSize(width: view.frame.size.width, height: 90),
                                  controller: self,
                                  options: options)
         
-        // header label
-        var headerLabel = HeaderLabel()
-        headerLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
-        headerLabel.text = "Seoul Univ."
-        header.addSubview(headerLabel)
+        // add first header label
+        var firstHeaderLabel = HeaderLabel()
+        firstHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
+        firstHeaderLabel.text = "Seoul Univ."
+        
+        // add second header label
+        var secondHeaderLabel = HeaderLabel()
+        secondHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
+        
+        let peopleCnt = "1K".withAttributes([
+            .textColor(Config.UI.fontColor),
+            .font(.AvenirNext(type: .Book, size: 12))
+            ])
+        let staticPeople = "  peoples     ".withAttributes([
+            .textColor(Config.UI.lightFontColor),
+            .font(.AvenirNext(type: .Book, size: 12))
+            ])
+        let postCnt = "100K".withAttributes([
+            .textColor(Config.UI.fontColor),
+            .font(.AvenirNext(type: .Book, size: 12))
+            ])
+        let staticPost = "  posts".withAttributes([
+            .textColor(Config.UI.lightFontColor),
+            .font(.AvenirNext(type: .Book, size: 12))
+            ])
+        let finalString = peopleCnt + staticPeople + postCnt + staticPost
+        secondHeaderLabel.attributedText = finalString
+        
+        header.addSubview(firstHeaderLabel)
+        header.addSubview(secondHeaderLabel)
+        
         header.backgroundColor = Config.UI.themeColor
-        headerLabel.snp.makeConstraints { (make) -> Void in
-            make.center.equalTo(header)
+        firstHeaderLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(header)
+            make.centerY.equalTo(header).multipliedBy(0.6)
         }
+        secondHeaderLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(header)
+            make.centerY.equalTo(header).multipliedBy(1.4)
+        }
+ 
+        
         tableView.tableHeaderView = header
     }
     

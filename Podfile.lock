@@ -41,6 +41,7 @@ PODS:
   - SideMenu (2.3.3)
   - SnapKit (3.0.2)
   - SwiftWebVC (0.4.1)
+  - SwiftyAttributes (4.1.0)
   - SwiftyBeaver (1.4.1)
   - SwiftyJSON (3.1.4)
   - Then (2.1.1)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - SideMenu (= 2.3.3)
   - SnapKit (~> 3.0.2)
   - SwiftWebVC (= 0.4.1)
+  - SwiftyAttributes
   - SwiftyBeaver (= 1.4.1)
   - SwiftyJSON (= 3.1.4)
   - Then (~> 2.1)
@@ -89,10 +91,11 @@ SPEC CHECKSUMS:
   SideMenu: a447554ae5c982e8077666389e1c8b0c8656e065
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SwiftWebVC: 17ad75e1fac143d421e0498fb40d7e37532f26d1
+  SwiftyAttributes: cef9463f6e7da1ab393896ca036c9ac37d8a406b
   SwiftyBeaver: f04f739cca6826c5fb0f575fed8fa3293f76b83e
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Then: 823a7503a851737269ba8d40e688b4db874dbd2d
 
-PODFILE CHECKSUM: 56883d0205b7ac667d4972a7e4877a9ce5c09be2
+PODFILE CHECKSUM: 24c6b15a05747ac337b10d3f421228879a7a2227
 
 COCOAPODS: 1.1.1

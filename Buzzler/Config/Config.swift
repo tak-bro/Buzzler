@@ -12,6 +12,8 @@ struct Config {
         static let buttonActiveColor = UIColor(red: 165.0 / 255.0, green: 213.0 / 255.0, blue: 214.0 / 255.0, alpha: 1.0)
         static let buttonInActiveColor = UIColor(white: 216.0 / 255.0, alpha: 1.0)
         static let fontColor = UIColor(white: 68.0 / 255.0, alpha: 1.0)
+        static let lightFontColor =  UIColor(white: 136.0 / 255.0, alpha: 1.0)
+
     }
 }
 

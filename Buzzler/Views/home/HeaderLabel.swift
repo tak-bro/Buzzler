@@ -9,7 +9,6 @@
 import UIKit
 
 class HeaderLabel: UILabel {
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initializeLabel()
@@ -22,9 +21,8 @@ class HeaderLabel: UILabel {
     
     func initializeLabel() {
         self.textAlignment = .center
-        self.font = UIFont(name: "AvenirLTStd-Medium", size: 24)
+        self.font = UIFont(name: "AvenirLTStd-Medium", size: 25)
         self.textColor = Config.UI.fontColor
         self.sizeToFit()
     }
-    
 }
