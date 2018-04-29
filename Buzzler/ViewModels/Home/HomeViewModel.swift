@@ -1,9 +1,9 @@
 //
 //  HomeViewModel.swift
-//  Gank
+//  Buzzler
 //
-//  Created by Maru on 2016/12/7.
-//  Copyright © 2016年 Maru. All rights reserved.
+//  Created by Tak on 2018/04/08.
+//  Copyright © 2018年 Tak. All rights reserved.
 //
 
 import UIKit
@@ -15,7 +15,6 @@ import NSObject_Rx
 typealias GankType = GankAPI.GankCategory
 
 final class HomeViewModel: NSObject, ViewModelType {
-
 
     typealias Input  = HomeInput
     typealias Output = HomeOutput
@@ -38,8 +37,7 @@ final class HomeViewModel: NSObject, ViewModelType {
 
     // Public  Stuff
     var itemURLs = Variable<[URL]>([])
-    // Private Stuff
-    fileprivate let _posts = Variable<[BuzzlerPost]>([])
+    let _posts = Variable<[BuzzlerPost]>([])
 
     /// Tansform Action for DataBinding
     func transform(input: HomeViewModel.Input) -> HomeViewModel.Output {
@@ -76,13 +74,5 @@ final class HomeViewModel: NSObject, ViewModelType {
 
     override init() {
         super.init()
-        _posts.asObservable().map { (posts) -> [URL] in
-            return posts.map({ (post) -> URL in
-                return URL(string: post.url) ?? URL(string: "http://audiga-admin.failnicely.com:8081")!
-            })
-        }.subscribe(onNext: { [weak self] (urls) in
-            self?.itemURLs.value = urls
-        }, onError: nil, onCompleted: nil, onDisposed: nil)
-        .disposed(by: rx.disposeBag)
     }
 }

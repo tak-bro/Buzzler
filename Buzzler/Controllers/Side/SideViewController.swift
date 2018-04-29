@@ -1,9 +1,9 @@
 //
 //  SideViewController.swift
-//  Gank
+//  Buzzler
 //
-//  Created by Maru on 2016/12/24.
-//  Copyright © 2016年 Maru. All rights reserved.
+//  Created by Tak on 2018/04/08.
+//  Copyright © 2018年 Tak. All rights reserved.
 //
 
 import UIKit

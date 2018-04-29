@@ -13,6 +13,7 @@ import NoticeBar
 import SideMenu
 import PullToRefresh
 import RxDataSources
+import SwiftyAttributes
 
 final class HomeViewController: UIViewController {
 
@@ -22,15 +23,18 @@ final class HomeViewController: UIViewController {
     }
 
     let refreshControl = PullToRefresh()
-
     let homeVM = HomeViewModel()
-
     let dataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
+    
+    let header = StretchHeader()
+    let router = HomeRouter()
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupHeaderView()
         configUI()
         configBinding()
         configNotification()
@@ -70,6 +74,7 @@ extension HomeViewController {
             .flatMap({ inputStuff.category.asObservable() })
             .bind(to: outputStuff.refreshCommand)
             .addDisposableTo(rx.disposeBag)
+        
 
         NotificationCenter.default.rx.notification(Notification.Name.category)
             .map({ (notification) -> Int in
@@ -97,6 +102,7 @@ extension HomeViewController {
 
         // Configure
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
+            let defaultCell: UITableViewCell
             if item.imageUrls.count > 0 {
                 let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                 imgCell.lbl_title.text = item.title
@@ -104,16 +110,13 @@ extension HomeViewController {
                 imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
                 imgCell.lbl_likeCount.text = String(item.likeCount)
                 imgCell.lbl_author.text = "익명"
-                
-                // set shadow
-                let layer = imgCell.layer
-                layer.shadowOffset = CGSize(width: 1, height: 1)
-                layer.shadowRadius = 5
-                layer.shadowColor = UIColor.lightGray.cgColor
-                layer.shadowOpacity = 0.5
-                layer.frame = imgCell.frame
-                
-                return imgCell
+                imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
+                if item.imageUrls.count == 1 {
+                    imgCell.vw_remainLabelContainer.isHidden = true
+                } else {
+                    imgCell.vw_remainLabelContainer.isHidden = false
+                }
+                defaultCell = imgCell
             } else {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                 cell.lbl_title.text = item.title
@@ -122,16 +125,9 @@ extension HomeViewController {
                 cell.lbl_likeCount.text = String(item.likeCount)
                 cell.lbl_author.text = "익명"
                 
-                // set shadow
-                let layer = cell.layer
-                layer.shadowOffset = CGSize(width: 1, height: 1)
-                layer.shadowRadius = 5
-                layer.shadowColor = UIColor.lightGray.cgColor
-                layer.shadowOpacity = 0.5
-                layer.frame = cell.frame
-                
-                return cell
+                defaultCell = cell
             }
+            return defaultCell
         }
 
         outputStuff.section
@@ -164,28 +160,113 @@ extension HomeViewController {
     }
 }
 
-extension HomeViewController {
-
-    // MARK: - Private Methpd
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-}
-
 extension HomeViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return HomeTableViewCell.height
     }
 
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let webActivity = BrowserWebViewController(url: homeVM.itemURLs.value[indexPath.row])
-        navigationController?.pushViewController(webActivity, animated: true)
+
+        let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
+        navigationController?.pushViewController(postVC, animated: true)
+        
+        // let webActivity = BrowserWebViewController(url: homeVM.itemURLs.value[indexPath.row])
+        // navigationController?.pushViewController(webActivity, animated: true)
     }
+    
+}
+
+extension HomeViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    func setupHeaderView() {
+        let options = StretchHeaderOptions()
+        options.position = .fullScreenTop
+        header.stretchHeaderSize(headerSize: CGSize(width: view.frame.size.width, height: 90),
+                                 imageSize: CGSize(width: view.frame.size.width, height: 90),
+                                 controller: self,
+                                 options: options)
+        
+        // add first header label
+        var firstHeaderLabel = HeaderLabel()
+        firstHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
+        firstHeaderLabel.text = "Seoul Univ."
+        
+        // add second header label
+        var secondHeaderLabel = HeaderLabel()
+        secondHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
+        
+        let peopleCnt = "1K".withAttributes([
+            .textColor(Config.UI.fontColor),
+            .font(.AvenirNext(type: .Book, size: 12))
+            ])
+        let staticPeople = "  peoples     ".withAttributes([
+            .textColor(Config.UI.lightFontColor),
+            .font(.AvenirNext(type: .Book, size: 12))
+            ])
+        let postCnt = "100K".withAttributes([
+            .textColor(Config.UI.fontColor),
+            .font(.AvenirNext(type: .Book, size: 12))
+            ])
+        let staticPost = "  posts".withAttributes([
+            .textColor(Config.UI.lightFontColor),
+            .font(.AvenirNext(type: .Book, size: 12))
+            ])
+        let finalString = peopleCnt + staticPeople + postCnt + staticPost
+        secondHeaderLabel.attributedText = finalString
+        
+        header.addSubview(firstHeaderLabel)
+        header.addSubview(secondHeaderLabel)
+        
+        header.backgroundColor = Config.UI.themeColor
+        firstHeaderLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(header)
+            make.centerY.equalTo(header).multipliedBy(0.6)
+        }
+        secondHeaderLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(header)
+            make.centerY.equalTo(header).multipliedBy(1.4)
+        }
+ 
+        
+        tableView.tableHeaderView = header
+    }
+    
+    // MARK: - ScrollView Delegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        header.updateScrollViewOffset(scrollView)
+        
+        // NavigationHeader alpha update
+        let offset: CGFloat = scrollView.contentOffset.y
+        if (offset > 50) {
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
+            addShadowToNav()
+            title = "Seoul Univ."
+        } else {
+            self.navigationController?.navigationBar.barTintColor = Config.UI.themeColor
+            deleteShadow()
+            title = " "
+        }
+    }
+    
+    func addShadowToNav() {
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.navigationController?.navigationBar.layer.shadowRadius = 1.0
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.5
+        self.navigationController?.navigationBar.layer.masksToBounds = false
+    }
+    
+    func deleteShadow() {
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.clear.cgColor
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        self.navigationController?.navigationBar.layer.shadowRadius = 0.0
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.0
+    }
+    
 }

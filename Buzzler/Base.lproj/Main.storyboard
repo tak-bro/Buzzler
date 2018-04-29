@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EeC-k0-aex">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -31,37 +31,54 @@
                         <viewControllerLayoutGuide type="bottom" id="DPi-vo-h0D"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ndQ-Yg-opk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="CjW-aA-w7F">
-                                <rect key="frame" x="163" y="236" width="88" height="80"/>
+                                <rect key="frame" x="143.5" y="243.5" width="88" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="B8f-Gq-v8g"/>
                                     <constraint firstAttribute="width" constant="88" id="u8V-jE-808"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo" translatesAutoresizingMaskIntoConstraints="NO" id="0PX-Ks-3xj">
-                                <rect key="frame" x="163" y="74.666666666666686" width="88" height="108"/>
+                                <rect key="frame" x="143.5" y="96" width="88" height="108"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="gIe-aC-Nb8"/>
                                     <constraint firstAttribute="height" constant="108" id="plf-Ds-4WV"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지금 바로 이야기에 참여해보세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="guq-up-YKn">
-                                <rect key="frame" x="116.66666666666669" y="378.33333333333331" width="181" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="학교∙전공별로 자유롭게 소통해요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5FM-W9-9S1">
-                                <rect key="frame" x="114.33333333333333" y="407.33333333333331" width="186.33333333333337" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="guq-up-YKn">
+                                <rect key="frame" x="107" y="360" width="161.5" height="47"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">지금 바로 이야기에 참여해보세요
+학교 </string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineHeightMultiple="1.8" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="∙">
+                                        <attributes>
+                                            <color key="NSColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="LucidaGrande"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineHeightMultiple="1.8" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" 전공별로 자유롭게 소통해요">
+                                        <attributes>
+                                            <color key="NSColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineHeightMultiple="1.8" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08M-ec-zVS">
-                                <rect key="frame" x="87" y="564.66666666666663" width="240" height="48"/>
+                                <rect key="frame" x="67.5" y="543" width="240" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="1GI-ML-9Ec"/>
@@ -76,7 +93,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTC-Og-zQT">
-                                <rect key="frame" x="87" y="491.33333333333326" width="240" height="48"/>
+                                <rect key="frame" x="67.5" y="476.5" width="240" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="fN7-o5-VQw"/>
                                     <constraint firstAttribute="height" constant="48" id="nJR-ET-5NY"/>
@@ -92,20 +109,16 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="CjW-aA-w7F" firstAttribute="centerY" secondItem="ndQ-Yg-opk" secondAttribute="centerY" multiplier="0.75" id="Dnj-ra-n1p"/>
+                            <constraint firstItem="CjW-aA-w7F" firstAttribute="centerY" secondItem="ndQ-Yg-opk" secondAttribute="centerY" multiplier="0.85" id="Dnj-ra-n1p"/>
                             <constraint firstItem="0PX-Ks-3xj" firstAttribute="centerX" secondItem="ndQ-Yg-opk" secondAttribute="centerX" id="EEe-sT-u6G"/>
-                            <constraint firstItem="5FM-W9-9S1" firstAttribute="centerX" secondItem="ndQ-Yg-opk" secondAttribute="centerX" id="EUz-Si-M10"/>
                             <constraint firstItem="CjW-aA-w7F" firstAttribute="centerX" secondItem="ndQ-Yg-opk" secondAttribute="centerX" id="HTr-Su-Mas"/>
-                            <constraint firstItem="guq-up-YKn" firstAttribute="width" secondItem="ndQ-Yg-opk" secondAttribute="height" multiplier="181:736" id="Jnq-G6-uPz"/>
-                            <constraint firstItem="OTC-Og-zQT" firstAttribute="centerY" secondItem="ndQ-Yg-opk" secondAttribute="centerY" multiplier="1.4" id="Wez-fz-DKC"/>
+                            <constraint firstItem="OTC-Og-zQT" firstAttribute="centerY" secondItem="ndQ-Yg-opk" secondAttribute="centerY" multiplier="1.5" id="Wez-fz-DKC"/>
                             <constraint firstItem="guq-up-YKn" firstAttribute="centerX" secondItem="ndQ-Yg-opk" secondAttribute="centerX" id="YNb-nR-63m"/>
                             <constraint firstItem="OTC-Og-zQT" firstAttribute="centerX" secondItem="ndQ-Yg-opk" secondAttribute="centerX" id="a9c-F8-Sog"/>
-                            <constraint firstItem="0PX-Ks-3xj" firstAttribute="centerY" secondItem="ndQ-Yg-opk" secondAttribute="centerY" multiplier="0.35" id="brs-z3-gMy"/>
-                            <constraint firstItem="guq-up-YKn" firstAttribute="centerY" secondItem="ndQ-Yg-opk" secondAttribute="centerY" multiplier="1.05" id="kvN-RE-x4e"/>
-                            <constraint firstItem="5FM-W9-9S1" firstAttribute="width" secondItem="ndQ-Yg-opk" secondAttribute="height" multiplier="93:368" id="olK-yM-656"/>
-                            <constraint firstItem="08M-ec-zVS" firstAttribute="centerY" secondItem="ndQ-Yg-opk" secondAttribute="centerY" multiplier="1.6" id="pWw-Lo-1GA"/>
+                            <constraint firstItem="0PX-Ks-3xj" firstAttribute="centerY" secondItem="ndQ-Yg-opk" secondAttribute="centerY" multiplier="0.45" id="brs-z3-gMy"/>
+                            <constraint firstItem="guq-up-YKn" firstAttribute="centerY" secondItem="ndQ-Yg-opk" secondAttribute="centerY" multiplier="1.15" id="kvN-RE-x4e"/>
+                            <constraint firstItem="08M-ec-zVS" firstAttribute="centerY" secondItem="ndQ-Yg-opk" secondAttribute="centerY" multiplier="1.7" id="pWw-Lo-1GA"/>
                             <constraint firstItem="08M-ec-zVS" firstAttribute="centerX" secondItem="ndQ-Yg-opk" secondAttribute="centerX" id="ryb-tU-eDG"/>
-                            <constraint firstItem="5FM-W9-9S1" firstAttribute="centerY" secondItem="ndQ-Yg-opk" secondAttribute="centerY" multiplier="1.13" id="twn-9T-QRZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cYv-i0-LMX"/>
@@ -127,25 +140,39 @@
                         <viewControllerLayoutGuide type="bottom" id="P87-MH-VSg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LqH-Sr-RG5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up with email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0G9-1A-3BN">
-                                <rect key="frame" x="132.33333333333334" y="64.666666666666671" width="151.00000000000003" height="18"/>
+                                <rect key="frame" x="111.5" y="57.5" width="152" height="18"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="18"/>
                                 <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0X7-yH-nKs">
-                                <rect key="frame" x="82.666666666666686" y="134.33333333333334" width="250" height="26"/>
-                                <string key="text">Enter your Collage’s E-mail, and we’ll send 
-a “Verify Code” to your inbox.</string>
-                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="13"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0X7-yH-nKs">
+                                <rect key="frame" x="72" y="118.5" width="231" height="30"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Enter your Collage’s E-mail, and we’ll send 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="a “Verify Code” to your inbox.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nickname" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Gow-Yt-zxb">
-                                <rect key="frame" x="67.666666666666686" y="200.66666666666666" width="280" height="40"/>
+                                <rect key="frame" x="47.5" y="197" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="UfY-10-TkM"/>
                                     <constraint firstAttribute="height" constant="40" id="fGW-Uc-tt1"/>
@@ -155,7 +182,7 @@ a “Verify Code” to your inbox.</string>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Collage’s E-mail" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="uKK-Za-7Ob">
-                                <rect key="frame" x="67" y="256" width="280" height="40"/>
+                                <rect key="frame" x="47.5" y="247" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="92Q-bU-CCs"/>
                                     <constraint firstAttribute="width" constant="280" id="mR1-n6-ugh"/>
@@ -165,7 +192,7 @@ a “Verify Code” to your inbox.</string>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="aa7-nr-Wbq">
-                                <rect key="frame" x="67" y="311.33333333333331" width="280" height="40"/>
+                                <rect key="frame" x="47.5" y="297" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="TSn-hN-yt0"/>
                                     <constraint firstAttribute="height" constant="40" id="hr5-NK-3Hs"/>
@@ -175,7 +202,7 @@ a “Verify Code” to your inbox.</string>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anP-1s-02X">
-                                <rect key="frame" x="87" y="417.66666666666669" width="240" height="48"/>
+                                <rect key="frame" x="67.5" y="393" width="240" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="bAF-0M-cHf"/>
                                     <constraint firstAttribute="height" constant="48" id="duh-sX-b9Z"/>
@@ -188,17 +215,15 @@ a “Verify Code” to your inbox.</string>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="anP-1s-02X" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="1.2" id="0lw-Sv-gx0"/>
-                            <constraint firstItem="uKK-Za-7Ob" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.75" id="5a0-K9-luC"/>
-                            <constraint firstItem="Gow-Yt-zxb" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.6" id="7Qn-pD-HCo"/>
+                            <constraint firstItem="anP-1s-02X" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="1.25" id="0lw-Sv-gx0"/>
+                            <constraint firstItem="uKK-Za-7Ob" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.8" id="5a0-K9-luC"/>
+                            <constraint firstItem="Gow-Yt-zxb" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.65" id="7Qn-pD-HCo"/>
                             <constraint firstItem="aa7-nr-Wbq" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="Bja-zu-W0I"/>
                             <constraint firstItem="uKK-Za-7Ob" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="DVx-GS-Ml5"/>
                             <constraint firstItem="Gow-Yt-zxb" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="EuR-aT-6za"/>
                             <constraint firstItem="0G9-1A-3BN" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="FZl-Lx-BaI"/>
                             <constraint firstItem="anP-1s-02X" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="KzG-2U-INp"/>
-                            <constraint firstItem="aa7-nr-Wbq" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.9" id="RRA-Fc-H1A"/>
-                            <constraint firstItem="0G9-1A-3BN" firstAttribute="width" secondItem="LqH-Sr-RG5" secondAttribute="height" multiplier="151:736" id="Rsn-83-Hck"/>
-                            <constraint firstItem="0X7-yH-nKs" firstAttribute="width" secondItem="LqH-Sr-RG5" secondAttribute="height" multiplier="125:368" id="dtD-z0-C4m"/>
+                            <constraint firstItem="aa7-nr-Wbq" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.95" id="RRA-Fc-H1A"/>
                             <constraint firstItem="0X7-yH-nKs" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="kdb-RH-My5"/>
                             <constraint firstItem="0G9-1A-3BN" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.2" id="mdg-bt-XFY"/>
                             <constraint firstItem="0X7-yH-nKs" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.4" id="yQe-qn-nTD"/>
@@ -222,7 +247,7 @@ a “Verify Code” to your inbox.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhQ-Ro-m0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2580" y="-1979"/>
+            <point key="canvasLocation" x="2839" y="-2014"/>
         </scene>
         <!--Verify Code View Controller-->
         <scene sceneID="95A-Oh-OpV">
@@ -233,25 +258,39 @@ a “Verify Code” to your inbox.</string>
                         <viewControllerLayoutGuide type="bottom" id="MSS-Aw-inv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BKZ-ey-JXG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Verify Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ueq-xr-wIr">
-                                <rect key="frame" x="134.33333333333331" y="64.666666666666671" width="145.33333333333331" height="18"/>
+                                <rect key="frame" x="115" y="57.5" width="145" height="18"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="18"/>
                                 <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Dde-TW-mYu">
-                                <rect key="frame" x="89.333333333333329" y="134.33333333333334" width="235.33333333333337" height="26"/>
-                                <string key="text">Your reciving a text on the number
-you just entered with a verification code.</string>
-                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="13"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dde-TW-mYu">
+                                <rect key="frame" x="79" y="119" width="217.5" height="30"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Your receiving a text on the number
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="you just entered with a verification code.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="SzL-Wa-DGo">
-                                <rect key="frame" x="67" y="200.66666666666666" width="280" height="40"/>
+                                <rect key="frame" x="47.5" y="197" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Y6A-oc-ifZ"/>
                                     <constraint firstAttribute="width" constant="280" id="q8c-Km-efR"/>
@@ -261,7 +300,7 @@ you just entered with a verification code.</string>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2B-QJ-Zcq">
-                                <rect key="frame" x="87" y="344" width="240" height="48"/>
+                                <rect key="frame" x="67.5" y="293" width="240" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="C5c-XN-v1c"/>
                                     <constraint firstAttribute="width" constant="240" id="NPu-NL-rYR"/>
@@ -271,30 +310,46 @@ you just entered with a verification code.</string>
                                     <color key="titleColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiR-yP-Rpa">
+                                <rect key="frame" x="277.5" y="211" width="3.5" height="12"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="12"/>
+                                <color key="textColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0CW-vw-SPm">
+                                <rect key="frame" x="139.5" y="392.5" width="96" height="15"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="12"/>
+                                <state key="normal" title="  Resend Code" image="btn_resend">
+                                    <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="0CW-vw-SPm" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="3Gn-Nh-9zZ"/>
+                            <constraint firstItem="wiR-yP-Rpa" firstAttribute="centerY" secondItem="SzL-Wa-DGo" secondAttribute="centerY" id="A7S-wo-8Yq"/>
                             <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="AGI-Nv-xtB"/>
-                            <constraint firstItem="SzL-Wa-DGo" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.6" id="BMy-aS-9Bh"/>
+                            <constraint firstItem="SzL-Wa-DGo" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.65" id="BMy-aS-9Bh"/>
+                            <constraint firstItem="wiR-yP-Rpa" firstAttribute="leading" secondItem="SzL-Wa-DGo" secondAttribute="trailing" constant="-50" id="Cab-Ab-tKD"/>
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.4" id="J1g-eB-G5H"/>
                             <constraint firstItem="SzL-Wa-DGo" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="MxO-zh-H9f"/>
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="PxO-1r-xee"/>
-                            <constraint firstItem="Dde-TW-mYu" firstAttribute="width" secondItem="BKZ-ey-JXG" secondAttribute="height" multiplier="235:736" id="Q8j-1s-sSC"/>
+                            <constraint firstItem="0CW-vw-SPm" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="1.2" id="QBi-Sd-HqA"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="Uhn-Qc-qAO"/>
-                            <constraint firstItem="Ueq-xr-wIr" firstAttribute="width" secondItem="BKZ-ey-JXG" secondAttribute="height" multiplier="145:736" id="d1g-un-tOW"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.2" id="dph-oq-tuh"/>
-                            <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" id="ezq-PR-7gt"/>
+                            <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.95" id="ezq-PR-7gt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btn_next" destination="N2B-QJ-Zcq" id="HzX-Jd-hhl"/>
+                        <outlet property="lbl_timer" destination="wiR-yP-Rpa" id="BZX-Bv-Fuf"/>
                         <outlet property="txt_code" destination="SzL-Wa-DGo" id="IQB-St-rM7"/>
                         <segue destination="rOx-L5-hp1" kind="show" id="JGN-Za-bPF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zwa-Yw-sCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3399" y="-1979"/>
+            <point key="canvasLocation" x="3780" y="-2014.5427286356824"/>
         </scene>
         <!--Sign Up Done View Controller-->
         <scene sceneID="oC3-fU-QDr">
@@ -305,24 +360,24 @@ you just entered with a verification code.</string>
                         <viewControllerLayoutGuide type="bottom" id="Txk-Zd-r3n"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bYt-z2-fDF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_done_check" translatesAutoresizingMaskIntoConstraints="NO" id="Av7-qK-IBT">
-                                <rect key="frame" x="165" y="215.66666666666663" width="84" height="84"/>
+                                <rect key="frame" x="145.5" y="191.5" width="84" height="84"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="6Ws-qD-HH8"/>
                                     <constraint firstAttribute="width" constant="84" id="izf-UG-SYp"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Buzzler!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vaG-gu-J4w">
-                                <rect key="frame" x="99.333333333333329" y="355.33333333333331" width="216.33333333333337" height="26.333333333333314"/>
+                                <rect key="frame" x="79.5" y="320.5" width="216" height="26"/>
                                 <fontDescription key="fontDescription" name="AvenirLT-Black" family="Avenir LT 65 Medium" pointSize="22"/>
                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9P-Lf-6pR">
-                                <rect key="frame" x="87" y="491.33333333333326" width="240" height="48"/>
+                                <rect key="frame" x="67.5" y="409.5" width="240" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="1UP-xN-Njg"/>
                                     <constraint firstAttribute="height" constant="48" id="2to-Al-Jbc"/>
@@ -338,12 +393,12 @@ you just entered with a verification code.</string>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="vaG-gu-J4w" firstAttribute="width" secondItem="bYt-z2-fDF" secondAttribute="height" multiplier="216:667" id="Aj4-vS-5au"/>
                             <constraint firstItem="o9P-Lf-6pR" firstAttribute="centerX" secondItem="bYt-z2-fDF" secondAttribute="centerX" id="Hv0-pQ-XON"/>
                             <constraint firstItem="Av7-qK-IBT" firstAttribute="centerY" secondItem="bYt-z2-fDF" secondAttribute="centerY" multiplier="0.7" id="MZB-9O-DFc"/>
                             <constraint firstItem="vaG-gu-J4w" firstAttribute="centerX" secondItem="bYt-z2-fDF" secondAttribute="centerX" id="bRH-Wp-kRa"/>
-                            <constraint firstItem="vaG-gu-J4w" firstAttribute="width" secondItem="bYt-z2-fDF" secondAttribute="height" multiplier="27:92" id="cbP-dC-LFt"/>
                             <constraint firstItem="Av7-qK-IBT" firstAttribute="centerX" secondItem="bYt-z2-fDF" secondAttribute="centerX" id="dQm-cv-RqB"/>
-                            <constraint firstItem="o9P-Lf-6pR" firstAttribute="centerY" secondItem="bYt-z2-fDF" secondAttribute="centerY" multiplier="1.4" id="qtu-Gy-IIT"/>
+                            <constraint firstItem="o9P-Lf-6pR" firstAttribute="centerY" secondItem="bYt-z2-fDF" secondAttribute="centerY" multiplier="1.3" id="qtu-Gy-IIT"/>
                             <constraint firstItem="vaG-gu-J4w" firstAttribute="centerY" secondItem="bYt-z2-fDF" secondAttribute="centerY" id="rSN-r5-2ke"/>
                         </constraints>
                     </view>
@@ -361,7 +416,7 @@ you just entered with a verification code.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tve-Kk-1hr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4178" y="-1978"/>
+            <point key="canvasLocation" x="4707" y="-2014"/>
         </scene>
         <!-- -->
         <scene sceneID="7hQ-vx-ZdT">
@@ -372,11 +427,11 @@ you just entered with a verification code.</string>
                         <viewControllerLayoutGuide type="bottom" id="SkA-Ck-TUV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PJ9-ep-RI1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57O-Ti-aE2">
-                                <rect key="frame" x="87" y="528" width="240" height="48"/>
+                                <rect key="frame" x="67.5" y="476.5" width="240" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="4Xg-mu-RbQ"/>
                                     <constraint firstAttribute="width" constant="240" id="hRr-fs-pMF"/>
@@ -387,34 +442,34 @@ you just entered with a verification code.</string>
                                 </state>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7DW-bZ-bH1">
-                                <rect key="frame" x="87" y="440" width="240" height="40"/>
+                                <rect key="frame" x="67.5" y="397" width="240" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="99a-rm-rVX"/>
                                     <constraint firstAttribute="height" constant="40" id="Jov-Vw-6aD"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.70980392160000005" green="0.70980392160000005" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NCb-Sf-FU0">
-                                <rect key="frame" x="87" y="384.66666666666669" width="240" height="40"/>
+                                <rect key="frame" x="67.5" y="347" width="240" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gYb-pk-ZfX"/>
                                     <constraint firstAttribute="width" constant="240" id="iTT-9y-ULf"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.70980392160000005" green="0.70980392160000005" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="eoJ-TR-hEn">
-                                <rect key="frame" x="163" y="236" width="88" height="80"/>
+                                <rect key="frame" x="143.5" y="210" width="88" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="cWV-Jf-1wd"/>
                                     <constraint firstAttribute="height" constant="80" id="duQ-ci-bEk"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ALt-Yx-XW8">
-                                <rect key="frame" x="163" y="74.666666666666686" width="88" height="108"/>
+                                <rect key="frame" x="143.5" y="62.5" width="88" height="108"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="Ejh-DY-3Gk"/>
                                     <constraint firstAttribute="height" constant="108" id="mj6-Ft-qRg"/>
@@ -446,7 +501,7 @@ you just entered with a verification code.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MRm-z5-IJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1630" y="-1087"/>
+            <point key="canvasLocation" x="1874" y="-1118"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -457,7 +512,7 @@ you just entered with a verification code.</string>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -475,25 +530,28 @@ you just entered with a verification code.</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="LeS-wT-GJM" kind="show" id="q6C-2e-6k4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="714" y="-197"/>
+            <point key="canvasLocation" x="712" y="95"/>
         </scene>
-        <!--Post View Controller-->
+        <!--Write Post View Controller-->
         <scene sceneID="Nvw-GY-BVG">
             <objects>
-                <viewController id="l2d-FS-koS" customClass="PostViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="l2d-FS-koS" customClass="WritePostViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9qg-gZ-cCZ"/>
                         <viewControllerLayoutGuide type="bottom" id="VeU-VM-x9q"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZHN-6L-6ds">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tmB-jG-KB1">
-                                <rect key="frame" x="20" y="30.666666666666671" width="30" height="30"/>
+                                <rect key="frame" x="20" y="30.5" width="30" height="30"/>
                                 <state key="normal" title="취소">
                                     <color key="titleColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -502,22 +560,22 @@ you just entered with a verification code.</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYG-y7-JYu">
-                                <rect key="frame" x="364" y="30.666666666666671" width="30" height="30"/>
+                                <rect key="frame" x="325" y="30.5" width="30" height="30"/>
                                 <state key="normal" title="등록">
                                     <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dox-Zw-zqL" userLabel="Lbl univ">
-                                <rect key="frame" x="186" y="35" width="42" height="21"/>
+                                <rect key="frame" x="166.5" y="35" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXG-eY-md5">
-                                <rect key="frame" x="15" y="68" width="384" height="648"/>
+                                <rect key="frame" x="15" y="68" width="345" height="579"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="제목..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-AQ-X3A">
-                                        <rect key="frame" x="10" y="8" width="359" height="30"/>
+                                        <rect key="frame" x="10" y="8" width="325" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bsd-90-DG1"/>
                                         </constraints>
@@ -526,11 +584,11 @@ you just entered with a verification code.</string>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GX1-Xz-MFs">
-                                        <rect key="frame" x="12" y="605" width="28" height="23"/>
+                                        <rect key="frame" x="12" y="536" width="28" height="23"/>
                                         <state key="normal" image="btn_upload_img"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ec6-er-0aI">
-                                        <rect key="frame" x="55" y="607" width="1" height="20"/>
+                                        <rect key="frame" x="55" y="538" width="1" height="20"/>
                                         <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="6A1-FJ-CSS"/>
@@ -538,7 +596,7 @@ you just entered with a verification code.</string>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="소속학교 비노출 ▾" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJA-B4-CRo">
-                                        <rect key="frame" x="71" y="609" width="150" height="17"/>
+                                        <rect key="frame" x="71" y="540" width="150" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="iWa-eh-EbG"/>
                                         </constraints>
@@ -547,7 +605,7 @@ you just entered with a verification code.</string>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="글쓰기..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZGw-rE-b34">
-                                        <rect key="frame" x="5" y="40" width="374" height="559"/>
+                                        <rect key="frame" x="5" y="40" width="335" height="490"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -562,11 +620,11 @@ you just entered with a verification code.</string>
                                     <constraint firstAttribute="trailing" secondItem="ZGw-rE-b34" secondAttribute="trailing" constant="5" id="Npg-QE-Ax3"/>
                                     <constraint firstAttribute="bottom" secondItem="OJA-B4-CRo" secondAttribute="bottom" constant="22" id="S5s-PH-WhO"/>
                                     <constraint firstItem="ZGw-rE-b34" firstAttribute="leading" secondItem="LXG-eY-md5" secondAttribute="leading" constant="5" id="Wob-Fq-iD2"/>
-                                    <constraint firstAttribute="trailing" secondItem="nj9-AQ-X3A" secondAttribute="trailing" constant="15" id="YCd-MH-UYf"/>
                                     <constraint firstItem="Ec6-er-0aI" firstAttribute="leading" secondItem="GX1-Xz-MFs" secondAttribute="trailing" constant="15" id="dPj-SH-mrc"/>
                                     <constraint firstItem="nj9-AQ-X3A" firstAttribute="leading" secondItem="LXG-eY-md5" secondAttribute="leading" constant="10" id="h88-Ng-GgB"/>
                                     <constraint firstAttribute="bottom" secondItem="GX1-Xz-MFs" secondAttribute="bottom" constant="20" id="kNQ-0k-V4o"/>
                                     <constraint firstItem="ZGw-rE-b34" firstAttribute="top" secondItem="nj9-AQ-X3A" secondAttribute="bottom" constant="2" id="l7a-bU-vbe"/>
+                                    <constraint firstAttribute="trailing" secondItem="nj9-AQ-X3A" secondAttribute="trailing" constant="10" id="mbR-PU-Uiw"/>
                                     <constraint firstItem="OJA-B4-CRo" firstAttribute="leading" secondItem="Ec6-er-0aI" secondAttribute="trailing" constant="15" id="nlD-9A-yK8"/>
                                     <constraint firstItem="nj9-AQ-X3A" firstAttribute="top" secondItem="LXG-eY-md5" secondAttribute="top" constant="8" id="r8L-80-04H"/>
                                 </constraints>
@@ -597,23 +655,105 @@ you just entered with a verification code.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s3v-78-csC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1629" y="-197"/>
+            <point key="canvasLocation" x="1874" y="-338"/>
+        </scene>
+        <!--Post View Controller-->
+        <scene sceneID="T4s-aq-0cw">
+            <objects>
+                <viewController storyboardIdentifier="PostViewController" id="LeS-wT-GJM" customClass="PostViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oRM-8N-d5e"/>
+                        <viewControllerLayoutGuide type="bottom" id="QgC-I6-YAd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="edB-pi-TE8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zow-VQ-OZr">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZh-KU-fRA">
+                                <rect key="frame" x="15" y="602" width="345" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름 짓기 귀찮은 사람" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ed-Ra-qTn">
+                                        <rect key="frame" x="12" y="8" width="104" height="13"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="sssss" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YWV-mv-BLE">
+                                        <rect key="frame" x="12" y="25" width="293" height="30"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="oWR-px-QCE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Tt-Gs-Zn1">
+                                        <rect key="frame" x="310" y="25" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Jns-Z6-TDw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="게시">
+                                            <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6Tt-Gs-Zn1" firstAttribute="leading" secondItem="YWV-mv-BLE" secondAttribute="trailing" constant="5" id="4Z9-XJ-KXO"/>
+                                    <constraint firstAttribute="trailing" secondItem="6Tt-Gs-Zn1" secondAttribute="trailing" constant="5" id="59g-jo-v79"/>
+                                    <constraint firstItem="YWV-mv-BLE" firstAttribute="leading" secondItem="wZh-KU-fRA" secondAttribute="leading" constant="12" id="Oru-qz-C5F"/>
+                                    <constraint firstAttribute="bottom" secondItem="YWV-mv-BLE" secondAttribute="bottom" constant="10" id="VTD-fO-CJ7"/>
+                                    <constraint firstItem="3ed-Ra-qTn" firstAttribute="leading" secondItem="wZh-KU-fRA" secondAttribute="leading" constant="12" id="Ysa-2q-uIh"/>
+                                    <constraint firstItem="6Tt-Gs-Zn1" firstAttribute="centerY" secondItem="YWV-mv-BLE" secondAttribute="centerY" id="dPV-UB-SsT"/>
+                                    <constraint firstItem="3ed-Ra-qTn" firstAttribute="top" secondItem="wZh-KU-fRA" secondAttribute="top" constant="8" id="dsk-t1-L7b"/>
+                                    <constraint firstAttribute="height" constant="65" id="eKE-JF-RLa"/>
+                                    <constraint firstAttribute="bottom" secondItem="6Tt-Gs-Zn1" secondAttribute="bottom" constant="10" id="qw2-oc-A03"/>
+                                    <constraint firstItem="YWV-mv-BLE" firstAttribute="top" secondItem="3ed-Ra-qTn" secondAttribute="bottom" constant="4.0000000000000355" id="wIK-4J-U56"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zow-VQ-OZr" firstAttribute="top" secondItem="oRM-8N-d5e" secondAttribute="bottom" id="1B6-cB-whR"/>
+                            <constraint firstAttribute="trailing" secondItem="Zow-VQ-OZr" secondAttribute="trailing" id="3tQ-JO-dQO"/>
+                            <constraint firstItem="QgC-I6-YAd" firstAttribute="top" secondItem="wZh-KU-fRA" secondAttribute="bottom" id="8y4-u1-zW4"/>
+                            <constraint firstItem="Zow-VQ-OZr" firstAttribute="leading" secondItem="edB-pi-TE8" secondAttribute="leading" id="Dg7-dU-p4Z"/>
+                            <constraint firstItem="wZh-KU-fRA" firstAttribute="leading" secondItem="edB-pi-TE8" secondAttribute="leading" constant="15" id="Vbx-bF-2zm"/>
+                            <constraint firstItem="QgC-I6-YAd" firstAttribute="top" secondItem="Zow-VQ-OZr" secondAttribute="bottom" id="YyX-rG-4vQ"/>
+                            <constraint firstAttribute="trailing" secondItem="wZh-KU-fRA" secondAttribute="trailing" constant="15" id="y10-0G-aM5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="commentBottom" destination="8y4-u1-zW4" id="enR-B1-9OU"/>
+                        <outlet property="tbl_post" destination="Zow-VQ-OZr" id="XJ3-22-JVW"/>
+                        <outlet property="textViewHeight" destination="oWR-px-QCE" id="Egx-mK-cOe"/>
+                        <outlet property="txt_vw_comment" destination="YWV-mv-BLE" id="gVp-GN-rmM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s1w-o3-hia" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1873.913043478261" y="388.85869565217394"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="NiI-T8-wYa">
             <objects>
                 <tableViewController id="yAu-Xg-JfC" customClass="SideViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2qU-yR-eKM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="vOV-tv-ZJ8">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="189"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="189"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="aO4-vX-pY6">
-                            <rect key="frame" x="0.0" y="409" width="414" height="400"/>
+                            <rect key="frame" x="0.0" y="409" width="375" height="400"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
@@ -621,14 +761,14 @@ you just entered with a verification code.</string>
                             <tableViewSection id="CS3-fg-YC4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Trc-ez-7E7" style="IBUITableViewCellStyleDefault" id="Xak-uY-26g">
-                                        <rect key="frame" x="0.0" y="189" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="189" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xak-uY-26g" id="mgG-xv-dRD">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Seoul Univ." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Trc-ez-7E7">
-                                                    <rect key="frame" x="15" y="0.0" width="379" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="344" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -641,14 +781,14 @@ you just entered with a verification code.</string>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="naV-Qt-kk4" style="IBUITableViewCellStyleDefault" id="J6h-Wn-ffJ">
-                                        <rect key="frame" x="0.0" y="233" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="233" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J6h-Wn-ffJ" id="AJQ-VN-Jz5">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Economics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="naV-Qt-kk4">
-                                                    <rect key="frame" x="15" y="0.0" width="379" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="344" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -660,14 +800,14 @@ you just entered with a verification code.</string>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="zfu-VX-3ht" style="IBUITableViewCellStyleDefault" id="CVi-Ek-oPO">
-                                        <rect key="frame" x="0.0" y="277" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="277" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CVi-Ek-oPO" id="ilm-cd-TfY">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Anonymous" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zfu-VX-3ht">
-                                                    <rect key="frame" x="15" y="0.0" width="379" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="344" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -679,14 +819,14 @@ you just entered with a verification code.</string>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Zw5-BE-di3" style="IBUITableViewCellStyleDefault" id="5rV-K8-eEw">
-                                        <rect key="frame" x="0.0" y="321" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="321" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5rV-K8-eEw" id="qFh-wh-1Rg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="My Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zw5-BE-di3">
-                                                    <rect key="frame" x="15" y="0.0" width="379" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="344" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -698,14 +838,14 @@ you just entered with a verification code.</string>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Ww6-SJ-scd" style="IBUITableViewCellStyleDefault" id="XV2-qH-9ud">
-                                        <rect key="frame" x="0.0" y="365" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="365" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XV2-qH-9ud" id="mNH-KI-yai">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ww6-SJ-scd">
-                                                    <rect key="frame" x="15" y="0.0" width="379" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="344" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -727,7 +867,7 @@ you just entered with a verification code.</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3U-PH-IHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="714" y="674"/>
+            <point key="canvasLocation" x="1874" y="1178"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="25J-lM-d5o">
@@ -746,7 +886,7 @@ you just entered with a verification code.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ku-F7-i34" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-146" y="675"/>
+            <point key="canvasLocation" x="712" y="1178"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="F3a-SF-K25">
@@ -754,7 +894,7 @@ you just entered with a verification code.</string>
                 <navigationController storyboardIdentifier="HomeNavigationController" id="4EO-RX-9UL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8lF-N1-yHT">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -764,7 +904,7 @@ you just entered with a verification code.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdY-dG-eTF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-146" y="-197"/>
+            <point key="canvasLocation" x="-107" y="95"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aPO-Ss-0KZ">
@@ -772,7 +912,7 @@ you just entered with a verification code.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EeC-k0-aex" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="v4A-fP-Odz">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -790,7 +930,7 @@ you just entered with a verification code.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="swR-uG-AhO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Btz-sC-i8g">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -800,11 +940,12 @@ you just entered with a verification code.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Tc-Bm-D4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1673.913043478261" y="-1978.5326086956522"/>
+            <point key="canvasLocation" x="1874" y="-2013"/>
         </scene>
     </scenes>
     <resources>
         <image name="btn_dismiss" width="20" height="20"/>
+        <image name="btn_resend" width="16" height="15"/>
         <image name="btn_side_menu" width="24" height="18"/>
         <image name="btn_upload_img" width="28" height="23"/>
         <image name="btn_write" width="25" height="22"/>

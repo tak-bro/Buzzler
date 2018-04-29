@@ -28,21 +28,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo" translatesAutoresizingMaskIntoConstraints="NO" id="3DV-Ro-SW9">
-                                <rect key="frame" x="143.5" y="146" width="88" height="108"/>
+                                <rect key="frame" x="143.5" y="163" width="88" height="108"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="6jI-QL-smR"/>
                                     <constraint firstAttribute="height" constant="108" id="mv9-WL-haH"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="0j3-SG-PJQ">
-                                <rect key="frame" x="143.5" y="293.5" width="88" height="80"/>
+                                <rect key="frame" x="143.5" y="310" width="88" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="ST9-21-tsO"/>
                                     <constraint firstAttribute="width" constant="88" id="SoN-Ii-kuh"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© Fail Nicely" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-e7-QPO">
-                                <rect key="frame" x="137" y="458" width="102.5" height="18"/>
+                                <rect key="frame" x="137" y="474.5" width="102.5" height="18"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="18"/>
                                 <color key="textColor" red="0.6470588235294118" green="0.83529411764705885" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -52,10 +52,10 @@
                         <constraints>
                             <constraint firstItem="Gzj-e7-QPO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GqW-iH-aIx"/>
                             <constraint firstItem="3DV-Ro-SW9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="LrQ-sZ-bWc"/>
-                            <constraint firstItem="3DV-Ro-SW9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="0.6" id="TPy-ZZ-bdi"/>
-                            <constraint firstItem="Gzj-e7-QPO" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="1.4" id="qxX-L9-oZt"/>
+                            <constraint firstItem="3DV-Ro-SW9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="0.65" id="TPy-ZZ-bdi"/>
+                            <constraint firstItem="Gzj-e7-QPO" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="1.45" id="qxX-L9-oZt"/>
                             <constraint firstItem="0j3-SG-PJQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uOq-2X-YKV"/>
-                            <constraint firstItem="0j3-SG-PJQ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="wah-YP-Dfu"/>
+                            <constraint firstItem="0j3-SG-PJQ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="1.05" id="wah-YP-Dfu"/>
                         </constraints>
                     </view>
                 </viewController>
