@@ -19,6 +19,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var txt_email: UITextField!
     @IBOutlet weak var txt_password: UITextField!
     @IBOutlet weak var btn_login: UIButton!
+    @IBOutlet weak var btn_autoLogin: UIButton!
+    @IBOutlet weak var btn_saveEmail: UIButton!
     
     fileprivate let disposeBag = DisposeBag()
     
@@ -39,6 +41,8 @@ class LoginViewController: UIViewController {
         
         viewModel.loginEnabled
             .drive(onNext: { (valid) in
+                self.btn_autoLogin.isEnabled = valid
+                self.btn_saveEmail.isEnabled = valid
                 self.btn_login.isEnabled = valid
                 self.btn_login.layer.borderColor = valid ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
             })
@@ -80,6 +84,11 @@ extension LoginViewController {
         setLeftPadding(textField: txt_password)
         
         // button
+        btn_autoLogin.setTitleColor(Config.UI.buttonActiveColor, for: UIControlState.normal)
+        btn_autoLogin.setTitleColor(Config.UI.buttonInActiveColor, for: UIControlState.disabled)
+        btn_saveEmail.setTitleColor(Config.UI.buttonActiveColor, for: UIControlState.normal)
+        btn_saveEmail.setTitleColor(Config.UI.buttonInActiveColor, for: UIControlState.disabled)
+        
         btn_login.setTitleColor(Config.UI.buttonActiveColor, for: UIControlState.normal)
         btn_login.setTitleColor(Config.UI.buttonInActiveColor, for: UIControlState.disabled)
         btn_login.layer.borderWidth = 2.5

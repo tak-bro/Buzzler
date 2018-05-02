@@ -19,15 +19,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="527" height="247.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tW5-xz-MoM" userLabel="vertical spacing">
-                        <rect key="frame" x="0.0" y="237.5" width="527" height="10"/>
-                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="10" id="KES-gP-N9d"/>
-                        </constraints>
-                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BC8-If-PmK">
-                        <rect key="frame" x="10" y="0.0" width="507" height="237.5"/>
+                        <rect key="frame" x="10" y="5" width="507" height="237.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="729" text="Desc" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pT7-Ha-nEh">
                                 <rect key="frame" x="15" y="68.5" width="477" height="122.5"/>
@@ -128,13 +121,10 @@
                 </subviews>
                 <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="BC8-If-PmK" secondAttribute="bottom" constant="5" id="HPQ-bs-aj7"/>
                     <constraint firstAttribute="trailing" secondItem="BC8-If-PmK" secondAttribute="trailing" constant="10" id="KuU-D2-zA3"/>
-                    <constraint firstAttribute="bottom" secondItem="tW5-xz-MoM" secondAttribute="bottom" id="TlS-Ci-g7r"/>
-                    <constraint firstItem="tW5-xz-MoM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bg2-nu-V9x"/>
                     <constraint firstItem="BC8-If-PmK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="djk-mq-WoG"/>
-                    <constraint firstItem="tW5-xz-MoM" firstAttribute="top" secondItem="BC8-If-PmK" secondAttribute="bottom" id="dvj-yv-6BG"/>
-                    <constraint firstItem="BC8-If-PmK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="iXc-qU-tTL"/>
-                    <constraint firstAttribute="trailing" secondItem="tW5-xz-MoM" secondAttribute="trailing" id="mk7-cb-U8y"/>
+                    <constraint firstItem="BC8-If-PmK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="iXc-qU-tTL"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>

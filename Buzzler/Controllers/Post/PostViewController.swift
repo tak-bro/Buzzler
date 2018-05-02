@@ -19,6 +19,7 @@ import Differentiator
 class PostViewController: UIViewController {
 
 
+    @IBOutlet weak var vw_writeComment: UIView!
     @IBOutlet weak var commentBottom: NSLayoutConstraint!
     @IBOutlet weak var textViewHeight: NSLayoutConstraint!
     @IBOutlet weak var txt_vw_comment: UITextView!
@@ -51,10 +52,19 @@ extension PostViewController {
         title = "Post"
         tbl_post.register(cellType: HomeTableViewCell.self)
         tbl_post.register(cellType: HomeImageTableViewCell.self)
+        tbl_post.register(cellType: CommentTableViewCell.self)
+        tbl_post.allowsSelection = false
         tbl_post.backgroundColor = Config.UI.themeColor
         tbl_post.rowHeight = UITableViewAutomaticDimension
         tbl_post.estimatedRowHeight = 200
         tbl_post.separatorStyle = .none
+        
+        // add footer view
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 73))
+        footerView.backgroundColor = Config.UI.themeColor
+        tbl_post.tableFooterView = footerView
+        
+        vw_writeComment.dropShadow(width: -1, height: 1)
     }
     
     fileprivate func configBinding() {
@@ -69,9 +79,9 @@ extension PostViewController {
             
             if item.imageUrls.count > 0 {
                 let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
-                imgCell.lbl_title.text = item.title
+                imgCell.lbl_title.text = "General2"
                 imgCell.lbl_title.numberOfLines = 0
-                imgCell.lbl_content.text = item.content
+                imgCell.lbl_content.text = "General2"
                 imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
                 imgCell.lbl_likeCount.text = String(item.likeCount)
                 imgCell.lbl_author.text = "익명"
@@ -83,14 +93,9 @@ extension PostViewController {
                 }
                 defaultCell = imgCell
             } else {
-                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
-                cell.lbl_title.text = item.title
-                cell.lbl_title.numberOfLines = 0
-                cell.lbl_content.text = item.content
-                cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
-                cell.lbl_likeCount.text = String(item.likeCount)
-                cell.lbl_author.text = "익명"
-                
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
+                cell.lbl_comment.text = item.title
+                cell.lbl_comment.numberOfLines = 0
                 defaultCell = cell
             }
             return defaultCell
@@ -125,8 +130,18 @@ extension PostViewController {
                                     items: [.ImageSectionItem(image: UIImage(named: "img_tmp")!, title: "General")]),
             .ToggleableSection(title: "Section 2",
                                items: [.ToggleableSectionItem(title: "On", enabled: true)]),
-            .StepperableSection(title: "Section 3",
-                                items: [.StepperSectionItem(title: "1")])
+//            .StepperableSection(title: "Section 3",
+//                                items: [.StepperSectionItem(title: "1")]),
+            .ToggleableSection(title: "Section 2",
+                               items: [.ToggleableSectionItem(title: "asdasdasd", enabled: true)]),
+            .ToggleableSection(title: "Section 2",
+                               items: [.ToggleableSectionItem(title: "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd", enabled: true)]),
+            .ToggleableSection(title: "Section 2",
+                               items: [.ToggleableSectionItem(title: "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd", enabled: true)]),
+            .ToggleableSection(title: "Section 2",
+                               items: [.ToggleableSectionItem(title: "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd", enabled: true)]),
+            .ToggleableSection(title: "Section 2",
+                               items: [.ToggleableSectionItem(title: "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd", enabled: true)]),
         ]
         
         tmpDataSource.configureCell  = { dataSource, tableView, indexPath, item in
@@ -144,8 +159,8 @@ extension PostViewController {
                 
                 return imgCell
             case let .ToggleableSectionItem(title, enabled):
-                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
-                cell.lbl_title.text = title
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
+                cell.lbl_comment.text = title
                 return cell
             }
         }
