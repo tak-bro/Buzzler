@@ -310,8 +310,8 @@
                                     <color key="titleColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiR-yP-Rpa">
-                                <rect key="frame" x="277.5" y="211" width="3.5" height="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiR-yP-Rpa">
+                                <rect key="frame" x="312.5" y="217" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="12"/>
                                 <color key="textColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -322,6 +322,9 @@
                                 <state key="normal" title="  Resend Code" image="btn_resend">
                                     <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="pressResend:" destination="SIh-1I-GRI" eventType="touchUpInside" id="CgE-MT-uPU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -330,8 +333,8 @@
                             <constraint firstItem="wiR-yP-Rpa" firstAttribute="centerY" secondItem="SzL-Wa-DGo" secondAttribute="centerY" id="A7S-wo-8Yq"/>
                             <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="AGI-Nv-xtB"/>
                             <constraint firstItem="SzL-Wa-DGo" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.65" id="BMy-aS-9Bh"/>
-                            <constraint firstItem="wiR-yP-Rpa" firstAttribute="leading" secondItem="SzL-Wa-DGo" secondAttribute="trailing" constant="-50" id="Cab-Ab-tKD"/>
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.4" id="J1g-eB-G5H"/>
+                            <constraint firstItem="wiR-yP-Rpa" firstAttribute="trailing" secondItem="SzL-Wa-DGo" secondAttribute="trailing" constant="-15" id="KUY-7H-mzZ"/>
                             <constraint firstItem="SzL-Wa-DGo" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="MxO-zh-H9f"/>
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="PxO-1r-xee"/>
                             <constraint firstItem="0CW-vw-SPm" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="1.2" id="QBi-Sd-HqA"/>
