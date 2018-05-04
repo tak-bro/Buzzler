@@ -25,6 +25,9 @@
 		844BC386208C462900666486 /* SignUpDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC385208C462900666486 /* SignUpDoneViewController.swift */; };
 		844BC388208C539A00666486 /* SignUpResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC387208C539A00666486 /* SignUpResult.swift */; };
 		844BC38A208C573000666486 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BC389208C573000666486 /* HelperFunctions.swift */; };
+		84A05AB7209BEA8A009AD3EB /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84A05AB4209BEA8A009AD3EB /* NotoSans-Bold.ttf */; };
+		84A05AB8209BEA8A009AD3EB /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84A05AB5209BEA8A009AD3EB /* NotoSans-Regular.ttf */; };
+		84A05AB9209BEA8A009AD3EB /* NotoSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84A05AB6209BEA8A009AD3EB /* NotoSans-Light.ttf */; };
 		84A1BFC3208C67AD00D0ADC7 /* BuzzlerPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */; };
 		84A1BFC6208C7C6200D0ADC7 /* HomeImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */; };
 		84A1BFC7208C7C6200D0ADC7 /* HomeImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */; };
@@ -84,6 +87,9 @@
 		844BC385208C462900666486 /* SignUpDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDoneViewController.swift; sourceTree = "<group>"; };
 		844BC387208C539A00666486 /* SignUpResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResult.swift; sourceTree = "<group>"; };
 		844BC389208C573000666486 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		84A05AB4209BEA8A009AD3EB /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Bold.ttf"; path = "../../../../Downloads/NotoSans-Bold.ttf"; sourceTree = "<group>"; };
+		84A05AB5209BEA8A009AD3EB /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Regular.ttf"; path = "../../../../Downloads/NotoSans-Regular.ttf"; sourceTree = "<group>"; };
+		84A05AB6209BEA8A009AD3EB /* NotoSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Light.ttf"; path = "../../../../Downloads/NotoSans-Light.ttf"; sourceTree = "<group>"; };
 		84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerPost.swift; sourceTree = "<group>"; };
 		84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageTableViewCell.swift; sourceTree = "<group>"; };
 		84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeImageTableViewCell.xib; sourceTree = "<group>"; };
@@ -189,6 +195,9 @@
 		844BC373208AF16000666486 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				84A05AB4209BEA8A009AD3EB /* NotoSans-Bold.ttf */,
+				84A05AB6209BEA8A009AD3EB /* NotoSans-Light.ttf */,
+				84A05AB5209BEA8A009AD3EB /* NotoSans-Regular.ttf */,
 				844BC374208AF17800666486 /* Avenir LT 95 Black.ttf */,
 				844BC375208AF17800666486 /* AvenirLTStd-Book.otf */,
 				844BC376208AF17800666486 /* AvenirLTStd-Medium.otf */,
@@ -517,15 +526,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A05AB8209BEA8A009AD3EB /* NotoSans-Regular.ttf in Resources */,
 				AFA7EC781DEEDEDC00138AEE /* LaunchScreen.storyboard in Resources */,
 				84C4DED12095931600FD6BFD /* SideTableViewCell.xib in Resources */,
 				AFA7EC751DEEDEDC00138AEE /* Assets.xcassets in Resources */,
+				84A05AB7209BEA8A009AD3EB /* NotoSans-Bold.ttf in Resources */,
 				84A1BFC7208C7C6200D0ADC7 /* HomeImageTableViewCell.xib in Resources */,
 				844BC377208AF17800666486 /* Avenir LT 95 Black.ttf in Resources */,
 				844BC378208AF17800666486 /* AvenirLTStd-Book.otf in Resources */,
 				AF9F0FDA1DF1A9E900FF8EC5 /* HomeTableViewCell.xib in Resources */,
 				AFA7EC731DEEDEDC00138AEE /* Main.storyboard in Resources */,
 				844BC379208AF17800666486 /* AvenirLTStd-Medium.otf in Resources */,
+				84A05AB9209BEA8A009AD3EB /* NotoSans-Light.ttf in Resources */,
 				84C4DED52095A58100FD6BFD /* CommentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
