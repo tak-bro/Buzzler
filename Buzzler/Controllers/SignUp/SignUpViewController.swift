@@ -28,6 +28,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var txt_password: UITextField!
     @IBOutlet weak var btn_next: UIButton!
     
+    @IBOutlet weak var ind_activity: UIActivityIndicatorView!
     fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -51,14 +52,28 @@ class SignUpViewController: UIViewController {
             })
             .addDisposableTo(disposeBag)
         
-        viewModel.nextExecuting.drive(onNext: { (executing) in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = executing
-        }).addDisposableTo(disposeBag)
+        viewModel.nextExecuting
+            .drive(onNext: { (executing) in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = executing
+                self.ind_activity.isHidden = !executing
+            })
+            .addDisposableTo(disposeBag)
         
-        viewModel.nextFinished.drive(onNext: { [weak self] loginResult in
-            // push view controller
-            guard let strongSelf = self else { return }
-            strongSelf.router.perform(.verifyCode, from: strongSelf)
+        viewModel.nextExecuting
+            .drive(ind_activity.rx.isAnimating)
+            .addDisposableTo(disposeBag)
+
+        viewModel.nextFinished.drive(onNext: { [weak self] signUpResult in
+            switch signUpResult {
+            case SignUpResult.failed(let message):
+                let alert = UIAlertController(title: "Oops!", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
+                self?.present(alert, animated: true, completion: nil)
+            case SignUpResult.ok:
+                guard let strongSelf = self else { return }
+                // push view controller
+                strongSelf.router.perform(.verifyCode, from: strongSelf)
+            }
         }).addDisposableTo(disposeBag)
         
         RxKeyboard.instance.visibleHeight

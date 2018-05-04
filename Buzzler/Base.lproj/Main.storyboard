@@ -314,6 +314,9 @@ Cg
                                     <color key="titleColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wQl-qU-SLp">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -321,9 +324,11 @@ Cg
                             <constraint firstItem="uKK-Za-7Ob" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.8" id="5a0-K9-luC"/>
                             <constraint firstItem="Gow-Yt-zxb" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.65" id="7Qn-pD-HCo"/>
                             <constraint firstItem="aa7-nr-Wbq" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="Bja-zu-W0I"/>
+                            <constraint firstItem="wQl-qU-SLp" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="CiI-fN-w30"/>
                             <constraint firstItem="uKK-Za-7Ob" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="DVx-GS-Ml5"/>
                             <constraint firstItem="Gow-Yt-zxb" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="EuR-aT-6za"/>
                             <constraint firstItem="0G9-1A-3BN" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="FZl-Lx-BaI"/>
+                            <constraint firstItem="wQl-qU-SLp" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" id="Ib3-yN-ywQ"/>
                             <constraint firstItem="anP-1s-02X" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="KzG-2U-INp"/>
                             <constraint firstItem="aa7-nr-Wbq" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.95" id="RRA-Fc-H1A"/>
                             <constraint firstItem="0X7-yH-nKs" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="kdb-RH-My5"/>
@@ -341,6 +346,7 @@ Cg
                     </navigationItem>
                     <connections>
                         <outlet property="btn_next" destination="anP-1s-02X" id="Qsx-qz-SU0"/>
+                        <outlet property="ind_activity" destination="wQl-qU-SLp" id="Gw0-G2-HKg"/>
                         <outlet property="txt_email" destination="uKK-Za-7Ob" id="RVC-fg-2qT"/>
                         <outlet property="txt_nickName" destination="Gow-Yt-zxb" id="h9i-hs-fvB"/>
                         <outlet property="txt_password" destination="aa7-nr-Wbq" id="B1f-3I-1Zg"/>

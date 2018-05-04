@@ -15,11 +15,13 @@ let BuzzlerProvider = RxMoyaProvider<Buzzler>(endpointClosure: endpointClosure, 
 public enum Buzzler {
     case writePost(title: String, content: String, imageUrls: [String])
     case getPost
+    case requestCode(receiver: String)
+    case verifyCode(receiver: String, verificationCode: String)
 }
 
 extension Buzzler: TargetType {
     public var baseURL: URL {
-        return URL(string: "http://audiga-admin.failnicely.com:8081")!
+        return URL(string: Dev.hostURL)!
     }
     
     public var path: String {
@@ -28,6 +30,10 @@ extension Buzzler: TargetType {
             return "/v1/posts"
         case .getPost:
             return "/v1/posts"
+        case .requestCode:  // POST
+            return "/v1/accounts/email-verification"
+        case .verifyCode:   // PUT
+            return "/v1/accounts/email-verification"
         }
     }
     
@@ -37,6 +43,10 @@ extension Buzzler: TargetType {
             return .post
         case .getPost:
             return .get
+        case .requestCode(_):
+            return .post
+        case .verifyCode(_, _):
+            return .put
         }
     }
     
@@ -46,6 +56,10 @@ extension Buzzler: TargetType {
             return ["title": title, "content": content, "imageUrls": imageUrls]
         case .getPost:
             return nil
+        case .requestCode(let receiver):
+            return ["receiver": receiver]
+        case .verifyCode(let receiver, let verificationCode):
+            return ["receiver": receiver, "verificationCode": verificationCode]
         }
     }
     
@@ -71,6 +85,14 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
     )
     switch target {
     case .writePost(let title, let content, let imageUrls):
+        return endpoint
+            .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newParameterEncoding: JSONEncoding.default)
+    case .requestCode(let receiver):
+        return endpoint
+            .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newParameterEncoding: JSONEncoding.default)
+    case .verifyCode(let receiver, let verificationCode):
         return endpoint
             .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newParameterEncoding: JSONEncoding.default)

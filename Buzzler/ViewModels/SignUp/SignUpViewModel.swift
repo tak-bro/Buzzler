@@ -22,7 +22,7 @@ class SignUpViewModel {
     // Output
     let nextEnabled: Driver<Bool>
     let nextFinished: Driver<SignUpResult>
-    let nextExecuting: Driver<Bool>
+    var nextExecuting: Driver<Bool>
     
     // Private
     fileprivate let provider: RxMoyaProvider<Buzzler>
@@ -36,29 +36,29 @@ class SignUpViewModel {
         let emailObservable = email.asObservable()
         let passwordObservable = password.asObservable()
         
+        let signingIn = ActivityIndicator()
+        self.nextExecuting = signingIn.asDriver()
+        
         nextEnabled = Observable.combineLatest(nickNameObservable, emailObservable, passwordObservable) { $0.characters.count > 2 && $1.characters.count > 2 && $2.characters.count > 2 }
             .asDriver(onErrorJustReturn: false)
-        
-        let combineData = Observable.combineLatest(nickNameObservable, emailObservable, passwordObservable){ ($0, $1, $2) }
-        
+
         nextFinished = nextTaps
             .asObservable()
-            .withLatestFrom(combineData)
-            .do(onNext: { json in
-                // var appToken = Token()
-                //                appToken.token = json["token"] as? String
-                print(json)
-            })
-            .map { json in
-                //                if let message = json["message"] as? String {
-                //                    return LoginResult.failed(message: message)
-                //                } else {
-                //                    return LoginResult.ok
-                //                }
-                return SignUpResult.ok
+            .withLatestFrom(emailObservable)
+            .flatMapLatest{(email) in
+                provider.request(Buzzler.requestCode(receiver: email))
+                    .trackActivity(signingIn)
+                    .retry(3)
+                    .observeOn(MainScheduler.instance)
             }
-            .asDriver(onErrorJustReturn: SignUpResult.failed(message: "Oops, something went wrong")).debug()
+            .mapJSON()
+            .map { res in
+                if let res = res as? String, res == "Success" {
+                    return SignUpResult.ok
+                }
+                return SignUpResult.failed(message: "Error, something went wrong")
+            }
+            .asDriver(onErrorJustReturn: SignUpResult.failed(message: "Error, something went wrong"))
+            .debug()
     }
-    
-    
 }
