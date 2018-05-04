@@ -11,6 +11,7 @@ import Moya
 import RxSwift
 import RxCocoa
 import RxKeyboard
+import SwiftyAttributes
 
 class VerifyCodeViewController: UIViewController {
 
@@ -20,7 +21,7 @@ class VerifyCodeViewController: UIViewController {
     
     //timer
     var mTimer: Timer?
-    var remainTime: Int = 300
+    var remainTime: Int = 3
     
     fileprivate let disposeBag = DisposeBag()
     
@@ -62,6 +63,11 @@ class VerifyCodeViewController: UIViewController {
     override func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    @IBAction func pressResend(_ sender: UIButton) {
+        remainTime = 180
+        setTimer()
+    }
 }
 
 extension VerifyCodeViewController {
@@ -89,20 +95,25 @@ extension VerifyCodeViewController {
 
     func timerCallback() {
         remainTime -= 1
+        lbl_timer.text = seconds2Timestamp(intSeconds: remainTime)
         if (remainTime <= 0) {
+            // show invalidate text
+            let invalidateText = "invalidated".withAttributes([
+                .textColor(UIColor.red),
+                .font(.AvenirNext(type: .Book, size: 12))
+                ])
+            lbl_timer.attributedText = invalidateText
             timerEnd()
         }
-        lbl_timer.text = seconds2Timestamp(intSeconds: remainTime)
     }
     
     func timerEnd() {
         if let timer = mTimer {
-            if(timer.isValid) {
-                    timer.invalidate()
-                }
+            if (timer.isValid) {
+                timer.invalidate()
+            }
         }
         remainTime = 0
-        lbl_timer.text = String(remainTime)
     }
 
 }

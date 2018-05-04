@@ -23,7 +23,7 @@ class GlobalUIManager {
         let rootVC = UIStoryboard.vcInMainSB("HomeNavigationController")
         rootVC.modalTransitionStyle = .crossDissolve
         UIView.transition(with: kWindow,
-                          duration: 1,
+                          duration: 0.5,
                           options: .transitionCrossDissolve,
                           animations: {
                             let oldState = UIView.areAnimationsEnabled
@@ -37,11 +37,11 @@ class GlobalUIManager {
     
     class func loadLoginVC() {
         let kWindow: UIWindow = UIApplication.shared.keyWindow!
-        let rootVC = UIStoryboard.vcInMainSB("LoginRootViewController")
-        rootVC.view.alpha = 1
+        let rootVC = UIStoryboard.vcInMainSB("LoginNavigationController")
+
         rootVC.modalTransitionStyle = .crossDissolve
         UIView.transition(with: kWindow,
-                          duration: 1,
+                          duration: 0.5,
                           options: .transitionCrossDissolve,
                           animations: {
                             let oldState = UIView.areAnimationsEnabled

@@ -4,6 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>NotoSans-Bold</string>
+		<string>NotoSans-Light</string>
+		<string>NotoSans-Regular</string>
 		<string>AvenirLTStd-Medium</string>
 		<string>AvenirLTStd-Book</string>
 		<string>Avenir LT 95 Black</string>

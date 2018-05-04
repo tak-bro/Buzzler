@@ -13,7 +13,7 @@ struct Config {
         static let buttonInActiveColor = UIColor(white: 216.0 / 255.0, alpha: 1.0)
         static let fontColor = UIColor(white: 68.0 / 255.0, alpha: 1.0)
         static let lightFontColor =  UIColor(white: 136.0 / 255.0, alpha: 1.0)
-
+        static let commentViewColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.00)
     }
 }
 
