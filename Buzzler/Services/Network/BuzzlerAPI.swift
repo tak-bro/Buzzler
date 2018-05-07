@@ -17,6 +17,7 @@ public enum Buzzler {
     case getPost
     case requestCode(receiver: String)
     case verifyCode(receiver: String, verificationCode: String)
+    case signUp(username: String, email: String, password: String)
 }
 
 extension Buzzler: TargetType {
@@ -26,14 +27,16 @@ extension Buzzler: TargetType {
     
     public var path: String {
         switch self {
-        case .writePost(_, _, _):
+        case .writePost(_, _, _):   // POST
             return "/v1/posts"
-        case .getPost:
+        case .getPost:  // GET
             return "/v1/posts"
         case .requestCode:  // POST
             return "/v1/accounts/email-verification"
         case .verifyCode:   // PUT
             return "/v1/accounts/email-verification"
+        case .signUp:  // POST
+            return "/v1/accounts/signup"
         }
     }
     
@@ -47,6 +50,8 @@ extension Buzzler: TargetType {
             return .post
         case .verifyCode(_, _):
             return .put
+        case .signUp(_, _, _):
+            return .post
         }
     }
     
@@ -60,6 +65,8 @@ extension Buzzler: TargetType {
             return ["receiver": receiver]
         case .verifyCode(let receiver, let verificationCode):
             return ["receiver": receiver, "verificationCode": verificationCode]
+        case .signUp(let username, let email, let password):
+            return ["username": username, "email": email, "password": password]
         }
     }
     
@@ -93,6 +100,10 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
             .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newParameterEncoding: JSONEncoding.default)
     case .verifyCode(let receiver, let verificationCode):
+        return endpoint
+            .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newParameterEncoding: JSONEncoding.default)
+    case .signUp(let username, let email, let password):
         return endpoint
             .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newParameterEncoding: JSONEncoding.default)

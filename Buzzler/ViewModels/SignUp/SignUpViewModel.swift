@@ -53,6 +53,7 @@ class SignUpViewModel {
             }
             .mapJSON()
             .map { res in
+                print("res: ", res)
                 if let res = res as? String, res == "Success" {
                     return SignUpResult.ok
                 }

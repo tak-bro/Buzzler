@@ -213,9 +213,9 @@
 			isa = PBXGroup;
 			children = (
 				844BC37F208B065200666486 /* SignUpRouter.swift */,
-				844BC383208B0C8300666486 /* VerifyCodeViewModel.swift */,
 				844BC387208C539A00666486 /* SignUpResult.swift */,
 				84002EB420907D3200B7C98A /* SignUpViewModel.swift */,
+				844BC383208B0C8300666486 /* VerifyCodeViewModel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";

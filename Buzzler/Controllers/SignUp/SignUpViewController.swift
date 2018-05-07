@@ -66,12 +66,20 @@ class SignUpViewController: UIViewController {
         viewModel.nextFinished.drive(onNext: { [weak self] signUpResult in
             switch signUpResult {
             case SignUpResult.failed(let message):
-                let alert = UIAlertController(title: "Oops!", message: message, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
                 self?.present(alert, animated: true, completion: nil)
             case SignUpResult.ok:
                 guard let strongSelf = self else { return }
+                guard let receiver = strongSelf.txt_email.text,
+                    let nickName = strongSelf.txt_nickName.text,
+                    let password = strongSelf.txt_password.text else { return }
+                
                 // push view controller
+                let inputInfo = UserInfo(receiver: receiver,
+                                        nickName: nickName,
+                                        password: password)
+                strongSelf.router.userInfo = inputInfo
                 strongSelf.router.perform(.verifyCode, from: strongSelf)
             }
         }).addDisposableTo(disposeBag)

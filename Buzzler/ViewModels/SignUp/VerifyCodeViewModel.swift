@@ -19,18 +19,21 @@ class VerifyCodeViewModel {
     
     // Output
     let nextEnabled: Driver<Bool>
-    let nextFinished: Driver<SignUpResult>
-    let nextExecuting: Driver<Bool>
+    let nextFinished: Driver<VerifyResult>
+    var nextExecuting: Driver<Bool>
     
     // Private
     fileprivate let provider: RxMoyaProvider<Buzzler>
+    fileprivate let userInfo = UserInfo()
     
-    init(provider: RxMoyaProvider<Buzzler>) {
+    init(provider: RxMoyaProvider<Buzzler>, userInfo: UserInfo) {
         self.provider = provider
         
         nextExecuting = Variable(false).asDriver().distinctUntilChanged()
     
         let codeObservable = code.asObservable()
+        let verifying = ActivityIndicator()
+        self.nextExecuting = verifying.asDriver()
         
         nextEnabled = codeObservable
             .map { text in
@@ -40,21 +43,32 @@ class VerifyCodeViewModel {
         
         nextFinished = nextTaps
             .asObservable()
-            .do(onNext: { json in
-                // var appToken = Token()
-                //                appToken.token = json["token"] as? String
-                print(json)
-            })
-            .map { json in
-                //                if let message = json["message"] as? String {
-                //                    return LoginResult.failed(message: message)
-                //                } else {
-                //                    return LoginResult.ok
-                //                }
-                return SignUpResult.ok
+            .withLatestFrom(codeObservable)
+            .flatMapLatest{ (code) in
+                provider.request(Buzzler.verifyCode(receiver: userInfo.recevier!, verificationCode: code))
+                    .trackActivity(verifying)
+                    .retry(3)
+                    .observeOn(MainScheduler.instance)
             }
-            .asDriver(onErrorJustReturn: SignUpResult.failed(message: "Oops, something went wrong")).debug()
+            .filterSuccessfulStatusCodes()
+            .flatMap{ _ in
+                    provider.request(Buzzler.signUp(username: userInfo.nickName!,
+                                                email: userInfo.recevier!,
+                                                password: userInfo.password!))
+                    .trackActivity(verifying)
+                    .retry(3)
+                    .observeOn(MainScheduler.instance)
+            }
+            .mapJSON()
+            .map{ res in
+                print("111res: ", res)
+                if let res = res as? String, res == "Success" {
+                    return VerifyResult.ok
+                }
+                return VerifyResult.failed(message: "Error, something went wrong")
+            }
+            .asDriver(onErrorJustReturn: VerifyResult.failed(message: "Error, something went wrong"))
+            .debug()
+
     }
-    
-    
 }

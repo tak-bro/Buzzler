@@ -21,12 +21,14 @@ class VerifyCodeViewController: UIViewController {
     
     //timer
     var mTimer: Timer?
-    var remainTime: Int = 3
-    
+    var remainTime: Int = 180
+    var inputUserInfo = UserInfo()
+
     fileprivate let disposeBag = DisposeBag()
     
     let router = SignUpRouter()
-    let viewModel = VerifyCodeViewModel(provider: BuzzlerProvider)
+    var viewModel: VerifyCodeViewModel?
+   // let viewModel = VerifyCodeViewModel(provider: BuzzlerProvider)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,10 @@ class VerifyCodeViewController: UIViewController {
     }
     
     func bindToRx() {
+        self.viewModel = VerifyCodeViewModel(provider: BuzzlerProvider, userInfo: inputUserInfo)
+        
+        guard let viewModel = self.viewModel else { return }
+        
         txt_code.rx.text.orEmpty.bind(to: viewModel.code).addDisposableTo(disposeBag)
         btn_next.rx.tap.bind(to: viewModel.nextTaps).addDisposableTo(disposeBag)
         
@@ -51,13 +57,21 @@ class VerifyCodeViewController: UIViewController {
         viewModel.nextExecuting.drive(onNext: { (executing) in
             UIApplication.shared.isNetworkActivityIndicatorVisible = executing
         }).addDisposableTo(disposeBag)
-        
-        viewModel.nextFinished.drive(onNext: { [weak self] loginResult in
-            // push view controller
-            guard let strongSelf = self else { return }
-            strongSelf.router.perform(.done, from: strongSelf)
-        }).addDisposableTo(disposeBag)
 
+        viewModel.nextFinished.drive(onNext: { [weak self] verifyResult in
+            switch verifyResult {
+            case VerifyResult.failed(let message):
+                let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
+                self?.present(alert, animated: true, completion: nil)
+            case VerifyResult.ok:
+                guard let strongSelf = self else { return }
+
+                // push view controller
+                strongSelf.router.perform(.done, from: strongSelf)
+            }
+        }).addDisposableTo(disposeBag)
+        
     }
     
     override func dismissKeyboard() {
