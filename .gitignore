@@ -214,5 +214,6 @@ $RECYCLE.BIN/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
+Buzzler/Config/ServerURL.swift
 
 # End of https://www.gitignore.io/api/xcode,macos,linux,swift,windows,intellij,cocoapods

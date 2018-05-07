@@ -13,9 +13,26 @@ enum SignUpResult {
     case failed(message: String)
 }
 
-extension SignUpResult: Equatable {}
+enum VerifyResult {
+    case ok
+    case failed(message: String)
+}
 
+extension SignUpResult: Equatable {}
 func == (lhs: SignUpResult, rhs: SignUpResult) -> Bool {
+    switch (lhs,rhs) {
+    case (.ok, .ok):
+        return true
+    case (.failed(let x), .failed(let y))
+        where x == y:
+        return true
+    default:
+        return false
+    }
+}
+
+extension VerifyResult: Equatable {}
+func == (lhs: VerifyResult, rhs: VerifyResult) -> Bool {
     switch (lhs,rhs) {
     case (.ok, .ok):
         return true

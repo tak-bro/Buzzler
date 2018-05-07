@@ -15,19 +15,28 @@ let BuzzlerProvider = RxMoyaProvider<Buzzler>(endpointClosure: endpointClosure, 
 public enum Buzzler {
     case writePost(title: String, content: String, imageUrls: [String])
     case getPost
+    case requestCode(receiver: String)
+    case verifyCode(receiver: String, verificationCode: String)
+    case signUp(username: String, email: String, password: String)
 }
 
 extension Buzzler: TargetType {
     public var baseURL: URL {
-        return URL(string: "http://audiga-admin.failnicely.com:8081")!
+        return URL(string: Dev.hostURL)!
     }
     
     public var path: String {
         switch self {
-        case .writePost(_, _, _):
+        case .writePost(_, _, _):   // POST
             return "/v1/posts"
-        case .getPost:
+        case .getPost:  // GET
             return "/v1/posts"
+        case .requestCode:  // POST
+            return "/v1/accounts/email-verification"
+        case .verifyCode:   // PUT
+            return "/v1/accounts/email-verification"
+        case .signUp:  // POST
+            return "/v1/accounts/signup"
         }
     }
     
@@ -37,6 +46,12 @@ extension Buzzler: TargetType {
             return .post
         case .getPost:
             return .get
+        case .requestCode(_):
+            return .post
+        case .verifyCode(_, _):
+            return .put
+        case .signUp(_, _, _):
+            return .post
         }
     }
     
@@ -46,6 +61,12 @@ extension Buzzler: TargetType {
             return ["title": title, "content": content, "imageUrls": imageUrls]
         case .getPost:
             return nil
+        case .requestCode(let receiver):
+            return ["receiver": receiver]
+        case .verifyCode(let receiver, let verificationCode):
+            return ["receiver": receiver, "verificationCode": verificationCode]
+        case .signUp(let username, let email, let password):
+            return ["username": username, "email": email, "password": password]
         }
     }
     
@@ -71,6 +92,18 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
     )
     switch target {
     case .writePost(let title, let content, let imageUrls):
+        return endpoint
+            .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newParameterEncoding: JSONEncoding.default)
+    case .requestCode(let receiver):
+        return endpoint
+            .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newParameterEncoding: JSONEncoding.default)
+    case .verifyCode(let receiver, let verificationCode):
+        return endpoint
+            .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newParameterEncoding: JSONEncoding.default)
+    case .signUp(let username, let email, let password):
         return endpoint
             .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newParameterEncoding: JSONEncoding.default)

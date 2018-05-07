@@ -14,6 +14,7 @@ import Moya
 class SignUpViewModel {
     
     // Input
+    let activityIndicator = ActivityIndicator()
     var nickName = Variable("")
     var email = Variable("")
     var password = Variable("")
@@ -21,8 +22,6 @@ class SignUpViewModel {
     
     // Output
     let nextEnabled: Driver<Bool>
-    let nextFinished: Driver<SignUpResult>
-    let nextExecuting: Driver<Bool>
     
     // Private
     fileprivate let provider: RxMoyaProvider<Buzzler>
@@ -30,35 +29,26 @@ class SignUpViewModel {
     init(provider: RxMoyaProvider<Buzzler>) {
         self.provider = provider
         
-        nextExecuting = Variable(false).asDriver().distinctUntilChanged()
-        
         let nickNameObservable = nickName.asObservable()
         let emailObservable = email.asObservable()
         let passwordObservable = password.asObservable()
         
         nextEnabled = Observable.combineLatest(nickNameObservable, emailObservable, passwordObservable) { $0.characters.count > 2 && $1.characters.count > 2 && $2.characters.count > 2 }
             .asDriver(onErrorJustReturn: false)
-        
-        let combineData = Observable.combineLatest(nickNameObservable, emailObservable, passwordObservable){ ($0, $1, $2) }
-        
-        nextFinished = nextTaps
-            .asObservable()
-            .withLatestFrom(combineData)
-            .do(onNext: { json in
-                // var appToken = Token()
-                //                appToken.token = json["token"] as? String
-                print(json)
-            })
-            .map { json in
-                //                if let message = json["message"] as? String {
-                //                    return LoginResult.failed(message: message)
-                //                } else {
-                //                    return LoginResult.ok
-                //                }
-                return SignUpResult.ok
-            }
-            .asDriver(onErrorJustReturn: SignUpResult.failed(message: "Oops, something went wrong")).debug()
     }
     
-    
+    func requestCode(_ email: String) -> Observable<SignUpResult> {
+        return provider.request(Buzzler.requestCode(receiver: email))
+            .retry(3)
+            .observeOn(MainScheduler.instance)
+            .filterSuccessfulStatusCodes()
+            .mapJSON()
+            .map { res in
+                if let res = res as? String, res == "Success" {
+                    return SignUpResult.ok
+                }
+                return SignUpResult.failed(message: "Error, something went wrong")
+            }
+            .catchErrorJustReturn(SignUpResult.failed(message: "Error, something went wrong"))
+    }
 }

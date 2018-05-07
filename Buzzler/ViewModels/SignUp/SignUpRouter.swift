@@ -14,12 +14,32 @@ enum SignUpSegue {
     case done
 }
 
+struct UserInfo {
+    var recevier: String?
+    var nickName: String?
+    var password: String?
+    
+    init() {
+        self.recevier = ""
+        self.nickName = ""
+        self.password = ""
+    }
+    
+    init(receiver: String, nickName: String, password: String) {
+        self.recevier = receiver
+        self.nickName = nickName
+        self.password = password
+    }
+}
+
 class SignUpRouter {
+    
+    var userInfo = UserInfo()
     
     func perform(_ segue: SignUpSegue, from source: UIViewController) {
         switch segue {
         case .verifyCode:
-            let verifyCodeVC = SignUpRouter.makeVerifyCodeViewController()
+            let verifyCodeVC = SignUpRouter.makeVerifyCodeViewController(withUserInfo: userInfo)
             source.navigationController?.pushViewController(verifyCodeVC, animated: true)
         case .done:
             let signUpDoneVC = SignUpRouter.makeSignUpDoneViewController()
@@ -31,8 +51,9 @@ class SignUpRouter {
 // MARK: Helpers
 private extension SignUpRouter {
 
-    static func makeVerifyCodeViewController() -> VerifyCodeViewController {
+    static func makeVerifyCodeViewController(withUserInfo userInfo: UserInfo) -> VerifyCodeViewController {
         let verifyCodeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VerifyCodeViewController") as! VerifyCodeViewController
+        verifyCodeVC.inputUserInfo = userInfo
         return verifyCodeVC
     }
     
