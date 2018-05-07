@@ -43,7 +43,17 @@ class SignUpViewController: UIViewController {
         txt_nickName.rx.text.orEmpty.bind(to: viewModel.nickName).addDisposableTo(disposeBag)
         txt_email.rx.text.orEmpty.bind(to: viewModel.email).addDisposableTo(disposeBag)
         txt_password.rx.text.orEmpty.bind(to: viewModel.password).addDisposableTo(disposeBag)
-        btn_next.rx.tap.bind(to: viewModel.nextTaps).addDisposableTo(disposeBag)
+        
+        viewModel.activityIndicator
+            .distinctUntilChanged()
+            .drive(onNext: { [unowned self] active in
+                self.hideKeyboard()
+                self.ind_activity.isHidden = !active
+                active ? self.ind_activity.startAnimating() : self.ind_activity.stopAnimating()
+                self.btn_next.isEnabled = !active
+                self.btn_next.layer.borderColor = !active ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
+            })
+            .addDisposableTo(disposeBag)
         
         viewModel.nextEnabled
             .drive(onNext: { (valid) in
@@ -51,45 +61,46 @@ class SignUpViewController: UIViewController {
                 self.btn_next.layer.borderColor = valid ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
             })
             .addDisposableTo(disposeBag)
-        
-        viewModel.nextExecuting
-            .drive(onNext: { (executing) in
-                UIApplication.shared.isNetworkActivityIndicatorVisible = executing
-                self.ind_activity.isHidden = !executing
+
+        btn_next.rx.tap
+            .withLatestFrom(viewModel.nextEnabled)
+            .filter { $0 }
+            .flatMapLatest { [unowned self] valid -> Observable<SignUpResult> in
+                self.viewModel.requestCode(self.txt_email.text!)
+                    .trackActivity(self.viewModel.activityIndicator)
+            }
+            .subscribe(onNext: { [unowned self] signUpResult in
+                switch signUpResult {
+                case .ok:
+                    guard let receiver = self.txt_email.text,
+                        let nickName = self.txt_nickName.text,
+                        let password = self.txt_password.text else { return }
+                    
+                    // push view controller
+                    let inputInfo = UserInfo(receiver: receiver,
+                                             nickName: nickName,
+                                             password: password)
+                    self.router.userInfo = inputInfo
+                    self.router.perform(.verifyCode, from: self)
+                    break
+                case .failed(let message):
+                    self.resetTextField()
+                    
+                    let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
+                    self.present(alert, animated: true, completion: nil)
+                    break
+                }
             })
             .addDisposableTo(disposeBag)
-        
-        viewModel.nextExecuting
-            .drive(ind_activity.rx.isAnimating)
-            .addDisposableTo(disposeBag)
-
-        viewModel.nextFinished.drive(onNext: { [weak self] signUpResult in
-            switch signUpResult {
-            case SignUpResult.failed(let message):
-                let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
-                self?.present(alert, animated: true, completion: nil)
-            case SignUpResult.ok:
-                guard let strongSelf = self else { return }
-                guard let receiver = strongSelf.txt_email.text,
-                    let nickName = strongSelf.txt_nickName.text,
-                    let password = strongSelf.txt_password.text else { return }
-                
-                // push view controller
-                let inputInfo = UserInfo(receiver: receiver,
-                                        nickName: nickName,
-                                        password: password)
-                strongSelf.router.userInfo = inputInfo
-                strongSelf.router.perform(.verifyCode, from: strongSelf)
-            }
-        }).addDisposableTo(disposeBag)
         
         RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] keyboardVisibleHeight in
                 guard let `self` = self else { return }
                 self.view.bounds.origin.y = keyboardVisibleHeight * 0.5
                 self.view.layoutIfNeeded()
-            }).addDisposableTo(disposeBag)
+            })
+            .addDisposableTo(disposeBag)
     }
     
     override func dismissKeyboard() {
@@ -117,6 +128,18 @@ extension SignUpViewController {
         setLeftPadding(textField: txt_nickName)
         setLeftPadding(textField: txt_email)
         setLeftPadding(textField: txt_password)
+    }
+    
+    fileprivate func hideKeyboard() {
+        self.txt_nickName.resignFirstResponder()
+        self.txt_email.resignFirstResponder()
+        self.txt_nickName.resignFirstResponder()
+    }
+    
+    fileprivate func resetTextField() {
+        self.txt_nickName.text = ""
+        self.txt_email.text = ""
+        self.txt_nickName.text = ""
     }
 }
 
