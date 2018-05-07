@@ -48,13 +48,29 @@ class LoginViewController: UIViewController {
             })
             .addDisposableTo(disposeBag)
         
-        viewModel.loginExecuting.drive(onNext: { (executing) in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = executing
-        }).addDisposableTo(disposeBag)
+        viewModel.loginExecuting
+            .drive(onNext: { (executing) in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = executing
+            })
+            .addDisposableTo(disposeBag)
         
-        viewModel.loginFinished.drive(onNext: { [weak self] loginResult in
-            GlobalUIManager.loadHomeVC()
-        }).addDisposableTo(disposeBag)
+        viewModel.loginFinished
+            .drive(onNext: { [weak self] loginResult in
+                switch loginResult {
+                case .ok:
+                    print("ok")
+                    GlobalUIManager.loadHomeVC()
+                    break
+                case .failed(let message):
+                    print("error", message)
+                
+                    let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
+                    self?.present(alert, animated: true, completion: nil)
+                    break
+                }
+            })
+            .addDisposableTo(disposeBag)
         
         RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] keyboardVisibleHeight in

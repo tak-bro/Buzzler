@@ -53,7 +53,9 @@ class LoginViewModel {
                 //                } else {
                 //                    return LoginResult.ok
                 //                }
-                return LoginResult.ok
+                
+                // return LoginResult.ok
+                return LoginResult.failed(message: "assdsa")
             }
             .asDriver(onErrorJustReturn: LoginResult.failed(message: "Oops, something went wrong")).debug()
     }
