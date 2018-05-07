@@ -434,9 +434,13 @@ Cg
                                     <action selector="pressResend:" destination="SIh-1I-GRI" eventType="touchUpInside" id="CgE-MT-uPU"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kod-KV-1ri">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="kod-KV-1ri" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" id="229-41-RXq"/>
                             <constraint firstItem="0CW-vw-SPm" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="3Gn-Nh-9zZ"/>
                             <constraint firstItem="wiR-yP-Rpa" firstAttribute="centerY" secondItem="SzL-Wa-DGo" secondAttribute="centerY" id="A7S-wo-8Yq"/>
                             <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="AGI-Nv-xtB"/>
@@ -447,12 +451,14 @@ Cg
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="PxO-1r-xee"/>
                             <constraint firstItem="0CW-vw-SPm" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="1.2" id="QBi-Sd-HqA"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="Uhn-Qc-qAO"/>
+                            <constraint firstItem="kod-KV-1ri" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="W7K-vh-q8c"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.2" id="dph-oq-tuh"/>
                             <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.95" id="ezq-PR-7gt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btn_next" destination="N2B-QJ-Zcq" id="HzX-Jd-hhl"/>
+                        <outlet property="ind_activity" destination="kod-KV-1ri" id="hWS-rc-qfR"/>
                         <outlet property="lbl_timer" destination="wiR-yP-Rpa" id="BZX-Bv-Fuf"/>
                         <outlet property="txt_code" destination="SzL-Wa-DGo" id="IQB-St-rM7"/>
                         <segue destination="rOx-L5-hp1" kind="show" id="JGN-Za-bPF"/>

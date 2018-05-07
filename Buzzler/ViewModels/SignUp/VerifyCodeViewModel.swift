@@ -14,61 +14,55 @@ import Moya
 class VerifyCodeViewModel {
     
     // Input
+    let activityIndicator = ActivityIndicator()
     var code = Variable("")
     var nextTaps = PublishSubject<Void>()
     
     // Output
     let nextEnabled: Driver<Bool>
-    let nextFinished: Driver<VerifyResult>
-    var nextExecuting: Driver<Bool>
     
     // Private
     fileprivate let provider: RxMoyaProvider<Buzzler>
-    fileprivate let userInfo = UserInfo()
+    var userInfo = UserInfo()
     
     init(provider: RxMoyaProvider<Buzzler>, userInfo: UserInfo) {
         self.provider = provider
-        
-        nextExecuting = Variable(false).asDriver().distinctUntilChanged()
-    
+        self.userInfo = userInfo
         let codeObservable = code.asObservable()
-        let verifying = ActivityIndicator()
-        self.nextExecuting = verifying.asDriver()
-        
+
         nextEnabled = codeObservable
             .map { text in
                 return text.characters.count > 2 ? true : false
             }
             .asDriver(onErrorJustReturn: false)
-        
-        nextFinished = nextTaps
-            .asObservable()
-            .withLatestFrom(codeObservable)
-            .flatMapLatest{ (code) in
-                provider.request(Buzzler.verifyCode(receiver: userInfo.recevier!, verificationCode: code))
-                    .trackActivity(verifying)
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-            }
+    }
+ 
+    func verifyCode(_ code: String) -> Observable<VerifyResult> {
+        return provider.request(Buzzler.verifyCode(receiver: userInfo.recevier!, verificationCode: code))
+            .retry(3)
+            .observeOn(MainScheduler.instance)
             .filterSuccessfulStatusCodes()
-            .flatMap{ _ in
-                    provider.request(Buzzler.signUp(username: userInfo.nickName!,
-                                                email: userInfo.recevier!,
-                                                password: userInfo.password!))
-                    .trackActivity(verifying)
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-            }
             .mapJSON()
-            .map{ res in
-                print("111res: ", res)
-                if let res = res as? String, res == "Success" {
-                    return VerifyResult.ok
-                }
-                return VerifyResult.failed(message: "Error, something went wrong")
+            .flatMap { res in
+                return self.requestSignUp()
             }
-            .asDriver(onErrorJustReturn: VerifyResult.failed(message: "Error, something went wrong"))
-            .debug()
-
+            .catchErrorJustReturn(VerifyResult.failed(message: "Error, something went wrong"))
+    }
+    
+    func requestSignUp() -> Observable<VerifyResult> {
+        return provider.request(Buzzler.signUp(username: userInfo.nickName!,
+                                               email: userInfo.recevier!,
+                                               password: userInfo.password!))
+            .retry(3)
+            .observeOn(MainScheduler.instance)
+            .filterSuccessfulStatusCodes()
+            .mapJSON()
+            .map { res in
+                if let token = res as? String {
+                    print("jwt token", token)
+                }
+                return VerifyResult.ok
+            }
+            .catchErrorJustReturn(VerifyResult.failed(message: "Error, something went wrong"))
     }
 }
