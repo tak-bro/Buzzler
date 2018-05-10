@@ -79,9 +79,9 @@
 		8421B2D02086D82C00CBF4E3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8421B2D32086DB7700CBF4E3 /* GlobalUIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalUIManager.swift; sourceTree = "<group>"; };
 		844BC371208AF05500666486 /* StartSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSignUpViewController.swift; sourceTree = "<group>"; };
-		844BC374208AF17800666486 /* Avenir LT 95 Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 95 Black.ttf"; path = "../../../../Downloads/Avenir LT 95 Black.ttf"; sourceTree = "<group>"; };
-		844BC375208AF17800666486 /* AvenirLTStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AvenirLTStd-Book.otf"; path = "../../../../Downloads/AvenirLTStd-Book.otf"; sourceTree = "<group>"; };
-		844BC376208AF17800666486 /* AvenirLTStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AvenirLTStd-Medium.otf"; path = "../../../../Downloads/AvenirLTStd-Medium.otf"; sourceTree = "<group>"; };
+		844BC374208AF17800666486 /* Avenir LT 95 Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir LT 95 Black.ttf"; sourceTree = "<group>"; };
+		844BC375208AF17800666486 /* AvenirLTStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Book.otf"; sourceTree = "<group>"; };
+		844BC376208AF17800666486 /* AvenirLTStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Medium.otf"; sourceTree = "<group>"; };
 		844BC37A208AF8FE00666486 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		844BC37F208B065200666486 /* SignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
 		844BC381208B083600666486 /* VerifyCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeViewController.swift; sourceTree = "<group>"; };
@@ -89,9 +89,9 @@
 		844BC385208C462900666486 /* SignUpDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDoneViewController.swift; sourceTree = "<group>"; };
 		844BC387208C539A00666486 /* SignUpResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResult.swift; sourceTree = "<group>"; };
 		844BC389208C573000666486 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
-		84A05AB4209BEA8A009AD3EB /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Bold.ttf"; path = "../../../../Downloads/NotoSans-Bold.ttf"; sourceTree = "<group>"; };
-		84A05AB5209BEA8A009AD3EB /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Regular.ttf"; path = "../../../../Downloads/NotoSans-Regular.ttf"; sourceTree = "<group>"; };
-		84A05AB6209BEA8A009AD3EB /* NotoSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Light.ttf"; path = "../../../../Downloads/NotoSans-Light.ttf"; sourceTree = "<group>"; };
+		84A05AB4209BEA8A009AD3EB /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
+		84A05AB5209BEA8A009AD3EB /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
+		84A05AB6209BEA8A009AD3EB /* NotoSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Light.ttf"; sourceTree = "<group>"; };
 		84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerPost.swift; sourceTree = "<group>"; };
 		84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageTableViewCell.swift; sourceTree = "<group>"; };
 		84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeImageTableViewCell.xib; sourceTree = "<group>"; };
