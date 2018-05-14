@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import SVProgressHUD
+import RxSwift
+import RxCocoa
 
 func setBorderAndCornerRadius(layer: CALayer, width: CGFloat, radius: CGFloat, color: UIColor) {
     layer.borderColor = color.cgColor

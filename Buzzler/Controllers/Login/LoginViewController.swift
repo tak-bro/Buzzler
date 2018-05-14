@@ -11,6 +11,7 @@ import Moya
 import RxSwift
 import RxCocoa
 import RxKeyboard
+import SVProgressHUD
 
 class LoginViewController: UIViewController {
     
@@ -35,42 +36,58 @@ class LoginViewController: UIViewController {
     }
     
      func bindToRx() {
-        txt_email.rx.text.orEmpty.bind(to: viewModel.email).addDisposableTo(disposeBag)
-        txt_password.rx.text.orEmpty.bind(to: viewModel.password).addDisposableTo(disposeBag)
-        btn_login.rx.tap.bind(to: viewModel.loginTaps).addDisposableTo(disposeBag)
         
-        viewModel.loginEnabled
-            .drive(onNext: { (valid) in
-                self.btn_autoLogin.isEnabled = valid
-                self.btn_saveEmail.isEnabled = valid
-                self.btn_login.isEnabled = valid
-                self.btn_login.layer.borderColor = valid ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
-            })
-            .addDisposableTo(disposeBag)
+        btn_login.rx.tap
+            .bind(to:self.viewModel.inputs.loginTaps)
+            .disposed(by: disposeBag)
         
-        viewModel.loginExecuting
-            .drive(onNext: { (executing) in
-                UIApplication.shared.isNetworkActivityIndicatorVisible = executing
-            })
-            .addDisposableTo(disposeBag)
+        txt_email.rx.text.orEmpty
+            .bind(to:self.viewModel.inputs.email)
+            .disposed(by: disposeBag)
         
-        viewModel.loginFinished
-            .drive(onNext: { [weak self] loginResult in
-                switch loginResult {
-                case .ok:
-                    print("ok")
-                    GlobalUIManager.loadHomeVC()
-                    break
-                case .failed(let message):
-                    print("error", message)
-                
-                    let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
-                    self?.present(alert, animated: true, completion: nil)
+        txt_password.rx.text.orEmpty
+            .bind(to:self.viewModel.inputs.password)
+            .disposed(by: disposeBag)
+        
+        self.viewModel.outputs.enableLogin.drive(onNext: { enable in
+            self.btn_login.isEnabled = enable
+            self.btn_autoLogin.isEnabled = enable
+            self.btn_saveEmail.isEnabled = enable
+            self.btn_login.layer.borderColor = enable ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
+        }).disposed(by: disposeBag)
+        
+        self.viewModel.outputs.validatedEmail
+            .drive()
+            .disposed(by: disposeBag)
+        
+        self.viewModel.outputs.validatedPassword
+            .drive()
+            .disposed(by: disposeBag)
+        
+        self.viewModel.outputs.enableLogin
+            .drive()
+            .disposed(by: disposeBag)
+        
+        self.viewModel.outputs.signedIn
+            .drive(onNext: { signedIn in
+                if signedIn == true {
+                    print(signedIn)
+                    //GlobalUIManager.loadHomeVC()
+                } else {
+                    SVProgressHUD.showError(withStatus: "Login Error")
+                }
+            }).disposed(by: disposeBag)
+        
+        self.viewModel.isLoading
+            .drive(onNext: { isLoading in
+                switch isLoading {
+                case true:
+                    SVProgressHUD.show()
+                case false:
+                    SVProgressHUD.dismiss(withDelay: 300)
                     break
                 }
-            })
-            .addDisposableTo(disposeBag)
+            }).disposed(by: disposeBag)
         
         RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] keyboardVisibleHeight in
@@ -92,7 +109,9 @@ extension LoginViewController {
         // textfield
         txt_email.placeholder = "Collage’s E-mail"
         txt_password.placeholder = "Password"
+        txt_password.isSecureTextEntry = true
         // txt_password.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
+        txt_email.becomeFirstResponder()
         
         setBorderAndCornerRadius(layer: txt_email.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setBorderAndCornerRadius(layer: txt_password.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
