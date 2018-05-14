@@ -83,8 +83,9 @@ class LoginViewController: UIViewController {
                 switch isLoading {
                 case true:
                     SVProgressHUD.show()
+                    break
                 case false:
-                    SVProgressHUD.dismiss(withDelay: 300)
+                    SVProgressHUD.dismiss()
                     break
                 }
             }).disposed(by: disposeBag)
@@ -129,6 +130,4 @@ extension LoginViewController {
         btn_login.layer.borderWidth = 2.5
         btn_login.layer.borderColor = Config.UI.buttonInActiveColor.cgColor
     }
-    
-    
 }
