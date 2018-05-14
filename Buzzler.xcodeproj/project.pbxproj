@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85701820A9A945009FEC48 /* ValidationService.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
 		84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB420907D3200B7C98A /* SignUpViewModel.swift */; };
 		84002EB720907D5100B7C98A /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB620907D5100B7C98A /* HomeRouter.swift */; };
@@ -34,7 +35,6 @@
 		84A1BFCA208C898D00D0ADC7 /* StretchHeaderOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFC9208C898D00D0ADC7 /* StretchHeaderOptions.swift */; };
 		84A1BFCC208C899B00D0ADC7 /* StretchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFCB208C899B00D0ADC7 /* StretchHeader.swift */; };
 		84A1BFCE208C8D8400D0ADC7 /* HeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A1BFCD208C8D8400D0ADC7 /* HeaderLabel.swift */; };
-		84BA76F12086E0B10097FFD2 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F02086E0B10097FFD2 /* LoginResult.swift */; };
 		84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */; };
 		84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */; };
 		84BA76F72086FC4B0097FFD2 /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA76F62086FC4B0097FFD2 /* Decodable.swift */; };
@@ -69,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		08F076F0908B7F9506698A2F /* Pods-Buzzler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.debug.xcconfig"; sourceTree = "<group>"; };
+		3B85701820A9A945009FEC48 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
 		84002EB22090613A00B7C98A /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -79,9 +80,9 @@
 		8421B2D02086D82C00CBF4E3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8421B2D32086DB7700CBF4E3 /* GlobalUIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalUIManager.swift; sourceTree = "<group>"; };
 		844BC371208AF05500666486 /* StartSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSignUpViewController.swift; sourceTree = "<group>"; };
-		844BC374208AF17800666486 /* Avenir LT 95 Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir LT 95 Black.ttf"; path = "../../../../Downloads/Avenir LT 95 Black.ttf"; sourceTree = "<group>"; };
-		844BC375208AF17800666486 /* AvenirLTStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AvenirLTStd-Book.otf"; path = "../../../../Downloads/AvenirLTStd-Book.otf"; sourceTree = "<group>"; };
-		844BC376208AF17800666486 /* AvenirLTStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AvenirLTStd-Medium.otf"; path = "../../../../Downloads/AvenirLTStd-Medium.otf"; sourceTree = "<group>"; };
+		844BC374208AF17800666486 /* Avenir LT 95 Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir LT 95 Black.ttf"; sourceTree = "<group>"; };
+		844BC375208AF17800666486 /* AvenirLTStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Book.otf"; sourceTree = "<group>"; };
+		844BC376208AF17800666486 /* AvenirLTStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Medium.otf"; sourceTree = "<group>"; };
 		844BC37A208AF8FE00666486 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		844BC37F208B065200666486 /* SignUpRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRouter.swift; sourceTree = "<group>"; };
 		844BC381208B083600666486 /* VerifyCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeViewController.swift; sourceTree = "<group>"; };
@@ -89,16 +90,15 @@
 		844BC385208C462900666486 /* SignUpDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDoneViewController.swift; sourceTree = "<group>"; };
 		844BC387208C539A00666486 /* SignUpResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResult.swift; sourceTree = "<group>"; };
 		844BC389208C573000666486 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
-		84A05AB4209BEA8A009AD3EB /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Bold.ttf"; path = "../../../../Downloads/NotoSans-Bold.ttf"; sourceTree = "<group>"; };
-		84A05AB5209BEA8A009AD3EB /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Regular.ttf"; path = "../../../../Downloads/NotoSans-Regular.ttf"; sourceTree = "<group>"; };
-		84A05AB6209BEA8A009AD3EB /* NotoSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSans-Light.ttf"; path = "../../../../Downloads/NotoSans-Light.ttf"; sourceTree = "<group>"; };
+		84A05AB4209BEA8A009AD3EB /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
+		84A05AB5209BEA8A009AD3EB /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
+		84A05AB6209BEA8A009AD3EB /* NotoSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Light.ttf"; sourceTree = "<group>"; };
 		84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerPost.swift; sourceTree = "<group>"; };
 		84A1BFC4208C7C6200D0ADC7 /* HomeImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageTableViewCell.swift; sourceTree = "<group>"; };
 		84A1BFC5208C7C6200D0ADC7 /* HomeImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeImageTableViewCell.xib; sourceTree = "<group>"; };
 		84A1BFC9208C898D00D0ADC7 /* StretchHeaderOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchHeaderOptions.swift; sourceTree = "<group>"; };
 		84A1BFCB208C899B00D0ADC7 /* StretchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchHeader.swift; sourceTree = "<group>"; };
 		84A1BFCD208C8D8400D0ADC7 /* HeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabel.swift; sourceTree = "<group>"; };
-		84BA76F02086E0B10097FFD2 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
 		84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerAPI.swift; sourceTree = "<group>"; };
 		84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Rx.swift"; sourceTree = "<group>"; };
 		84BA76F62086FC4B0097FFD2 /* Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
@@ -172,7 +172,6 @@
 			isa = PBXGroup;
 			children = (
 				8421B2D02086D82C00CBF4E3 /* LoginViewModel.swift */,
-				84BA76F02086E0B10097FFD2 /* LoginResult.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -445,6 +444,7 @@
 				84BA76F82086FC7D0097FFD2 /* BuzzlerError.swift */,
 				84BA76F62086FC4B0097FFD2 /* Decodable.swift */,
 				84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */,
+				3B85701820A9A945009FEC48 /* ValidationService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -489,7 +489,6 @@
 				AFA7EC671DEEDEDC00138AEE /* Frameworks */,
 				AFA7EC681DEEDEDC00138AEE /* Resources */,
 				878B2B2B827A31A9B8A9EF1B /* [CP] Embed Pods Frameworks */,
-				ACAC591F8B4728B2371DB0A3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -565,13 +564,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Buzzler-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		878B2B2B827A31A9B8A9EF1B /* [CP] Embed Pods Frameworks */ = {
@@ -580,28 +582,64 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/EZSwiftExtensions/EZSwiftExtensions.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
+				"${BUILT_PRODUCTS_DIR}/NoticeBar/NoticeBar.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PullToRefresher/PullToRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
+				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftWebVC/SwiftWebVC.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyAttributes/SwiftyAttributes.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZSwiftExtensions.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NoticeBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PullToRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebVC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyAttributes.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ACAC591F8B4728B2371DB0A3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -622,6 +660,7 @@
 				AF9F0FD11DF1A6CD00FF8EC5 /* Brick.swift in Sources */,
 				84A1BFCA208C898D00D0ADC7 /* StretchHeaderOptions.swift in Sources */,
 				AFBBA5CD1E06F783003605D1 /* Response+ObjectMapper.swift in Sources */,
+				3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */,
 				84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */,
 				AFE2BA9A1E8144000066474E /* ViewModelType.swift in Sources */,
 				844BC372208AF05500666486 /* StartSignUpViewController.swift in Sources */,
@@ -641,7 +680,6 @@
 				84C4DED42095A58100FD6BFD /* CommentTableViewCell.swift in Sources */,
 				844BC380208B065200666486 /* SignUpRouter.swift in Sources */,
 				84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */,
-				84BA76F12086E0B10097FFD2 /* LoginResult.swift in Sources */,
 				AF69F0EB1E0E055D00735284 /* SideMenuNavigationController.swift in Sources */,
 				84002EB720907D5100B7C98A /* HomeRouter.swift in Sources */,
 				84BA76F72086FC4B0097FFD2 /* Decodable.swift in Sources */,

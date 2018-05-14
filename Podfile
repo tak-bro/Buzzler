@@ -25,6 +25,8 @@ def shared_pods
     pod 'SwiftyJSON', '3.1.4'
     pod 'RxKeyboard'
     pod 'SwiftyAttributes'
+    pod 'SVProgressHUD'
+    pod 'RxCocoa'
 end
 
 target :'Buzzler' do

@@ -18,6 +18,7 @@ public enum Buzzler {
     case requestCode(receiver: String)
     case verifyCode(receiver: String, verificationCode: String)
     case signUp(username: String, email: String, password: String)
+    case signIn(email: String, password: String)
 }
 
 extension Buzzler: TargetType {
@@ -37,6 +38,8 @@ extension Buzzler: TargetType {
             return "/v1/accounts/email-verification"
         case .signUp:  // POST
             return "/v1/accounts/signup"
+        case .signIn:  // POST
+            return "/v1/accounts/signin"
         }
     }
     
@@ -51,6 +54,8 @@ extension Buzzler: TargetType {
         case .verifyCode(_, _):
             return .put
         case .signUp(_, _, _):
+            return .post
+        case .signIn(_, _):
             return .post
         }
     }
@@ -67,6 +72,8 @@ extension Buzzler: TargetType {
             return ["receiver": receiver, "verificationCode": verificationCode]
         case .signUp(let username, let email, let password):
             return ["username": username, "email": email, "password": password]
+        case .signIn(let email, let password):
+            return ["email": email, "password": password]
         }
     }
     
@@ -91,24 +98,12 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
                                                parameters: target.parameters
     )
     switch target {
-    case .writePost(let title, let content, let imageUrls):
-        return endpoint
-            .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
-            .adding(newParameterEncoding: JSONEncoding.default)
-    case .requestCode(let receiver):
-        return endpoint
-            .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
-            .adding(newParameterEncoding: JSONEncoding.default)
-    case .verifyCode(let receiver, let verificationCode):
-        return endpoint
-            .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
-            .adding(newParameterEncoding: JSONEncoding.default)
-    case .signUp(let username, let email, let password):
-        return endpoint
-            .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
-            .adding(newParameterEncoding: JSONEncoding.default)
-    default:
+    case .getPost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+    default:
+        return endpoint
+            .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newParameterEncoding: JSONEncoding.default)
     }
 }
 

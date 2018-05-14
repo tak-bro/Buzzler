@@ -20,7 +20,7 @@ class WritePostViewModel {
     var postTaps = PublishSubject<Void>()
     
     // Output
-    let postFinished: Driver<LoginResult>
+    let postFinished: Driver<VerifyResult>
     let postExecuting: Driver<Bool>
     
     // Private
@@ -58,9 +58,9 @@ class WritePostViewModel {
                 //                } else {
                 //                    return LoginResult.ok
                 //                }
-                return LoginResult.ok
+                return VerifyResult.ok
             }
-            .asDriver(onErrorJustReturn: LoginResult.failed(message: "Oops, something went wrong")).debug()
+            .asDriver(onErrorJustReturn: VerifyResult.failed(message: "Oops, something went wrong")).debug()
     }
     
 }

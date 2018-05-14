@@ -12,8 +12,6 @@ import RxCocoa
 import Moya
 import NSObject_Rx
 
-typealias GankType = GankAPI.GankCategory
-
 final class HomeViewModel: NSObject, ViewModelType {
 
     typealias Input  = HomeInput
