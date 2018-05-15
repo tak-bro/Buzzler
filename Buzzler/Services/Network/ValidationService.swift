@@ -29,15 +29,25 @@ extension ValidationResult {
 }
 
 public protocol BuzzlerValidationService {
-    func validateUserid(_ userid: String) -> Observable<ValidationResult>
+    func validateEmail(_ email: String) -> Observable<ValidationResult>
+    func validateUserId(_ userId: String) -> Observable<ValidationResult>
     func validatePassword(_ password: String) -> ValidationResult
+    func validateConfirmPassword(password: String, confirmPassword: String) -> ValidationResult
 }
 
 public class BuzzlerDefaultValidationService: BuzzlerValidationService {
     
     static let sharedValidationService = BuzzlerDefaultValidationService()
     
-    public func validateUserid(_ userid: String) -> Observable<ValidationResult> {
+    public func validateEmail(_ email: String) -> Observable<ValidationResult> {
+        if validateStudentEmail(enteredEmail: email) {
+            return .just(.ok(message: "Email available"))
+        } else {
+            return .just(.empty)
+        }
+    }
+    
+    public func validateUserId(_ userid: String) -> Observable<ValidationResult> {
         if userid.count < 6 {
             return .just(.empty)
         } else {
@@ -53,4 +63,11 @@ public class BuzzlerDefaultValidationService: BuzzlerValidationService {
         }
     }
     
+    public func validateConfirmPassword(password: String, confirmPassword: String) -> ValidationResult {
+        if password != confirmPassword {
+            return .empty
+        } else {
+            return .ok(message: "Passwords matched")
+        }
+    }
 }

@@ -34,3 +34,10 @@ func seconds2Timestamp(intSeconds:Int) -> String {
     let strTimestamp = ((mins<10) ? "0" : "") + String(mins) + ":" + ((secs<10) ? "0" : "") + String(secs)
     return strTimestamp
 }
+
+func validateStudentEmail(enteredEmail: String) -> Bool {
+    let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+    let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+    return emailPredicate.evaluate(with: enteredEmail)
+    
+}

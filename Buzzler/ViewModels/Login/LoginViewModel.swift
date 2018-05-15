@@ -58,10 +58,11 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
         self.email = PublishSubject<String?>()
         self.password = PublishSubject<String?>()
         self.loginTaps = PublishSubject<Void>()
+        
         let validationService = BuzzlerDefaultValidationService.sharedValidationService
         
         self.validatedEmail = self.email.asDriver(onErrorJustReturn: nil).flatMapLatest{ email in
-            return validationService.validateUserid(email!)
+            return validationService.validateUserId(email!)
                 .asDriver(onErrorJustReturn: .failed(message: "Error contacting server"))
         }
         
