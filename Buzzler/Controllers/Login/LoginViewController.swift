@@ -112,8 +112,7 @@ extension LoginViewController {
         txt_password.placeholder = "Password"
         txt_password.isSecureTextEntry = true
         // txt_password.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
-        txt_email.becomeFirstResponder()
-        
+
         setBorderAndCornerRadius(layer: txt_email.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setBorderAndCornerRadius(layer: txt_password.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setLeftPadding(textField: txt_email)

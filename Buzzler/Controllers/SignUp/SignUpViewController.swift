@@ -26,6 +26,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var txt_nickName: UITextField!
     @IBOutlet weak var txt_email: UITextField!
     @IBOutlet weak var txt_password: UITextField!
+    @IBOutlet weak var txt_confirmPassword: UITextField!
     @IBOutlet weak var btn_next: UIButton!
     
     @IBOutlet weak var ind_activity: UIActivityIndicatorView!
@@ -124,22 +125,29 @@ extension SignUpViewController {
         setBorderAndCornerRadius(layer: txt_nickName.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setBorderAndCornerRadius(layer: txt_email.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setBorderAndCornerRadius(layer: txt_password.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
+        setBorderAndCornerRadius(layer: txt_confirmPassword.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         
         setLeftPadding(textField: txt_nickName)
         setLeftPadding(textField: txt_email)
         setLeftPadding(textField: txt_password)
+        setLeftPadding(textField: txt_confirmPassword)
+        
+        txt_password.isSecureTextEntry = true
+        txt_confirmPassword.isSecureTextEntry = true
     }
     
     fileprivate func hideKeyboard() {
         self.txt_nickName.resignFirstResponder()
         self.txt_email.resignFirstResponder()
-        self.txt_nickName.resignFirstResponder()
+        self.txt_password.resignFirstResponder()
+        self.txt_confirmPassword.resignFirstResponder()
     }
     
     fileprivate func resetTextField() {
         self.txt_nickName.text = ""
         self.txt_email.text = ""
-        self.txt_nickName.text = ""
+        self.txt_password.text = ""
+        self.txt_confirmPassword.text = ""
     }
 }
 

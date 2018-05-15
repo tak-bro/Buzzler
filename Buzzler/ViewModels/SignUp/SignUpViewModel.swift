@@ -5,11 +5,15 @@
 //  Created by 진형탁 on 2018. 4. 21..
 //  Copyright © 2018년 Maru. All rights reserved.
 //
-
+import UIKit
 import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+import RxOptional
+import RxDataSources
+
+private let disposeBag = DisposeBag()
 
 class SignUpViewModel {
     
