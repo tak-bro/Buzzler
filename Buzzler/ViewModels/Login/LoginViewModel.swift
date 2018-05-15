@@ -16,9 +16,9 @@ import RxDataSources
 private let disposeBag = DisposeBag()
 
 public protocol LoginViewModelInputs {
-    var email:PublishSubject<String?>{ get}
-    var password:PublishSubject<String?>{ get }
-    var loginTaps:PublishSubject<Void>{ get }
+    var email:PublishSubject<String?> { get}
+    var password:PublishSubject<String?> { get }
+    var loginTaps:PublishSubject<Void> { get }
 }
 
 public protocol LoginViewModelOutputs {
@@ -30,7 +30,7 @@ public protocol LoginViewModelOutputs {
 }
 
 public protocol LoginViewModelType {
-    var inputs: LoginViewModelInputs { get  }
+    var inputs: LoginViewModelInputs { get }
     var outputs: LoginViewModelOutputs { get }
 }
 
@@ -46,8 +46,8 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
     public var signedIn: Driver<Bool>
     public var isLoading: Driver<Bool>
     
-    public var inputs: LoginViewModelInputs { return self}
-    public var outputs: LoginViewModelOutputs { return self}
+    public var inputs: LoginViewModelInputs { return self }
+    public var outputs: LoginViewModelOutputs { return self }
     
     // Private
     fileprivate let provider: RxMoyaProvider<Buzzler>
@@ -61,18 +61,21 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
         
         let validationService = BuzzlerDefaultValidationService.sharedValidationService
         
-        self.validatedEmail = self.email.asDriver(onErrorJustReturn: nil).flatMapLatest{ email in
-            return validationService.validateUserId(email!)
-                .asDriver(onErrorJustReturn: .failed(message: "Error contacting server"))
+        self.validatedEmail = self.email
+            .asDriver(onErrorJustReturn: nil)
+            .flatMapLatest { email in
+                return validationService.validateUserId(email!)
+                    .asDriver(onErrorJustReturn: .failed(message: "Error contacting server"))
         }
         
-        self.validatedPassword = self.password.asDriver(onErrorJustReturn: nil).map{ password in
-            return validationService.validatePassword(password!)
+        self.validatedPassword = self.password
+            .asDriver(onErrorJustReturn: nil)
+            .map{ password in
+                return validationService.validateTextString(password!)
         }
         
-        self.enableLogin = Driver.combineLatest(
-            validatedEmail,
-            validatedPassword) { email, password in
+        self.enableLogin = Driver
+            .combineLatest(validatedEmail, validatedPassword) { email, password in
                 return email.isValid && password.isValid
         }
         
@@ -96,8 +99,9 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                         if token == nil {
                             return Single.just(false)
                         } else{
+                            // TODO: add userDefaults
                             // var environment = Environment()
-                            // environment.token = author.token
+                            // environment.token = token
                             return Single.just(true)
                         }
                     })

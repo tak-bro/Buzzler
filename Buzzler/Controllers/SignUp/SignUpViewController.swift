@@ -29,7 +29,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var txt_password: UITextField!
     @IBOutlet weak var txt_confirmPassword: UITextField!
     @IBOutlet weak var btn_next: UIButton!
-
+    @IBOutlet weak var lbl_error: UILabel!
+    
     fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -61,6 +62,10 @@ class SignUpViewController: UIViewController {
         self.viewModel.outputs.enableNextButton.drive(onNext: { enable in
             self.btn_next.isEnabled = enable
             self.btn_next.layer.borderColor = enable ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
+        }).disposed(by: disposeBag)
+        
+        self.viewModel.outputs.setErrorMessage.drive(onNext: { message in
+            self.lbl_error.text = message
         }).disposed(by: disposeBag)
         
         self.viewModel.outputs.validatedEmail
@@ -105,72 +110,7 @@ class SignUpViewController: UIViewController {
                     break
                 }
             }).disposed(by: disposeBag)
-        
-        RxKeyboard.instance.visibleHeight
-            .drive(onNext: { [weak self] keyboardVisibleHeight in
-                guard let `self` = self else {return}
-                
-                self.view.bounds.origin.y = keyboardVisibleHeight * 0.7
-                self.view.layoutIfNeeded()
-            }).addDisposableTo(disposeBag)
-        
-        /*
-        
-        txt_nickName.rx.text.orEmpty.bind(to: viewModel.nickName).addDisposableTo(disposeBag)
-        txt_email.rx.text.orEmpty.bind(to: viewModel.email).addDisposableTo(disposeBag)
-        txt_password.rx.text.orEmpty.bind(to: viewModel.password).addDisposableTo(disposeBag)
-        
-        viewModel.activityIndicator
-            .distinctUntilChanged()
-            .drive(onNext: { [unowned self] active in
-                self.hideKeyboard()
-                self.ind_activity.isHidden = !active
-                active ? self.ind_activity.startAnimating() : self.ind_activity.stopAnimating()
-                self.btn_next.isEnabled = !active
-                self.btn_next.layer.borderColor = !active ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
-            })
-            .addDisposableTo(disposeBag)
-        
-        viewModel.nextEnabled
-            .drive(onNext: { (valid) in
-                self.btn_next.isEnabled = valid
-                self.btn_next.layer.borderColor = valid ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
-            })
-            .addDisposableTo(disposeBag)
 
-        btn_next.rx.tap
-            .withLatestFrom(viewModel.nextEnabled)
-            .filter { $0 }
-            .flatMapLatest { [unowned self] valid -> Observable<SignUpResult> in
-                self.viewModel.requestCode(self.txt_email.text!)
-                    .trackActivity(self.viewModel.activityIndicator)
-            }
-            .subscribe(onNext: { [unowned self] signUpResult in
-                switch signUpResult {
-                case .ok:
-                    guard let receiver = self.txt_email.text,
-                        let nickName = self.txt_nickName.text,
-                        let password = self.txt_password.text else { return }
-                    
-                    // push view controller
-                    let inputInfo = UserInfo(receiver: receiver,
-                                             nickName: nickName,
-                                             password: password)
-                    self.router.userInfo = inputInfo
-                    self.router.perform(.verifyCode, from: self)
-                    break
-                case .failed(let message):
-                    self.resetTextField()
-                    
-                    let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
-                    self.present(alert, animated: true, completion: nil)
-                    break
-                }
-            })
-            .addDisposableTo(disposeBag)
-        */
-        
         RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] keyboardVisibleHeight in
                 guard let `self` = self else { return }

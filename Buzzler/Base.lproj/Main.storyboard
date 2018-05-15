@@ -304,7 +304,7 @@ Cg
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anP-1s-02X">
-                                <rect key="frame" x="67.5" y="426" width="240" height="48"/>
+                                <rect key="frame" x="67.5" y="443" width="240" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="bAF-0M-cHf"/>
                                     <constraint firstAttribute="height" constant="48" id="duh-sX-b9Z"/>
@@ -324,12 +324,20 @@ Cg
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bce-mC-e2y">
+                                <rect key="frame" x="187.5" y="413.5" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="11"/>
+                                <color key="textColor" red="0.94117647058823528" green="0.38823529411764707" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="anP-1s-02X" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="1.35" id="0lw-Sv-gx0"/>
+                            <constraint firstItem="anP-1s-02X" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="1.4" id="0lw-Sv-gx0"/>
+                            <constraint firstItem="bce-mC-e2y" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="1mE-aw-QIA"/>
                             <constraint firstItem="uKK-Za-7Ob" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.8" id="5a0-K9-luC"/>
                             <constraint firstItem="Gow-Yt-zxb" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="0.65" id="7Qn-pD-HCo"/>
+                            <constraint firstItem="bce-mC-e2y" firstAttribute="centerY" secondItem="LqH-Sr-RG5" secondAttribute="centerY" multiplier="1.24" id="8Qt-cT-UpK"/>
                             <constraint firstItem="aa7-nr-Wbq" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="Bja-zu-W0I"/>
                             <constraint firstItem="uKK-Za-7Ob" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="DVx-GS-Ml5"/>
                             <constraint firstItem="Gow-Yt-zxb" firstAttribute="centerX" secondItem="LqH-Sr-RG5" secondAttribute="centerX" id="EuR-aT-6za"/>
@@ -353,6 +361,7 @@ Cg
                     </navigationItem>
                     <connections>
                         <outlet property="btn_next" destination="anP-1s-02X" id="Qsx-qz-SU0"/>
+                        <outlet property="lbl_error" destination="bce-mC-e2y" id="gw8-Wy-e7J"/>
                         <outlet property="txt_confirmPassword" destination="Ymc-re-j7z" id="3Bm-VB-cTv"/>
                         <outlet property="txt_email" destination="uKK-Za-7Ob" id="RVC-fg-2qT"/>
                         <outlet property="txt_nickName" destination="Gow-Yt-zxb" id="h9i-hs-fvB"/>
@@ -441,13 +450,9 @@ Cg
                                     <action selector="pressResend:" destination="SIh-1I-GRI" eventType="touchUpInside" id="CgE-MT-uPU"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kod-KV-1ri">
-                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="kod-KV-1ri" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" id="229-41-RXq"/>
                             <constraint firstItem="0CW-vw-SPm" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="3Gn-Nh-9zZ"/>
                             <constraint firstItem="wiR-yP-Rpa" firstAttribute="centerY" secondItem="SzL-Wa-DGo" secondAttribute="centerY" id="A7S-wo-8Yq"/>
                             <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="AGI-Nv-xtB"/>
@@ -458,14 +463,13 @@ Cg
                             <constraint firstItem="Dde-TW-mYu" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="PxO-1r-xee"/>
                             <constraint firstItem="0CW-vw-SPm" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="1.2" id="QBi-Sd-HqA"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="Uhn-Qc-qAO"/>
-                            <constraint firstItem="kod-KV-1ri" firstAttribute="centerX" secondItem="BKZ-ey-JXG" secondAttribute="centerX" id="W7K-vh-q8c"/>
                             <constraint firstItem="Ueq-xr-wIr" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.2" id="dph-oq-tuh"/>
                             <constraint firstItem="N2B-QJ-Zcq" firstAttribute="centerY" secondItem="BKZ-ey-JXG" secondAttribute="centerY" multiplier="0.95" id="ezq-PR-7gt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btn_next" destination="N2B-QJ-Zcq" id="HzX-Jd-hhl"/>
-                        <outlet property="ind_activity" destination="kod-KV-1ri" id="hWS-rc-qfR"/>
+                        <outlet property="btn_resend" destination="0CW-vw-SPm" id="c25-S2-o3K"/>
                         <outlet property="lbl_timer" destination="wiR-yP-Rpa" id="BZX-Bv-Fuf"/>
                         <outlet property="txt_code" destination="SzL-Wa-DGo" id="IQB-St-rM7"/>
                         <segue destination="Kxz-vl-LZ3" kind="show" id="KA7-Vp-cXC"/>
@@ -545,7 +549,7 @@ Cg
         <!--Select Major View Controller-->
         <scene sceneID="ezA-rq-jmP">
             <objects>
-                <viewController id="Kxz-vl-LZ3" customClass="SelectMajorViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectMajorViewController" id="Kxz-vl-LZ3" customClass="SelectMajorViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u9L-p6-uC9"/>
                         <viewControllerLayoutGuide type="bottom" id="0RU-Qj-cg7"/>
