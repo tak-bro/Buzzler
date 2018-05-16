@@ -29,28 +29,54 @@ extension ValidationResult {
 }
 
 public protocol BuzzlerValidationService {
-    func validateUserid(_ userid: String) -> Observable<ValidationResult>
-    func validatePassword(_ password: String) -> ValidationResult
+    func validateCode(_ code: String) -> Observable<ValidationResult>
+    func validateEmail(_ email: String) -> Observable<ValidationResult>
+    func validateUserId(_ userId: String) -> Observable<ValidationResult>
+    func validateTextString(_ text: String) -> ValidationResult
+    func validateConfirmPassword(password: String, confirmPassword: String) -> ValidationResult
 }
 
 public class BuzzlerDefaultValidationService: BuzzlerValidationService {
     
     static let sharedValidationService = BuzzlerDefaultValidationService()
     
-    public func validateUserid(_ userid: String) -> Observable<ValidationResult> {
-        if userid.count < 6 {
+    public func validateCode(_ code: String) -> Observable<ValidationResult> {
+        if code.count < 5 {
+            return .just(.empty)
+        } else {
+            return .just(.ok(message: "Verification Code available"))
+        }
+    }
+    
+    public func validateEmail(_ email: String) -> Observable<ValidationResult> {
+        if validateStudentEmail(enteredEmail: email) {
+            return .just(.ok(message: "Email available"))
+        } else {
+            return .just(.empty)
+        }
+    }
+    
+    public func validateUserId(_ userId: String) -> Observable<ValidationResult> {
+        if userId.count < 6 {
             return .just(.empty)
         } else {
             return .just(.ok(message: "Username available"))
         }
     }
     
-    public func validatePassword(_ password: String) -> ValidationResult {
-        if password.count == 0 {
+    public func validateTextString(_ text: String) -> ValidationResult {
+        if text.count == 0 {
             return .empty
         } else {
-            return .ok(message: "Password acceptable")
+            return .ok(message: "Text acceptable")
         }
     }
     
+    public func validateConfirmPassword(password: String, confirmPassword: String) -> ValidationResult {
+        if password != confirmPassword {
+            return .empty
+        } else {
+            return .ok(message: "Passwords matched")
+        }
+    }
 }

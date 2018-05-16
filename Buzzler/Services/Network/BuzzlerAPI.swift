@@ -17,7 +17,7 @@ public enum Buzzler {
     case getPost
     case requestCode(receiver: String)
     case verifyCode(receiver: String, verificationCode: String)
-    case signUp(username: String, email: String, password: String)
+    case signUp(username: String, email: String, password: String, categoryAuth: [String])
     case signIn(email: String, password: String)
 }
 
@@ -53,7 +53,7 @@ extension Buzzler: TargetType {
             return .post
         case .verifyCode(_, _):
             return .put
-        case .signUp(_, _, _):
+        case .signUp(_, _, _, _):
             return .post
         case .signIn(_, _):
             return .post
@@ -70,8 +70,8 @@ extension Buzzler: TargetType {
             return ["receiver": receiver]
         case .verifyCode(let receiver, let verificationCode):
             return ["receiver": receiver, "verificationCode": verificationCode]
-        case .signUp(let username, let email, let password):
-            return ["username": username, "email": email, "password": password]
+        case .signUp(let username, let email, let password, let categoryAuth):
+            return ["username": username, "email": email, "password": password, "categoryAuth": categoryAuth]
         case .signIn(let email, let password):
             return ["email": email, "password": password]
         }

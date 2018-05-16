@@ -9,11 +9,6 @@
 import Foundation
 import UIKit
 
-enum SignUpSegue {
-    case verifyCode
-    case done
-}
-
 struct UserInfo {
     var recevier: String?
     var nickName: String?
@@ -32,6 +27,12 @@ struct UserInfo {
     }
 }
 
+enum SignUpSegue {
+    case verifyCode
+    case selectMajor
+    case done
+}
+
 class SignUpRouter {
     
     var userInfo = UserInfo()
@@ -41,6 +42,9 @@ class SignUpRouter {
         case .verifyCode:
             let verifyCodeVC = SignUpRouter.makeVerifyCodeViewController(withUserInfo: userInfo)
             source.navigationController?.pushViewController(verifyCodeVC, animated: true)
+        case .selectMajor:
+            let selectMajorVC = SignUpRouter.makeSelectMajorViewController(withUserInfo: userInfo)
+            source.navigationController?.pushViewController(selectMajorVC, animated: true)
         case .done:
             let signUpDoneVC = SignUpRouter.makeSignUpDoneViewController()
             source.navigationController?.pushViewController(signUpDoneVC, animated: true)
@@ -52,13 +56,22 @@ class SignUpRouter {
 private extension SignUpRouter {
 
     static func makeVerifyCodeViewController(withUserInfo userInfo: UserInfo) -> VerifyCodeViewController {
-        let verifyCodeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VerifyCodeViewController") as! VerifyCodeViewController
+        let verifyCodeVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "VerifyCodeViewController") as! VerifyCodeViewController
         verifyCodeVC.inputUserInfo = userInfo
         return verifyCodeVC
     }
     
+    static func makeSelectMajorViewController(withUserInfo userInfo: UserInfo) -> SelectMajorViewController {
+        let selectMajorVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "SelectMajorViewController") as! SelectMajorViewController
+        selectMajorVC.inputUserInfo = userInfo
+        return selectMajorVC
+    }
+    
     static func makeSignUpDoneViewController() -> SignUpDoneViewController {
-        let signUpDoneVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SignUpDoneViewController") as! SignUpDoneViewController
+        let signUpDoneVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "SignUpDoneViewController") as! SignUpDoneViewController
         return signUpDoneVC
     }
 }
