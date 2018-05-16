@@ -27,7 +27,9 @@ class VerifyCodeViewController: UIViewController {
             interval: .milliseconds(1000),
             times: 180,
             block: { [weak self] value in
-                self?.lbl_timer.text = value.description
+                if let remainTime = Int(value.description) {
+                    self?.lbl_timer.text = seconds2Timestamp(intSeconds: remainTime)
+                }
             }, completion: { [weak self] in
                 // show invalidate text
                 let invalidateText = "invalidated".withAttributes([
@@ -101,7 +103,7 @@ class VerifyCodeViewController: UIViewController {
                 if resend == true {
                     print(resend)
                     // resend code
-                    self.timer.start()
+                    self.timer.restart()
                 } else {
                     SVProgressHUD.showError(withStatus: "Failed to resend code")
                 }
