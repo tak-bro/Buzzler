@@ -26,10 +26,14 @@ class SelectMajorViewController: UIViewController {
     fileprivate let disposeBag = DisposeBag()
     let router = SignUpRouter()
     
+    // major list
+    let majors = ["2", "3", "4", "5", "6"];
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindToRx()
         setUI()
+        setPicker()
     }
     
     func bindToRx() {
@@ -41,6 +45,10 @@ class SelectMajorViewController: UIViewController {
             .bind(to: selectMajorViewModel.inputs.nextTaps)
             .disposed(by: disposeBag)
         
+        txt_univ.rx.text.orEmpty
+            .bind(to: selectMajorViewModel.inputs.univ)
+            .disposed(by: disposeBag)
+        
         txt_selectMajor.rx.text.orEmpty
             .bind(to: selectMajorViewModel.inputs.major)
             .disposed(by: disposeBag)
@@ -49,6 +57,10 @@ class SelectMajorViewController: UIViewController {
             self.btn_next.isEnabled = enable
             self.btn_next.layer.borderColor = enable ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
         }).disposed(by: disposeBag)
+        
+        selectMajorViewModel.outputs.validatedUniv
+            .drive()
+            .disposed(by: disposeBag)
         
         selectMajorViewModel.outputs.validatedMajor
             .drive()
@@ -103,5 +115,30 @@ extension SelectMajorViewController {
         setBorderAndCornerRadius(layer: txt_selectMajor.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setLeftPadding(textField: txt_selectMajor)
     }
+    
+}
 
+extension SelectMajorViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    func setPicker() {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        txt_selectMajor.inputView = pickerView
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return majors.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return majors[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        txt_selectMajor.text = majors[row]
+    }
 }

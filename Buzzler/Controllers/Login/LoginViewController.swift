@@ -102,6 +102,7 @@ class LoginViewController: UIViewController {
     override func dismissKeyboard() {
         view.endEditing(true)
     }
+    
 }
 
 extension LoginViewController {
@@ -120,6 +121,9 @@ extension LoginViewController {
         
         // button
         self.btn_login.isEnabled = false
+        self.btn_autoLogin.isEnabled = false
+        self.btn_saveEmail.isEnabled = false
+        
         btn_autoLogin.setTitleColor(Config.UI.buttonActiveColor, for: UIControlState.normal)
         btn_autoLogin.setTitleColor(Config.UI.buttonInActiveColor, for: UIControlState.disabled)
         btn_saveEmail.setTitleColor(Config.UI.buttonActiveColor, for: UIControlState.normal)

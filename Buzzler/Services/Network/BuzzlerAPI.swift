@@ -17,7 +17,7 @@ public enum Buzzler {
     case getPost
     case requestCode(receiver: String)
     case verifyCode(receiver: String, verificationCode: String)
-    case signUp(username: String, email: String, password: String, categoryAuth: String)
+    case signUp(username: String, email: String, password: String, categoryAuth: [String])
     case signIn(email: String, password: String)
 }
 
