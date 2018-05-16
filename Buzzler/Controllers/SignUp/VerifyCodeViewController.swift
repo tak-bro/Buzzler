@@ -12,31 +12,48 @@ import RxSwift
 import RxCocoa
 import RxKeyboard
 import SVProgressHUD
+import AsyncTimer
 
 class VerifyCodeViewController: UIViewController {
-
+    
     @IBOutlet weak var txt_code: UITextField!
     @IBOutlet weak var btn_next: UIButton!
     @IBOutlet weak var btn_resend: UIButton!
     @IBOutlet weak var lbl_timer: UILabel!
     
     //timer
-    var mTimer: Timer?
-    var remainTime: Int = 180
-    var inputUserInfo = UserInfo()
-
+    private lazy var timer: AsyncTimer = {
+        return AsyncTimer(
+            interval: .milliseconds(1000),
+            times: 180,
+            block: { [weak self] value in
+                if let remainTime = Int(value.description) {
+                    self?.lbl_timer.text = seconds2Timestamp(intSeconds: remainTime)
+                }
+            }, completion: { [weak self] in
+                // show invalidate text
+                let invalidateText = "invalidated".withAttributes([
+                    .textColor(UIColor.red),
+                    .font(.AvenirNext(type: .Book, size: 12))
+                    ])
+                self?.lbl_timer.attributedText = invalidateText
+            }
+        )
+    }()
+    
     fileprivate let disposeBag = DisposeBag()
     
     let router = SignUpRouter()
     var viewModel: VerifyCodeViewModel?
+    var inputUserInfo = UserInfo()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // remove "Back" text
         self.navigationController?.navigationBar.topItem?.title = " "
+        self.timer.start()
         bindToRx()
         setUI()
-        setTimer()
     }
     
     func bindToRx() {
@@ -51,7 +68,7 @@ class VerifyCodeViewController: UIViewController {
         btn_resend.rx.tap
             .bind(to: verifyCodeViewModel.inputs.resendTaps)
             .disposed(by: disposeBag)
-
+        
         txt_code.rx.text.orEmpty
             .bind(to: verifyCodeViewModel.inputs.code)
             .disposed(by: disposeBag)
@@ -86,8 +103,7 @@ class VerifyCodeViewController: UIViewController {
                 if resend == true {
                     print(resend)
                     // resend code
-                    self.remainTime = 180
-                    self.setTimer()
+                    self.timer.restart()
                 } else {
                     SVProgressHUD.showError(withStatus: "Failed to resend code")
                 }
@@ -110,10 +126,6 @@ class VerifyCodeViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func pressResend(_ sender: UIButton) {
-        remainTime = 180
-        setTimer()
-    }
 }
 
 extension VerifyCodeViewController {
@@ -132,40 +144,7 @@ extension VerifyCodeViewController {
         setBorderAndCornerRadius(layer: txt_code.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setLeftPadding(textField: txt_code)
     }
-
-    func setTimer() {
-        if let timer = mTimer {
-            if !timer.isValid {
-                mTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
-            }
-        } else {
-            mTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
-        }
-    }
-
-    func timerCallback() {
-        remainTime -= 1
-        lbl_timer.text = seconds2Timestamp(intSeconds: remainTime)
-        if (remainTime <= 0) {
-            // show invalidate text
-            let invalidateText = "invalidated".withAttributes([
-                .textColor(UIColor.red),
-                .font(.AvenirNext(type: .Book, size: 12))
-                ])
-            lbl_timer.attributedText = invalidateText
-            timerEnd()
-        }
-    }
-    
-    func timerEnd() {
-        if let timer = mTimer {
-            if (timer.isValid) {
-                timer.invalidate()
-            }
-        }
-        remainTime = 0
-    }
-    
+ 
     fileprivate func hideKeyboard() {
         self.txt_code.resignFirstResponder()
     }
@@ -173,6 +152,6 @@ extension VerifyCodeViewController {
     fileprivate func resetTextField() {
         self.txt_code.text = ""
     }
-
+    
 }
 

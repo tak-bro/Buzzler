@@ -25,7 +25,7 @@ func setLeftPadding(textField: UITextField) {
     textField.leftViewMode = UITextFieldViewMode.always
 }
 
-func seconds2Timestamp(intSeconds:Int) -> String {
+func seconds2Timestamp(intSeconds: Int) -> String {
     let mins:Int = intSeconds/60
     let hours:Int = mins/60
     let secs:Int = intSeconds%60

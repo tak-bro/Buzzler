@@ -27,6 +27,7 @@ def shared_pods
     pod 'SwiftyAttributes'
     pod 'SVProgressHUD'
     pod 'RxCocoa'
+    pod 'AsyncTimer', '~> 2.2'
 end
 
 target :'Buzzler' do
