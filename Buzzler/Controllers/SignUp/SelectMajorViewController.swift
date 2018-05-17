@@ -115,7 +115,7 @@ extension SelectMajorViewController {
         setBorderAndCornerRadius(layer: txt_selectMajor.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setLeftPadding(textField: txt_selectMajor)
     }
-    
+
 }
 
 extension SelectMajorViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -142,3 +142,5 @@ extension SelectMajorViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         txt_selectMajor.text = majors[row]
     }
 }
+
+
