@@ -33,7 +33,7 @@ class VerifyCodeViewController: UIViewController {
             }, completion: { [weak self] in
                 // show invalidate text
                 let invalidateText = "invalidated".withAttributes([
-                    .textColor(UIColor.red),
+                    .textColor(Config.UI.errorFontColor),
                     .font(.AvenirNext(type: .Book, size: 12))
                     ])
                 self?.lbl_timer.attributedText = invalidateText

@@ -14,6 +14,7 @@ struct Config {
         static let fontColor = UIColor(white: 68.0 / 255.0, alpha: 1.0)
         static let lightFontColor =  UIColor(white: 136.0 / 255.0, alpha: 1.0)
         static let commentViewColor = UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.00)
+        static let errorFontColor = UIColor(red: 240.0 / 255.0, green: 99.0 / 255.0, blue: 99.0 / 255.0, alpha: 1.0)
     }
 }
 
