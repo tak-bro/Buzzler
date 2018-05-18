@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		3B1CBD0320AA9EB60018D156 /* SelectMajorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */; };
 		3B1CBD0520AAC8770018D156 /* SelectMajorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */; };
+		3B52E6BF20AE93D0002B2BB6 /* FirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6BE20AE93D0002B2BB6 /* FirstStepViewController.swift */; };
+		3B52E6C120AE93E3002B2BB6 /* SecondStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C020AE93E3002B2BB6 /* SecondStepViewController.swift */; };
+		3B52E6C320AE942C002B2BB6 /* LastStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C220AE942C002B2BB6 /* LastStepViewController.swift */; };
+		3B52E6C620AE9489002B2BB6 /* FirstStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C520AE9489002B2BB6 /* FirstStepViewModel.swift */; };
+		3B52E6C820AE94AA002B2BB6 /* SecondStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C720AE94AA002B2BB6 /* SecondStepViewModel.swift */; };
+		3B52E6CA20AE94C7002B2BB6 /* LastStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C920AE94C7002B2BB6 /* LastStepViewModel.swift */; };
 		3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85701820A9A945009FEC48 /* ValidationService.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
 		84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB420907D3200B7C98A /* SignUpViewModel.swift */; };
@@ -73,6 +79,12 @@
 		08F076F0908B7F9506698A2F /* Pods-Buzzler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.debug.xcconfig"; sourceTree = "<group>"; };
 		3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorViewController.swift; sourceTree = "<group>"; };
 		3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorViewModel.swift; sourceTree = "<group>"; };
+		3B52E6BE20AE93D0002B2BB6 /* FirstStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStepViewController.swift; sourceTree = "<group>"; };
+		3B52E6C020AE93E3002B2BB6 /* SecondStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStepViewController.swift; sourceTree = "<group>"; };
+		3B52E6C220AE942C002B2BB6 /* LastStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepViewController.swift; sourceTree = "<group>"; };
+		3B52E6C520AE9489002B2BB6 /* FirstStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStepViewModel.swift; sourceTree = "<group>"; };
+		3B52E6C720AE94AA002B2BB6 /* SecondStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStepViewModel.swift; sourceTree = "<group>"; };
+		3B52E6C920AE94C7002B2BB6 /* LastStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepViewModel.swift; sourceTree = "<group>"; };
 		3B85701820A9A945009FEC48 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,11 +168,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3B52E6BD20AE9311002B2BB6 /* ForgotPassword */ = {
+		3B52E6BD20AE9311002B2BB6 /* ResetPassword */ = {
 			isa = PBXGroup;
 			children = (
+				3B52E6BE20AE93D0002B2BB6 /* FirstStepViewController.swift */,
+				3B52E6C020AE93E3002B2BB6 /* SecondStepViewController.swift */,
+				3B52E6C220AE942C002B2BB6 /* LastStepViewController.swift */,
 			);
-			path = ForgotPassword;
+			path = ResetPassword;
+			sourceTree = "<group>";
+		};
+		3B52E6C420AE9447002B2BB6 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				3B52E6C520AE9489002B2BB6 /* FirstStepViewModel.swift */,
+				3B52E6C720AE94AA002B2BB6 /* SecondStepViewModel.swift */,
+				3B52E6C920AE94C7002B2BB6 /* LastStepViewModel.swift */,
+			);
+			path = ResetPassword;
 			sourceTree = "<group>";
 		};
 		84002EB12090611A00B7C98A /* Post */ = {
@@ -407,7 +432,7 @@
 		AFA7EC7F1DEF4BB400138AEE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3B52E6BD20AE9311002B2BB6 /* ForgotPassword */,
+				3B52E6BD20AE9311002B2BB6 /* ResetPassword */,
 				844BC370208AF03500666486 /* SignUp */,
 				8421B2C82086D19700CBF4E3 /* Login */,
 				84F437A32085C3AC00E71358 /* WritePost */,
@@ -466,6 +491,7 @@
 		AFCB661B1DF844B100916E1B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				3B52E6C420AE9447002B2BB6 /* ResetPassword */,
 				844BC37C208AFAA400666486 /* SignUp */,
 				8421B2CF2086D81F00CBF4E3 /* Login */,
 				84F437A62085C3CB00E71358 /* WritePost */,
@@ -676,13 +702,17 @@
 				AF9F0FD11DF1A6CD00FF8EC5 /* Brick.swift in Sources */,
 				84A1BFCA208C898D00D0ADC7 /* StretchHeaderOptions.swift in Sources */,
 				AFBBA5CD1E06F783003605D1 /* Response+ObjectMapper.swift in Sources */,
+				3B52E6C820AE94AA002B2BB6 /* SecondStepViewModel.swift in Sources */,
 				3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */,
 				84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */,
+				3B52E6C620AE9489002B2BB6 /* FirstStepViewModel.swift in Sources */,
 				AFE2BA9A1E8144000066474E /* ViewModelType.swift in Sources */,
 				844BC372208AF05500666486 /* StartSignUpViewController.swift in Sources */,
 				8421B2D12086D82C00CBF4E3 /* LoginViewModel.swift in Sources */,
+				3B52E6CA20AE94C7002B2BB6 /* LastStepViewModel.swift in Sources */,
 				AF9F0FD91DF1A9E900FF8EC5 /* HomeTableViewCell.swift in Sources */,
 				844BC382208B083600666486 /* VerifyCodeViewController.swift in Sources */,
+				3B52E6BF20AE93D0002B2BB6 /* FirstStepViewController.swift in Sources */,
 				844BC386208C462900666486 /* SignUpDoneViewController.swift in Sources */,
 				84DFF8F1209C403800AC63B0 /* ActiviityIndicator.swift in Sources */,
 				84DFF8EE209C23E600AC63B0 /* ServerURL.swift in Sources */,
@@ -694,8 +724,10 @@
 				84A1BFC3208C67AD00D0ADC7 /* BuzzlerPost.swift in Sources */,
 				84A1BFC6208C7C6200D0ADC7 /* HomeImageTableViewCell.swift in Sources */,
 				84C4DED42095A58100FD6BFD /* CommentTableViewCell.swift in Sources */,
+				3B52E6C320AE942C002B2BB6 /* LastStepViewController.swift in Sources */,
 				844BC380208B065200666486 /* SignUpRouter.swift in Sources */,
 				3B1CBD0520AAC8770018D156 /* SelectMajorViewModel.swift in Sources */,
+				3B52E6C120AE93E3002B2BB6 /* SecondStepViewController.swift in Sources */,
 				84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */,
 				AF69F0EB1E0E055D00735284 /* SideMenuNavigationController.swift in Sources */,
 				84002EB720907D5100B7C98A /* HomeRouter.swift in Sources */,
