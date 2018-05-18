@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,21 +28,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_logo" translatesAutoresizingMaskIntoConstraints="NO" id="3DV-Ro-SW9">
-                                <rect key="frame" x="143.5" y="163" width="88" height="108"/>
+                                <rect key="frame" x="143.5" y="179.5" width="88" height="108"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="6jI-QL-smR"/>
                                     <constraint firstAttribute="height" constant="108" id="mv9-WL-haH"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="0j3-SG-PJQ">
-                                <rect key="frame" x="143.5" y="310" width="88" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="ST9-21-tsO"/>
-                                    <constraint firstAttribute="width" constant="88" id="SoN-Ii-kuh"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© Fail Nicely" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-e7-QPO">
-                                <rect key="frame" x="137" y="474.5" width="102.5" height="18"/>
+                                <rect key="frame" x="137" y="458" width="102.5" height="18"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="18"/>
                                 <color key="textColor" red="0.6470588235294118" green="0.83529411764705885" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -52,10 +45,8 @@
                         <constraints>
                             <constraint firstItem="Gzj-e7-QPO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GqW-iH-aIx"/>
                             <constraint firstItem="3DV-Ro-SW9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="LrQ-sZ-bWc"/>
-                            <constraint firstItem="3DV-Ro-SW9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="0.65" id="TPy-ZZ-bdi"/>
-                            <constraint firstItem="Gzj-e7-QPO" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="1.45" id="qxX-L9-oZt"/>
-                            <constraint firstItem="0j3-SG-PJQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uOq-2X-YKV"/>
-                            <constraint firstItem="0j3-SG-PJQ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="1.05" id="wah-YP-Dfu"/>
+                            <constraint firstItem="3DV-Ro-SW9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="0.7" id="TPy-ZZ-bdi"/>
+                            <constraint firstItem="Gzj-e7-QPO" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="1.4" id="qxX-L9-oZt"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -65,7 +56,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="img_logo" width="88" height="108"/>
-        <image name="img_symbol" width="80" height="69"/>
+        <image name="img_logo" width="102" height="105"/>
     </resources>
 </document>
