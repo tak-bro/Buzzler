@@ -785,10 +785,10 @@ Cg
             </objects>
             <point key="canvasLocation" x="1874" y="-1118"/>
         </scene>
-        <!--View Controller-->
+        <!--First Step View Controller-->
         <scene sceneID="CbP-9L-WNb">
             <objects>
-                <viewController id="KDY-ea-fq8" sceneMemberID="viewController">
+                <viewController id="KDY-ea-fq8" customClass="FirstStepViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CWU-90-5xW"/>
                         <viewControllerLayoutGuide type="bottom" id="V9y-od-T7x"/>
@@ -796,8 +796,90 @@ Cg
                     <view key="view" contentMode="scaleToFill" id="ZWm-rs-Lel">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot password?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N9f-oh-bWg">
+                                <rect key="frame" x="113.5" y="57.5" width="148" height="18"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="18"/>
+                                <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BgZ-xS-TWP">
+                                <rect key="frame" x="102.5" y="117.5" width="170.5" height="32.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Enter your ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="e">
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AppleSDGothicNeo-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">mail and we’ll send 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="a “Verify Code” to your inbox.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="uxy-Cy-lOd">
+                                <rect key="frame" x="47.5" y="197" width="280" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="6eG-s7-uE2"/>
+                                    <constraint firstAttribute="height" constant="40" id="DFD-9S-cS4"/>
+                                </constraints>
+                                <color key="textColor" red="0.70980392160000005" green="0.70980392160000005" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2z-6I-YAa">
+                                <rect key="frame" x="67.5" y="293" width="240" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="i9s-Yb-lKW"/>
+                                    <constraint firstAttribute="height" constant="48" id="nYw-W0-EII"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirLT-Black" family="Avenir LT 65 Medium" pointSize="16"/>
+                                <state key="normal" title="NEXT">
+                                    <color key="titleColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="N9f-oh-bWg" firstAttribute="centerY" secondItem="ZWm-rs-Lel" secondAttribute="centerY" multiplier="0.2" id="9da-qY-YV6"/>
+                            <constraint firstItem="BgZ-xS-TWP" firstAttribute="centerX" secondItem="ZWm-rs-Lel" secondAttribute="centerX" id="AlP-A8-HVI"/>
+                            <constraint firstItem="E2z-6I-YAa" firstAttribute="centerY" secondItem="ZWm-rs-Lel" secondAttribute="centerY" multiplier="0.95" id="Mcl-Fv-WPw"/>
+                            <constraint firstItem="uxy-Cy-lOd" firstAttribute="centerX" secondItem="ZWm-rs-Lel" secondAttribute="centerX" id="U6T-4s-q3j"/>
+                            <constraint firstItem="N9f-oh-bWg" firstAttribute="centerX" secondItem="ZWm-rs-Lel" secondAttribute="centerX" id="ZEv-uP-Clx"/>
+                            <constraint firstItem="BgZ-xS-TWP" firstAttribute="centerY" secondItem="ZWm-rs-Lel" secondAttribute="centerY" multiplier="0.4" id="b0N-RV-Jp1"/>
+                            <constraint firstItem="E2z-6I-YAa" firstAttribute="centerX" secondItem="ZWm-rs-Lel" secondAttribute="centerX" id="mxL-QA-utw"/>
+                            <constraint firstItem="uxy-Cy-lOd" firstAttribute="centerY" secondItem="ZWm-rs-Lel" secondAttribute="centerY" multiplier="0.65" id="pSa-Mk-CDz"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btn_next" destination="E2z-6I-YAa" id="bu7-bD-RDR"/>
+                        <outlet property="txt_email" destination="uxy-Cy-lOd" id="dPC-G0-yLT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jFo-qs-R6M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
