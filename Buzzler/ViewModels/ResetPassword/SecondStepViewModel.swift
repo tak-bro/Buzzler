@@ -1,5 +1,5 @@
 //
-//  SecondStepViewModel.swift.swift
+//  SecondStepViewModel.swift
 //  Buzzler
 //
 //  Created by 진형탁 on 18/05/2018.
@@ -7,3 +7,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+import Moya
+import RxOptional
+import RxDataSources

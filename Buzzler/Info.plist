@@ -2,15 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>NotoSans-Bold</string>
-		<string>NotoSans-Light</string>
-		<string>NotoSans-Regular</string>
-		<string>AvenirLTStd-Medium</string>
-		<string>AvenirLTStd-Book</string>
-		<string>Avenir LT 95 Black</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -36,6 +27,15 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>NotoSans-Bold</string>
+		<string>NotoSans-Light</string>
+		<string>NotoSans-Regular</string>
+		<string>AvenirLTStd-Medium</string>
+		<string>AvenirLTStd-Book</string>
+		<string>Avenir LT 95 Black</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

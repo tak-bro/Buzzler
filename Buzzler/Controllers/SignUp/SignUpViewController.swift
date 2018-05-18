@@ -15,12 +15,6 @@ import SVProgressHUD
 
 class SignUpViewController: UIViewController {
     
-    enum Route: String {
-        case signUp
-        case verifyCode
-        case finish
-    }
-    
     let router = SignUpRouter()
     let viewModel = SignUpViewModel(provider: BuzzlerProvider)
     
