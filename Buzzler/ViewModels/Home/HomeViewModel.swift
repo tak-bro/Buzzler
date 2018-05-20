@@ -19,7 +19,7 @@ final class HomeViewModel: NSObject, ViewModelType {
 
     // Inputs
     struct HomeInput {
-        let category = Variable<Int>(0)
+        let category = Variable<Int>(1)
     }
 
     // Output
@@ -44,7 +44,7 @@ final class HomeViewModel: NSObject, ViewModelType {
         
         let output = Output(buzzlerSection: section)
         output.refreshCommand
-            .flatMapLatest { _ in BuzzlerProvider.request(Buzzler.getPost).retry(3) }
+            .flatMapLatest { BuzzlerProvider.request(Buzzler.getPost(category: $0)) }
             .subscribe({ [weak self] (event) in
                 output.refreshTrigger.onNext()
                 switch event {

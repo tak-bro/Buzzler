@@ -33,7 +33,6 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupHeaderView()
         configUI()
         configBinding()
@@ -53,8 +52,8 @@ extension HomeViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
-        // tableView.refreshControl = UIRefreshControl()
-        // tableView.refreshControl?.backgroundColor = Config.UI.themeColor
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.backgroundColor = Config.UI.themeColor
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -75,23 +74,24 @@ extension HomeViewController {
             .bind(to: outputStuff.refreshCommand)
             .addDisposableTo(rx.disposeBag)
         
-        
         NotificationCenter.default.rx.notification(Notification.Name.category)
             .map({ (notification) -> Int in
-                let indexPath = (notification.object as? IndexPath) ?? IndexPath(item: 0, section: 0)
-                return indexPath.row
+                let selectCategory = notification.object as? Int ?? 1
+                print("seept", selectCategory)
+                return selectCategory
             })
             .bind(to: inputStuff.category)
             .addDisposableTo(rx.disposeBag)
         
         NotificationCenter.default.rx.notification(Notification.Name.category)
             .map({ (notification) -> Int in
-                let indexPath = (notification.object as? IndexPath) ?? IndexPath(item: 0, section: 0)
-                return indexPath.row
+                let selectCategory = notification.object as? Int ?? 1
+                return selectCategory
             })
             .observeOn(MainScheduler.asyncInstance)
             .do(onNext: { (_) in
                 SideMenuManager.menuLeftNavigationController?.dismiss(animated: true, completion: {
+                    GlobalUIManager.loadHomeVC()
                     DispatchQueue.main.async(execute: {
                         self.tableView.refreshControl?.beginRefreshing()
                     })

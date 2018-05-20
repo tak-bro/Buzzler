@@ -23,7 +23,7 @@ class GlobalUIManager {
         let rootVC = UIStoryboard.vcInMainSB("HomeNavigationController")
         rootVC.modalTransitionStyle = .crossDissolve
         UIView.transition(with: kWindow,
-                          duration: 0.5,
+                          duration: 0.3,
                           options: .transitionCrossDissolve,
                           animations: {
                             let oldState = UIView.areAnimationsEnabled
@@ -41,7 +41,7 @@ class GlobalUIManager {
 
         rootVC.modalTransitionStyle = .crossDissolve
         UIView.transition(with: kWindow,
-                          duration: 0.5,
+                          duration: 0.3,
                           options: .transitionCrossDissolve,
                           animations: {
                             let oldState = UIView.areAnimationsEnabled

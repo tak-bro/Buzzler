@@ -13,12 +13,12 @@ import RxDataSources
 import SVProgressHUD
 import SideMenu
 
-enum CategoryModel {
-    case info(id: String, title: String)
+enum SideModel {
+    case category(id: String, title: String)
     case myPage(id: String, navTitle: String)
     case settings(id: String, navTitle: String)
 }
-typealias SideSectionModel = SectionModel<String, CategoryModel>
+typealias SideSectionModel = SectionModel<String, SideModel>
 
 
 class SideViewController: UIViewController, UITableViewDelegate {
@@ -32,11 +32,11 @@ class SideViewController: UIViewController, UITableViewDelegate {
     // Temp Category List
     let categorySections = Observable.just([
         SideSectionModel(model: "", items: [
-            CategoryModel.info(id: "3", title: "Seoul Univ."),
-            CategoryModel.info(id: "2", title: "Economics"),
-            CategoryModel.info(id: "1", title: "Anonymous"),
-            CategoryModel.myPage(id: "MyPage", navTitle: "MyPageNavigationController"),
-            CategoryModel.settings(id: "Settings", navTitle: "SettingsNavigationController"),
+            SideModel.category(id: "3", title: "Seoul Univ."),
+            SideModel.category(id: "2", title: "Economics"),
+            SideModel.category(id: "1", title: "Anonymous"),
+            SideModel.myPage(id: "MyPage", navTitle: "MyPageNavigationController"),
+            SideModel.settings(id: "Settings", navTitle: "SettingsNavigationController"),
             ]),
         ])
 
@@ -57,7 +57,7 @@ class SideViewController: UIViewController, UITableViewDelegate {
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let cell = tableView.dequeueReusableCell(for: indexPath, cellType: SideTableViewCell.self)
             switch item {
-            case let .info(id, title):
+            case let .category(id, title):
                 cell.id = id
                 cell.lbl_category.text = title
                 cell.vw_sideBox.isHidden = false
@@ -82,13 +82,14 @@ class SideViewController: UIViewController, UITableViewDelegate {
             }
             .subscribe(onNext: { item in
                 switch item {
+                case .category(id: let id, title: _):
+                    print("id", id)
+                    NotificationCenter.default.post(name: Notification.Name.category, object: Int(id))
                 case .myPage(id: _, navTitle: let title),
                      .settings(id: _, navTitle: let title):
                     SideMenuManager.menuLeftNavigationController?.dismiss(animated: true, completion: {
                         GlobalUIManager.loadCustomVC(withTitle: title)
                     })
-                default:
-                    print(item)
                 }
             })
             .disposed(by: disposeBag)

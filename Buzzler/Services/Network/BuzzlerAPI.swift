@@ -14,7 +14,7 @@ let BuzzlerProvider = RxMoyaProvider<Buzzler>(endpointClosure: endpointClosure, 
 
 public enum Buzzler {
     case writePost(title: String, content: String, imageUrls: [String])
-    case getPost
+    case getPost(category: Int)
     case requestCode(receiver: String)
     case verifyCode(receiver: String, verificationCode: String)
     case signUp(username: String, email: String, password: String, categoryAuth: [String])
@@ -30,8 +30,8 @@ extension Buzzler: TargetType {
         switch self {
         case .writePost(_, _, _):   // POST
             return "/v1/posts"
-        case .getPost:  // GET
-            return "/v1/posts"
+        case .getPost(let category):
+            return "/v1/categories/\(category)/posts"
         case .requestCode:  // POST
             return "/v1/accounts/email-verification"
         case .verifyCode:   // PUT
@@ -47,7 +47,7 @@ extension Buzzler: TargetType {
         switch self {
         case .writePost(_, _, _):
             return .post
-        case .getPost:
+        case .getPost(_):
             return .get
         case .requestCode(_):
             return .post
@@ -64,7 +64,7 @@ extension Buzzler: TargetType {
         switch self {
         case .writePost(let title, let content, let imageUrls):
             return ["title": title, "content": content, "imageUrls": imageUrls]
-        case .getPost:
+        case .getPost(category: _):
             return nil
         case .requestCode(let receiver):
             return ["receiver": receiver]
