@@ -51,4 +51,21 @@ class GlobalUIManager {
                             UIView.setAnimationsEnabled(oldState)
         })
     }
+    
+    class func loadCustomVC(withTitle: String) {
+        let kWindow: UIWindow = UIApplication.shared.keyWindow!
+        let rootVC = UIStoryboard.vcInMainSB(withTitle)
+        
+        rootVC.modalTransitionStyle = .coverVertical
+        UIView.transition(with: kWindow,
+                          duration: 0.1,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            let oldState = UIView.areAnimationsEnabled
+                            UIView.setAnimationsEnabled(false)
+                            kWindow.rootViewController = rootVC
+                            kWindow.makeKeyAndVisible()
+                            UIView.setAnimationsEnabled(oldState)
+        })
+    }
 }

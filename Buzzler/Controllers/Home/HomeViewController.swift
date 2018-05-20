@@ -16,21 +16,21 @@ import RxDataSources
 import SwiftyAttributes
 
 final class HomeViewController: UIViewController {
-
+    
     let tableView = UITableView().then {
         $0.register(cellType: HomeTableViewCell.self)
         $0.register(cellType: HomeImageTableViewCell.self)
     }
-
+    
     let refreshControl = PullToRefresh()
     let homeVM = HomeViewModel()
     let dataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
     
     let header = StretchHeader()
     let router = HomeRouter()
-
+    
     // MARK: - Life Cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,9 +42,9 @@ final class HomeViewController: UIViewController {
 }
 
 extension HomeViewController {
-
+    
     // MARK: - Private Method
-
+    
     fileprivate func configUI() {
         
         // set tableView UI
@@ -53,8 +53,8 @@ extension HomeViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
-     //   tableView.refreshControl = UIRefreshControl()
-     //   tableView.refreshControl?.backgroundColor = Config.UI.themeColor
+        // tableView.refreshControl = UIRefreshControl()
+        // tableView.refreshControl?.backgroundColor = Config.UI.themeColor
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -68,14 +68,14 @@ extension HomeViewController {
         let inputStuff  = HomeViewModel.HomeInput()
         // Output
         let outputStuff = homeVM.transform(input: inputStuff)
-
+        
         // DataBinding
         tableView.refreshControl?.rx.controlEvent(.allEvents)
             .flatMap({ inputStuff.category.asObservable() })
             .bind(to: outputStuff.refreshCommand)
             .addDisposableTo(rx.disposeBag)
         
-
+        
         NotificationCenter.default.rx.notification(Notification.Name.category)
             .map({ (notification) -> Int in
                 let indexPath = (notification.object as? IndexPath) ?? IndexPath(item: 0, section: 0)
@@ -83,7 +83,7 @@ extension HomeViewController {
             })
             .bind(to: inputStuff.category)
             .addDisposableTo(rx.disposeBag)
-
+        
         NotificationCenter.default.rx.notification(Notification.Name.category)
             .map({ (notification) -> Int in
                 let indexPath = (notification.object as? IndexPath) ?? IndexPath(item: 0, section: 0)
@@ -99,7 +99,7 @@ extension HomeViewController {
             }, onError: nil, onCompleted: nil, onSubscribe: nil, onDispose: nil)
             .bind(to: outputStuff.refreshCommand)
             .addDisposableTo(rx.disposeBag)
-
+        
         // Configure
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let defaultCell: UITableViewCell
@@ -128,14 +128,14 @@ extension HomeViewController {
             }
             return defaultCell
         }
-
+        
         outputStuff.section
             .drive(tableView.rx.items(dataSource: dataSource))
             .addDisposableTo(rx.disposeBag)
-
+        
         tableView.rx.setDelegate(self)
             .addDisposableTo(rx.disposeBag)
-
+        
         outputStuff.refreshTrigger
             .observeOn(MainScheduler.instance)
             .subscribe { [unowned self] (event) in
@@ -153,21 +153,21 @@ extension HomeViewController {
             }
             .addDisposableTo(rx.disposeBag)
     }
-
+    
     fileprivate func configNotification() {
         NotificationCenter.default.post(name: Notification.Name.category, object: IndexPath(row: 0, section: 0))
     }
 }
 
 extension HomeViewController: UITableViewDelegate {
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return HomeTableViewCell.height
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+        
         let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
         navigationController?.pushViewController(postVC, animated: true)
         
@@ -267,4 +267,19 @@ extension HomeViewController {
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.0
     }
     
+}
+
+extension HomeViewController {
+    
+    /*
+    fileprivate func registerNoti() {
+        NotificationCenter.default.rx.notification(Notification.Name.myPage)
+            .subscribe(onNext: { notification in
+                let id = (notification.object as? String) ?? ""
+                print(id)
+                self.router.perform(.myPage, from: self)
+            })
+            .addDisposableTo(disposeBag)
+    }
+     */
 }

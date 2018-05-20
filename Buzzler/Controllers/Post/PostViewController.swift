@@ -105,7 +105,7 @@ extension PostViewController {
             .drive(tbl_post.rx.items(dataSource: originDataSource))
             .addDisposableTo(rx.disposeBag)
         
-        tbl_post.rx.setDelegate(self)
+       tbl_post.rx.setDelegate(self)
             .addDisposableTo(rx.disposeBag)
     }
 }
