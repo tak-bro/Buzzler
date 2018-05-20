@@ -1176,7 +1176,7 @@ Cg
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXG-eY-md5">
                                 <rect key="frame" x="15" y="67.5" width="345" height="579.5"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="제목..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-AQ-X3A">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-AQ-X3A">
                                         <rect key="frame" x="10" y="8" width="325" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bsd-90-DG1"/>
@@ -1206,7 +1206,7 @@ Cg
                                         <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="글쓰기..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZGw-rE-b34">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZGw-rE-b34">
                                         <rect key="frame" x="5" y="40" width="335" height="487.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1353,7 +1353,7 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4S1-2P-044">
-                                <rect key="frame" x="20" y="627" width="79" height="20"/>
+                                <rect key="frame" x="20" y="617" width="79" height="20"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
                                 <state key="normal" title="Logout  " image="btn_logout">
                                     <color key="titleColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1416,7 +1416,7 @@ Cg
                         <constraints>
                             <constraint firstItem="vOV-tv-ZJ8" firstAttribute="leading" secondItem="yNC-UI-8GG" secondAttribute="leading" id="034-sJ-tuE"/>
                             <constraint firstAttribute="trailing" secondItem="vOV-tv-ZJ8" secondAttribute="trailing" id="Dq0-KC-d2S"/>
-                            <constraint firstItem="yDa-ut-Knm" firstAttribute="top" secondItem="4S1-2P-044" secondAttribute="bottom" constant="20" id="VLs-I6-Lg7"/>
+                            <constraint firstItem="yDa-ut-Knm" firstAttribute="top" secondItem="4S1-2P-044" secondAttribute="bottom" constant="30" id="VLs-I6-Lg7"/>
                             <constraint firstItem="4S1-2P-044" firstAttribute="leading" secondItem="yNC-UI-8GG" secondAttribute="leading" constant="20" id="XUU-xa-5gZ"/>
                             <constraint firstItem="vOV-tv-ZJ8" firstAttribute="leading" secondItem="yNC-UI-8GG" secondAttribute="leading" id="fGU-v0-swv"/>
                             <constraint firstItem="vOV-tv-ZJ8" firstAttribute="top" secondItem="jDH-Pb-7Ad" secondAttribute="bottom" constant="5" id="hUP-yM-axO"/>

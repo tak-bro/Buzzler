@@ -41,6 +41,10 @@ class SignUpViewController: UIViewController {
             .bind(to:self.viewModel.inputs.nextTaps)
             .disposed(by: disposeBag)
         
+        txt_nickName.rx.text.orEmpty
+            .bind(to:self.viewModel.inputs.nickName)
+            .disposed(by: disposeBag)
+
         txt_email.rx.text.orEmpty
             .bind(to:self.viewModel.inputs.email)
             .disposed(by: disposeBag)
@@ -61,6 +65,10 @@ class SignUpViewController: UIViewController {
         self.viewModel.outputs.setErrorMessage.drive(onNext: { message in
             self.lbl_error.text = message
         }).disposed(by: disposeBag)
+        
+        self.viewModel.outputs.validatedNickName
+            .drive()
+            .disposed(by: disposeBag)
         
         self.viewModel.outputs.validatedEmail
             .drive()

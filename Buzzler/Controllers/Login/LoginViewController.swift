@@ -70,12 +70,15 @@ class LoginViewController: UIViewController {
         
         self.viewModel.outputs.signedIn
             .drive(onNext: { signedIn in
+                GlobalUIManager.loadHomeVC()
+                /* TODO: check error
                 if signedIn == true {
                     print(signedIn)
-                    //GlobalUIManager.loadHomeVC()
+                    GlobalUIManager.loadHomeVC()
                 } else {
                     SVProgressHUD.showError(withStatus: "Login Error")
                 }
+                */
             }).disposed(by: disposeBag)
         
         self.viewModel.isLoading

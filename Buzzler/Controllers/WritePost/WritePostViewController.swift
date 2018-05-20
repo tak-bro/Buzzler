@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import Moya
+import RxSwift
+import RxCocoa
+import RxKeyboard
+import SVProgressHUD
 
 class WritePostViewController: UIViewController {
 
@@ -18,8 +23,10 @@ class WritePostViewController: UIViewController {
     @IBOutlet weak var btn_dismiss: UIButton!
     @IBOutlet weak var txt_title: UITextField!
     @IBOutlet weak var txt_contents: UITextView!
+    var placeholderLabel : UILabel!
     
-   let viewModel = WritePostViewModel(provider: BuzzlerProvider)
+    let viewModel = WritePostViewModel(provider: BuzzlerProvider)
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Init
     
@@ -30,10 +37,6 @@ class WritePostViewController: UIViewController {
         setToolbar()
     }
     
-    override func dismissKeyboard() {
-        view.endEditing(true)
-    }
-
     func addImage() {
         print("test")
     }
@@ -49,30 +52,66 @@ class WritePostViewController: UIViewController {
 extension WritePostViewController {
     
     func bindToRx() {
-        txt_title.rx.text.orEmpty.bind(to: viewModel.title).addDisposableTo(disposeBag)
-        txt_contents.rx.text.orEmpty.bind(to: viewModel.content).addDisposableTo(disposeBag)
-        btn_post.rx.tap.bind(to: viewModel.postTaps).addDisposableTo(disposeBag)
         
-        viewModel.postExecuting.drive(onNext: { (executing) in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = executing
-        }).addDisposableTo(disposeBag)
+        btn_post.rx.tap
+            .bind(to:self.viewModel.inputs.postTaps)
+            .disposed(by: disposeBag)
         
-        viewModel.postFinished.drive(onNext: { [weak self] postResult in
-            switch postResult {
-            case .failed(let message):
-                let alert = UIAlertController(title: "Oops!", message:message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in })
-                self?.present(alert, animated: true, completion: nil)
-            case .ok:
-                self?.dismiss(animated: true, completion: nil)
-            }
-        }).addDisposableTo(disposeBag)
+        txt_title.rx.text.orEmpty
+            .bind(to:self.viewModel.inputs.title)
+            .disposed(by: disposeBag)
+        
+        txt_contents.rx.text.orEmpty
+            .bind(to:self.viewModel.inputs.contents)
+            .disposed(by: disposeBag)
+        
+        self.viewModel.outputs.enablePost.drive(onNext: { enable in
+            self.btn_post.isEnabled = enable
+        }).disposed(by: disposeBag)
+        
+        self.viewModel.outputs.validatedTitle
+            .drive()
+            .disposed(by: disposeBag)
+        
+        self.viewModel.outputs.validatedContents
+            .drive()
+            .disposed(by: disposeBag)
+        
+        self.viewModel.outputs.enablePost
+            .drive()
+            .disposed(by: disposeBag)
+        
+        self.viewModel.outputs.posting
+            .drive(onNext: { [weak self] posting in
+                if posting == true {
+                    print(posting)
+                    self?.dismiss(animated: true, completion: nil)
+                } else {
+                    SVProgressHUD.showError(withStatus: "Posting Error")
+                }
+            }).disposed(by: disposeBag)
+        
+        self.viewModel.isLoading
+            .drive(onNext: { isLoading in
+                switch isLoading {
+                case true:
+                    SVProgressHUD.show()
+                    break
+                case false:
+                    SVProgressHUD.dismiss()
+                    break
+                }
+            }).disposed(by: disposeBag)
+        
     }
     
     func setUI() {
         txt_title.addBorderBottom(height: 1.0, color: Config.UI.textFieldColor)
         vw_container.dropShadow(color: UIColor.black, offSet: CGSize(width: -1, height: 1))
         vw_container.setCornerRadius(radius: 10)
+        
+        addPlaceHolderToTextView()
+        
     }
     
     func setToolbar() {
@@ -89,6 +128,29 @@ extension WritePostViewController {
         
         txt_title.inputAccessoryView = toolbar
         txt_contents.inputAccessoryView = toolbar
+    }
+    
+
+}
+
+extension WritePostViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !txt_contents.text.isEmpty
+    }
+    
+    func addPlaceHolderToTextView() {
+        txt_contents.delegate = self
+        
+        // set placeholder for textView
+        placeholderLabel = UILabel()
+        placeholderLabel.text = "글쓰기..."
+        placeholderLabel.textColor = Config.UI.placeholderColor
+        placeholderLabel.font = UIFont(name: "NotoSans-Regular", size: 14)
+        placeholderLabel.sizeToFit()
+        txt_contents.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: (txt_contents.font?.pointSize)! / 2)
+        placeholderLabel.isHidden = !txt_contents.text.isEmpty
     }
     
 }

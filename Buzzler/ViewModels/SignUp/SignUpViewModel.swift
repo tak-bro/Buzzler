@@ -25,6 +25,7 @@ public protocol SignUpViewModelInputs {
 }
 
 public protocol SignUpViewModelOutputs {
+    var validatedNickName: Driver<ValidationResult> { get }
     var validatedEmail: Driver<ValidationResult> { get }
     var validatedPassword: Driver<ValidationResult> { get }
     var validatedConfirmPassword: Driver<ValidationResult> { get }
@@ -41,6 +42,7 @@ public protocol SignUpViewModelType {
 
 class SignUpViewModel: SignUpViewModelInputs, SignUpViewModelOutputs, SignUpViewModelType {
     
+    public var validatedNickName: Driver<ValidationResult>
     public var validatedEmail: Driver<ValidationResult>
     public var validatedPassword: Driver<ValidationResult>
     public var validatedConfirmPassword: Driver<ValidationResult>
@@ -85,6 +87,11 @@ class SignUpViewModel: SignUpViewModelInputs, SignUpViewModelOutputs, SignUpView
                 return validationService.validateTextString(password!)
         }
         
+        self.validatedNickName = self.nickName.asDriver(onErrorJustReturn: nil)
+            .map { nickName in
+                return validationService.validateTextString(nickName!)
+        }
+        
         let pairPassword = Driver.combineLatest(self.password.asDriver(onErrorJustReturn: nil),
                                                 self.confirmPassword.asDriver(onErrorJustReturn: nil)) { ($0, $1) }
         
@@ -94,14 +101,15 @@ class SignUpViewModel: SignUpViewModelInputs, SignUpViewModelOutputs, SignUpView
         }
         
         self.enableNextButton = Driver.combineLatest(
+            validatedNickName,
             validatedEmail,
             validatedPassword,
-            validatedConfirmPassword) { email, password, confirmed in
-                return email.isValid && password.isValid && confirmed.isValid
+            validatedConfirmPassword) { nickName, email, password, confirmed in
+                return nickName.isValid && email.isValid && password.isValid && confirmed.isValid
         }
         
-        self.setErrorMessage = Driver.combineLatest(validatedEmail, validatedConfirmPassword) { email, confirmPassword in
-            if email.isValid && confirmPassword.isValid {
+        self.setErrorMessage = Driver.combineLatest(validatedNickName, validatedEmail, validatedConfirmPassword) { nickName, email, confirmPassword in
+            if email.isValid && confirmPassword.isValid && nickName.isValid {
                 return ""
             }
             // return error message
@@ -110,7 +118,7 @@ class SignUpViewModel: SignUpViewModelInputs, SignUpViewModelOutputs, SignUpView
             } else if !confirmPassword.isValid {
                 return "The passwords entered are not the same"
             } else {
-                return "Make sure you enter your passport information correctly"
+                return "Make sure you enter your information correctly"
             }
         }
         
