@@ -22,13 +22,14 @@ typealias SideSectionModel = SectionModel<String, SideModel>
 
 
 class SideViewController: UIViewController, UITableViewDelegate {
-
+    
     @IBOutlet weak var tbl_category: UITableView!
     @IBOutlet weak var vw_header: UIView!
     
     private let disposeBag = DisposeBag()
     let dataSource = RxTableViewSectionedReloadDataSource<SideSectionModel>()
-
+    let router = SideMenuRouter()
+    
     // Temp Category List
     let categorySections = Observable.just([
         SideSectionModel(model: "", items: [
@@ -39,7 +40,7 @@ class SideViewController: UIViewController, UITableViewDelegate {
             SideModel.settings(id: "Settings", navTitle: "SettingsNavigationController"),
             ]),
         ])
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -85,15 +86,19 @@ class SideViewController: UIViewController, UITableViewDelegate {
                 case .category(id: let id, title: _):
                     print("id", id)
                     NotificationCenter.default.post(name: Notification.Name.category, object: Int(id))
-                case .myPage(id: _, navTitle: let title),
-                     .settings(id: _, navTitle: let title):
-                    SideMenuManager.menuLeftNavigationController?.dismiss(animated: true, completion: {
-                        GlobalUIManager.loadCustomVC(withTitle: title)
-                    })
+                case .myPage(id: _, navTitle: let title):
+                    self.router.perform(.myPage, from: self)
+                case .settings(id: _, navTitle: let title):
+                    self.router.perform(.settings, from: self)
+                    /*
+                     SideMenuManager.menuLeftNavigationController?.dismiss(animated: true, completion: {
+                     GlobalUIManager.loadCustomVC(withTitle: title)
+                     })
+                     */
                 }
             })
             .disposed(by: disposeBag)
-
+        
         
         categorySections
             .bind(to: self.tbl_category.rx.items(dataSource: dataSource))
@@ -113,7 +118,7 @@ class SideViewController: UIViewController, UITableViewDelegate {
 
 // MARK: - Actions
 extension SideViewController {
-
+    
     @IBAction func pressDismiss(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -124,3 +129,38 @@ extension SideViewController {
         })
     }
 }
+
+
+enum SideMenuSegue {
+    case myPage
+    case settings
+}
+
+class SideMenuRouter {
+    
+    func perform(_ segue: SideMenuSegue, from source: UIViewController) {
+        switch segue {
+        case .myPage:
+            let myPageVC = SideMenuRouter.makeMyPageViewController()
+            source.navigationController?.pushViewController(myPageVC, animated: true)
+        case .settings:
+            let settingsVC = SideMenuRouter.makeSettingsViewController()
+            source.navigationController?.pushViewController(settingsVC, animated: true)
+        }
+    }
+}
+
+// MARK: Helpers
+private extension SideMenuRouter {
+    
+    static func makeMyPageViewController() -> MyPageViewController {
+        let myPageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyPageViewController") as! MyPageViewController
+        return myPageVC
+    }
+    
+    static func makeSettingsViewController() -> SettingsViewController {
+        let settingsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        return settingsVC
+    }
+}
+

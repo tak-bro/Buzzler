@@ -1348,7 +1348,7 @@ Cg
                         <viewControllerLayoutGuide type="top" id="3zL-9A-ZvJ"/>
                         <viewControllerLayoutGuide type="bottom" id="Ij7-az-644"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Dep-0z-nOa">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="MyPageViewController" id="Dep-0z-nOa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1376,7 +1376,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PLC-ve-RJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2927" y="1665"/>
+            <point key="canvasLocation" x="196" y="1667"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="KqQ-yV-Vpl">
@@ -1386,7 +1386,7 @@ Cg
                         <viewControllerLayoutGuide type="top" id="rDo-xC-4A7"/>
                         <viewControllerLayoutGuide type="bottom" id="T7U-0c-NAc"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3yI-HY-wNK">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="SettingsViewController" id="3yI-HY-wNK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1609,7 +1609,7 @@ Cg
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fq5-f4-st6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4087" y="1665"/>
+            <point key="canvasLocation" x="-964" y="1667"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2la-JD-qt4">
@@ -1646,6 +1646,6 @@ Cg
         <image name="img_logo_new" width="102" height="105"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mr9-nX-OXk"/>
+        <segue reference="vVC-7V-vsg"/>
     </inferredMetricsTieBreakers>
 </document>

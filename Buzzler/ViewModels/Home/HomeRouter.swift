@@ -29,6 +29,7 @@ private extension HomeRouter {
     
     static func makePostViewController() -> PostViewController {
         let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
+
         return postVC
     }
 }

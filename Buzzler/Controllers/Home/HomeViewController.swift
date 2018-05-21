@@ -28,7 +28,7 @@ final class HomeViewController: UIViewController {
     
     let header = StretchHeader()
     let router = HomeRouter()
-    
+
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -36,7 +36,6 @@ final class HomeViewController: UIViewController {
         setupHeaderView()
         configUI()
         configBinding()
-        configNotification()
     }
 }
 
@@ -58,11 +57,13 @@ extension HomeViewController {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
+        
         // set SideMenu UI
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
     }
     
     fileprivate func configBinding() {
+        
         // Input
         let inputStuff  = HomeViewModel.HomeInput()
         // Output
@@ -76,22 +77,21 @@ extension HomeViewController {
         
         NotificationCenter.default.rx.notification(Notification.Name.category)
             .map({ (notification) -> Int in
-                let selectCategory = notification.object as? Int ?? 1
-                print("seept", selectCategory)
-                return selectCategory
+                let category = notification.object as? Int ?? 1
+                return category
             })
             .bind(to: inputStuff.category)
             .addDisposableTo(rx.disposeBag)
         
         NotificationCenter.default.rx.notification(Notification.Name.category)
             .map({ (notification) -> Int in
-                let selectCategory = notification.object as? Int ?? 1
-                return selectCategory
+                let category = notification.object as? Int ?? 1
+                return category
             })
             .observeOn(MainScheduler.asyncInstance)
             .do(onNext: { (_) in
+                GlobalUIManager.loadHomeVC()
                 SideMenuManager.menuLeftNavigationController?.dismiss(animated: true, completion: {
-                    GlobalUIManager.loadHomeVC()
                     DispatchQueue.main.async(execute: {
                         self.tableView.refreshControl?.beginRefreshing()
                     })
@@ -152,10 +152,6 @@ extension HomeViewController {
                 }
             }
             .addDisposableTo(rx.disposeBag)
-    }
-    
-    fileprivate func configNotification() {
-        NotificationCenter.default.post(name: Notification.Name.category, object: IndexPath(row: 0, section: 0))
     }
 }
 
@@ -271,6 +267,9 @@ extension HomeViewController {
 
 extension HomeViewController {
     
+    fileprivate func configNotification() {
+        NotificationCenter.default.post(name: Notification.Name.category, object: 1)
+    }
     /*
     fileprivate func registerNoti() {
         NotificationCenter.default.rx.notification(Notification.Name.myPage)

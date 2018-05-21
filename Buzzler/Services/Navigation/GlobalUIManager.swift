@@ -21,7 +21,7 @@ class GlobalUIManager {
     class func loadHomeVC() {
         let kWindow: UIWindow = UIApplication.shared.keyWindow!
         let rootVC = UIStoryboard.vcInMainSB("HomeNavigationController")
-        rootVC.modalTransitionStyle = .crossDissolve
+        rootVC.modalTransitionStyle = .coverVertical
         UIView.transition(with: kWindow,
                           duration: 0.3,
                           options: .transitionCrossDissolve,
