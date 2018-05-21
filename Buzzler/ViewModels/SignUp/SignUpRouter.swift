@@ -29,6 +29,7 @@ struct UserInfo {
 
 enum SignUpSegue {
     case verifyCode
+    case selectUniv
     case selectMajor
     case done
 }
@@ -48,6 +49,9 @@ class SignUpRouter {
         case .done:
             let signUpDoneVC = SignUpRouter.makeSignUpDoneViewController()
             source.navigationController?.pushViewController(signUpDoneVC, animated: true)
+        case .selectUniv:
+            let selectUnivVC = SignUpRouter.makeSelectUnivViewController(withUserInfo: userInfo)
+            source.navigationController?.pushViewController(selectUnivVC, animated: true)
         }
     }
 }
@@ -67,6 +71,13 @@ private extension SignUpRouter {
             .instantiateViewController(withIdentifier: "SelectMajorViewController") as! SelectMajorViewController
         selectMajorVC.inputUserInfo = userInfo
         return selectMajorVC
+    }
+
+    static func makeSelectUnivViewController(withUserInfo userInfo: UserInfo) -> SelectUnivViewController {
+        let selectUnivVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "SelectUnivViewController") as! SelectUnivViewController
+        selectUnivVC.inputUserInfo = userInfo
+        return selectUnivVC
     }
     
     static func makeSignUpDoneViewController() -> SignUpDoneViewController {

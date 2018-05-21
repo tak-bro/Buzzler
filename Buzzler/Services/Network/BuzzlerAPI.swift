@@ -19,6 +19,7 @@ public enum Buzzler {
     case verifyCode(receiver: String, verificationCode: String)
     case signUp(username: String, email: String, password: String, categoryAuth: [String])
     case signIn(email: String, password: String)
+    case getMajor(email: String)
 }
 
 extension Buzzler: TargetType {
@@ -40,6 +41,8 @@ extension Buzzler: TargetType {
             return "/v1/accounts/signup"
         case .signIn:  // POST
             return "/v1/accounts/signin"
+        case .getMajor(let email):  // GET
+            return "/v1/categories?depth=1&email=\(email)"
         }
     }
     
@@ -57,15 +60,18 @@ extension Buzzler: TargetType {
             return .post
         case .signIn(_, _):
             return .post
+        case .getMajor(_):
+            return .get
         }
     }
     
     public var parameters: [String: Any]? {
         switch self {
+        case .getPost(category: _),
+             .getMajor(email: _):
+            return nil
         case .writePost(let title, let content, let imageUrls):
             return ["title": title, "content": content, "imageUrls": imageUrls]
-        case .getPost(category: _):
-            return nil
         case .requestCode(let receiver):
             return ["receiver": receiver]
         case .verifyCode(let receiver, let verificationCode):

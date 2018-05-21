@@ -475,7 +475,7 @@ Cg
                         <outlet property="btn_resend" destination="0CW-vw-SPm" id="c25-S2-o3K"/>
                         <outlet property="lbl_timer" destination="wiR-yP-Rpa" id="BZX-Bv-Fuf"/>
                         <outlet property="txt_code" destination="SzL-Wa-DGo" id="IQB-St-rM7"/>
-                        <segue destination="Kxz-vl-LZ3" kind="show" id="KA7-Vp-cXC"/>
+                        <segue destination="xNg-di-dw0" kind="show" id="bhU-mf-Bdf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zwa-Yw-sCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -547,7 +547,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tve-Kk-1hr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5726" y="-2015"/>
+            <point key="canvasLocation" x="6735" y="-2015"/>
         </scene>
         <!--Select Major View Controller-->
         <scene sceneID="ezA-rq-jmP">
@@ -561,8 +561,8 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, Judy!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jBh-ZS-mc9">
-                                <rect key="frame" x="139.5" y="57.5" width="96.5" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Major" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jBh-ZS-mc9">
+                                <rect key="frame" x="137" y="57.5" width="102.5" height="18"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="18"/>
                                 <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -602,7 +602,7 @@ Cg
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select your major" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="8OT-gQ-7kz">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Deprecated!!!!!!!!" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="8OT-gQ-7kz">
                                 <rect key="frame" x="47.5" y="247" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="sd5-hX-ZWn"/>
@@ -664,12 +664,98 @@ Cg
                         <outlet property="btn_wrong" destination="hm5-SW-ES4" id="qhc-cR-tMx"/>
                         <outlet property="txt_selectMajor" destination="8OT-gQ-7kz" id="VUu-Hw-gt7"/>
                         <outlet property="txt_univ" destination="vC1-6Y-Ipj" id="jwd-p3-CtJ"/>
-                        <segue destination="rOx-L5-hp1" kind="show" id="YSR-wU-IbP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v5a-hP-P3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4721" y="-2015"/>
+            <point key="canvasLocation" x="5606" y="-2014"/>
+        </scene>
+        <!--Select Univ View Controller-->
+        <scene sceneID="vnb-kq-86n">
+            <objects>
+                <viewController storyboardIdentifier="SelectUnivViewController" id="xNg-di-dw0" customClass="SelectUnivViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bVX-Ix-IIo"/>
+                        <viewControllerLayoutGuide type="bottom" id="6RX-tQ-iDV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZgT-1R-rNf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Univ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3xM-w5-ur4">
+                                <rect key="frame" x="142.5" y="57.5" width="91" height="18"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="18"/>
+                                <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5e-6l-pBZ">
+                                <rect key="frame" x="103" y="118.5" width="169.5" height="30"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Check your Collage and major.
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Just enter this and you're done.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Univ" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="9MX-CN-nTk">
+                                <rect key="frame" x="47.5" y="197" width="280" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bEe-0W-W4r"/>
+                                    <constraint firstAttribute="width" constant="280" id="dln-FB-K81"/>
+                                </constraints>
+                                <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fD2-Ha-SZW">
+                                <rect key="frame" x="67.5" y="343" width="240" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Nj3-6Y-zbQ"/>
+                                    <constraint firstAttribute="height" constant="48" id="OEF-cl-3y9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirLT-Black" family="Avenir LT 65 Medium" pointSize="16"/>
+                                <state key="normal" title="NEXT">
+                                    <color key="titleColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="3xM-w5-ur4" firstAttribute="centerY" secondItem="ZgT-1R-rNf" secondAttribute="centerY" multiplier="0.2" id="1Wn-IJ-HW5"/>
+                            <constraint firstItem="fD2-Ha-SZW" firstAttribute="centerX" secondItem="ZgT-1R-rNf" secondAttribute="centerX" id="6kD-L3-zIC"/>
+                            <constraint firstItem="fD2-Ha-SZW" firstAttribute="centerY" secondItem="ZgT-1R-rNf" secondAttribute="centerY" multiplier="1.1" id="NkA-0E-266"/>
+                            <constraint firstItem="3xM-w5-ur4" firstAttribute="centerX" secondItem="ZgT-1R-rNf" secondAttribute="centerX" id="Nzg-UK-Wo1"/>
+                            <constraint firstItem="V5e-6l-pBZ" firstAttribute="centerY" secondItem="ZgT-1R-rNf" secondAttribute="centerY" multiplier="0.4" id="RJe-uY-oTG"/>
+                            <constraint firstItem="V5e-6l-pBZ" firstAttribute="centerX" secondItem="ZgT-1R-rNf" secondAttribute="centerX" id="iXT-72-Dy1"/>
+                            <constraint firstItem="9MX-CN-nTk" firstAttribute="centerY" secondItem="ZgT-1R-rNf" secondAttribute="centerY" multiplier="0.65" id="krh-0a-3Qw"/>
+                            <constraint firstItem="9MX-CN-nTk" firstAttribute="centerX" secondItem="ZgT-1R-rNf" secondAttribute="centerX" id="m0H-0n-2JZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btn_next" destination="fD2-Ha-SZW" id="oiE-Wh-ero"/>
+                        <outlet property="txt_univ" destination="9MX-CN-nTk" id="rn7-TJ-CLb"/>
+                        <segue destination="Kxz-vl-LZ3" kind="show" id="0FP-vQ-BiL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Z4-Pc-oIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4721" y="-2014"/>
         </scene>
         <!-- -->
         <scene sceneID="7hQ-vx-ZdT">

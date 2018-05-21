@@ -12,6 +12,8 @@
 		3B2A42B220AEADA300E37D72 /* ResetPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42B120AEADA300E37D72 /* ResetPasswordRouter.swift */; };
 		3B2A42B820B140C000E37D72 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42B720B140C000E37D72 /* MyPageViewController.swift */; };
 		3B2A42BB20B14D0100E37D72 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */; };
+		3B48A9BD20B2A30700E0BDA1 /* SelectUnivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */; };
+		3B48A9BF20B2A37100E0BDA1 /* SelectUnivViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */; };
 		3B52E6BF20AE93D0002B2BB6 /* FirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6BE20AE93D0002B2BB6 /* FirstStepViewController.swift */; };
 		3B52E6C120AE93E3002B2BB6 /* SecondStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C020AE93E3002B2BB6 /* SecondStepViewController.swift */; };
 		3B52E6C320AE942C002B2BB6 /* LastStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C220AE942C002B2BB6 /* LastStepViewController.swift */; };
@@ -85,6 +87,8 @@
 		3B2A42B120AEADA300E37D72 /* ResetPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordRouter.swift; sourceTree = "<group>"; };
 		3B2A42B720B140C000E37D72 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUnivViewController.swift; sourceTree = "<group>"; };
+		3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUnivViewModel.swift; sourceTree = "<group>"; };
 		3B52E6BE20AE93D0002B2BB6 /* FirstStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStepViewController.swift; sourceTree = "<group>"; };
 		3B52E6C020AE93E3002B2BB6 /* SecondStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStepViewController.swift; sourceTree = "<group>"; };
 		3B52E6C220AE942C002B2BB6 /* LastStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepViewController.swift; sourceTree = "<group>"; };
@@ -249,8 +253,9 @@
 				844BC371208AF05500666486 /* StartSignUpViewController.swift */,
 				844BC37A208AF8FE00666486 /* SignUpViewController.swift */,
 				844BC381208B083600666486 /* VerifyCodeViewController.swift */,
-				3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */,
 				844BC385208C462900666486 /* SignUpDoneViewController.swift */,
+				3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */,
+				3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				844BC387208C539A00666486 /* SignUpResult.swift */,
 				84002EB420907D3200B7C98A /* SignUpViewModel.swift */,
 				844BC383208B0C8300666486 /* VerifyCodeViewModel.swift */,
+				3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */,
 				3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */,
 			);
 			path = SignUp;
@@ -722,6 +728,7 @@
 				844BC388208C539A00666486 /* SignUpResult.swift in Sources */,
 				84002EB32090613A00B7C98A /* PostViewController.swift in Sources */,
 				AF3C0C221E0AA003002644DD /* BrowserWebViewController.swift in Sources */,
+				3B48A9BF20B2A37100E0BDA1 /* SelectUnivViewModel.swift in Sources */,
 				AFCB661E1DF844DB00916E1B /* HomeViewModel.swift in Sources */,
 				AFA7EC6E1DEEDEDC00138AEE /* AppDelegate.swift in Sources */,
 				AF9F0FD11DF1A6CD00FF8EC5 /* Brick.swift in Sources */,
@@ -758,6 +765,7 @@
 				3B52E6C120AE93E3002B2BB6 /* SecondStepViewController.swift in Sources */,
 				84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */,
 				AF69F0EB1E0E055D00735284 /* SideMenuNavigationController.swift in Sources */,
+				3B48A9BD20B2A30700E0BDA1 /* SelectUnivViewController.swift in Sources */,
 				84002EB720907D5100B7C98A /* HomeRouter.swift in Sources */,
 				84BA76F72086FC4B0097FFD2 /* Decodable.swift in Sources */,
 				AF69F0ED1E0E08DE00735284 /* BaseNavigationController.swift in Sources */,
