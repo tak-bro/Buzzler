@@ -1111,7 +1111,7 @@ Cg
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="HomeViewController" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1596,6 +1596,7 @@ Cg
         <!--Navigation Controller-->
         <scene sceneID="h0r-Sc-SSQ">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fq5-f4-st6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="MyPageNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="rD0-xj-jJY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rha-Tt-KD0">
@@ -1607,13 +1608,13 @@ Cg
                         <segue destination="sH1-LH-17u" kind="relationship" relationship="rootViewController" id="lTE-a3-9fh"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fq5-f4-st6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-964" y="1667"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2la-JD-qt4">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9cJ-aH-6z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="SettingsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="WaE-A6-alW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NKF-bp-xSQ">
@@ -1625,7 +1626,6 @@ Cg
                         <segue destination="1FU-UI-gDx" kind="relationship" relationship="rootViewController" id="mNc-Wf-Fkw"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9cJ-aH-6z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4231" y="95"/>
         </scene>
@@ -1646,6 +1646,6 @@ Cg
         <image name="img_logo_new" width="102" height="105"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vVC-7V-vsg"/>
+        <segue reference="gVB-h3-Ixr"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -28,6 +28,7 @@ final class HomeViewController: UIViewController {
     
     let header = StretchHeader()
     let router = HomeRouter()
+    var category: Int?
 
     // MARK: - Life Cycle
     
@@ -92,6 +93,7 @@ extension HomeViewController {
             .do(onNext: { (_) in
                 GlobalUIManager.loadHomeVC()
                 SideMenuManager.menuLeftNavigationController?.dismiss(animated: true, completion: {
+                    GlobalUIManager.loadHomeVC()
                     DispatchQueue.main.async(execute: {
                         self.tableView.refreshControl?.beginRefreshing()
                     })
