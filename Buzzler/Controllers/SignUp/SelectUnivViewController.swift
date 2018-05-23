@@ -15,6 +15,7 @@ import SVProgressHUD
 
 class SelectUnivViewController: UIViewController {
     
+    @IBOutlet weak var btn_univChecked: UIButton!
     @IBOutlet weak var btn_next: UIButton!
     @IBOutlet weak var txt_univ: UITextField!
     
@@ -63,6 +64,15 @@ class SelectUnivViewController: UIViewController {
                 self.router.perform(.selectMajor, from: self)
             }).disposed(by: disposeBag)
         
+        selectUnivViewModel.outputs.setUniv
+            .drive(onNext: { univName in
+                self.txt_univ.text = univName
+                if univName == "Error" {
+                    self.txt_univ.isEnabled = true
+                    self.btn_univChecked.isHidden = true
+                }
+            }).disposed(by: disposeBag)
+        
         selectUnivViewModel.isLoading
             .drive(onNext: { isLoading in
                 switch isLoading {
@@ -94,6 +104,7 @@ extension SelectUnivViewController {
         // textField
         setBorderAndCornerRadius(layer: txt_univ.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setLeftPadding(textField: txt_univ)
+        self.txt_univ.isEnabled = false
     }
     
 }

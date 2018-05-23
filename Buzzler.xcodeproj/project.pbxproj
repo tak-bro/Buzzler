@@ -14,6 +14,7 @@
 		3B2A42BB20B14D0100E37D72 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */; };
 		3B48A9BD20B2A30700E0BDA1 /* SelectUnivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */; };
 		3B48A9BF20B2A37100E0BDA1 /* SelectUnivViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */; };
+		3B48A9C420B2B27F00E0BDA1 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9C320B2B27F00E0BDA1 /* University.swift */; };
 		3B52E6BF20AE93D0002B2BB6 /* FirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6BE20AE93D0002B2BB6 /* FirstStepViewController.swift */; };
 		3B52E6C120AE93E3002B2BB6 /* SecondStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C020AE93E3002B2BB6 /* SecondStepViewController.swift */; };
 		3B52E6C320AE942C002B2BB6 /* LastStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C220AE942C002B2BB6 /* LastStepViewController.swift */; };
@@ -89,6 +90,7 @@
 		3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUnivViewController.swift; sourceTree = "<group>"; };
 		3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUnivViewModel.swift; sourceTree = "<group>"; };
+		3B48A9C320B2B27F00E0BDA1 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
 		3B52E6BE20AE93D0002B2BB6 /* FirstStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStepViewController.swift; sourceTree = "<group>"; };
 		3B52E6C020AE93E3002B2BB6 /* SecondStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStepViewController.swift; sourceTree = "<group>"; };
 		3B52E6C220AE942C002B2BB6 /* LastStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +196,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		3B48A9C220B2B26700E0BDA1 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				3B48A9C320B2B27F00E0BDA1 /* University.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		3B52E6BD20AE9311002B2BB6 /* ResetPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,9 +263,9 @@
 				844BC371208AF05500666486 /* StartSignUpViewController.swift */,
 				844BC37A208AF8FE00666486 /* SignUpViewController.swift */,
 				844BC381208B083600666486 /* VerifyCodeViewController.swift */,
-				844BC385208C462900666486 /* SignUpDoneViewController.swift */,
 				3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */,
 				3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */,
+				844BC385208C462900666486 /* SignUpDoneViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -374,6 +384,7 @@
 		AF9F0FCE1DF1A66300FF8EC5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3B48A9C220B2B26700E0BDA1 /* SignUp */,
 				AF9F0FCF1DF1A66E00FF8EC5 /* Home */,
 			);
 			path = Models;
@@ -773,6 +784,7 @@
 				84A1BFCC208C899B00D0ADC7 /* StretchHeader.swift in Sources */,
 				AF69F0F01E0E0C9400735284 /* SideViewController.swift in Sources */,
 				AF3C0C241E0AA851002644DD /* Config.swift in Sources */,
+				3B48A9C420B2B27F00E0BDA1 /* University.swift in Sources */,
 				AF9F0FD41DF1A91300FF8EC5 /* HomeViewController.swift in Sources */,
 				844BC37B208AF8FE00666486 /* SignUpViewController.swift in Sources */,
 				84C4DED02095931600FD6BFD /* SideTableViewCell.swift in Sources */,

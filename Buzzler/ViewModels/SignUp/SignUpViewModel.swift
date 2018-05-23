@@ -139,7 +139,7 @@ class SignUpViewModel: SignUpViewModelInputs, SignUpViewModelOutputs, SignUpView
                     .mapJSON()
                     .flatMap({ res -> Single<Bool> in
                         print("requestCode res", res)
-                        if let res = res as? String, res == "Success" {
+                        if let res = res as? String, res == "OK" {
                             return Single.just(true)
                         } else{
                             return Single.just(false)

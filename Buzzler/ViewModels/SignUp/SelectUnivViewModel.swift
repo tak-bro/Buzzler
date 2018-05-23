@@ -12,6 +12,7 @@ import RxCocoa
 import Moya
 import RxOptional
 import RxDataSources
+import SwiftyJSON
 
 private let disposeBag = DisposeBag()
 
@@ -25,6 +26,8 @@ public protocol SelectUnivViewModelOutputs {
     var enableNextButton: Driver<Bool> { get }
     var getMajorList: Driver<Any> { get }
     var isLoading: Driver<Bool> { get }
+    // set univ text
+    var setUniv: Driver<String?> { get }
 }
 
 public protocol SelectUnivViewModelType {
@@ -45,6 +48,8 @@ class SelectUnivViewModel: SelectUnivViewModelInputs, SelectUnivViewModelOutputs
     public var inputs: SelectUnivViewModelInputs { return self }
     public var outputs: SelectUnivViewModelOutputs { return self }
     
+    public var setUniv: Driver<String?>
+    
     // Private
     fileprivate let provider: RxMoyaProvider<Buzzler>
     var userInfo = UserInfo()
@@ -58,8 +63,21 @@ class SelectUnivViewModel: SelectUnivViewModelInputs, SelectUnivViewModelOutputs
         
         let validationService = BuzzlerDefaultValidationService.sharedValidationService
         
-        self.validatedUniv = self.univ
-            .asDriver(onErrorJustReturn: nil)
+        let isLoading = ActivityIndicator()
+        self.isLoading = isLoading.asDriver()
+        
+        self.setUniv = provider.request(Buzzler.getUniv(email: userInfo.recevier!))
+            .retry(3)
+            .observeOn(MainScheduler.instance)
+            .filterSuccessfulStatusCodes()
+            .mapJSON()
+            .map { JSON($0) }
+            .map { json in
+                return json[0]["name"].stringValue
+            }
+            .asDriver(onErrorJustReturn: "Error")
+        
+        self.validatedUniv = self.setUniv
             .map { univ in
                 return validationService.validateTextString(univ!)
         }
@@ -67,19 +85,16 @@ class SelectUnivViewModel: SelectUnivViewModelInputs, SelectUnivViewModelOutputs
         self.enableNextButton = self.validatedUniv.map { univ in
             return univ.isValid
         }
-
-        let isLoading = ActivityIndicator()
-        self.isLoading = isLoading.asDriver()
         
         self.getMajorList = self.nextTaps
             .asDriver(onErrorJustReturn: ())
-            .withLatestFrom(self.univ.asDriver(onErrorJustReturn: nil))
-            .flatMapLatest { univ in
-                return provider.request(Buzzler.getMajor(email: userInfo.recevier!))
+            .flatMapLatest { _ in
+                return provider.request(Buzzler.getMajor())
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
                     .mapJSON()
+                    .map { JSON($0) }
                     .flatMap({ res -> Single<Any> in
                         print("getMajorList res", res)
                         return Single.just(res)

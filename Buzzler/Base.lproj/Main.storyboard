@@ -734,11 +734,17 @@ Cg
                                     <color key="titleColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fED-rd-2fa">
+                                <rect key="frame" x="291.5" y="206" width="21" height="22"/>
+                                <state key="normal" image="btn_checkbox"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3xM-w5-ur4" firstAttribute="centerY" secondItem="ZgT-1R-rNf" secondAttribute="centerY" multiplier="0.2" id="1Wn-IJ-HW5"/>
+                            <constraint firstItem="fED-rd-2fa" firstAttribute="centerY" secondItem="9MX-CN-nTk" secondAttribute="centerY" id="31L-UG-bRO"/>
                             <constraint firstItem="fD2-Ha-SZW" firstAttribute="centerX" secondItem="ZgT-1R-rNf" secondAttribute="centerX" id="6kD-L3-zIC"/>
+                            <constraint firstItem="fED-rd-2fa" firstAttribute="trailing" secondItem="9MX-CN-nTk" secondAttribute="trailing" constant="-15" id="AG0-RD-vKE"/>
                             <constraint firstItem="fD2-Ha-SZW" firstAttribute="centerY" secondItem="ZgT-1R-rNf" secondAttribute="centerY" multiplier="1.1" id="NkA-0E-266"/>
                             <constraint firstItem="3xM-w5-ur4" firstAttribute="centerX" secondItem="ZgT-1R-rNf" secondAttribute="centerX" id="Nzg-UK-Wo1"/>
                             <constraint firstItem="V5e-6l-pBZ" firstAttribute="centerY" secondItem="ZgT-1R-rNf" secondAttribute="centerY" multiplier="0.4" id="RJe-uY-oTG"/>
@@ -749,6 +755,7 @@ Cg
                     </view>
                     <connections>
                         <outlet property="btn_next" destination="fD2-Ha-SZW" id="oiE-Wh-ero"/>
+                        <outlet property="btn_univChecked" destination="fED-rd-2fa" id="g52-gc-2AC"/>
                         <outlet property="txt_univ" destination="9MX-CN-nTk" id="rn7-TJ-CLb"/>
                         <segue destination="Kxz-vl-LZ3" kind="show" id="0FP-vQ-BiL"/>
                     </connections>
@@ -1717,6 +1724,7 @@ Cg
         </scene>
     </scenes>
     <resources>
+        <image name="btn_checkbox" width="21" height="21"/>
         <image name="btn_checkbox_empty" width="21" height="21"/>
         <image name="btn_dismiss" width="20" height="20"/>
         <image name="btn_logout" width="26" height="20"/>

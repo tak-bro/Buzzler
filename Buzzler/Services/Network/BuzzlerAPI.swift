@@ -19,7 +19,8 @@ public enum Buzzler {
     case verifyCode(receiver: String, verificationCode: String)
     case signUp(username: String, email: String, password: String, categoryAuth: [String])
     case signIn(email: String, password: String)
-    case getMajor(email: String)
+    case getMajor()
+    case getUniv(email: String)
 }
 
 extension Buzzler: TargetType {
@@ -41,34 +42,41 @@ extension Buzzler: TargetType {
             return "/v1/accounts/signup"
         case .signIn:  // POST
             return "/v1/accounts/signin"
-        case .getMajor(let email):  // GET
-            return "/v1/categories?depth=1&email=\(email)"
+        case .getUniv:  // GET
+            return "/v1/categories"
+        case .getMajor:  // GET
+            return "/v1/categories"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .writePost(_, _, _):
-            return .post
-        case .getPost(_):
+        // GET
+        case .getPost(_),
+             .getMajor(_),
+             .getUniv(_):
             return .get
-        case .requestCode(_):
+            
+        // POST
+        case .writePost(_, _, _),
+            .requestCode(_),
+            .signUp(_, _, _, _),
+            .signIn(_, _):
             return .post
+       
+        // PUT
         case .verifyCode(_, _):
             return .put
-        case .signUp(_, _, _, _):
-            return .post
-        case .signIn(_, _):
-            return .post
-        case .getMajor(_):
-            return .get
         }
     }
     
     public var parameters: [String: Any]? {
         switch self {
-        case .getPost(category: _),
-             .getMajor(email: _):
+        case .getUniv(email: let email):
+            return ["depth": 1, "email": email]
+        case .getMajor():
+            return ["depth": 2]
+        case .getPost(category: _):
             return nil
         case .writePost(let title, let content, let imageUrls):
             return ["title": title, "content": content, "imageUrls": imageUrls]
@@ -104,6 +112,10 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
                                                parameters: target.parameters
     )
     switch target {
+    case .getUniv,
+         .getMajor:
+        return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newParameterEncoding: URLEncoding.default)
     case .getPost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
     default:
