@@ -27,6 +27,24 @@ struct UserInfo {
     }
 }
 
+struct MajorInfo {
+    var categoryDepth: Int?
+    var id: Int?
+    var name: String?
+
+    init() {
+        self.categoryDepth = 2
+        self.id = 0
+        self.name = ""
+    }
+    
+    init(categoryDepth: Int, id: Int, name: String) {
+        self.categoryDepth = categoryDepth
+        self.id = id
+        self.name = name
+    }
+}
+
 enum SignUpSegue {
     case verifyCode
     case selectUniv
@@ -37,6 +55,7 @@ enum SignUpSegue {
 class SignUpRouter {
     
     var userInfo = UserInfo()
+    var majorList: [MajorInfo] = [MajorInfo]()
     
     func perform(_ segue: SignUpSegue, from source: UIViewController) {
         switch segue {
@@ -44,7 +63,7 @@ class SignUpRouter {
             let verifyCodeVC = SignUpRouter.makeVerifyCodeViewController(withUserInfo: userInfo)
             source.navigationController?.pushViewController(verifyCodeVC, animated: true)
         case .selectMajor:
-            let selectMajorVC = SignUpRouter.makeSelectMajorViewController(withUserInfo: userInfo)
+            let selectMajorVC = SignUpRouter.makeSelectMajorViewController(withUserInfo: userInfo, withMajorList: majorList)
             source.navigationController?.pushViewController(selectMajorVC, animated: true)
         case .done:
             let signUpDoneVC = SignUpRouter.makeSignUpDoneViewController()
@@ -66,10 +85,11 @@ private extension SignUpRouter {
         return verifyCodeVC
     }
     
-    static func makeSelectMajorViewController(withUserInfo userInfo: UserInfo) -> SelectMajorViewController {
+    static func makeSelectMajorViewController(withUserInfo userInfo: UserInfo, withMajorList majorList: [MajorInfo]) -> SelectMajorViewController {
         let selectMajorVC = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "SelectMajorViewController") as! SelectMajorViewController
         selectMajorVC.inputUserInfo = userInfo
+        selectMajorVC.majors = majorList
         return selectMajorVC
     }
 

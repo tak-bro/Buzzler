@@ -204,6 +204,40 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		3B48A9C520B527E500E0BDA1 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				3B48A9C620B527F900E0BDA1 /* SignUp */,
+				3B48A9C720B5281100E0BDA1 /* ResetPassword */,
+				3B48A9C820B5282200E0BDA1 /* Home */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		3B48A9C620B527F900E0BDA1 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				844BC37F208B065200666486 /* SignUpRouter.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		3B48A9C720B5281100E0BDA1 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				3B2A42B120AEADA300E37D72 /* ResetPasswordRouter.swift */,
+			);
+			path = ResetPassword;
+			sourceTree = "<group>";
+		};
+		3B48A9C820B5282200E0BDA1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				84002EB620907D5100B7C98A /* HomeRouter.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		3B52E6BD20AE9311002B2BB6 /* ResetPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,7 +251,6 @@
 		3B52E6C420AE9447002B2BB6 /* ResetPassword */ = {
 			isa = PBXGroup;
 			children = (
-				3B2A42B120AEADA300E37D72 /* ResetPasswordRouter.swift */,
 				3B52E6C520AE9489002B2BB6 /* FirstStepViewModel.swift */,
 				3B52E6C720AE94AA002B2BB6 /* SecondStepViewModel.swift */,
 				3B52E6C920AE94C7002B2BB6 /* LastStepViewModel.swift */,
@@ -286,7 +319,6 @@
 		844BC37C208AFAA400666486 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				844BC37F208B065200666486 /* SignUpRouter.swift */,
 				844BC387208C539A00666486 /* SignUpResult.swift */,
 				84002EB420907D3200B7C98A /* SignUpViewModel.swift */,
 				844BC383208B0C8300666486 /* VerifyCodeViewModel.swift */,
@@ -451,6 +483,7 @@
 		AFA7EC6C1DEEDEDC00138AEE /* Buzzler */ = {
 			isa = PBXGroup;
 			children = (
+				3B48A9C520B527E500E0BDA1 /* Routers */,
 				844BC373208AF16000666486 /* Resource */,
 				AFA7EC821DEF4CA600138AEE /* Config */,
 				AF9F0FD51DF1A9B300FF8EC5 /* Views */,
@@ -545,7 +578,6 @@
 		AFCB661C1DF844C200916E1B /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				84002EB620907D5100B7C98A /* HomeRouter.swift */,
 				AFCB661D1DF844DB00916E1B /* HomeViewModel.swift */,
 			);
 			path = Home;

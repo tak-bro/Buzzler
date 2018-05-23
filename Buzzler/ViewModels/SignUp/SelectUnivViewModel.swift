@@ -97,7 +97,17 @@ class SelectUnivViewModel: SelectUnivViewModelInputs, SelectUnivViewModelOutputs
                     .map { JSON($0) }
                     .flatMap({ res -> Single<Any> in
                         print("getMajorList res", res)
-                        return Single.just(res)
+                        var majors: [MajorInfo] = []
+                        
+                        for subJson in res.arrayValue {
+                            print("Test")
+                            if let categoryDepth = subJson["categoryDepth"].int, let id = subJson["id"].int, let name = subJson["name"].string {
+                                print("Tes1232312t")
+                                majors.append(MajorInfo(categoryDepth: categoryDepth, id: id, name: name))
+                            }
+                        }
+                        
+                        return Single.just(majors)
                     })
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)
