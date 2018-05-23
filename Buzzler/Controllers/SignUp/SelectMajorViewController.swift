@@ -142,6 +142,9 @@ extension SelectMajorViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         guard let majors = self.majors else { return }
         txt_selectMajor.text = majors[row].name
+
+        var environment = Environment()
+        environment.major = majors[row].id
     }
 }
 

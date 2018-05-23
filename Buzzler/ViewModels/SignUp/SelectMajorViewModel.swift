@@ -91,10 +91,11 @@ class SelectMajorViewModel: SelectMajorViewModelInputs, SelectMajorViewModelOutp
             .asDriver(onErrorJustReturn: ())
             .withLatestFrom(univAndMajar)
             .flatMapLatest { tuple in
-                return provider.request(Buzzler.signUp(username: userInfo.nickName!,
-                                                       email: userInfo.recevier!,
-                                                       password: userInfo.password!,
-                                                       categoryAuth: [tuple.0!, tuple.1!]))
+                let environment = Environment()
+                return provider.request(Buzzler.signUp(username: environment.nickName!,
+                                                       email: environment.receiver!,
+                                                       password: environment.password!,
+                                                       categoryAuth: [environment.univ!, environment.major!]))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()

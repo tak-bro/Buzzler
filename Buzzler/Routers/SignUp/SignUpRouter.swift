@@ -9,42 +9,6 @@
 import Foundation
 import UIKit
 
-struct UserInfo {
-    var recevier: String?
-    var nickName: String?
-    var password: String?
-    
-    init() {
-        self.recevier = ""
-        self.nickName = ""
-        self.password = ""
-    }
-    
-    init(receiver: String, nickName: String, password: String) {
-        self.recevier = receiver
-        self.nickName = nickName
-        self.password = password
-    }
-}
-
-struct MajorInfo {
-    var categoryDepth: Int?
-    var id: Int?
-    var name: String?
-
-    init() {
-        self.categoryDepth = 2
-        self.id = 0
-        self.name = ""
-    }
-    
-    init(categoryDepth: Int, id: Int, name: String) {
-        self.categoryDepth = categoryDepth
-        self.id = id
-        self.name = name
-    }
-}
-
 enum SignUpSegue {
     case verifyCode
     case selectUniv

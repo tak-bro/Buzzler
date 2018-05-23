@@ -110,11 +110,7 @@ class VerifyCodeViewModel: VerifyCodeViewModelInputs, VerifyCodeViewModelOutputs
                     .mapJSON()
                     .flatMap({ res -> Single<Bool> in
                         print("resendCode res", res)
-                        if let res = res as? String, res == "Success" {
-                            return Single.just(true)
-                        } else{
-                            return Single.just(false)
-                        }
+                        return Single.just(true)
                     })
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)

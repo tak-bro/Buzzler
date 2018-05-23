@@ -26,7 +26,7 @@ public protocol SelectUnivViewModelOutputs {
     var enableNextButton: Driver<Bool> { get }
     var getMajorList: Driver<Any> { get }
     var isLoading: Driver<Bool> { get }
-    // set univ text
+    // set univInfo
     var setUniv: Driver<String?> { get }
 }
 
@@ -73,6 +73,9 @@ class SelectUnivViewModel: SelectUnivViewModelInputs, SelectUnivViewModelOutputs
             .mapJSON()
             .map { JSON($0) }
             .map { json in
+                var environment = Environment()
+                environment.univ = json[0]["id"].stringValue
+                
                 return json[0]["name"].stringValue
             }
             .asDriver(onErrorJustReturn: "Error")
@@ -100,10 +103,10 @@ class SelectUnivViewModel: SelectUnivViewModelInputs, SelectUnivViewModelOutputs
                         var majors: [MajorInfo] = []
                         
                         for subJson in res.arrayValue {
-                            print("Test")
-                            if let categoryDepth = subJson["categoryDepth"].int, let id = subJson["id"].int, let name = subJson["name"].string {
-                                print("Tes1232312t")
-                                majors.append(MajorInfo(categoryDepth: categoryDepth, id: id, name: name))
+                            if let categoryDepth = subJson["categoryDepth"].int,
+                                let id = subJson["id"].int,
+                                let name = subJson["name"].string {
+                                majors.append(MajorInfo(categoryDepth: categoryDepth, id: String(id), name: name))
                             }
                         }
                         

@@ -122,28 +122,31 @@ class SignUpViewModel: SignUpViewModelInputs, SignUpViewModelOutputs, SignUpView
             }
         }
         
-        let emailAndPassword = Driver.combineLatest(self.email.asDriver(onErrorJustReturn: nil),
-                                                    self.password.asDriver(onErrorJustReturn: nil)) { ($0, $1) }
+        let emailAndPasswordAndNickName = Driver.combineLatest(self.email.asDriver(onErrorJustReturn: nil),
+                                                    self.password.asDriver(onErrorJustReturn: nil),
+                                                    self.nickName.asDriver(onErrorJustReturn: nil)) { ($0, $1, $2) }
         
         let isLoading = ActivityIndicator()
         self.isLoading = isLoading.asDriver()
         
         self.requestCode = self.nextTaps
             .asDriver(onErrorJustReturn:())
-            .withLatestFrom(emailAndPassword)
-            .flatMapLatest{ tuple in
-                return provider.request(Buzzler.requestCode(receiver: tuple.0!))
+            .withLatestFrom(emailAndPasswordAndNickName)
+            .flatMapLatest{ data in
+                // save to environment
+                var environment = Environment()
+                environment.receiver = data.0
+                environment.password = data.1
+                environment.nickName = data.2
+                
+                return provider.request(Buzzler.requestCode(receiver: data.0!))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
                     .mapJSON()
                     .flatMap({ res -> Single<Bool> in
                         print("requestCode res", res)
-                        if let res = res as? String, res == "OK" {
-                            return Single.just(true)
-                        } else{
-                            return Single.just(false)
-                        }
+                        return Single.just(true)
                     })
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)
