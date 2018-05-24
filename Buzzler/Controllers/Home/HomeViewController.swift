@@ -101,7 +101,7 @@ extension HomeViewController {
             }, onError: nil, onCompleted: nil, onSubscribe: nil, onDispose: nil)
             .bind(to: outputStuff.refreshCommand)
             .addDisposableTo(rx.disposeBag)
-        
+
         // Configure
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let defaultCell: UITableViewCell
@@ -270,7 +270,7 @@ extension HomeViewController {
 extension HomeViewController {
     
     fileprivate func configNotification() {
-        NotificationCenter.default.post(name: Notification.Name.category, object: 1)
+        NotificationCenter.default.post(name: Notification.Name.category, object: self.category)
     }
     /*
     fileprivate func registerNoti() {

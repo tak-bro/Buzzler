@@ -24,6 +24,7 @@
 		3B52E6C620AE9489002B2BB6 /* FirstStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C520AE9489002B2BB6 /* FirstStepViewModel.swift */; };
 		3B52E6C820AE94AA002B2BB6 /* SecondStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C720AE94AA002B2BB6 /* SecondStepViewModel.swift */; };
 		3B52E6CA20AE94C7002B2BB6 /* LastStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C920AE94C7002B2BB6 /* LastStepViewModel.swift */; };
+		3B623E9D20B6B9AF000302C0 /* SideMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B623E9C20B6B9AF000302C0 /* SideMenuRouter.swift */; };
 		3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85701820A9A945009FEC48 /* ValidationService.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
 		84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB420907D3200B7C98A /* SignUpViewModel.swift */; };
@@ -103,6 +104,7 @@
 		3B52E6C520AE9489002B2BB6 /* FirstStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStepViewModel.swift; sourceTree = "<group>"; };
 		3B52E6C720AE94AA002B2BB6 /* SecondStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStepViewModel.swift; sourceTree = "<group>"; };
 		3B52E6C920AE94C7002B2BB6 /* LastStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepViewModel.swift; sourceTree = "<group>"; };
+		3B623E9C20B6B9AF000302C0 /* SideMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRouter.swift; sourceTree = "<group>"; };
 		3B85701820A9A945009FEC48 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		3B48A9C520B527E500E0BDA1 /* Routers */ = {
 			isa = PBXGroup;
 			children = (
+				3B623E9B20B6B99E000302C0 /* SideMenu */,
 				3B48A9C620B527F900E0BDA1 /* SignUp */,
 				3B48A9C720B5281100E0BDA1 /* ResetPassword */,
 				3B48A9C820B5282200E0BDA1 /* Home */,
@@ -264,6 +267,14 @@
 				3B52E6C920AE94C7002B2BB6 /* LastStepViewModel.swift */,
 			);
 			path = ResetPassword;
+			sourceTree = "<group>";
+		};
+		3B623E9B20B6B99E000302C0 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3B623E9C20B6B9AF000302C0 /* SideMenuRouter.swift */,
+			);
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 		84002EB12090611A00B7C98A /* Post */ = {
@@ -828,6 +839,7 @@
 				84A1BFCC208C899B00D0ADC7 /* StretchHeader.swift in Sources */,
 				AF69F0F01E0E0C9400735284 /* SideViewController.swift in Sources */,
 				AF3C0C241E0AA851002644DD /* Config.swift in Sources */,
+				3B623E9D20B6B9AF000302C0 /* SideMenuRouter.swift in Sources */,
 				3B48A9C420B2B27F00E0BDA1 /* University.swift in Sources */,
 				AF9F0FD41DF1A91300FF8EC5 /* HomeViewController.swift in Sources */,
 				844BC37B208AF8FE00666486 /* SignUpViewController.swift in Sources */,

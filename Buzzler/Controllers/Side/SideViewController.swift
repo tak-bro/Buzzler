@@ -86,16 +86,12 @@ class SideViewController: UIViewController, UITableViewDelegate {
                 case .category(id: let id, title: _):
                     print("id", id)
                     // NotificationCenter.default.post(name: Notification.Name.category, object: Int(id))
+                    self.router.category = Int(id)!
                     self.router.perform(.home, from: self)
                 case .myPage(id: _, navTitle: let title):
                     self.router.perform(.myPage, from: self)
                 case .settings(id: _, navTitle: let title):
                     self.router.perform(.settings, from: self)
-                    /*
-                     SideMenuManager.menuLeftNavigationController?.dismiss(animated: true, completion: {
-                     GlobalUIManager.loadCustomVC(withTitle: title)
-                     })
-                     */
                 }
             })
             .disposed(by: disposeBag)
@@ -130,47 +126,3 @@ extension SideViewController {
         })
     }
 }
-
-
-enum SideMenuSegue {
-    case myPage
-    case settings
-    case home
-}
-
-class SideMenuRouter {
-    
-    func perform(_ segue: SideMenuSegue, from source: UIViewController) {
-        switch segue {
-        case .myPage:
-            let myPageVC = SideMenuRouter.makeMyPageViewController()
-            source.navigationController?.pushViewController(myPageVC, animated: false)
-        case .settings:
-            let settingsVC = SideMenuRouter.makeSettingsViewController()
-            source.navigationController?.pushViewController(settingsVC, animated: false)
-        case .home:
-            let homeVC = SideMenuRouter.makeHomeViewController()
-            source.navigationController?.pushViewController(homeVC, animated: false)
-        }
-    }
-}
-
-// MARK: Helpers
-private extension SideMenuRouter {
-    
-    static func makeMyPageViewController() -> MyPageViewController {
-        let myPageVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MyPageViewController") as! MyPageViewController
-        return myPageVC
-    }
-    
-    static func makeSettingsViewController() -> SettingsViewController {
-        let settingsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
-        return settingsVC
-    }
-    
-    static func makeHomeViewController() -> HomeViewController {
-        let homeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        return homeVC
-    }
-}
-
