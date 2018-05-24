@@ -81,15 +81,14 @@ class FirstStepViewModel: FisrtStepViewModelInputs, FirstStepViewModelOutputs, F
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(self.email.asDriver(onErrorJustReturn: nil))
             .flatMapLatest{ email in
-                // TODO: modify request for Reset Password
-                return provider.request(Buzzler.requestCode(receiver: email!))
+                return provider.request(Buzzler.requestCodeForNewPassword(receiver: email!))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
                     .mapJSON()
                     .flatMap({ res -> Single<Bool> in
                         print("requestCode for Reset Password: ", res)
-                        if let res = res as? String, res == "Success" {
+                        if let res = res as? String, res == "OK" {
                             return Single.just(true)
                         } else{
                             return Single.just(false)

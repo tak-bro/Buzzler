@@ -107,8 +107,7 @@ extension Buzzler: TargetType {
             return ["username": username, "email": email, "password": password, "categoryAuth": categoryAuth]
         case .signIn(let email, let password):
             return ["email": email, "password": password]
-            return ["receiver": receiver]
-            
+
             
         // PUT
         case .verifyCode(let receiver, let verificationCode),

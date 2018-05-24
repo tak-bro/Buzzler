@@ -17,10 +17,12 @@ enum ResetPasswordSegue {
 
 class ResetPasswordRouter {
     
+    var email: String = ""
+    
     func perform(_ segue: ResetPasswordSegue, from source: UIViewController) {
         switch segue {
         case .secondStep:
-            let secondStepVC = ResetPasswordRouter.makeSecondStepViewController()
+            let secondStepVC = ResetPasswordRouter.makeSecondStepViewController(withUserEmail: email)
             source.navigationController?.pushViewController(secondStepVC, animated: true)
         case .lastStep:
             let lastStepVC = ResetPasswordRouter.makeLastStepViewController()
@@ -31,9 +33,10 @@ class ResetPasswordRouter {
 
 private extension ResetPasswordRouter {
     
-    static func makeSecondStepViewController() -> SecondStepViewController {
+    static func makeSecondStepViewController(withUserEmail email: String) -> SecondStepViewController {
         let secondStepVC = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "SecondStepViewController") as! SecondStepViewController
+        secondStepVC.userEmail = email
         return secondStepVC
     }
     
