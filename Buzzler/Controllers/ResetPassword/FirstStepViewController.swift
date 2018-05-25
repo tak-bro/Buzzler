@@ -59,6 +59,7 @@ class FirstStepViewController: UIViewController {
             .drive(onNext: { isSuccess in
                 if isSuccess {
                     // push view controller
+                    self.router.email = self.txt_email.text!
                     self.router.perform(.secondStep, from: self)
                 } else {
                     SVProgressHUD.showError(withStatus: "Server Error")

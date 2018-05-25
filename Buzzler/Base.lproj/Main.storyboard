@@ -547,7 +547,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tve-Kk-1hr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6735" y="-2015"/>
+            <point key="canvasLocation" x="6495" y="-2014"/>
         </scene>
         <!--Select Major View Controller-->
         <scene sceneID="ezA-rq-jmP">
@@ -664,6 +664,7 @@ Cg
                         <outlet property="btn_wrong" destination="hm5-SW-ES4" id="qhc-cR-tMx"/>
                         <outlet property="txt_selectMajor" destination="8OT-gQ-7kz" id="VUu-Hw-gt7"/>
                         <outlet property="txt_univ" destination="vC1-6Y-Ipj" id="jwd-p3-CtJ"/>
+                        <segue destination="rOx-L5-hp1" kind="show" id="Etr-Jn-OhD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v5a-hP-P3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1469,7 +1470,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PLC-ve-RJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="196" y="1667"/>
+            <point key="canvasLocation" x="-3238" y="876"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="KqQ-yV-Vpl">
@@ -1507,7 +1508,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naf-od-1o6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3071" y="95"/>
+            <point key="canvasLocation" x="-3238" y="95"/>
         </scene>
         <!--Side View Controller-->
         <scene sceneID="0PQ-R8-aDY">
@@ -1607,7 +1608,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tB8-7x-ANm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-996" y="876"/>
+            <point key="canvasLocation" x="-1223" y="876"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="F3a-SF-K25">
@@ -1689,7 +1690,6 @@ Cg
         <!--Navigation Controller-->
         <scene sceneID="h0r-Sc-SSQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fq5-f4-st6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="MyPageNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="rD0-xj-jJY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rha-Tt-KD0">
@@ -1701,13 +1701,13 @@ Cg
                         <segue destination="sH1-LH-17u" kind="relationship" relationship="rootViewController" id="lTE-a3-9fh"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fq5-f4-st6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-964" y="1667"/>
+            <point key="canvasLocation" x="-4398" y="876"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2la-JD-qt4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9cJ-aH-6z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="SettingsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="WaE-A6-alW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NKF-bp-xSQ">
@@ -1719,8 +1719,9 @@ Cg
                         <segue destination="1FU-UI-gDx" kind="relationship" relationship="rootViewController" id="mNc-Wf-Fkw"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9cJ-aH-6z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4231" y="95"/>
+            <point key="canvasLocation" x="-4398" y="95"/>
         </scene>
     </scenes>
     <resources>
@@ -1740,6 +1741,6 @@ Cg
         <image name="img_logo_new" width="102" height="105"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gVB-h3-Ixr"/>
+        <segue reference="Mr9-nX-OXk"/>
     </inferredMetricsTieBreakers>
 </document>
