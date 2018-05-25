@@ -25,6 +25,7 @@
 		3B52E6C820AE94AA002B2BB6 /* SecondStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C720AE94AA002B2BB6 /* SecondStepViewModel.swift */; };
 		3B52E6CA20AE94C7002B2BB6 /* LastStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C920AE94C7002B2BB6 /* LastStepViewModel.swift */; };
 		3B623E9D20B6B9AF000302C0 /* SideMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B623E9C20B6B9AF000302C0 /* SideMenuRouter.swift */; };
+		3B823CBB20B81A5E000A68BA /* NewPasswordDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B823CBA20B81A5E000A68BA /* NewPasswordDoneViewController.swift */; };
 		3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85701820A9A945009FEC48 /* ValidationService.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
 		84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB420907D3200B7C98A /* SignUpViewModel.swift */; };
@@ -102,6 +103,7 @@
 		3B52E6C720AE94AA002B2BB6 /* SecondStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStepViewModel.swift; sourceTree = "<group>"; };
 		3B52E6C920AE94C7002B2BB6 /* LastStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepViewModel.swift; sourceTree = "<group>"; };
 		3B623E9C20B6B9AF000302C0 /* SideMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRouter.swift; sourceTree = "<group>"; };
+		3B823CBA20B81A5E000A68BA /* NewPasswordDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordDoneViewController.swift; sourceTree = "<group>"; };
 		3B85701820A9A945009FEC48 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				3B52E6BE20AE93D0002B2BB6 /* FirstStepViewController.swift */,
 				3B52E6C020AE93E3002B2BB6 /* SecondStepViewController.swift */,
 				3B52E6C220AE942C002B2BB6 /* LastStepViewController.swift */,
+				3B823CBA20B81A5E000A68BA /* NewPasswordDoneViewController.swift */,
 			);
 			path = ResetPassword;
 			sourceTree = "<group>";
@@ -804,6 +807,7 @@
 				844BC38A208C573000666486 /* HelperFunctions.swift in Sources */,
 				84A1BFC3208C67AD00D0ADC7 /* BuzzlerPost.swift in Sources */,
 				84A1BFC6208C7C6200D0ADC7 /* HomeImageTableViewCell.swift in Sources */,
+				3B823CBB20B81A5E000A68BA /* NewPasswordDoneViewController.swift in Sources */,
 				84C4DED42095A58100FD6BFD /* CommentTableViewCell.swift in Sources */,
 				3B52E6C320AE942C002B2BB6 /* LastStepViewController.swift in Sources */,
 				844BC380208B065200666486 /* SignUpRouter.swift in Sources */,

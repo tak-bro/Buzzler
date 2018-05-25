@@ -12,6 +12,7 @@ import UIKit
 enum ResetPasswordSegue {
     case secondStep
     case lastStep
+    case doneReset
 }
 
 class ResetPasswordRouter {
@@ -24,8 +25,11 @@ class ResetPasswordRouter {
             let secondStepVC = ResetPasswordRouter.makeSecondStepViewController(withUserEmail: email)
             source.navigationController?.pushViewController(secondStepVC, animated: true)
         case .lastStep:
-            let lastStepVC = ResetPasswordRouter.makeLastStepViewController()
+            let lastStepVC = ResetPasswordRouter.makeLastStepViewController(withUserEmail: email)
             source.navigationController?.pushViewController(lastStepVC, animated: true)
+        case .doneReset:
+            let doneVC = ResetPasswordRouter.makeDoneVewController()
+            source.navigationController?.pushViewController(doneVC, animated: true)
         }
     }
 }
@@ -39,9 +43,16 @@ private extension ResetPasswordRouter {
         return secondStepVC
     }
     
-    static func makeLastStepViewController() -> LastStepViewController {
+    static func makeLastStepViewController(withUserEmail email: String) -> LastStepViewController {
         let lastStepVC = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "LastStepViewController") as! LastStepViewController
+        lastStepVC.userEmail = email
         return lastStepVC
+    }
+    
+    static func makeDoneVewController() -> NewPasswordDoneViewController {
+        let doneVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "NewPasswordDoneViewController") as! NewPasswordDoneViewController
+        return doneVC
     }
 }

@@ -89,8 +89,8 @@ class SecondStepViewController: UIViewController {
         secondStepViewModel.outputs.verifyCode
             .drive(onNext: { signedIn in
                 if signedIn == true {
-                    print(signedIn)
                     // push view controller
+                    self.router.email = self.userEmail!
                     self.router.perform(.lastStep, from: self)
                 } else {
                     SVProgressHUD.showError(withStatus: "Failed to verify code for new password")

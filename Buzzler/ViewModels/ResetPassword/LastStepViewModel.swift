@@ -19,7 +19,7 @@ private let disposeBag = DisposeBag()
 public protocol LastStepViewModelInputs {
     var password: PublishSubject<String?> { get }
     var confirmPassword: PublishSubject<String?> { get }
-    var nextTaps: PublishSubject<Void> { get }
+    var submitTaps: PublishSubject<Void> { get }
 }
 
 public protocol LastStepViewModelOutputs {
@@ -43,7 +43,7 @@ class LastStepViewModel: LastStepViewModelInputs, LastStepViewModelOutputs, Last
     public var enableNextButton: Driver<Bool>
     public var setErrorMessage: Driver<String?>
     
-    public var nextTaps: PublishSubject<Void>
+    public var submitTaps: PublishSubject<Void>
     public var password: PublishSubject<String?>
     public var confirmPassword: PublishSubject<String?>
     
@@ -56,12 +56,12 @@ class LastStepViewModel: LastStepViewModelInputs, LastStepViewModelOutputs, Last
     // Private
     fileprivate let provider: RxMoyaProvider<Buzzler>
     
-    init(provider: RxMoyaProvider<Buzzler>) {
+    init(provider: RxMoyaProvider<Buzzler>, userEmail: String) {
         self.provider = provider
         
         self.password = PublishSubject<String?>()
         self.confirmPassword = PublishSubject<String?>()
-        self.nextTaps = PublishSubject<Void>()
+        self.submitTaps = PublishSubject<Void>()
         
         let validationService = BuzzlerDefaultValidationService.sharedValidationService
         
@@ -90,17 +90,17 @@ class LastStepViewModel: LastStepViewModelInputs, LastStepViewModelOutputs, Last
         let isLoading = ActivityIndicator()
         self.isLoading = isLoading.asDriver()
         
-        self.requestNewPassword = self.nextTaps
+        self.requestNewPassword = self.submitTaps
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(self.password.asDriver(onErrorJustReturn: nil))
-            .flatMapLatest{ email in
-                return provider.request(Buzzler.requestCodeForNewPassword(receiver: email!))
+            .flatMapLatest{ password in
+                return provider.request(Buzzler.newPassword(email: userEmail, password: password!))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
                     .mapJSON()
                     .flatMap({ res -> Single<Bool> in
-                        print("requestCode for Reset Password: ", res)
+                        print("newPassword res: ", res)
                         if let res = res as? String, res == "OK" {
                             return Single.just(true)
                         } else{

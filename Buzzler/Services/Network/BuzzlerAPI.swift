@@ -81,8 +81,8 @@ extension Buzzler: TargetType {
             .requestCode(_),
             .signUp(_, _, _, _),
             .signIn(_, _),
-            .requestCodeForNewPassword(_):
-            .newPassword(_, _),
+            .requestCodeForNewPassword(_),
+            .newPassword(_, _):
             return .post
        
         // PUT
@@ -110,9 +110,10 @@ extension Buzzler: TargetType {
             return ["receiver": receiver]
         case .signUp(let username, let email, let password, let categoryAuth):
             return ["username": username, "email": email, "password": password, "categoryAuth": categoryAuth]
-        case .signIn(let email, let password),
-             .newPassword(let email, let password):
+        case .signIn(let email, let password):
             return ["email": email, "password": password]
+        case .newPassword(let email, let password):
+            return ["email": email, "newPassword": password]
 
         // PUT
         case .verifyCode(let receiver, let verificationCode),

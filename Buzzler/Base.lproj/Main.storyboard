@@ -842,7 +842,7 @@ Cg
                                     <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="KDY-ea-fq8" kind="show" id="NJd-C4-tir"/>
+                                    <segue destination="nm5-Hb-usg" kind="presentation" id="Ipf-4I-GWK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -978,6 +978,14 @@ Cg
                             <constraint firstItem="u58-fx-b7g" firstAttribute="centerX" secondItem="ZWm-rs-Lel" secondAttribute="centerX" id="x69-8j-2lu"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="eQu-xK-Gao">
+                        <barButtonItem key="leftBarButtonItem" image="btn_dismiss" id="7Bb-Q9-4Ig">
+                            <color key="tintColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="pressDimiss:" destination="KDY-ea-fq8" id="2nG-7u-rgW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btn_next" destination="E2z-6I-YAa" id="bu7-bD-RDR"/>
                         <outlet property="lbl_error" destination="u58-fx-b7g" id="1I8-Ag-e1M"/>
@@ -987,7 +995,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jFo-qs-R6M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2838" y="-1119"/>
+            <point key="canvasLocation" x="3776.8000000000002" y="-1119.4902548725638"/>
         </scene>
         <!--Second Step View Controller-->
         <scene sceneID="Q2l-6V-Tln">
@@ -1093,7 +1101,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MzJ-gL-4VO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3780" y="-1119"/>
+            <point key="canvasLocation" x="4719.1999999999998" y="-1119.4902548725638"/>
         </scene>
         <!--Last Step View Controller-->
         <scene sceneID="zxW-kO-ZSD">
@@ -1172,9 +1180,17 @@ Cg
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YE-23-FSL">
+                                <rect key="frame" x="187" y="317" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="11"/>
+                                <color key="textColor" red="0.94117647059999998" green="0.38823529410000002" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="7YE-23-FSL" firstAttribute="centerX" secondItem="se9-YA-DT6" secondAttribute="centerX" id="3CJ-QJ-SLV"/>
+                            <constraint firstItem="7YE-23-FSL" firstAttribute="centerY" secondItem="se9-YA-DT6" secondAttribute="centerY" multiplier="0.95" id="9Y0-SK-tT6"/>
                             <constraint firstItem="MBx-7c-30T" firstAttribute="centerX" secondItem="se9-YA-DT6" secondAttribute="centerX" id="BWz-Q9-xdk"/>
                             <constraint firstItem="C0J-r1-Cwq" firstAttribute="centerX" secondItem="se9-YA-DT6" secondAttribute="centerX" id="DFn-vn-vuR"/>
                             <constraint firstItem="PbN-hx-Zqy" firstAttribute="centerY" secondItem="se9-YA-DT6" secondAttribute="centerY" multiplier="0.8" id="DIi-Hv-O2y"/>
@@ -1189,13 +1205,82 @@ Cg
                     </view>
                     <connections>
                         <outlet property="btn_submit" destination="1C5-lH-BB6" id="ue2-bY-JSB"/>
+                        <outlet property="lbl_error" destination="7YE-23-FSL" id="K6N-Ra-OSd"/>
                         <outlet property="txt_confirmPassword" destination="PbN-hx-Zqy" id="JOr-3N-VdL"/>
                         <outlet property="txt_newPassword" destination="MBx-7c-30T" id="Yfr-jF-m4Q"/>
+                        <segue destination="d0N-Wa-243" kind="show" id="rHM-iE-iNI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NBG-CU-JoO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4721" y="-1119"/>
+            <point key="canvasLocation" x="5660" y="-1119.4902548725638"/>
+        </scene>
+        <!--New Password Done View Controller-->
+        <scene sceneID="bKU-GM-PNT">
+            <objects>
+                <viewController storyboardIdentifier="NewPasswordDoneViewController" id="d0N-Wa-243" customClass="NewPasswordDoneViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JwH-vm-8RD"/>
+                        <viewControllerLayoutGuide type="bottom" id="OVb-Ef-nfG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v0V-YW-UmY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_done_check" translatesAutoresizingMaskIntoConstraints="NO" id="72F-Gc-DIV">
+                                <rect key="frame" x="145.5" y="191.5" width="84" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="9u3-dg-onR"/>
+                                    <constraint firstAttribute="width" constant="84" id="DjD-aS-4yA"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9e-PK-kBH">
+                                <rect key="frame" x="67.5" y="409.5" width="240" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Fwf-8t-rYb"/>
+                                    <constraint firstAttribute="height" constant="48" id="eGY-A4-DMA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirLT-Black" family="Avenir LT 65 Medium" pointSize="16"/>
+                                <state key="normal" title="START!">
+                                    <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressDone:" destination="rOx-L5-hp1" eventType="touchUpInside" id="7bB-zB-veP"/>
+                                    <action selector="pressStart:" destination="d0N-Wa-243" eventType="touchUpInside" id="1rS-KN-QWH"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done! You can login now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eGn-CU-1wN">
+                                <rect key="frame" x="57.5" y="320.5" width="260" height="26"/>
+                                <fontDescription key="fontDescription" name="AvenirLT-Black" family="Avenir LT 65 Medium" pointSize="22"/>
+                                <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="72F-Gc-DIV" firstAttribute="centerY" secondItem="v0V-YW-UmY" secondAttribute="centerY" multiplier="0.7" id="1jc-Oj-0FM"/>
+                            <constraint firstItem="O9e-PK-kBH" firstAttribute="centerY" secondItem="v0V-YW-UmY" secondAttribute="centerY" multiplier="1.3" id="2PF-Nk-PrH"/>
+                            <constraint firstItem="72F-Gc-DIV" firstAttribute="centerX" secondItem="v0V-YW-UmY" secondAttribute="centerX" id="8Js-NV-cCp"/>
+                            <constraint firstItem="eGn-CU-1wN" firstAttribute="centerX" secondItem="v0V-YW-UmY" secondAttribute="centerX" id="CQx-Tm-jBg"/>
+                            <constraint firstItem="O9e-PK-kBH" firstAttribute="centerX" secondItem="v0V-YW-UmY" secondAttribute="centerX" id="lvV-05-zZu"/>
+                            <constraint firstItem="eGn-CU-1wN" firstAttribute="centerY" secondItem="v0V-YW-UmY" secondAttribute="centerY" id="mB9-Gm-Why"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="9Td-8X-GOG">
+                        <barButtonItem key="leftBarButtonItem" image="btn_dismiss" id="PpT-dd-Tl0">
+                            <color key="tintColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="pressDismiss:" destination="d0N-Wa-243" id="ub2-a1-uEj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="btn_start" destination="O9e-PK-kBH" id="6oi-SZ-D9G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wXR-3a-R5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6494" y="-1119"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1722,6 +1807,24 @@ Cg
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9cJ-aH-6z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4398" y="95"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hm9-Cd-zl4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nm5-Hb-usg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="p6y-O1-1bM">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KDY-ea-fq8" kind="relationship" relationship="rootViewController" id="KZe-UQ-6UH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EX1-Tn-IBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2837.5999999999999" y="-1119.4902548725638"/>
         </scene>
     </scenes>
     <resources>

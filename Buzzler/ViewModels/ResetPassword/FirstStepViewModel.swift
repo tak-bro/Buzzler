@@ -46,7 +46,7 @@ class FirstStepViewModel: FirstStepViewModelInputs, FirstStepViewModelOutputs, F
     public var requestCode: Driver<Bool>
     public var isLoading: Driver<Bool>
     
-    public var inputs: FisrtStepViewModelInputs { return self }
+    public var inputs: FirstStepViewModelInputs { return self }
     public var outputs: FirstStepViewModelOutputs { return self }
     
     // Private

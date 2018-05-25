@@ -24,6 +24,8 @@ class FirstStepViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // remove "Back" text
+        self.navigationController?.navigationBar.topItem?.title = " "
         setUI()
         bindToRx()
     }
@@ -85,6 +87,10 @@ class FirstStepViewController: UIViewController {
                 self.view.layoutIfNeeded()
             })
             .addDisposableTo(disposeBag)
+    }
+    
+    @IBAction func pressDimiss(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
