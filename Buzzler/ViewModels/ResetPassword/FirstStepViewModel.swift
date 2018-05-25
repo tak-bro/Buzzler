@@ -16,7 +16,7 @@ import RxDataSources
 
 private let disposeBag = DisposeBag()
 
-public protocol FisrtStepViewModelInputs {
+public protocol FirstStepViewModelInputs {
     var email: PublishSubject<String?> { get }
     var nextTaps: PublishSubject<Void> { get }
 }
@@ -30,11 +30,11 @@ public protocol FirstStepViewModelOutputs {
 }
 
 public protocol FirstStepViewModelType {
-    var inputs: FisrtStepViewModelInputs { get }
+    var inputs: FirstStepViewModelInputs { get }
     var outputs: FirstStepViewModelOutputs { get }
 }
 
-class FirstStepViewModel: FisrtStepViewModelInputs, FirstStepViewModelOutputs, FirstStepViewModelType {
+class FirstStepViewModel: FirstStepViewModelInputs, FirstStepViewModelOutputs, FirstStepViewModelType {
 
     public var validatedEmail: Driver<ValidationResult>
     public var enableNextButton: Driver<Bool>

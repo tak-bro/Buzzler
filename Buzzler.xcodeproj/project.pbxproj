@@ -68,7 +68,6 @@
 		AF3C0C221E0AA003002644DD /* BrowserWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3C0C211E0AA003002644DD /* BrowserWebViewController.swift */; };
 		AF3C0C241E0AA851002644DD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3C0C231E0AA851002644DD /* Config.swift */; };
 		AF69F0EB1E0E055D00735284 /* SideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF69F0EA1E0E055D00735284 /* SideMenuNavigationController.swift */; };
-		AF69F0ED1E0E08DE00735284 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF69F0EC1E0E08DE00735284 /* BaseNavigationController.swift */; };
 		AF69F0F01E0E0C9400735284 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF69F0EF1E0E0C9400735284 /* SideViewController.swift */; };
 		AF9F0FD11DF1A6CD00FF8EC5 /* Brick.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9F0FD01DF1A6CD00FF8EC5 /* Brick.swift */; };
 		AF9F0FD41DF1A91300FF8EC5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9F0FD31DF1A91300FF8EC5 /* HomeViewController.swift */; };
@@ -79,9 +78,7 @@
 		AFA7EC751DEEDEDC00138AEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFA7EC741DEEDEDC00138AEE /* Assets.xcassets */; };
 		AFA7EC781DEEDEDC00138AEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFA7EC761DEEDEDC00138AEE /* LaunchScreen.storyboard */; };
 		AFBBA5CD1E06F783003605D1 /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBBA5CC1E06F783003605D1 /* Response+ObjectMapper.swift */; };
-		AFBDB2621DF58F23003E8EE2 /* GankAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBDB2611DF58F23003E8EE2 /* GankAPI.swift */; };
 		AFCB661E1DF844DB00916E1B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCB661D1DF844DB00916E1B /* HomeViewModel.swift */; };
-		AFE2BA9A1E8144000066474E /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2BA991E8144000066474E /* ViewModelType.swift */; };
 		BEE6FE8AD2BB786D674EFA94 /* Pods_Buzzler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */; };
 /* End PBXBuildFile section */
 
@@ -150,7 +147,6 @@
 		AF3C0C211E0AA003002644DD /* BrowserWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserWebViewController.swift; sourceTree = "<group>"; };
 		AF3C0C231E0AA851002644DD /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		AF69F0EA1E0E055D00735284 /* SideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuNavigationController.swift; sourceTree = "<group>"; };
-		AF69F0EC1E0E08DE00735284 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		AF69F0EF1E0E0C9400735284 /* SideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
 		AF9F0FD01DF1A6CD00FF8EC5 /* Brick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brick.swift; sourceTree = "<group>"; };
 		AF9F0FD31DF1A91300FF8EC5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -163,9 +159,7 @@
 		AFA7EC771DEEDEDC00138AEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFA7EC791DEEDEDC00138AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFBBA5CC1E06F783003605D1 /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
-		AFBDB2611DF58F23003E8EE2 /* GankAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GankAPI.swift; sourceTree = "<group>"; };
 		AFCB661D1DF844DB00916E1B /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		AFE2BA991E8144000066474E /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,7 +412,6 @@
 		AF69F0E91E0E052D00735284 /* Navigate */ = {
 			isa = PBXGroup;
 			children = (
-				AF69F0EC1E0E08DE00735284 /* BaseNavigationController.swift */,
 				AF69F0EA1E0E055D00735284 /* SideMenuNavigationController.swift */,
 			);
 			path = Navigate;
@@ -511,7 +504,6 @@
 				AFA7EC7F1DEF4BB400138AEE /* Controllers */,
 				AFBDB25F1DF58ED9003E8EE2 /* Services */,
 				AFBBA5CB1E06F76C003605D1 /* Extensions */,
-				AFE2BA981E8143CD0066474E /* Protocol */,
 				AFA7EC6D1DEEDEDC00138AEE /* AppDelegate.swift */,
 				AFA7EC741DEEDEDC00138AEE /* Assets.xcassets */,
 				AFA7EC711DEEDEDC00138AEE /* Main.storyboard */,
@@ -573,7 +565,6 @@
 		AFBDB2601DF58EF1003E8EE2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				AFBDB2611DF58F23003E8EE2 /* GankAPI.swift */,
 				84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */,
 				84BA76F82086FC7D0097FFD2 /* BuzzlerError.swift */,
 				84BA76F62086FC4B0097FFD2 /* Decodable.swift */,
@@ -601,14 +592,6 @@
 				AFCB661D1DF844DB00916E1B /* HomeViewModel.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		AFE2BA981E8143CD0066474E /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				AFE2BA991E8144000066474E /* ViewModelType.swift */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -787,7 +770,6 @@
 			files = (
 				84F437A82085C3D500E71358 /* WritePostViewModel.swift in Sources */,
 				84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */,
-				AFBDB2621DF58F23003E8EE2 /* GankAPI.swift in Sources */,
 				844BC388208C539A00666486 /* SignUpResult.swift in Sources */,
 				84002EB32090613A00B7C98A /* PostViewController.swift in Sources */,
 				AF3C0C221E0AA003002644DD /* BrowserWebViewController.swift in Sources */,
@@ -804,7 +786,6 @@
 				84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */,
 				3B52E6C620AE9489002B2BB6 /* FirstStepViewModel.swift in Sources */,
 				3B48A9CE20B54FDF00E0BDA1 /* Environment.swift in Sources */,
-				AFE2BA9A1E8144000066474E /* ViewModelType.swift in Sources */,
 				844BC372208AF05500666486 /* StartSignUpViewController.swift in Sources */,
 				8421B2D12086D82C00CBF4E3 /* LoginViewModel.swift in Sources */,
 				3B52E6CA20AE94C7002B2BB6 /* LastStepViewModel.swift in Sources */,
@@ -834,7 +815,6 @@
 				3B48A9BD20B2A30700E0BDA1 /* SelectUnivViewController.swift in Sources */,
 				84002EB720907D5100B7C98A /* HomeRouter.swift in Sources */,
 				84BA76F72086FC4B0097FFD2 /* Decodable.swift in Sources */,
-				AF69F0ED1E0E08DE00735284 /* BaseNavigationController.swift in Sources */,
 				8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */,
 				84A1BFCC208C899B00D0ADC7 /* StretchHeader.swift in Sources */,
 				AF69F0F01E0E0C9400735284 /* SideViewController.swift in Sources */,

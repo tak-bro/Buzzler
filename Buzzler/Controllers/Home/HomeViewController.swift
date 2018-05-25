@@ -246,22 +246,3 @@ extension HomeViewController {
     }
     
 }
-
-extension HomeViewController {
-    
-    /*
-    fileprivate func configNotification() {
-        NotificationCenter.default.post(name: Notification.Name.category, object: self.category)
-    }
-     
-    fileprivate func registerNoti() {
-        NotificationCenter.default.rx.notification(Notification.Name.myPage)
-            .subscribe(onNext: { notification in
-                let id = (notification.object as? String) ?? ""
-                print(id)
-                self.router.perform(.myPage, from: self)
-            })
-            .addDisposableTo(disposeBag)
-    }
-     */
-}
