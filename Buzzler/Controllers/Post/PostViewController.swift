@@ -66,7 +66,8 @@ extension PostViewController {
         
         vw_writeComment.dropShadow(width: -1, height: 1)
     }
-    
+
+    /*
     fileprivate func configBinding() {
          // Input
         let inputStuff  = HomeViewModel.HomeInput()
@@ -108,6 +109,7 @@ extension PostViewController {
        tbl_post.rx.setDelegate(self)
             .addDisposableTo(rx.disposeBag)
     }
+ */
 }
 
 extension PostViewController: UITableViewDelegate {

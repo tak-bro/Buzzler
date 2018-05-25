@@ -1,50 +1,53 @@
 // swiftlint:disable function_body_length
 
 import UIKit
-import SwiftWebVC
 import EZSwiftExtensions
 import Then
 import SnapKit
 import Reusable
 import RxSwift
 import RxCocoa
-import Kingfisher
 import NoticeBar
 import SideMenu
-import PullToRefresh
 import RxDataSources
 import SwiftyAttributes
+import SVProgressHUD
 
 final class HomeViewController: UIViewController {
-    
+   
+    let disposeBag = DisposeBag()
+    var viewModel = HomeViewModel()
+    let dataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
+
+    let header = StretchHeader()
+    let router = HomeRouter()
     let tableView = UITableView().then {
         $0.register(cellType: HomeTableViewCell.self)
         $0.register(cellType: HomeImageTableViewCell.self)
     }
     
-    let refreshControl = PullToRefresh()
-    let homeVM = HomeViewModel()
-    let dataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
-    
-    let header = StretchHeader()
-    let router = HomeRouter()
-    var category: Int?
+    var refreshControl : UIRefreshControl?
+    var category: Int = 1
 
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupHeaderView()
-        configUI()
+        
+        // set SideMenu UI
+        SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
+        
+        configureTableView()
         configBinding()
+        setupHeaderView()
     }
 }
 
-extension HomeViewController {
+extension HomeViewController: UITableViewDelegate {
     
     // MARK: - Private Method
     
-    fileprivate func configUI() {
+    fileprivate func configureTableView() {
         
         // set tableView UI
         title = " "
@@ -52,57 +55,28 @@ extension HomeViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         tableView.separatorStyle = .none
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.backgroundColor = Config.UI.themeColor
-        view.addSubview(tableView)
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        self.view = self.tableView
+        
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
         
-        // set SideMenu UI
-        SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
+        self.refreshControl = UIRefreshControl()
+        if let refreshControl = self.refreshControl {
+            self.view.addSubview(refreshControl)
+            refreshControl.backgroundColor = .clear
+            refreshControl.tintColor = .lightGray
+        }
     }
     
     fileprivate func configBinding() {
         
-        // Input
-        let inputStuff  = HomeViewModel.HomeInput()
-        // Output
-        let outputStuff = homeVM.transform(input: inputStuff)
-        
-        // DataBinding
-        tableView.refreshControl?.rx.controlEvent(.allEvents)
-            .flatMap({ inputStuff.category.asObservable() })
-            .bind(to: outputStuff.refreshCommand)
-            .addDisposableTo(rx.disposeBag)
-        
-        NotificationCenter.default.rx.notification(Notification.Name.category)
-            .map({ (notification) -> Int in
-                let category = notification.object as? Int ?? 1
-                return category
-            })
-            .bind(to: inputStuff.category)
-            .addDisposableTo(rx.disposeBag)
-        
-        NotificationCenter.default.rx.notification(Notification.Name.category)
-            .map({ (notification) -> Int in
-                let category = notification.object as? Int ?? 1
-                return category
-            })
-            .observeOn(MainScheduler.asyncInstance)
-            .do(onNext: { (_) in
-                GlobalUIManager.loadHomeVC()
-                SideMenuManager.menuLeftNavigationController?.dismiss(animated: true, completion: {
-                    GlobalUIManager.loadHomeVC()
-                    DispatchQueue.main.async(execute: {
-                        self.tableView.refreshControl?.beginRefreshing()
-                    })
-                })
-            }, onError: nil, onCompleted: nil, onSubscribe: nil, onDispose: nil)
-            .bind(to: outputStuff.refreshCommand)
-            .addDisposableTo(rx.disposeBag)
+        self.viewModel = HomeViewModel()
+        self.viewModel.category(category: self.category)
+        self.viewModel.inputs.refresh()
 
-        // Configure
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let defaultCell: UITableViewCell
             if item.imageUrls.count > 0 {
@@ -131,48 +105,54 @@ extension HomeViewController {
             return defaultCell
         }
         
-        outputStuff.section
-            .drive(tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(rx.disposeBag)
+        self.refreshControl?.rx.controlEvent(.valueChanged)
+            .bind(to:self.viewModel.inputs.loadPageTrigger)
+            .disposed(by: disposeBag)
         
-        tableView.rx.setDelegate(self)
-            .addDisposableTo(rx.disposeBag)
+        /* TODO
+        self.tableView.rx.reachedBottom
+            .bind(to:self.viewModel.inputs.loadNextPageTrigger)
+            .disposed(by: disposeBag)
+        */
         
-        outputStuff.refreshTrigger
-            .observeOn(MainScheduler.instance)
-            .subscribe { [unowned self] (event) in
-                self.tableView.refreshControl?.endRefreshing()
-                switch event {
-                case .error(_):
-                    NoticeBar(title: "Network Disconnect!", defaultType: .error).show(duration: 2.0, completed: nil)
+        self.viewModel.outputs.elements.asDriver()
+            .map({ (posts) -> [BuzzlerSection] in
+                return [BuzzlerSection(items: posts)]
+            })
+            .drive(self.tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        self.tableView.rx.itemSelected
+            .map { (at: $0, animated: true) }
+            .subscribe(onNext: tableView.deselectRow)
+            .disposed(by: disposeBag)
+        
+        self.tableView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                self?.viewModel.inputs.tapped(indexRow: indexPath.row)
+            }).disposed(by: disposeBag)
+        
+        self.viewModel.isLoading
+            .drive(onNext: { isLoading in
+                switch isLoading {
+                case true:
+                     self.refreshControl?.endRefreshing()
+                    SVProgressHUD.show()
                     break
-                case .next(_):
-                    self.tableView.reloadData()
-                    break
-                default:
+                case false:
+                    SVProgressHUD.dismiss()
                     break
                 }
-            }
-            .addDisposableTo(rx.disposeBag)
-    }
-}
+            }).disposed(by: disposeBag)
 
-extension HomeViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return HomeTableViewCell.height
+        /* TODO:
+        self.viewModel.outputs.selectedViewModel.drive(onNext: { repoViewModel in
+            let repoViewController = RepoViewController()
+            repoViewController.viewModel = repoViewModel
+            self.navigationController?.pushViewController(repoViewController, animated: true)
+        }).disposed(by: disposeBag)
+            */
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
-        navigationController?.pushViewController(postVC, animated: true)
-        
-        // let webActivity = BrowserWebViewController(url: homeVM.itemURLs.value[indexPath.row])
-        // navigationController?.pushViewController(webActivity, animated: true)
-    }
-    
 }
 
 extension HomeViewController {
@@ -269,10 +249,11 @@ extension HomeViewController {
 
 extension HomeViewController {
     
+    /*
     fileprivate func configNotification() {
         NotificationCenter.default.post(name: Notification.Name.category, object: self.category)
     }
-    /*
+     
     fileprivate func registerNoti() {
         NotificationCenter.default.rx.notification(Notification.Name.myPage)
             .subscribe(onNext: { notification in

@@ -10,7 +10,7 @@ import Foundation
 import RxDataSources
 import ObjectMapper
 
-struct BuzzlerPost: Equatable, Mappable {
+public struct BuzzlerPost: Equatable, Mappable {
     
     var id: Int = 0
     var title: String = ""
@@ -24,11 +24,11 @@ struct BuzzlerPost: Equatable, Mappable {
         return lhs.id == rhs.id ? true : false
     }
     
-    init?(map: Map) { }
+    public init?(map: Map) { }
     
     init() { }
     
-    mutating func mapping(map: Map) {
+    mutating public func mapping(map: Map) {
         id <- map["id"]
         title <- map["title"]
         content <- map["content"]
@@ -37,6 +37,7 @@ struct BuzzlerPost: Equatable, Mappable {
         createdAt <- map["createdAt"]
         authorId <- map["authorId"]
     }
+    
 }
 
 struct BuzzlerSection {
