@@ -13,12 +13,22 @@ import RxSwift
 let BuzzlerProvider = RxMoyaProvider<Buzzler>(endpointClosure: endpointClosure, plugins: [NetworkLoggerPlugin(verbose: true)])
 
 public enum Buzzler {
+    // GET
+    case getPost(category: Int)
+    case getMajor()
+    case getUniv(email: String)
+    
+    // POST
     case writePost(title: String, content: String, imageUrls: [String])
-    case getPost
     case requestCode(receiver: String)
-    case verifyCode(receiver: String, verificationCode: String)
     case signUp(username: String, email: String, password: String, categoryAuth: [String])
     case signIn(email: String, password: String)
+    case requestCodeForNewPassword(receiver: String)
+    case newPassword(email: String, password: String)
+
+    // PUT
+    case verifyCode(receiver: String, verificationCode: String)
+    case verifyCodeForNewPassword(receiver: String, verificationCode: String)
 }
 
 extension Buzzler: TargetType {
@@ -28,52 +38,87 @@ extension Buzzler: TargetType {
     
     public var path: String {
         switch self {
-        case .writePost(_, _, _):   // POST
+        // GET
+        case .getPost(let category):
+            return "/v1/categories/\(category)/posts"
+        case .getMajor:
+            return "/v1/categories"
+        case .getUniv:
+            return "/v1/categories"
+            
+        // POST
+        case .writePost(_, _, _):
             return "/v1/posts"
-        case .getPost:  // GET
-            return "/v1/posts"
-        case .requestCode:  // POST
+        case .requestCode:
             return "/v1/accounts/email-verification"
-        case .verifyCode:   // PUT
-            return "/v1/accounts/email-verification"
-        case .signUp:  // POST
+        case .signUp:
             return "/v1/accounts/signup"
-        case .signIn:  // POST
+        case .signIn:
             return "/v1/accounts/signin"
+        case .requestCodeForNewPassword:
+            return "/v1/accounts/newpassword/email-verification"
+        case .newPassword:
+            return "/v1/accounts/newpassword"
+            
+        // PUT
+        case .verifyCode:
+            return "/v1/accounts/email-verification"
+        case .verifyCodeForNewPassword:
+            return "/v1/accounts/newpassword/email-verification"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .writePost(_, _, _):
-            return .post
-        case .getPost:
+        // GET
+        case .getPost(_),
+             .getMajor(_),
+             .getUniv(_):
             return .get
-        case .requestCode(_):
+            
+        // POST
+        case .writePost(_, _, _),
+            .requestCode(_),
+            .signUp(_, _, _, _),
+            .signIn(_, _),
+            .requestCodeForNewPassword(_),
+            .newPassword(_, _):
             return .post
-        case .verifyCode(_, _):
+       
+        // PUT
+        case .verifyCode(_, _),
+            .verifyCodeForNewPassword(_, _):
             return .put
-        case .signUp(_, _, _, _):
-            return .post
-        case .signIn(_, _):
-            return .post
         }
     }
     
     public var parameters: [String: Any]? {
         switch self {
+        // GET
+        case .getPost(category: _):
+            return nil
+        case .getUniv(email: let email):
+            return ["depth": 1, "email": email]
+        case .getMajor():
+            return ["depth": 2]
+            
+        // POST
         case .writePost(let title, let content, let imageUrls):
             return ["title": title, "content": content, "imageUrls": imageUrls]
-        case .getPost:
-            return nil
-        case .requestCode(let receiver):
+        case .requestCode(let receiver),
+             .requestCodeForNewPassword(let receiver):
             return ["receiver": receiver]
-        case .verifyCode(let receiver, let verificationCode):
-            return ["receiver": receiver, "verificationCode": verificationCode]
         case .signUp(let username, let email, let password, let categoryAuth):
             return ["username": username, "email": email, "password": password, "categoryAuth": categoryAuth]
         case .signIn(let email, let password):
             return ["email": email, "password": password]
+        case .newPassword(let email, let password):
+            return ["email": email, "newPassword": password]
+
+        // PUT
+        case .verifyCode(let receiver, let verificationCode),
+             .verifyCodeForNewPassword(let receiver, let verificationCode):
+            return ["receiver": receiver, "verificationCode": verificationCode]
         }
     }
     
@@ -98,6 +143,10 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
                                                parameters: target.parameters
     )
     switch target {
+    case .getUniv,
+         .getMajor:
+        return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newParameterEncoding: URLEncoding.default)
     case .getPost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
     default:

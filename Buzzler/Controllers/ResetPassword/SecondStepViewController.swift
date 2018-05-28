@@ -41,12 +41,86 @@ class SecondStepViewController: UIViewController {
         )
     }()
     
+    fileprivate let disposeBag = DisposeBag()
+    
+    let router = ResetPasswordRouter()
+    var viewModel: SecondStepViewModel?
+    var userEmail: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
-        
+        // remove "Back" text
+        self.navigationController?.navigationBar.topItem?.title = " "
         self.timer.start()
+        bindToRx()
+        setUI()
     }
+    
+    func bindToRx() {
+        self.viewModel = SecondStepViewModel(provider: BuzzlerProvider, userEmail: userEmail!)
+        
+        guard let secondStepViewModel = self.viewModel else { return }
+        
+        btn_next.rx.tap
+            .bind(to: secondStepViewModel.inputs.nextTaps)
+            .disposed(by: disposeBag)
+        
+        btn_resend.rx.tap
+            .bind(to: secondStepViewModel.inputs.resendTaps)
+            .disposed(by: disposeBag)
+        
+        txt_code.rx.text.orEmpty
+            .bind(to: secondStepViewModel.inputs.code)
+            .disposed(by: disposeBag)
+        
+        secondStepViewModel.outputs.enableNextButton.drive(onNext: { enable in
+            self.btn_next.isEnabled = enable
+            self.btn_next.layer.borderColor = enable ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
+        }).disposed(by: disposeBag)
+        
+        secondStepViewModel.outputs.validatedCode
+            .drive()
+            .disposed(by: disposeBag)
+        
+        secondStepViewModel.outputs.enableNextButton
+            .drive()
+            .disposed(by: disposeBag)
+        
+        secondStepViewModel.outputs.verifyCode
+            .drive(onNext: { signedIn in
+                if signedIn == true {
+                    // push view controller
+                    self.router.email = self.userEmail!
+                    self.router.perform(.lastStep, from: self)
+                } else {
+                    SVProgressHUD.showError(withStatus: "Failed to verify code for new password")
+                }
+            }).disposed(by: disposeBag)
+        
+        secondStepViewModel.outputs.resendCode
+            .drive(onNext: { resend in
+                if resend == true {
+                    print(resend)
+                    // resend code
+                    self.timer.restart()
+                } else {
+                    SVProgressHUD.showError(withStatus: "Failed to resend code for new password")
+                }
+            }).disposed(by: disposeBag)
+        
+        secondStepViewModel.isLoading
+            .drive(onNext: { isLoading in
+                switch isLoading {
+                case true:
+                    SVProgressHUD.show()
+                    break
+                case false:
+                    SVProgressHUD.dismiss()
+                    break
+                }
+            }).disposed(by: disposeBag)
+    }
+    
     
 }
 

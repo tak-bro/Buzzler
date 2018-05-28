@@ -7,18 +7,35 @@
 //
 
 import UIKit
+import Reusable
 
-class SideTableViewCell: UITableViewCell {
+class SideTableViewCell: UITableViewCell, NibReusable {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBOutlet weak var vw_sideBox: UIView!
+    @IBOutlet weak var lbl_category: UILabel!
+    
+    var id: String!
+    static let height: CGFloat = UITableViewAutomaticDimension
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // vw_commentContainer.setCornerRadius(radius: 25)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+
 }

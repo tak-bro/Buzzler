@@ -1,16 +1,16 @@
 //
-//  Post.swift
+//  DetailBuzzlerPost.swift
 //  Buzzler
 //
-//  Created by 진형탁 on 2018. 4. 22..
-//  Copyright © 2018년 Maru. All rights reserved.
+//  Created by 진형탁 on 28/05/2018.
+//  Copyright © 2018 Maru. All rights reserved.
 //
 
 import Foundation
 import RxDataSources
 import ObjectMapper
 
-public struct BuzzlerPost: Equatable, Mappable {
+public struct DetailBuzzlerPost: Equatable, Mappable {
     
     var id: Int = 0
     var title: String = ""
@@ -19,8 +19,9 @@ public struct BuzzlerPost: Equatable, Mappable {
     var likeCount: Int = 0
     var createdAt: Date = Date()
     var authorId: Int = 0
+    var comments: [String] = []
     
-    public static func == (lhs: BuzzlerPost, rhs: BuzzlerPost) -> Bool {
+    public static func == (lhs: DetailBuzzlerPost, rhs: DetailBuzzlerPost) -> Bool {
         return lhs.id == rhs.id ? true : false
     }
     
@@ -36,20 +37,21 @@ public struct BuzzlerPost: Equatable, Mappable {
         likeCount <- map["likeCount"]
         createdAt <- map["createdAt"]
         authorId <- map["authorId"]
+        comments <- map["comments"]
     }
     
 }
 
-struct BuzzlerSection {
+struct DetailBuzzlerSection {
     
-    var items: [BuzzlerPost]
+    var items: [DetailBuzzlerPost]
 }
 
-extension BuzzlerSection: SectionModelType {
+extension DetailBuzzlerSection: SectionModelType {
     
-    typealias Item = BuzzlerPost
+    typealias Item = DetailBuzzlerPost
     
-    init(original: BuzzlerSection, items: [BuzzlerSection.Item]) {
+    init(original: DetailBuzzlerSection, items: [DetailBuzzlerSection.Item]) {
         self = original
         self.items = items
     }

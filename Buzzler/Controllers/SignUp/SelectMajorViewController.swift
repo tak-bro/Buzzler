@@ -20,14 +20,13 @@ class SelectMajorViewController: UIViewController {
     @IBOutlet weak var txt_selectMajor: UITextField!
     @IBOutlet weak var txt_univ: UITextField!
     
+    // major list
+    var majors: [MajorInfo]?
     var inputUserInfo = UserInfo()
     var viewModel: SelectMajorViewModel?
     
     fileprivate let disposeBag = DisposeBag()
     let router = SignUpRouter()
-    
-    // major list
-    let majors = ["2", "3", "4", "5", "6"];
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,15 +130,21 @@ extension SelectMajorViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        guard let majors = self.majors else { return 0 }
         return majors.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return majors[row]
+        guard let majors = self.majors else { return "" }
+        return majors[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        txt_selectMajor.text = majors[row]
+        guard let majors = self.majors else { return }
+        txt_selectMajor.text = majors[row].name
+
+        var environment = Environment()
+        environment.major = majors[row].id
     }
 }
 

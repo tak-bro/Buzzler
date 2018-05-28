@@ -96,13 +96,13 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     .mapJSON()
                     .flatMap({ token -> Single<Bool> in
                         print("token", token)
-                        if token == nil {
-                            return Single.just(false)
-                        } else{
-                            // TODO: add userDefaults
-                            // var environment = Environment()
-                            // environment.token = token
+                        if token is String {
+                            // add userDefaults
+                            var environment = Environment()
+                            environment.token = token as? String
                             return Single.just(true)
+                        } else {
+                            return Single.just(false)
                         }
                     })
                     .trackActivity(isLoading)

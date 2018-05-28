@@ -16,7 +16,7 @@ import RxDataSources
 
 private let disposeBag = DisposeBag()
 
-public protocol FisrtStepViewModelInputs {
+public protocol FirstStepViewModelInputs {
     var email: PublishSubject<String?> { get }
     var nextTaps: PublishSubject<Void> { get }
 }
@@ -30,11 +30,11 @@ public protocol FirstStepViewModelOutputs {
 }
 
 public protocol FirstStepViewModelType {
-    var inputs: FisrtStepViewModelInputs { get }
+    var inputs: FirstStepViewModelInputs { get }
     var outputs: FirstStepViewModelOutputs { get }
 }
 
-class FirstStepViewModel: FisrtStepViewModelInputs, FirstStepViewModelOutputs, FirstStepViewModelType {
+class FirstStepViewModel: FirstStepViewModelInputs, FirstStepViewModelOutputs, FirstStepViewModelType {
 
     public var validatedEmail: Driver<ValidationResult>
     public var enableNextButton: Driver<Bool>
@@ -46,7 +46,7 @@ class FirstStepViewModel: FisrtStepViewModelInputs, FirstStepViewModelOutputs, F
     public var requestCode: Driver<Bool>
     public var isLoading: Driver<Bool>
     
-    public var inputs: FisrtStepViewModelInputs { return self }
+    public var inputs: FirstStepViewModelInputs { return self }
     public var outputs: FirstStepViewModelOutputs { return self }
     
     // Private
@@ -81,15 +81,14 @@ class FirstStepViewModel: FisrtStepViewModelInputs, FirstStepViewModelOutputs, F
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(self.email.asDriver(onErrorJustReturn: nil))
             .flatMapLatest{ email in
-                // TODO: modify request for Reset Password
-                return provider.request(Buzzler.requestCode(receiver: email!))
+                return provider.request(Buzzler.requestCodeForNewPassword(receiver: email!))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
                     .mapJSON()
                     .flatMap({ res -> Single<Bool> in
                         print("requestCode for Reset Password: ", res)
-                        if let res = res as? String, res == "Success" {
+                        if let res = res as? String, res == "OK" {
                             return Single.just(true)
                         } else{
                             return Single.just(false)

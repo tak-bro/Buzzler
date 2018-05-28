@@ -21,9 +21,9 @@ class GlobalUIManager {
     class func loadHomeVC() {
         let kWindow: UIWindow = UIApplication.shared.keyWindow!
         let rootVC = UIStoryboard.vcInMainSB("HomeNavigationController")
-        rootVC.modalTransitionStyle = .crossDissolve
+        rootVC.modalTransitionStyle = .coverVertical
         UIView.transition(with: kWindow,
-                          duration: 0.5,
+                          duration: 0.3,
                           options: .transitionCrossDissolve,
                           animations: {
                             let oldState = UIView.areAnimationsEnabled
@@ -41,7 +41,24 @@ class GlobalUIManager {
 
         rootVC.modalTransitionStyle = .crossDissolve
         UIView.transition(with: kWindow,
-                          duration: 0.5,
+                          duration: 0.3,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            let oldState = UIView.areAnimationsEnabled
+                            UIView.setAnimationsEnabled(false)
+                            kWindow.rootViewController = rootVC
+                            kWindow.makeKeyAndVisible()
+                            UIView.setAnimationsEnabled(oldState)
+        })
+    }
+    
+    class func loadCustomVC(withTitle: String) {
+        let kWindow: UIWindow = UIApplication.shared.keyWindow!
+        let rootVC = UIStoryboard.vcInMainSB(withTitle)
+        
+        rootVC.modalTransitionStyle = .coverVertical
+        UIView.transition(with: kWindow,
+                          duration: 0.1,
                           options: .transitionCrossDissolve,
                           animations: {
                             let oldState = UIView.areAnimationsEnabled

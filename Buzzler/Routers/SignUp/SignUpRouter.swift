@@ -9,26 +9,9 @@
 import Foundation
 import UIKit
 
-struct UserInfo {
-    var recevier: String?
-    var nickName: String?
-    var password: String?
-    
-    init() {
-        self.recevier = ""
-        self.nickName = ""
-        self.password = ""
-    }
-    
-    init(receiver: String, nickName: String, password: String) {
-        self.recevier = receiver
-        self.nickName = nickName
-        self.password = password
-    }
-}
-
 enum SignUpSegue {
     case verifyCode
+    case selectUniv
     case selectMajor
     case done
 }
@@ -36,6 +19,7 @@ enum SignUpSegue {
 class SignUpRouter {
     
     var userInfo = UserInfo()
+    var majorList: [MajorInfo] = [MajorInfo]()
     
     func perform(_ segue: SignUpSegue, from source: UIViewController) {
         switch segue {
@@ -43,11 +27,14 @@ class SignUpRouter {
             let verifyCodeVC = SignUpRouter.makeVerifyCodeViewController(withUserInfo: userInfo)
             source.navigationController?.pushViewController(verifyCodeVC, animated: true)
         case .selectMajor:
-            let selectMajorVC = SignUpRouter.makeSelectMajorViewController(withUserInfo: userInfo)
+            let selectMajorVC = SignUpRouter.makeSelectMajorViewController(withUserInfo: userInfo, withMajorList: majorList)
             source.navigationController?.pushViewController(selectMajorVC, animated: true)
         case .done:
             let signUpDoneVC = SignUpRouter.makeSignUpDoneViewController()
             source.navigationController?.pushViewController(signUpDoneVC, animated: true)
+        case .selectUniv:
+            let selectUnivVC = SignUpRouter.makeSelectUnivViewController(withUserInfo: userInfo)
+            source.navigationController?.pushViewController(selectUnivVC, animated: true)
         }
     }
 }
@@ -62,11 +49,19 @@ private extension SignUpRouter {
         return verifyCodeVC
     }
     
-    static func makeSelectMajorViewController(withUserInfo userInfo: UserInfo) -> SelectMajorViewController {
+    static func makeSelectMajorViewController(withUserInfo userInfo: UserInfo, withMajorList majorList: [MajorInfo]) -> SelectMajorViewController {
         let selectMajorVC = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "SelectMajorViewController") as! SelectMajorViewController
         selectMajorVC.inputUserInfo = userInfo
+        selectMajorVC.majors = majorList
         return selectMajorVC
+    }
+
+    static func makeSelectUnivViewController(withUserInfo userInfo: UserInfo) -> SelectUnivViewController {
+        let selectUnivVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "SelectUnivViewController") as! SelectUnivViewController
+        selectUnivVC.inputUserInfo = userInfo
+        return selectUnivVC
     }
     
     static func makeSignUpDoneViewController() -> SignUpDoneViewController {

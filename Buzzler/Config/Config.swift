@@ -22,4 +22,6 @@ struct Config {
 extension Notification.Name {
     /// Buzzler post when home category change
     static let category = Notification.Name(rawValue: "homeCategory")
+    static let myPage = Notification.Name(rawValue: "myPage")
+    static let settings = Notification.Name(rawValue: "settings")
 }

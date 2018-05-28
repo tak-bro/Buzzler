@@ -24,6 +24,8 @@ class FirstStepViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // remove "Back" text
+        self.navigationController?.navigationBar.topItem?.title = " "
         setUI()
         bindToRx()
     }
@@ -59,6 +61,7 @@ class FirstStepViewController: UIViewController {
             .drive(onNext: { isSuccess in
                 if isSuccess {
                     // push view controller
+                    self.router.email = self.txt_email.text!
                     self.router.perform(.secondStep, from: self)
                 } else {
                     SVProgressHUD.showError(withStatus: "Server Error")
@@ -84,6 +87,10 @@ class FirstStepViewController: UIViewController {
                 self.view.layoutIfNeeded()
             })
             .addDisposableTo(disposeBag)
+    }
+    
+    @IBAction func pressDimiss(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
