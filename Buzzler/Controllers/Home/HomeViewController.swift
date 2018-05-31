@@ -57,7 +57,8 @@ extension HomeViewController: UITableViewDelegate {
         tableView.separatorStyle = .none
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
-        self.view = self.tableView
+        // self.view = self.tableView
+        view.addSubview(tableView)
         
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
@@ -65,9 +66,13 @@ extension HomeViewController: UITableViewDelegate {
         
         self.refreshControl = UIRefreshControl()
         if let refreshControl = self.refreshControl {
-            self.view.addSubview(refreshControl)
             refreshControl.backgroundColor = .clear
             refreshControl.tintColor = .lightGray
+            if #available(iOS 10.0, *) {
+                tableView.refreshControl = refreshControl
+            } else {
+                tableView.addSubview(refreshControl)
+            }
         }
     }
     
