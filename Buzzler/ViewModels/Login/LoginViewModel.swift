@@ -95,7 +95,6 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     .filterSuccessfulStatusCodes()
                     .mapJSON()
                     .flatMap({ token -> Single<Bool> in
-                        print("token", token)
                         if token is String {
                             // add userDefaults
                             var environment = Environment()

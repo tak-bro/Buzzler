@@ -88,11 +88,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                     .mapJSON()
                     .flatMap({ res -> Single<Bool> in
                         print("res: ", res)
-                        if res is String {
-                            return Single.just(true)
-                        } else {
-                            return Single.just(false)
-                        }
+                        return Single.just(true)
                     })
                     .trackActivity(Loading)
                     .asDriver(onErrorJustReturn: false)

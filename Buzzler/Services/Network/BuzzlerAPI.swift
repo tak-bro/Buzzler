@@ -27,7 +27,7 @@ public enum Buzzler {
     case requestCodeForNewPassword(receiver: String)
     case newPassword(email: String, password: String)
     case writeComment(postId: Int, parentId: Int?, content: String)
-
+    
     // PUT
     case verifyCode(receiver: String, verificationCode: String)
     case verifyCodeForNewPassword(receiver: String, verificationCode: String)
@@ -49,7 +49,7 @@ extension Buzzler: TargetType {
             return "/v1/categories"
         case .getDetailPost(let id):
             return "v1/posts/\(id)"
-
+            
         // POST
         case .writePost(_, _, _):
             return "/v1/posts"
@@ -85,17 +85,17 @@ extension Buzzler: TargetType {
             
         // POST
         case .writePost(_, _, _),
-            .requestCode(_),
-            .signUp(_, _, _, _),
-            .signIn(_, _),
-            .requestCodeForNewPassword(_),
-            .newPassword(_, _),
-            .writeComment(_, _, _):
+             .requestCode(_),
+             .signUp(_, _, _, _),
+             .signIn(_, _),
+             .requestCodeForNewPassword(_),
+             .newPassword(_, _),
+             .writeComment(_, _, _):
             return .post
-       
+            
         // PUT
         case .verifyCode(_, _),
-            .verifyCodeForNewPassword(_, _):
+             .verifyCodeForNewPassword(_, _):
             return .put
         }
     }
@@ -127,7 +127,7 @@ extension Buzzler: TargetType {
         case .writeComment(_, let parentId, let content):
             guard let parentId = parentId else { return ["content": content] }
             return ["parentId": parentId, "content": content]
-
+            
         // PUT
         case .verifyCode(let receiver, let verificationCode),
              .verifyCodeForNewPassword(let receiver, let verificationCode):
@@ -155,6 +155,8 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
                                                method: target.method,
                                                parameters: target.parameters
     )
+    let environment = Environment()
+    
     switch target {
     case .getUniv,
          .getMajor:
@@ -164,6 +166,11 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
     case .getPost,
          .getDetailPost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+        
+    case .writeComment:
+        return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newHTTPHeaderFields: ["Authorization": "\(environment.token!)"])
+            .adding(newParameterEncoding: JSONEncoding.default)
         
     default:
         return endpoint

@@ -109,7 +109,13 @@ extension PostViewController: UITableViewDelegate {
         viewModel.outputs.requestWriteComment
             .drive(onNext: { res in
                 if res == true {
-                    viewModel.inputs.refresh()
+                    self.txt_vw_comment.text = ""
+                    self.txt_vw_comment.resignFirstResponder()
+                    // refresh manually
+                    self.tbl_post.setContentOffset(CGPoint(x: 0, y: self.tbl_post.contentOffset.y - (self.refreshControl!.frame.size.height)), animated: false)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+                        self.refreshControl?.sendActions(for: .valueChanged)
+                    })
                 } else {
                     SVProgressHUD.showError(withStatus: "Server Error")
                 }
