@@ -25,8 +25,6 @@ class PostViewController: UIViewController {
     @IBOutlet weak var txt_vw_comment: UITextView!
     @IBOutlet weak var tbl_post: UITableView!
     
-    var viewModel: DetailPostViewModel?
-    
     let homeVM = HomeViewModel()
     let originDataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
     let disposeBag = DisposeBag()
