@@ -1458,7 +1458,7 @@ Cg
                                 <rect key="frame" x="10" y="597" width="355" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름 짓기 귀찮은 사람" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ed-Ra-qTn">
-                                        <rect key="frame" x="12" y="8" width="87" height="13"/>
+                                        <rect key="frame" x="12" y="8" width="87" height="12"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1466,11 +1466,11 @@ Cg
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YWV-mv-BLE">
                                         <rect key="frame" x="12" y="25" width="303" height="30"/>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="zPT-IB-8lc"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Tt-Gs-Zn1">
                                         <rect key="frame" x="320" y="25" width="30" height="30"/>
@@ -1493,7 +1493,7 @@ Cg
                                     <constraint firstItem="6Tt-Gs-Zn1" firstAttribute="centerY" secondItem="YWV-mv-BLE" secondAttribute="centerY" id="dPV-UB-SsT"/>
                                     <constraint firstItem="3ed-Ra-qTn" firstAttribute="top" secondItem="wZh-KU-fRA" secondAttribute="top" constant="8" id="dsk-t1-L7b"/>
                                     <constraint firstAttribute="height" constant="70" id="eKE-JF-RLa"/>
-                                    <constraint firstItem="YWV-mv-BLE" firstAttribute="top" secondItem="3ed-Ra-qTn" secondAttribute="bottom" constant="4.0000000000000355" id="wIK-4J-U56"/>
+                                    <constraint firstItem="YWV-mv-BLE" firstAttribute="top" secondItem="wZh-KU-fRA" secondAttribute="top" constant="25" id="xz2-3Z-ylh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1509,7 +1509,9 @@ Cg
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btn_writeComment" destination="6Tt-Gs-Zn1" id="Wg8-d2-nHF"/>
                         <outlet property="commentBottom" destination="8y4-u1-zW4" id="enR-B1-9OU"/>
+                        <outlet property="commentViewHeight" destination="eKE-JF-RLa" id="QPU-Sb-Yfz"/>
                         <outlet property="tbl_post" destination="Zow-VQ-OZr" id="XJ3-22-JVW"/>
                         <outlet property="txt_vw_comment" destination="YWV-mv-BLE" id="gVp-GN-rmM"/>
                         <outlet property="vw_writeComment" destination="wZh-KU-fRA" id="fVb-ml-q82"/>

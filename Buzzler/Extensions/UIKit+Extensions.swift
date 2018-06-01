@@ -74,3 +74,38 @@ extension UITextField {
         self.resignFirstResponder()
     }
 }
+
+extension UITextView {
+    
+    @IBInspectable var doneAccessory: Bool {
+        get {
+            return self.doneAccessory
+        }
+        set (hasDone) {
+            if hasDone{
+                addDoneButtonOnKeyboard()
+            }
+        }
+    }
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar = UIToolbar()
+        doneToolbar.barStyle = .default
+        doneToolbar.isTranslucent = true
+        doneToolbar.sizeToFit()
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
+        
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.inputAccessoryView = doneToolbar
+    }
+    
+    func doneButtonAction() {
+        self.resignFirstResponder()
+    }
+}
+

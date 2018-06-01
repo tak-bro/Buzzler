@@ -18,9 +18,11 @@ import RxKeyboard
 class PostViewController: UIViewController {
     
     @IBOutlet weak var vw_writeComment: UIView!
-    @IBOutlet weak var commentBottom: NSLayoutConstraint!
     @IBOutlet weak var txt_vw_comment: UITextView!
     @IBOutlet weak var tbl_post: UITableView!
+    @IBOutlet weak var commentViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var commentBottom: NSLayoutConstraint!
+    @IBOutlet weak var btn_writeComment: UIButton!
     
     var placeholderLabel : UILabel!
     var viewModel: DetailPostViewModel?
@@ -173,7 +175,13 @@ extension PostViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        placeholderLabel.isHidden = !txt_vw_comment.text.isEmpty
+        placeholderLabel.isHidden = !textView.text.isEmpty
+        // to set height of TextView
+        if textView.contentSize.height <= 100 {
+            self.commentViewHeight.constant = textView.contentSize.height + 40
+            textView.setContentOffset(CGPoint.zero, animated: false)
+        }
+        self.view.layoutIfNeeded()
     }
     
     func addPlaceHolderToTextView() {
