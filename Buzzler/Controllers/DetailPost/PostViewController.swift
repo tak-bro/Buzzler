@@ -11,32 +11,26 @@ import EZSwiftExtensions
 import Reusable
 import RxSwift
 import RxCocoa
-import Kingfisher
-import NoticeBar
 import RxDataSources
-import Differentiator
+import SVProgressHUD
 
 class PostViewController: UIViewController {
 
-
     @IBOutlet weak var vw_writeComment: UIView!
     @IBOutlet weak var commentBottom: NSLayoutConstraint!
-    @IBOutlet weak var textViewHeight: NSLayoutConstraint!
     @IBOutlet weak var txt_vw_comment: UITextView!
     @IBOutlet weak var tbl_post: UITableView!
     
     var viewModel: DetailPostViewModel?
-    let homeVM = HomeViewModel()
-    let originDataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
     let disposeBag = DisposeBag()
+    let dataSource = RxTableViewSectionedReloadDataSource<MultipleSectionModel>()
     
-    let tmpDataSource = RxTableViewSectionedReloadDataSource<MultipleSectionModel>()
-   
+    var refreshControl: UIRefreshControl?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configUI()
-        // configBinding()
-        setTempData()
+        configBinding()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -44,7 +38,7 @@ class PostViewController: UIViewController {
     }
 }
 
-extension PostViewController {
+extension PostViewController: UITableViewDelegate {
     
     // MARK: - Private Method
     
@@ -59,6 +53,19 @@ extension PostViewController {
         tbl_post.rowHeight = UITableViewAutomaticDimension
         tbl_post.estimatedRowHeight = 200
         tbl_post.separatorStyle = .none
+        tbl_post.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        self.refreshControl = UIRefreshControl()
+        if let refreshControl = self.refreshControl {
+            refreshControl.backgroundColor = .clear
+            refreshControl.tintColor = .lightGray
+            if #available(iOS 10.0, *) {
+                tbl_post.refreshControl = refreshControl
+            } else {
+                tbl_post.addSubview(refreshControl)
+            }
+        }
         
         // add footer view
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 73))
@@ -67,111 +74,78 @@ extension PostViewController {
         
         vw_writeComment.dropShadow(width: -1, height: 1)
     }
-
-    /*
+    
     fileprivate func configBinding() {
-         // Input
-        let inputStuff  = HomeViewModel.HomeInput()
-        // Output
-        let outputStuff = homeVM.transform(input: inputStuff)
-         
-        // Configure
-        originDataSource.configureCell = { dataSource, tableView, indexPath, item in
+        guard let viewModel = self.viewModel else { return }
+        viewModel.inputs.refresh()
+        
+        dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let defaultCell: UITableViewCell
             
-            if item.imageUrls.count > 0 {
-                let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
-                imgCell.lbl_title.text = "General2"
-                imgCell.lbl_title.numberOfLines = 0
-                imgCell.lbl_content.text = "General2"
-                imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
-                imgCell.lbl_likeCount.text = String(item.likeCount)
-                imgCell.lbl_author.text = "익명"
-                imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
-                if item.imageUrls.count == 1 {
-                    imgCell.vw_remainLabelContainer.isHidden = true
-                } else {
-                    imgCell.vw_remainLabelContainer.isHidden = false
-                }
-                defaultCell = imgCell
-            } else {
-                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
-                cell.lbl_comment.text = item.title
-                cell.lbl_comment.numberOfLines = 0
-                defaultCell = cell
-            }
-            return defaultCell
-        }
-        
-        outputStuff.section
-            .drive(tbl_post.rx.items(dataSource: originDataSource))
-            .addDisposableTo(rx.disposeBag)
-        
-       tbl_post.rx.setDelegate(self)
-            .addDisposableTo(rx.disposeBag)
-    }
- */
-}
-
-extension PostViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return HomeTableViewCell.height
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-extension PostViewController {
-    // temp
-    
-    func setTempData() {
-        let sections: [MultipleSectionModel] = [
-            .ImageProvidableSection(title: "Section 1",
-                                    items: [.ImageSectionItem(image: UIImage(named: "img_tmp")!, title: "General")]),
-            .ToggleableSection(title: "Section 2",
-                               items: [.ToggleableSectionItem(title: "On", enabled: true)]),
-//            .StepperableSection(title: "Section 3",
-//                                items: [.StepperSectionItem(title: "1")]),
-            .ToggleableSection(title: "Section 2",
-                               items: [.ToggleableSectionItem(title: "asdasdasd", enabled: true)]),
-            .ToggleableSection(title: "Section 2",
-                               items: [.ToggleableSectionItem(title: "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd", enabled: true)]),
-            .ToggleableSection(title: "Section 2",
-                               items: [.ToggleableSectionItem(title: "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd", enabled: true)]),
-            .ToggleableSection(title: "Section 2",
-                               items: [.ToggleableSectionItem(title: "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd", enabled: true)]),
-            .ToggleableSection(title: "Section 2",
-                               items: [.ToggleableSectionItem(title: "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd", enabled: true)]),
-        ]
-        
-        tmpDataSource.configureCell  = { dataSource, tableView, indexPath, item in
-
             switch dataSource[indexPath] {
-            case let .ImageSectionItem(image, title):
-                let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
-                imgCell.lbl_title.text = title
-                imgCell.lbl_author.text = title
-     
-                return imgCell
-            case let .StepperSectionItem(title):
-                let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
-                imgCell.lbl_title.text = title
+            case let .PostItem(item):
+                print("item", item)
+                if item.imageUrls.count > 0 {
+                    let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
+                    imgCell.lbl_title.text = item.title
+                    imgCell.lbl_content.text = item.content
+                    imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                    imgCell.lbl_likeCount.text = String(item.likeCount)
+                    imgCell.lbl_author.text = "익명"
+                    imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
+                    if item.imageUrls.count == 1 {
+                        imgCell.vw_remainLabelContainer.isHidden = true
+                    } else {
+                        imgCell.vw_remainLabelContainer.isHidden = false
+                    }
+                    defaultCell = imgCell
+                } else {
+                    let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
+                    cell.lbl_title.text = item.title
+                    cell.lbl_content.text = item.content
+                    cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                    cell.lbl_likeCount.text = String(item.likeCount)
+                    cell.lbl_author.text = "익명"
+                    defaultCell = cell
+                }
+                return defaultCell
                 
-                return imgCell
-            case let .ToggleableSectionItem(title, enabled):
+            case let .CommentItem(item):
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
-                cell.lbl_comment.text = title
+                cell.lbl_comment.text = item.content
+                cell.lbl_comment.numberOfLines = 0
                 return cell
             }
         }
         
-        
-        Observable.just(sections)
-            .bind(to: tbl_post.rx.items(dataSource: tmpDataSource))
+        self.refreshControl?.rx.controlEvent(.valueChanged)
+            .bind(to: viewModel.inputs.loadDetailPostTrigger)
             .disposed(by: disposeBag)
+        
+        viewModel.outputs.elements.asDriver()
+            .map({ (items) -> [MultipleSectionModel] in
+                return items
+            })
+            .drive(self.tbl_post.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        self.tbl_post.rx.itemSelected
+            .map { (at: $0, animated: true) }
+            .subscribe(onNext: tbl_post.deselectRow)
+            .disposed(by: disposeBag)
+        
+        viewModel.isLoading
+            .drive(onNext: { isLoading in
+                switch isLoading {
+                case true:
+                    self.refreshControl?.endRefreshing()
+                    SVProgressHUD.show()
+                    break
+                case false:
+                    SVProgressHUD.dismiss()
+                    break
+                }
+            }).disposed(by: disposeBag)
     }
     
 }

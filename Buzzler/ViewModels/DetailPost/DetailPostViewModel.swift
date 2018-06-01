@@ -63,8 +63,11 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                         .flatMap({ res -> Single<[MultipleSectionModel]> in
                             do {
                                 let data = try res.mapObject(DetailBuzzlerPost.self)
+                                
                                 // convert response to BuzzlerPost model
-                                let defaultPost = BuzzlerPost(id: data.id, title: data.title, content: data.content, imageUrls: data.imageUrls, likeCount: data.likeCount, createdAt: data.createdAt, authorId: data.authorId)
+                                let defaultPost = BuzzlerPost(id: data.id, title: data.title, content: data.content,
+                                                              imageUrls: data.imageUrls, likeCount: data.likeCount, createdAt: data.createdAt,
+                                                              authorId: data.authorId)
                                 // convert comments to CommentSection
                                 let comments = data.comments.map({ (comment: BuzzlerComment) -> MultipleSectionModel in
                                     return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
@@ -89,9 +92,12 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                 }
         }
         
-        let response = loadRequest
+        let request = loadRequest
+            .shareReplay(1)
+        
+        let response = request
             .flatMap { posts -> Observable<[MultipleSectionModel]> in
-                loadRequest
+                request
                     .do(onError: { _error in
                         self.error.onNext(_error)
                     }).catchError({ error -> Observable<[MultipleSectionModel]> in
@@ -101,11 +107,12 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             .shareReplay(1)
         
         Observable
-            .combineLatest(loadRequest, response, elements.asObservable()) { request, response, elements in
+            .combineLatest(request, response, elements.asObservable()) { request, response, elements in
                 return response
             }
             .sample(response)
             .bind(to: elements)
             .disposed(by: disposeBag)
     }
+
 }
