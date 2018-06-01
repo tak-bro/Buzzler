@@ -26,6 +26,7 @@ public enum Buzzler {
     case signIn(email: String, password: String)
     case requestCodeForNewPassword(receiver: String)
     case newPassword(email: String, password: String)
+    case writeComment(postId: Int, parentId: Int?, content: String)
 
     // PUT
     case verifyCode(receiver: String, verificationCode: String)
@@ -62,6 +63,8 @@ extension Buzzler: TargetType {
             return "/v1/accounts/newpassword/email-verification"
         case .newPassword:
             return "/v1/accounts/newpassword"
+        case .writeComment(let postId, _, _):
+            return "/v1/posts/\(postId)/comments"
             
         // PUT
         case .verifyCode:
@@ -86,7 +89,8 @@ extension Buzzler: TargetType {
             .signUp(_, _, _, _),
             .signIn(_, _),
             .requestCodeForNewPassword(_),
-            .newPassword(_, _):
+            .newPassword(_, _),
+            .writeComment(_, _, _):
             return .post
        
         // PUT
@@ -120,6 +124,9 @@ extension Buzzler: TargetType {
             return ["email": email, "password": password]
         case .newPassword(let email, let password):
             return ["email": email, "newPassword": password]
+        case .writeComment(_, let parentId, let content):
+            guard let parentId = parentId else { return ["content": content] }
+            return ["parentId": parentId, "content": content]
 
         // PUT
         case .verifyCode(let receiver, let verificationCode),

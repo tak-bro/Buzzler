@@ -14,12 +14,17 @@ import SwiftyJSON
 
 public protocol DetailPostViewModelInputs {
     var loadDetailPostTrigger: PublishSubject<Void> { get }
+    var inputtedComment: PublishSubject<String?> { get }
+    var writeCommentTaps: PublishSubject<Void> { get }
     func refresh()
 }
 
 public protocol DetailPostViewModelOutputs {
     var isLoading: Driver<Bool> { get }
     var elements: Variable<[MultipleSectionModel]> { get }
+    var enableWriteButton: Driver<Bool> { get }
+    var requestWriteComment: Driver<Bool> { get }
+    var validatedComment: Driver<ValidationResult> { get }
 }
 
 public protocol DetailPostViewModelType {
@@ -28,16 +33,23 @@ public protocol DetailPostViewModelType {
 }
 
 public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModelOutputs, DetailPostViewModelType {
-    
+
     public var loadDetailPostTrigger: PublishSubject<Void>
     public var isLoading: Driver<Bool>
     public var elements: Variable<[MultipleSectionModel]>
     public var inputs: DetailPostViewModelInputs { return self}
     public var outputs: DetailPostViewModelOutputs { return self}
     
+    // write comment action
+    public var inputtedComment: PublishSubject<String?>
+    public var enableWriteButton: Driver<Bool>
+    public var writeCommentTaps: PublishSubject<Void>
+    public var requestWriteComment: Driver<Bool>
+    public var validatedComment: Driver<ValidationResult>
+    
     private let disposeBag = DisposeBag()
     private let error = PublishSubject<Swift.Error>()
-    
+
     public func refresh() {
         self.loadDetailPostTrigger
             .onNext(())
@@ -49,6 +61,43 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
         let Loading = ActivityIndicator()
         self.isLoading = Loading.asDriver()
         
+        self.inputtedComment = PublishSubject<String?>()
+        self.writeCommentTaps = PublishSubject<Void>()
+        
+        let validationService = BuzzlerDefaultValidationService.sharedValidationService
+        
+        self.validatedComment = self.inputtedComment
+            .asDriver(onErrorJustReturn: nil)
+            .map { comment in
+                return validationService.validateTextString(comment!)
+        }
+        
+        self.enableWriteButton = self.validatedComment.map { comment in
+            return comment.isValid
+        }
+        
+        // write comment
+        self.requestWriteComment = self.writeCommentTaps
+            .asDriver(onErrorJustReturn:())
+            .withLatestFrom(self.inputtedComment.asDriver(onErrorJustReturn: nil))
+            .flatMapLatest{ comment in
+                return BuzzlerProvider.request(Buzzler.writeComment(postId: id, parentId: nil, content: comment!))
+                    .retry(3)
+                    .observeOn(MainScheduler.instance)
+                    .filterSuccessfulStatusCodes()
+                    .mapJSON()
+                    .flatMap({ res -> Single<Bool> in
+                        print("res: ", res)
+                        if res is String {
+                            return Single.just(true)
+                        } else {
+                            return Single.just(false)
+                        }
+                    })
+                    .trackActivity(Loading)
+                    .asDriver(onErrorJustReturn: false)
+        }
+
         // get detailPost data
         let loadRequest = self.isLoading.asObservable()
             .sample(self.loadDetailPostTrigger)

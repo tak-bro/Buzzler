@@ -85,6 +85,37 @@ extension PostViewController: UITableViewDelegate {
         guard let viewModel = self.viewModel else { return }
         viewModel.inputs.refresh()
         
+        // write comment
+        btn_writeComment.rx.tap
+            .bind(to: viewModel.inputs.writeCommentTaps)
+            .disposed(by: disposeBag)
+        
+        txt_vw_comment.rx.text.orEmpty
+            .bind(to: viewModel.inputs.inputtedComment)
+            .disposed(by: disposeBag)
+        
+        viewModel.outputs.enableWriteButton.drive(onNext: { enable in
+            self.btn_writeComment.isEnabled = enable
+        }).disposed(by: disposeBag)
+        
+        viewModel.outputs.validatedComment
+            .drive()
+            .disposed(by: disposeBag)
+        
+        viewModel.outputs.enableWriteButton
+            .drive()
+            .disposed(by: disposeBag)
+
+        viewModel.outputs.requestWriteComment
+            .drive(onNext: { res in
+                if res == true {
+                    viewModel.inputs.refresh()
+                } else {
+                    SVProgressHUD.showError(withStatus: "Server Error")
+                }
+            }).disposed(by: disposeBag)
+        
+        // set table
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let defaultCell: UITableViewCell
             
