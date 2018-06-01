@@ -98,9 +98,10 @@ extension HomeViewController: UITableViewDelegate {
                 defaultCell = imgCell
             } else {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
+                print("item.createat", item.createdAt)
                 cell.lbl_title.text = item.title
                 cell.lbl_content.text = item.content
-                cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                cell.lbl_time.text = item.createdAt.toString()
                 cell.lbl_likeCount.text = String(item.likeCount)
                 cell.lbl_author.text = "익명"
                 defaultCell = cell
@@ -246,5 +247,4 @@ extension HomeViewController {
         self.navigationController?.navigationBar.layer.shadowRadius = 0.0
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.0
     }
-    
 }
