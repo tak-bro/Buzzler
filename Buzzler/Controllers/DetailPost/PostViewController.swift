@@ -13,6 +13,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import SVProgressHUD
+import RxKeyboard
 
 class PostViewController: UIViewController {
     
@@ -148,6 +149,14 @@ extension PostViewController: UITableViewDelegate {
                     break
                 }
             }).disposed(by: disposeBag)
+        
+        RxKeyboard.instance.visibleHeight
+            .drive(onNext: { [weak self] keyboardVisibleHeight in
+                guard let `self` = self else { return }
+                self.commentBottom.constant = keyboardVisibleHeight
+                self.view.layoutIfNeeded()
+            })
+            .addDisposableTo(disposeBag)
     }
     
 }
