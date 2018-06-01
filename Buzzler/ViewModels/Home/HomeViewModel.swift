@@ -24,8 +24,7 @@ public protocol HomeViewModelOutputs {
     var isLoading: Driver<Bool> { get }
     var moreLoading: Driver<Bool> { get }
     var elements: Variable<[BuzzlerPost]> { get }
-    // TODO: add push
-    // var selectedViewModel: Driver<RepoViewModel> { get }
+    var selectedViewModel: Driver<DetailPostViewModel> { get }
 }
 
 public protocol HomeViewModelType {
@@ -35,7 +34,7 @@ public protocol HomeViewModelType {
 
 public class HomeViewModel: HomeViewModelType, HomeViewModelInputs, HomeViewModelOutputs {
     
-    // public var selectedViewModel: Driver<RepoViewModel>
+    public var selectedViewModel: Driver<DetailPostViewModel>
     public var loadPageTrigger:PublishSubject<Void>
     public var loadNextPageTrigger:PublishSubject<Void>
     public var moreLoading: Driver<Bool>
@@ -50,7 +49,7 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelInputs, HomeViewMode
     private var category = 0
     
     init() {
-        // self.selectedViewModel = Driver.empty()
+        self.selectedViewModel = Driver.empty()
         self.loadPageTrigger = PublishSubject<Void>()
         self.loadNextPageTrigger = PublishSubject<Void>()
         self.elements = Variable<[BuzzlerPost]>([])
@@ -134,12 +133,12 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelInputs, HomeViewMode
             .bind(to: elements)
             .disposed(by: disposeBag)
         
-        /* TODO: add selected item
-         //binding selected item
-         self.selectedViewModel = self.repository.asDriver().filterNil().flatMapLatest{ repo -> Driver<RepoViewModel> in
-         return Driver.just(RepoViewModel(repo: repo))
-         }
-         */
+        //binding selected item
+        self.selectedViewModel = self.post.asDriver()
+            .filterNil()
+            .flatMapLatest{ post -> Driver<DetailPostViewModel> in
+                return Driver.just(DetailPostViewModel(id: post.id))
+        }
     }
     
     public func refresh() {

@@ -88,9 +88,9 @@ class SideViewController: UIViewController, UITableViewDelegate {
                     // NotificationCenter.default.post(name: Notification.Name.category, object: Int(id))
                     self.router.category = Int(id)!
                     self.router.perform(.home, from: self)
-                case .myPage(id: _, navTitle: let title):
+                case .myPage(id: _, navTitle: _):
                     self.router.perform(.myPage, from: self)
-                case .settings(id: _, navTitle: let title):
+                case .settings(id: _, navTitle: _):
                     self.router.perform(.settings, from: self)
                 }
             })

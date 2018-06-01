@@ -20,7 +20,6 @@ final class HomeViewController: UIViewController {
     let dataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
 
     let header = StretchHeader()
-    let router = HomeRouter()
     let tableView = UITableView().then {
         $0.register(cellType: HomeTableViewCell.self)
         $0.register(cellType: HomeImageTableViewCell.self)
@@ -33,7 +32,6 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // set SideMenu UI
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
         
@@ -57,7 +55,7 @@ extension HomeViewController: UITableViewDelegate {
         tableView.separatorStyle = .none
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
-        // self.view = self.tableView
+        
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { (make) in
@@ -150,13 +148,12 @@ extension HomeViewController: UITableViewDelegate {
                 }
             }).disposed(by: disposeBag)
 
-        /* TODO:
-        self.viewModel.outputs.selectedViewModel.drive(onNext: { repoViewModel in
-            let repoViewController = RepoViewController()
-            repoViewController.viewModel = repoViewModel
-            self.navigationController?.pushViewController(repoViewController, animated: true)
+        self.viewModel.outputs.selectedViewModel.drive(onNext: { detailPostViewModel in
+            // push to PostViewController
+            let detailPostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
+            detailPostVC.viewModel = detailPostViewModel
+            self.navigationController?.pushViewController(detailPostVC, animated: true)
         }).disposed(by: disposeBag)
-            */
     }
 }
 

@@ -26,11 +26,11 @@
 		3B52E6C820AE94AA002B2BB6 /* SecondStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C720AE94AA002B2BB6 /* SecondStepViewModel.swift */; };
 		3B52E6CA20AE94C7002B2BB6 /* LastStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C920AE94C7002B2BB6 /* LastStepViewModel.swift */; };
 		3B623E9D20B6B9AF000302C0 /* SideMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B623E9C20B6B9AF000302C0 /* SideMenuRouter.swift */; };
+		3B66DDC420C0D752009944D1 /* DetailPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B66DDC320C0D752009944D1 /* DetailPostViewModel.swift */; };
 		3B823CBB20B81A5E000A68BA /* NewPasswordDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B823CBA20B81A5E000A68BA /* NewPasswordDoneViewController.swift */; };
 		3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85701820A9A945009FEC48 /* ValidationService.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
 		84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB420907D3200B7C98A /* SignUpViewModel.swift */; };
-		84002EB720907D5100B7C98A /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB620907D5100B7C98A /* HomeRouter.swift */; };
 		8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421B2C92086D1A900CBF4E3 /* LoginViewController.swift */; };
 		8421B2CE2086D6CE00CBF4E3 /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421B2CD2086D6CE00CBF4E3 /* UIKit+Extensions.swift */; };
 		8421B2D12086D82C00CBF4E3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421B2D02086D82C00CBF4E3 /* LoginViewModel.swift */; };
@@ -105,13 +105,13 @@
 		3B52E6C720AE94AA002B2BB6 /* SecondStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStepViewModel.swift; sourceTree = "<group>"; };
 		3B52E6C920AE94C7002B2BB6 /* LastStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepViewModel.swift; sourceTree = "<group>"; };
 		3B623E9C20B6B9AF000302C0 /* SideMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRouter.swift; sourceTree = "<group>"; };
+		3B66DDC320C0D752009944D1 /* DetailPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewModel.swift; sourceTree = "<group>"; };
 		3B823CBA20B81A5E000A68BA /* NewPasswordDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordDoneViewController.swift; sourceTree = "<group>"; };
 		3B85701820A9A945009FEC48 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
 		84002EB22090613A00B7C98A /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		84002EB420907D3200B7C98A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
-		84002EB620907D5100B7C98A /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		8421B2C92086D1A900CBF4E3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8421B2CD2086D6CE00CBF4E3 /* UIKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 		8421B2D02086D82C00CBF4E3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -218,7 +218,6 @@
 				3B623E9B20B6B99E000302C0 /* SideMenu */,
 				3B48A9C620B527F900E0BDA1 /* SignUp */,
 				3B48A9C720B5281100E0BDA1 /* ResetPassword */,
-				3B48A9C820B5282200E0BDA1 /* Home */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -237,14 +236,6 @@
 				3B2A42B120AEADA300E37D72 /* ResetPasswordRouter.swift */,
 			);
 			path = ResetPassword;
-			sourceTree = "<group>";
-		};
-		3B48A9C820B5282200E0BDA1 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				84002EB620907D5100B7C98A /* HomeRouter.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		3B52E6BD20AE9311002B2BB6 /* ResetPassword */ = {
@@ -274,6 +265,14 @@
 				3B623E9C20B6B9AF000302C0 /* SideMenuRouter.swift */,
 			);
 			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		3B66DDC220C0D746009944D1 /* DetailPost */ = {
+			isa = PBXGroup;
+			children = (
+				3B66DDC320C0D752009944D1 /* DetailPostViewModel.swift */,
+			);
+			path = DetailPost;
 			sourceTree = "<group>";
 		};
 		84002EB12090611A00B7C98A /* Post */ = {
@@ -583,6 +582,7 @@
 		AFCB661B1DF844B100916E1B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				3B66DDC220C0D746009944D1 /* DetailPost */,
 				844BC37C208AFAA400666486 /* SignUp */,
 				3B52E6C420AE9447002B2BB6 /* ResetPassword */,
 				8421B2CF2086D81F00CBF4E3 /* Login */,
@@ -821,7 +821,6 @@
 				84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */,
 				AF69F0EB1E0E055D00735284 /* SideMenuNavigationController.swift in Sources */,
 				3B48A9BD20B2A30700E0BDA1 /* SelectUnivViewController.swift in Sources */,
-				84002EB720907D5100B7C98A /* HomeRouter.swift in Sources */,
 				84BA76F72086FC4B0097FFD2 /* Decodable.swift in Sources */,
 				8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */,
 				84A1BFCC208C899B00D0ADC7 /* StretchHeader.swift in Sources */,
@@ -831,6 +830,7 @@
 				3B48A9C420B2B27F00E0BDA1 /* University.swift in Sources */,
 				AF9F0FD41DF1A91300FF8EC5 /* HomeViewController.swift in Sources */,
 				844BC37B208AF8FE00666486 /* SignUpViewController.swift in Sources */,
+				3B66DDC420C0D752009944D1 /* DetailPostViewModel.swift in Sources */,
 				84C4DED02095931600FD6BFD /* SideTableViewCell.swift in Sources */,
 				8421B2CE2086D6CE00CBF4E3 /* UIKit+Extensions.swift in Sources */,
 				84A1BFCE208C8D8400D0ADC7 /* HeaderLabel.swift in Sources */,
