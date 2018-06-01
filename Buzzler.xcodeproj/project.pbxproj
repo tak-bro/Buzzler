@@ -28,6 +28,7 @@
 		3B623E9D20B6B9AF000302C0 /* SideMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B623E9C20B6B9AF000302C0 /* SideMenuRouter.swift */; };
 		3B66DDC420C0D752009944D1 /* DetailPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B66DDC320C0D752009944D1 /* DetailPostViewModel.swift */; };
 		3B66DDCA20C0E1DF009944D1 /* BuzzlerComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B66DDC920C0E1DF009944D1 /* BuzzlerComment.swift */; };
+		3B66DDCC20C0E961009944D1 /* MutipleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B66DDCB20C0E961009944D1 /* MutipleSection.swift */; };
 		3B823CBB20B81A5E000A68BA /* NewPasswordDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B823CBA20B81A5E000A68BA /* NewPasswordDoneViewController.swift */; };
 		3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85701820A9A945009FEC48 /* ValidationService.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
@@ -108,6 +109,7 @@
 		3B623E9C20B6B9AF000302C0 /* SideMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRouter.swift; sourceTree = "<group>"; };
 		3B66DDC320C0D752009944D1 /* DetailPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewModel.swift; sourceTree = "<group>"; };
 		3B66DDC920C0E1DF009944D1 /* BuzzlerComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerComment.swift; sourceTree = "<group>"; };
+		3B66DDCB20C0E961009944D1 /* MutipleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleSection.swift; sourceTree = "<group>"; };
 		3B823CBA20B81A5E000A68BA /* NewPasswordDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordDoneViewController.swift; sourceTree = "<group>"; };
 		3B85701820A9A945009FEC48 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -282,6 +284,7 @@
 			children = (
 				3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */,
 				3B66DDC920C0E1DF009944D1 /* BuzzlerComment.swift */,
+				3B66DDCB20C0E961009944D1 /* MutipleSection.swift */,
 			);
 			path = DetailPost;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 				3B52E6C320AE942C002B2BB6 /* LastStepViewController.swift in Sources */,
 				844BC380208B065200666486 /* SignUpRouter.swift in Sources */,
 				3B1CBD0520AAC8770018D156 /* SelectMajorViewModel.swift in Sources */,
+				3B66DDCC20C0E961009944D1 /* MutipleSection.swift in Sources */,
 				3B2A42B820B140C000E37D72 /* MyPageViewController.swift in Sources */,
 				3B52E6C120AE93E3002B2BB6 /* SecondStepViewController.swift in Sources */,
 				84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */,

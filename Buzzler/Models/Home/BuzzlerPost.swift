@@ -38,6 +38,18 @@ public struct BuzzlerPost: Equatable, Mappable {
         authorId <- map["authorId"]
     }
     
+    init(id: Int, title: String, content: String,
+         imageUrls: [String], likeCount: Int, createdAt: Date,
+         authorId: Int) {
+        self.id = id
+        self.title = title
+        self.content = content
+        self.imageUrls = imageUrls
+        self.likeCount = likeCount
+        self.createdAt = createdAt
+        self.authorId = authorId
+    }
+    
 }
 
 struct BuzzlerSection {
