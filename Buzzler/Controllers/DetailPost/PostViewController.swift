@@ -15,12 +15,13 @@ import RxDataSources
 import SVProgressHUD
 
 class PostViewController: UIViewController {
-
+    
     @IBOutlet weak var vw_writeComment: UIView!
     @IBOutlet weak var commentBottom: NSLayoutConstraint!
     @IBOutlet weak var txt_vw_comment: UITextView!
     @IBOutlet weak var tbl_post: UITableView!
     
+    var placeholderLabel : UILabel!
     var viewModel: DetailPostViewModel?
     let disposeBag = DisposeBag()
     let dataSource = RxTableViewSectionedReloadDataSource<MultipleSectionModel>()
@@ -30,10 +31,11 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         resetNavBar()
-        configUI()
+        addPlaceHolderToTextView()
+        configTableUI()
         configBinding()
     }
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -43,7 +45,7 @@ extension PostViewController: UITableViewDelegate {
     
     // MARK: - Private Method
     
-    fileprivate func configUI() {
+    fileprivate func configTableUI() {
         // set tableView UI
         title = "Post"
         tbl_post.register(cellType: HomeTableViewCell.self)
@@ -85,7 +87,6 @@ extension PostViewController: UITableViewDelegate {
             
             switch dataSource[indexPath] {
             case let .PostItem(item):
-                print("item", item)
                 if item.imageUrls.count > 0 {
                     let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                     imgCell.lbl_title.text = item.title
@@ -151,7 +152,7 @@ extension PostViewController: UITableViewDelegate {
     
 }
 
-extension PostViewController {
+extension PostViewController: UITextViewDelegate {
     
     func resetNavBar() {
         self.navigationController?.navigationBar.topItem?.title = " "
@@ -160,5 +161,23 @@ extension PostViewController {
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         self.navigationController?.navigationBar.layer.shadowRadius = 0.0
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.0
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !txt_vw_comment.text.isEmpty
+    }
+    
+    func addPlaceHolderToTextView() {
+        txt_vw_comment.delegate = self
+        
+        // set placeholder for textView
+        placeholderLabel = UILabel()
+        placeholderLabel.text = "댓글달기.."
+        placeholderLabel.textColor = Config.UI.placeholderColor
+        placeholderLabel.font = UIFont(name: "NotoSans-Regular", size: 14)
+        placeholderLabel.sizeToFit()
+        txt_vw_comment.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: (txt_vw_comment.font?.pointSize)! / 2)
+        placeholderLabel.isHidden = !txt_vw_comment.text.isEmpty
     }
 }
