@@ -51,7 +51,7 @@ class PostViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.lbl_parentCommentId.text = "-1"
+        self.lbl_parentCommentId.text = ""
     }
 }
 
@@ -132,6 +132,10 @@ extension PostViewController: UITableViewDelegate {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
                         self.refreshControl?.sendActions(for: .valueChanged)
                     })
+                    // reset parentId Info
+                    self.vw_parentComment.isHidden = true
+                    self.lbl_parentCommentId.text = ""
+                    self.lbl_parentAuthor.text = ""
                 } else {
                     SVProgressHUD.showError(withStatus: "Server Error")
                 }
@@ -175,6 +179,9 @@ extension PostViewController: UITableViewDelegate {
                 // define action to write comment
                 cell.btn_writeRecomment.rx.tap.asDriver()
                     .drive(onNext: { _ in
+                        // open input view
+                        self.txt_vw_comment.becomeFirstResponder()
+                        // set parent comment Info
                         self.lbl_parentCommentId.text = item.id.toString
                         self.vw_parentComment.isHidden = false
                         self.lbl_parentAuthor.text = item.authorId.toString

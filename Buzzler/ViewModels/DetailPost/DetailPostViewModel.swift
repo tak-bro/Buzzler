@@ -87,10 +87,9 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
         // write comment
         self.requestWriteComment = self.writeCommentTaps
             .asDriver(onErrorJustReturn:())
- //           .withLatestFrom(self.inputtedComment.asDriver(onErrorJustReturn: nil))
             .withLatestFrom(commentAndParentId)
             .flatMapLatest{ tuple in
-                return BuzzlerProvider.request(Buzzler.writeComment(postId: id, parentId: tuple.1! == "-1" ? nil : tuple.1!, content: tuple.0!))
+                return BuzzlerProvider.request(Buzzler.writeComment(postId: id, parentId: tuple.1! == "" ? nil : tuple.1!, content: tuple.0!))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
@@ -125,9 +124,8 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                                 // convert comments to CommentSection
                                 let comments = data.comments
                                     .sorted(by: // sort by id and parentId
-                                        BuzzlerComment.idCompare,
                                         BuzzlerComment.parentIdCompare,
-                                        BuzzlerComment.createdAtCompare
+                                        BuzzlerComment.idCompare
                                     )
                                     .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
                                         if let _ = comment.parentId {
