@@ -19,6 +19,8 @@
 		3B48A9CA20B5498700E0BDA1 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9C920B5498700E0BDA1 /* UserInfo.swift */; };
 		3B48A9CC20B549A700E0BDA1 /* MajorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9CB20B549A700E0BDA1 /* MajorInfo.swift */; };
 		3B48A9CE20B54FDF00E0BDA1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9CD20B54FDF00E0BDA1 /* Environment.swift */; };
+		3B51CCD020C252CA0087BFF5 /* ReCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B51CCCE20C252CA0087BFF5 /* ReCommentTableViewCell.swift */; };
+		3B51CCD120C252CA0087BFF5 /* ReCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B51CCCF20C252CA0087BFF5 /* ReCommentTableViewCell.xib */; };
 		3B52E6BF20AE93D0002B2BB6 /* FirstStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6BE20AE93D0002B2BB6 /* FirstStepViewController.swift */; };
 		3B52E6C120AE93E3002B2BB6 /* SecondStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C020AE93E3002B2BB6 /* SecondStepViewController.swift */; };
 		3B52E6C320AE942C002B2BB6 /* LastStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B52E6C220AE942C002B2BB6 /* LastStepViewController.swift */; };
@@ -100,6 +102,8 @@
 		3B48A9C920B5498700E0BDA1 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		3B48A9CB20B549A700E0BDA1 /* MajorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajorInfo.swift; sourceTree = "<group>"; };
 		3B48A9CD20B54FDF00E0BDA1 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		3B51CCCE20C252CA0087BFF5 /* ReCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReCommentTableViewCell.swift; sourceTree = "<group>"; };
+		3B51CCCF20C252CA0087BFF5 /* ReCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReCommentTableViewCell.xib; sourceTree = "<group>"; };
 		3B52E6BE20AE93D0002B2BB6 /* FirstStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStepViewController.swift; sourceTree = "<group>"; };
 		3B52E6C020AE93E3002B2BB6 /* SecondStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStepViewController.swift; sourceTree = "<group>"; };
 		3B52E6C220AE942C002B2BB6 /* LastStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepViewController.swift; sourceTree = "<group>"; };
@@ -406,6 +410,8 @@
 			children = (
 				84C4DED22095A58100FD6BFD /* CommentTableViewCell.swift */,
 				84C4DED32095A58100FD6BFD /* CommentTableViewCell.xib */,
+				3B51CCCE20C252CA0087BFF5 /* ReCommentTableViewCell.swift */,
+				3B51CCCF20C252CA0087BFF5 /* ReCommentTableViewCell.xib */,
 			);
 			path = DetailPost;
 			sourceTree = "<group>";
@@ -668,6 +674,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B51CCD120C252CA0087BFF5 /* ReCommentTableViewCell.xib in Resources */,
 				84A05AB8209BEA8A009AD3EB /* NotoSans-Regular.ttf in Resources */,
 				AFA7EC781DEEDEDC00138AEE /* LaunchScreen.storyboard in Resources */,
 				84C4DED12095931600FD6BFD /* SideTableViewCell.xib in Resources */,
@@ -784,6 +791,7 @@
 				84F437A82085C3D500E71358 /* WritePostViewModel.swift in Sources */,
 				84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */,
 				844BC388208C539A00666486 /* SignUpResult.swift in Sources */,
+				3B51CCD020C252CA0087BFF5 /* ReCommentTableViewCell.swift in Sources */,
 				84002EB32090613A00B7C98A /* PostViewController.swift in Sources */,
 				AF3C0C221E0AA003002644DD /* BrowserWebViewController.swift in Sources */,
 				3B48A9BF20B2A37100E0BDA1 /* SelectUnivViewModel.swift in Sources */,

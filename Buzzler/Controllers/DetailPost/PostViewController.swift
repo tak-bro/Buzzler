@@ -54,6 +54,7 @@ extension PostViewController: UITableViewDelegate {
         tbl_post.register(cellType: HomeTableViewCell.self)
         tbl_post.register(cellType: HomeImageTableViewCell.self)
         tbl_post.register(cellType: CommentTableViewCell.self)
+        tbl_post.register(cellType: ReCommentTableViewCell.self)
         tbl_post.allowsSelection = false
         tbl_post.backgroundColor = Config.UI.themeColor
         tbl_post.rowHeight = UITableViewAutomaticDimension
@@ -151,17 +152,15 @@ extension PostViewController: UITableViewDelegate {
                     defaultCell = cell
                 }
                 return defaultCell
-                
             case let .CommentItem(item):
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
                 cell.lbl_comment.text = item.content
                 cell.lbl_comment.numberOfLines = 0
                 return cell
-            // TODO: add recomment item
-            case .ReCommentItem(let item):
-                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
-                cell.lbl_comment.text = item.content
-                cell.lbl_comment.numberOfLines = 0
+            case let .ReCommentItem(item):
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ReCommentTableViewCell.self)
+                cell.lbl_recomment.text = item.content
+                cell.lbl_recomment.numberOfLines = 0
                 return cell
             }
         }

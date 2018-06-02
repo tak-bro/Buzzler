@@ -121,10 +121,11 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                                         BuzzlerComment.createdAtCompare
                                     )
                                     .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
-                                        guard comment.parentId != nil else {
-                                        return .ReCommentSection(title: "RecommentSection", items: [.ReCommentItem(item: comment)])
-                                    }
-                                    return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
+                                        if let _ = comment.parentId {
+                                            return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
+                                        } else {
+                                            return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
+                                        }
                                 })
                                 
 
