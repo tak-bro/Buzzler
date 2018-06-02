@@ -115,13 +115,22 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                                                               authorId: data.authorId)
                                 // convert comments to CommentSection
                                 let comments = data.comments.map({ (comment: BuzzlerComment) -> MultipleSectionModel in
+                                    guard comment.parentId != nil else {
+                                        return .ReCommentSection(title: "RecommentSection", items: [.ReCommentItem(item: comment)])
+                                    }
                                     return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
                                 })
+                                
+                                // sort comments data for ReComment
+                                
+                                
                                 // init default MutlipleSection
                                 var sections: [MultipleSectionModel] = [
                                     .PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]),
                                     // .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment[0])])
                                     // .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment[1])])
+                                    // .ReCommentSection(title: "CommentSection", items: [.CommentItem(item: comment[2])])
+                                    // .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment[3])])
                                     // ...
                                 ]
                                 

@@ -15,7 +15,7 @@ public struct BuzzlerComment: Equatable, Mappable {
     var id: Int = 0
     var authorId: Int = 0
     var postId: Int = 0
-    var parentId: Int = 0
+    var parentId: Int?
     var content: String = ""
     var createdAt: Date = Date()
 

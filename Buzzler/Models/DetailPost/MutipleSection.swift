@@ -12,11 +12,13 @@ import RxDataSources
 public enum MultipleSectionModel {
     case PostSection(title: String, items: [SectionItem])
     case CommentSection(title: String, items: [SectionItem])
+    case ReCommentSection(title: String, items: [SectionItem])
 }
 
 public enum SectionItem {
     case PostItem(item: BuzzlerPost)
     case CommentItem(item: BuzzlerComment)
+    case ReCommentItem(item: BuzzlerComment)
 }
 
 extension MultipleSectionModel: SectionModelType {
@@ -28,6 +30,8 @@ extension MultipleSectionModel: SectionModelType {
             return items.map {$0}
         case .CommentSection(title: _, items: let items):
             return items.map {$0}
+        case .ReCommentSection(title: _, items: let items):
+            return items.map {$0}
         }
     }
     
@@ -37,6 +41,8 @@ extension MultipleSectionModel: SectionModelType {
             self = .PostSection(title: title, items: items)
         case let .CommentSection(title, _):
             self = .CommentSection(title: title, items: items)
+        case let .ReCommentSection(title, _):
+            self = .ReCommentSection(title: title, items: items)
         }
     }
 }
@@ -47,6 +53,8 @@ extension MultipleSectionModel {
         case .PostSection(title: let title, items: _):
             return title
         case .CommentSection(title: let title, items: _):
+            return title
+        case .ReCommentSection(title: let title, items: _):
             return title
         }
     }

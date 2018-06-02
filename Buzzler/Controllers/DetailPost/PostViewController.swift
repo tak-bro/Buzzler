@@ -157,6 +157,12 @@ extension PostViewController: UITableViewDelegate {
                 cell.lbl_comment.text = item.content
                 cell.lbl_comment.numberOfLines = 0
                 return cell
+            // TODO: add recomment item
+            case .ReCommentItem(let item):
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
+                cell.lbl_comment.text = item.content
+                cell.lbl_comment.numberOfLines = 0
+                return cell
             }
         }
         
