@@ -1455,25 +1455,25 @@ Cg
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZh-KU-fRA">
-                                <rect key="frame" x="10" y="597" width="355" height="70"/>
+                                <rect key="frame" x="10" y="607" width="355" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름 짓기 귀찮은 사람" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ed-Ra-qTn">
-                                        <rect key="frame" x="12" y="8" width="87" height="12"/>
+                                        <rect key="frame" x="12" y="5" width="87" height="12"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YWV-mv-BLE">
-                                        <rect key="frame" x="12" y="25" width="303" height="30"/>
+                                        <rect key="frame" x="12" y="20" width="303" height="30"/>
                                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Tt-Gs-Zn1">
-                                        <rect key="frame" x="320" y="25" width="30" height="30"/>
+                                        <rect key="frame" x="320" y="20" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Jns-Z6-TDw"/>
                                         </constraints>
@@ -1488,12 +1488,12 @@ Cg
                                     <constraint firstItem="6Tt-Gs-Zn1" firstAttribute="leading" secondItem="YWV-mv-BLE" secondAttribute="trailing" constant="5" id="4Z9-XJ-KXO"/>
                                     <constraint firstAttribute="trailing" secondItem="6Tt-Gs-Zn1" secondAttribute="trailing" constant="5" id="59g-jo-v79"/>
                                     <constraint firstItem="YWV-mv-BLE" firstAttribute="leading" secondItem="wZh-KU-fRA" secondAttribute="leading" constant="12" id="Oru-qz-C5F"/>
-                                    <constraint firstAttribute="bottom" secondItem="YWV-mv-BLE" secondAttribute="bottom" constant="15" id="VTD-fO-CJ7"/>
+                                    <constraint firstAttribute="bottom" secondItem="YWV-mv-BLE" secondAttribute="bottom" constant="10" id="VTD-fO-CJ7"/>
                                     <constraint firstItem="3ed-Ra-qTn" firstAttribute="leading" secondItem="wZh-KU-fRA" secondAttribute="leading" constant="12" id="Ysa-2q-uIh"/>
                                     <constraint firstItem="6Tt-Gs-Zn1" firstAttribute="centerY" secondItem="YWV-mv-BLE" secondAttribute="centerY" id="dPV-UB-SsT"/>
-                                    <constraint firstItem="3ed-Ra-qTn" firstAttribute="top" secondItem="wZh-KU-fRA" secondAttribute="top" constant="8" id="dsk-t1-L7b"/>
-                                    <constraint firstAttribute="height" constant="70" id="eKE-JF-RLa"/>
-                                    <constraint firstItem="YWV-mv-BLE" firstAttribute="top" secondItem="wZh-KU-fRA" secondAttribute="top" constant="25" id="xz2-3Z-ylh"/>
+                                    <constraint firstItem="3ed-Ra-qTn" firstAttribute="top" secondItem="wZh-KU-fRA" secondAttribute="top" constant="5" id="dsk-t1-L7b"/>
+                                    <constraint firstAttribute="height" constant="60" id="eKE-JF-RLa"/>
+                                    <constraint firstItem="YWV-mv-BLE" firstAttribute="top" secondItem="wZh-KU-fRA" secondAttribute="top" constant="20" id="xz2-3Z-ylh"/>
                                 </constraints>
                             </view>
                         </subviews>

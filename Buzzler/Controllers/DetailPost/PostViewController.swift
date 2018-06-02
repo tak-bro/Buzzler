@@ -220,7 +220,7 @@ extension PostViewController: UITextViewDelegate {
         placeholderLabel.isHidden = !textView.text.isEmpty
         // to set height of TextView
         if textView.contentSize.height <= 100 {
-            self.commentViewHeight.constant = textView.contentSize.height + 40
+            self.commentViewHeight.constant = textView.contentSize.height + 30
             textView.setContentOffset(CGPoint.zero, animated: false)
         }
         self.view.layoutIfNeeded()
