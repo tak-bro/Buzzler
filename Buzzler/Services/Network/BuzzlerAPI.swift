@@ -127,7 +127,7 @@ extension Buzzler: TargetType {
         case .writeComment(_, let parentId, let content):
             guard let parentId = parentId else { return ["content": content] }
             return ["parentId": parentId, "content": content]
-            
+
         // PUT
         case .verifyCode(let receiver, let verificationCode),
              .verifyCodeForNewPassword(let receiver, let verificationCode):

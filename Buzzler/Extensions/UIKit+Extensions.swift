@@ -108,3 +108,20 @@ extension UITextView {
         self.resignFirstResponder()
     }
 }
+
+// to add sort by property
+extension Sequence {
+    typealias ClosureCompare = (Iterator.Element, Iterator.Element) -> ComparisonResult
+    
+    func sorted(by comparisons: ClosureCompare...) -> [Iterator.Element] {
+        return self.sorted { e1, e2 in
+            for comparison in comparisons {
+                let comparisonResult = comparison(e1, e2)
+                guard comparisonResult == .orderedSame
+                    else { return comparisonResult == .orderedAscending }
+            }
+            return false
+        }
+    }
+}
+
