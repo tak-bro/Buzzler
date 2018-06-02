@@ -40,21 +40,20 @@ public struct BuzzlerComment: Equatable, Mappable {
 
 extension BuzzlerComment {
     
-    static func idCompare(e1: BuzzlerComment, e2: BuzzlerComment) -> ComparisonResult {
-        return e1.id.toString.compare(e2.id.toString)
-
+    func idCompare(e2: BuzzlerComment) -> ComparisonResult {
+        return id.toString.compare(e2.id.toString)
     }
     
-    static func parentIdCompare(e1: BuzzlerComment, e2: BuzzlerComment) -> ComparisonResult {
-        if let e1ParentId = e1.parentId?.toString, let e2ParentId = e2.parentId?.toString {
-            return e1ParentId.compare(e2ParentId)
+    func parentIdCompare(e2: BuzzlerComment) -> ComparisonResult {
+        if let selfParentId = parentId?.toString, let e2ParentId = e2.parentId?.toString {
+            return selfParentId.compare(e2ParentId)
         } else {
-            return .orderedAscending
+            return .orderedSame
         }
     }
     
-    static func createdAtCompare(e1: BuzzlerComment, e2: BuzzlerComment) -> ComparisonResult {
-        return e1.createdAt.toString().compare(e2.createdAt.toString())
+    func createdAtCompare(e2: BuzzlerComment) -> ComparisonResult {
+        return createdAt.toString().compare(e2.createdAt.toString())
     }
     
 }

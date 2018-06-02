@@ -34,7 +34,7 @@ public protocol DetailPostViewModelType {
 }
 
 public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModelOutputs, DetailPostViewModelType {
-
+    
     public var loadDetailPostTrigger: PublishSubject<Void>
     public var isLoading: Driver<Bool>
     public var elements: Variable<[MultipleSectionModel]>
@@ -50,7 +50,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
     
     private let disposeBag = DisposeBag()
     private let error = PublishSubject<Swift.Error>()
-
+    
     public func refresh() {
         self.loadDetailPostTrigger
             .onNext(())
@@ -101,7 +101,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                     .trackActivity(Loading)
                     .asDriver(onErrorJustReturn: false)
         }
-
+        
         // get detailPost data
         let loadRequest = self.isLoading.asObservable()
             .sample(self.loadDetailPostTrigger)
@@ -121,21 +121,42 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                                 let defaultPost = BuzzlerPost(id: data.id, title: data.title, content: data.content,
                                                               imageUrls: data.imageUrls, likeCount: data.likeCount, createdAt: data.createdAt,
                                                               authorId: data.authorId)
+                                
+                                // create parent omment and child comment array
+                                var allComments = [BuzzlerComment]()
+                                var childComments = [BuzzlerComment]()
+                                
+                                data.comments.forEach{ comment in
+                                    if let _ = comment.parentId {
+                                        childComments.append(comment)
+                                    } else {
+                                        allComments.append(comment) // only insert parent comment at this point
+                                    }
+                                }
+                                // insert after parent index
+                                childComments
+                                    .sorted(by: ComparisonResult.flip <<< BuzzlerComment.idCompare)
+                                    .forEach{ comment in
+                                        guard let parentId = comment.parentId else { return }
+                                        if let idx = allComments.index(where: { $0.id == parentId }) {
+                                            allComments.insert(comment, at: idx+1)
+                                        }
+                                }
+                                
                                 // convert comments to CommentSection
-                                let comments = data.comments
-                                    .sorted(by: // sort by id and parentId
-                                        BuzzlerComment.parentIdCompare,
-                                        BuzzlerComment.idCompare
-                                    )
+                                let comments = allComments
                                     .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
                                         if let _ = comment.parentId {
                                             return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
                                         } else {
                                             return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
                                         }
-                                })
+                                    })
                                 
-
+                                // delete all array
+                                childComments.removeAll()
+                                allComments.removeAll()
+                                
                                 // init default MutlipleSection
                                 var sections: [MultipleSectionModel] = [
                                     .PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]),
@@ -180,5 +201,5 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             .bind(to: elements)
             .disposed(by: disposeBag)
     }
-
+    
 }
