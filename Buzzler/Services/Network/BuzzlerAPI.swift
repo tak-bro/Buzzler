@@ -17,6 +17,7 @@ public enum Buzzler {
     case getPost(category: Int)
     case getMajor()
     case getUniv(email: String)
+    case getDetailPost(id: Int)
     
     // POST
     case writePost(title: String, content: String, imageUrls: [String])
@@ -25,7 +26,8 @@ public enum Buzzler {
     case signIn(email: String, password: String)
     case requestCodeForNewPassword(receiver: String)
     case newPassword(email: String, password: String)
-
+    case writeComment(postId: Int, parentId: Int?, content: String)
+    
     // PUT
     case verifyCode(receiver: String, verificationCode: String)
     case verifyCodeForNewPassword(receiver: String, verificationCode: String)
@@ -45,6 +47,8 @@ extension Buzzler: TargetType {
             return "/v1/categories"
         case .getUniv:
             return "/v1/categories"
+        case .getDetailPost(let id):
+            return "v1/posts/\(id)"
             
         // POST
         case .writePost(_, _, _):
@@ -59,6 +63,8 @@ extension Buzzler: TargetType {
             return "/v1/accounts/newpassword/email-verification"
         case .newPassword:
             return "/v1/accounts/newpassword"
+        case .writeComment(let postId, _, _):
+            return "/v1/posts/\(postId)/comments"
             
         // PUT
         case .verifyCode:
@@ -73,21 +79,23 @@ extension Buzzler: TargetType {
         // GET
         case .getPost(_),
              .getMajor(_),
-             .getUniv(_):
+             .getUniv(_),
+             .getDetailPost(_):
             return .get
             
         // POST
         case .writePost(_, _, _),
-            .requestCode(_),
-            .signUp(_, _, _, _),
-            .signIn(_, _),
-            .requestCodeForNewPassword(_),
-            .newPassword(_, _):
+             .requestCode(_),
+             .signUp(_, _, _, _),
+             .signIn(_, _),
+             .requestCodeForNewPassword(_),
+             .newPassword(_, _),
+             .writeComment(_, _, _):
             return .post
-       
+            
         // PUT
         case .verifyCode(_, _),
-            .verifyCodeForNewPassword(_, _):
+             .verifyCodeForNewPassword(_, _):
             return .put
         }
     }
@@ -101,6 +109,8 @@ extension Buzzler: TargetType {
             return ["depth": 1, "email": email]
         case .getMajor():
             return ["depth": 2]
+        case .getDetailPost(id: _):
+            return nil
             
         // POST
         case .writePost(let title, let content, let imageUrls):
@@ -114,7 +124,10 @@ extension Buzzler: TargetType {
             return ["email": email, "password": password]
         case .newPassword(let email, let password):
             return ["email": email, "newPassword": password]
-
+        case .writeComment(_, let parentId, let content):
+            guard let parentId = parentId else { return ["content": content] }
+            return ["parentId": parentId, "content": content]
+            
         // PUT
         case .verifyCode(let receiver, let verificationCode),
              .verifyCodeForNewPassword(let receiver, let verificationCode):
@@ -142,13 +155,23 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
                                                method: target.method,
                                                parameters: target.parameters
     )
+    let environment = Environment()
+    
     switch target {
     case .getUniv,
          .getMajor:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newParameterEncoding: URLEncoding.default)
-    case .getPost:
+        
+    case .getPost,
+         .getDetailPost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+        
+    case .writeComment:
+        return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newHTTPHeaderFields: ["Authorization": "\(environment.token!)"])
+            .adding(newParameterEncoding: JSONEncoding.default)
+        
     default:
         return endpoint
             .adding(newHTTPHeaderFields: ["Content-Type": "application/json"])

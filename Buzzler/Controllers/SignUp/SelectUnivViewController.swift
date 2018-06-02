@@ -61,7 +61,6 @@ class SelectUnivViewController: UIViewController {
             .drive(onNext: { list in
                 // push view controller
                 self.router.majorList = list as! [MajorInfo]
-                print(list)
                 self.router.userInfo = self.inputUserInfo
                 self.router.perform(.selectMajor, from: self)
             }).disposed(by: disposeBag)

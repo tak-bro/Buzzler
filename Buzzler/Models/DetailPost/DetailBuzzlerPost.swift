@@ -19,7 +19,7 @@ public struct DetailBuzzlerPost: Equatable, Mappable {
     var likeCount: Int = 0
     var createdAt: Date = Date()
     var authorId: Int = 0
-    var comments: [String] = []
+    var comments: [BuzzlerComment] = []
     
     public static func == (lhs: DetailBuzzlerPost, rhs: DetailBuzzlerPost) -> Bool {
         return lhs.id == rhs.id ? true : false
