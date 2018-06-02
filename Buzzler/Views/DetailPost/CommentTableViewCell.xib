@@ -99,6 +99,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btn_writeRecomment" destination="o1l-5H-XOc" id="41w-2h-yCc"/>
                 <outlet property="lbl_comment" destination="Ntb-Xc-02c" id="wj6-rV-8MY"/>
                 <outlet property="vw_commentContainer" destination="w4j-xr-3Ps" id="NZl-kZ-OLc"/>
                 <outlet property="vw_shadow" destination="gTF-yk-CNC" id="tLh-zs-ZEh"/>

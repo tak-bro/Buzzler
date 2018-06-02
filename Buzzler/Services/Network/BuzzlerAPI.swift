@@ -26,7 +26,7 @@ public enum Buzzler {
     case signIn(email: String, password: String)
     case requestCodeForNewPassword(receiver: String)
     case newPassword(email: String, password: String)
-    case writeComment(postId: Int, parentId: Int?, content: String)
+    case writeComment(postId: Int, parentId: String?, content: String)
     
     // PUT
     case verifyCode(receiver: String, verificationCode: String)

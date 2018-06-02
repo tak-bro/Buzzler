@@ -111,6 +111,7 @@ extension UITextView {
 
 // to add sort by property
 extension Sequence {
+    
     typealias ClosureCompare = (Iterator.Element, Iterator.Element) -> ComparisonResult
     
     func sorted(by comparisons: ClosureCompare...) -> [Iterator.Element] {
@@ -125,3 +126,15 @@ extension Sequence {
     }
 }
 
+extension UIViewController {
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

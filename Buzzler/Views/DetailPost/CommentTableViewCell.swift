@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 import Reusable
 
 final class CommentTableViewCell: UITableViewCell, NibReusable {
@@ -14,9 +15,16 @@ final class CommentTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var vw_shadow: UIView!
     @IBOutlet weak var vw_commentContainer: UIView!
     @IBOutlet weak var lbl_comment: UILabel!
-
+    @IBOutlet weak var btn_writeRecomment: UIButton!
+    
+    var bag = DisposeBag()
     static let height: CGFloat = UITableViewAutomaticDimension
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bag = DisposeBag()
+    }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -37,5 +45,4 @@ final class CommentTableViewCell: UITableViewCell, NibReusable {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
 }

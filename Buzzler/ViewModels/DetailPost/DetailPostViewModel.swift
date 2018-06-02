@@ -16,6 +16,7 @@ public protocol DetailPostViewModelInputs {
     var loadDetailPostTrigger: PublishSubject<Void> { get }
     var inputtedComment: PublishSubject<String?> { get }
     var writeCommentTaps: PublishSubject<Void> { get }
+    var parentId: PublishSubject<String?> { get }
     func refresh()
 }
 
@@ -55,6 +56,8 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             .onNext(())
     }
     
+    public var parentId: PublishSubject<String?>
+    
     init(id: Int) {
         self.loadDetailPostTrigger = PublishSubject<Void>()
         self.elements = Variable<[MultipleSectionModel]>([])
@@ -76,12 +79,18 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             return comment.isValid
         }
         
+        self.parentId = PublishSubject<String?>()
+        
+        let commentAndParentId = Driver.combineLatest(self.inputtedComment.asDriver(onErrorJustReturn: nil),
+                                                      self.parentId.asDriver(onErrorJustReturn: nil)) { ($0, $1) }
+        
         // write comment
         self.requestWriteComment = self.writeCommentTaps
             .asDriver(onErrorJustReturn:())
-            .withLatestFrom(self.inputtedComment.asDriver(onErrorJustReturn: nil))
-            .flatMapLatest{ comment in
-                return BuzzlerProvider.request(Buzzler.writeComment(postId: id, parentId: nil, content: comment!))
+ //           .withLatestFrom(self.inputtedComment.asDriver(onErrorJustReturn: nil))
+            .withLatestFrom(commentAndParentId)
+            .flatMapLatest{ tuple in
+                return BuzzlerProvider.request(Buzzler.writeComment(postId: id, parentId: tuple.1! == "-1" ? nil : tuple.1!, content: tuple.0!))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
