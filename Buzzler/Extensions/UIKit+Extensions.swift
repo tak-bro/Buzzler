@@ -108,3 +108,51 @@ extension UITextView {
         self.resignFirstResponder()
     }
 }
+
+extension UIViewController {
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+// to add sort by property
+// ref: http://master-method.com/index.php/2016/11/23/sort-a-sequence-i-e-arrays-of-objects-by-multiple-properties-in-swift-3/
+extension ComparisonResult {
+    func flip() -> ComparisonResult {
+        switch self {
+        case .orderedAscending:
+            return .orderedDescending
+        case .orderedDescending:
+            return .orderedAscending
+        default:
+            return .orderedSame
+        }
+    }
+}
+infix operator <<<
+func <<< <A, B, C>(f: @escaping (B) -> () -> C, g: @escaping (A) -> (A) -> B) -> (A) -> (A) -> C {
+    return { x in { y in f(g(x)(y))() } }
+}
+extension Sequence {
+    typealias AttributeCompare = (Iterator.Element) -> (Iterator.Element) -> ComparisonResult
+    
+    func sorted(by comparisons: AttributeCompare...) -> [Iterator.Element] {
+        return self.sorted { e1, e2 in
+            for comparison in comparisons {
+                let comparisonResult = comparison(e1)(e2)
+                guard comparisonResult == .orderedSame
+                    else {
+                        return comparisonResult == .orderedAscending
+                }
+            }
+            return false
+        }
+    }
+}

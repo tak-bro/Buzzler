@@ -40,3 +40,13 @@ func validateStudentEmail(enteredEmail: String) -> Bool {
     let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
     return emailPredicate.evaluate(with: enteredEmail)
 }
+
+func intCompare(e1: Int, e2: Int) -> ComparisonResult {
+    if e1 > e2 {
+        return .orderedDescending
+    } else if e1 == e2 {
+        return .orderedSame
+    } else {
+        return .orderedAscending
+    }
+}

@@ -16,6 +16,7 @@ public protocol DetailPostViewModelInputs {
     var loadDetailPostTrigger: PublishSubject<Void> { get }
     var inputtedComment: PublishSubject<String?> { get }
     var writeCommentTaps: PublishSubject<Void> { get }
+    var parentId: PublishSubject<String?> { get }
     func refresh()
 }
 
@@ -33,7 +34,7 @@ public protocol DetailPostViewModelType {
 }
 
 public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModelOutputs, DetailPostViewModelType {
-
+    
     public var loadDetailPostTrigger: PublishSubject<Void>
     public var isLoading: Driver<Bool>
     public var elements: Variable<[MultipleSectionModel]>
@@ -49,11 +50,13 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
     
     private let disposeBag = DisposeBag()
     private let error = PublishSubject<Swift.Error>()
-
+    
     public func refresh() {
         self.loadDetailPostTrigger
             .onNext(())
     }
+    
+    public var parentId: PublishSubject<String?>
     
     init(id: Int) {
         self.loadDetailPostTrigger = PublishSubject<Void>()
@@ -76,12 +79,17 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             return comment.isValid
         }
         
+        self.parentId = PublishSubject<String?>()
+        
+        let commentAndParentId = Driver.combineLatest(self.inputtedComment.asDriver(onErrorJustReturn: nil),
+                                                      self.parentId.asDriver(onErrorJustReturn: nil)) { ($0, $1) }
+        
         // write comment
         self.requestWriteComment = self.writeCommentTaps
             .asDriver(onErrorJustReturn:())
-            .withLatestFrom(self.inputtedComment.asDriver(onErrorJustReturn: nil))
-            .flatMapLatest{ comment in
-                return BuzzlerProvider.request(Buzzler.writeComment(postId: id, parentId: nil, content: comment!))
+            .withLatestFrom(commentAndParentId)
+            .flatMapLatest{ tuple in
+                return BuzzlerProvider.request(Buzzler.writeComment(postId: id, parentId: tuple.1! == "" ? nil : tuple.1!, content: tuple.0!))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
@@ -93,7 +101,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                     .trackActivity(Loading)
                     .asDriver(onErrorJustReturn: false)
         }
-
+        
         // get detailPost data
         let loadRequest = self.isLoading.asObservable()
             .sample(self.loadDetailPostTrigger)
@@ -113,16 +121,17 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                                 let defaultPost = BuzzlerPost(id: data.id, title: data.title, content: data.content,
                                                               imageUrls: data.imageUrls, likeCount: data.likeCount, createdAt: data.createdAt,
                                                               authorId: data.authorId)
+                                
                                 // convert comments to CommentSection
-                                let comments = data.comments.map({ (comment: BuzzlerComment) -> MultipleSectionModel in
-                                    guard comment.parentId != nil else {
-                                        return .ReCommentSection(title: "RecommentSection", items: [.ReCommentItem(item: comment)])
-                                    }
-                                    return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
-                                })
-                                
-                                // sort comments data for ReComment
-                                
+                                let comments = data.comments
+                                    .sorted(by: BuzzlerComment.customCompare) // sort as comment order with parentId
+                                    .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
+                                        if let _ = comment.parentId {
+                                            return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
+                                        } else {
+                                            return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
+                                        }
+                                    })
                                 
                                 // init default MutlipleSection
                                 var sections: [MultipleSectionModel] = [
@@ -168,5 +177,5 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             .bind(to: elements)
             .disposed(by: disposeBag)
     }
-
+    
 }

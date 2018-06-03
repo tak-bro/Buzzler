@@ -23,17 +23,23 @@ class PostViewController: UIViewController {
     @IBOutlet weak var commentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var commentBottom: NSLayoutConstraint!
     @IBOutlet weak var btn_writeComment: UIButton!
+
+    // to show parent comment info
+    @IBOutlet weak var lbl_parentAuthor: UILabel!
+    @IBOutlet weak var vw_parentComment: UIView!
+    @IBOutlet weak var btn_dismissParentComment: UIButton!
+    @IBOutlet weak var lbl_parentCommentId: UILabel!
     
     var placeholderLabel : UILabel!
     var viewModel: DetailPostViewModel?
+    var refreshControl: UIRefreshControl?
+    
     let disposeBag = DisposeBag()
     let dataSource = RxTableViewSectionedReloadDataSource<MultipleSectionModel>()
     
-    var refreshControl: UIRefreshControl?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        resetNavBar()
+        setUI()
         addPlaceHolderToTextView()
         configTableUI()
         configBinding()
@@ -41,6 +47,11 @@ class PostViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.lbl_parentCommentId.text = ""
     }
 }
 
@@ -54,6 +65,7 @@ extension PostViewController: UITableViewDelegate {
         tbl_post.register(cellType: HomeTableViewCell.self)
         tbl_post.register(cellType: HomeImageTableViewCell.self)
         tbl_post.register(cellType: CommentTableViewCell.self)
+        tbl_post.register(cellType: ReCommentTableViewCell.self)
         tbl_post.allowsSelection = false
         tbl_post.backgroundColor = Config.UI.themeColor
         tbl_post.rowHeight = UITableViewAutomaticDimension
@@ -85,6 +97,10 @@ extension PostViewController: UITableViewDelegate {
         guard let viewModel = self.viewModel else { return }
         viewModel.inputs.refresh()
         
+        lbl_parentCommentId.rx.observe(String.self, "text")
+            .bind(to: viewModel.inputs.parentId)
+            .disposed(by: disposeBag)
+        
         // write comment
         btn_writeComment.rx.tap
             .bind(to: viewModel.inputs.writeCommentTaps)
@@ -105,7 +121,7 @@ extension PostViewController: UITableViewDelegate {
         viewModel.outputs.enableWriteButton
             .drive()
             .disposed(by: disposeBag)
-
+        
         viewModel.outputs.requestWriteComment
             .drive(onNext: { res in
                 if res == true {
@@ -116,6 +132,10 @@ extension PostViewController: UITableViewDelegate {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
                         self.refreshControl?.sendActions(for: .valueChanged)
                     })
+                    // reset parentId Info
+                    self.vw_parentComment.isHidden = true
+                    self.lbl_parentCommentId.text = ""
+                    self.lbl_parentAuthor.text = ""
                 } else {
                     SVProgressHUD.showError(withStatus: "Server Error")
                 }
@@ -151,17 +171,27 @@ extension PostViewController: UITableViewDelegate {
                     defaultCell = cell
                 }
                 return defaultCell
-                
             case let .CommentItem(item):
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
                 cell.lbl_comment.text = item.content
                 cell.lbl_comment.numberOfLines = 0
+                
+                // define action to write comment
+                cell.btn_writeRecomment.rx.tap.asDriver()
+                    .drive(onNext: { _ in
+                        // open input view
+                        self.txt_vw_comment.becomeFirstResponder()
+                        // set parent comment Info
+                        self.lbl_parentCommentId.text = item.id.toString
+                        self.vw_parentComment.isHidden = false
+                        self.lbl_parentAuthor.text = item.authorId.toString
+                    }).disposed(by: cell.bag)
+                
                 return cell
-            // TODO: add recomment item
-            case .ReCommentItem(let item):
-                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
-                cell.lbl_comment.text = item.content
-                cell.lbl_comment.numberOfLines = 0
+            case let .ReCommentItem(item):
+                let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ReCommentTableViewCell.self)
+                cell.lbl_recomment.text = item.content
+                cell.lbl_recomment.numberOfLines = 0
                 return cell
             }
         }
@@ -208,6 +238,11 @@ extension PostViewController: UITableViewDelegate {
 
 extension PostViewController: UITextViewDelegate {
     
+    func setUI() {
+        self.vw_parentComment.isHidden = true
+        resetNavBar()
+    }
+    
     func resetNavBar() {
         self.navigationController?.navigationBar.topItem?.title = " "
         self.navigationController?.navigationBar.barTintColor = Config.UI.themeColor
@@ -221,7 +256,7 @@ extension PostViewController: UITextViewDelegate {
         placeholderLabel.isHidden = !textView.text.isEmpty
         // to set height of TextView
         if textView.contentSize.height <= 100 {
-            self.commentViewHeight.constant = textView.contentSize.height + 40
+            self.commentViewHeight.constant = textView.contentSize.height + 30
             textView.setContentOffset(CGPoint.zero, animated: false)
         }
         self.view.layoutIfNeeded()

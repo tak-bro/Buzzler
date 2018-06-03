@@ -26,7 +26,7 @@ public enum Buzzler {
     case signIn(email: String, password: String)
     case requestCodeForNewPassword(receiver: String)
     case newPassword(email: String, password: String)
-    case writeComment(postId: Int, parentId: Int?, content: String)
+    case writeComment(postId: Int, parentId: String?, content: String)
     
     // PUT
     case verifyCode(receiver: String, verificationCode: String)
@@ -127,7 +127,7 @@ extension Buzzler: TargetType {
         case .writeComment(_, let parentId, let content):
             guard let parentId = parentId else { return ["content": content] }
             return ["parentId": parentId, "content": content]
-            
+
         // PUT
         case .verifyCode(let receiver, let verificationCode),
              .verifyCodeForNewPassword(let receiver, let verificationCode):

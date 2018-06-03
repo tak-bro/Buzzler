@@ -18,7 +18,7 @@ public struct BuzzlerComment: Equatable, Mappable {
     var parentId: Int?
     var content: String = ""
     var createdAt: Date = Date()
-
+    
     public static func == (lhs: BuzzlerComment, rhs: BuzzlerComment) -> Bool {
         return lhs.id == rhs.id ? true : false
     }
@@ -38,13 +38,39 @@ public struct BuzzlerComment: Equatable, Mappable {
     
 }
 
+extension BuzzlerComment {
+    
+    func customCompare(e2: BuzzlerComment) -> ComparisonResult {
+        if let e1ParentId = parentId, let e2ParentId = e2.parentId {
+            return intCompare(e1: e1ParentId, e2: e2ParentId)
+        } else if let e1ParentId = parentId, e2.parentId == nil {
+            return intCompare(e1: e1ParentId, e2: e2.id)
+        } else if parentId == nil, let e2ParentId = e2.parentId {
+            return intCompare(e1: id, e2: e2ParentId)
+        } else {
+            // parentId가 없을 때
+            return intCompare(e1: id, e2: e2.id)
+        }
+    }
+    
+    func idCompare(e2: BuzzlerComment) -> ComparisonResult {
+        return intCompare(e1: id, e2: e2.id)
+    }
+    
+    func createdAtCompare(e2: BuzzlerComment) -> ComparisonResult {
+        return createdAt.toString().compare(e2.createdAt.toString())
+    }
+    
+}
+
+
 struct BuzzlerCommentSection {
     
     var items: [BuzzlerComment]
 }
 
 extension BuzzlerCommentSection: SectionModelType {
-
+    
     typealias Item = BuzzlerComment
     
     init(original: BuzzlerCommentSection, items: [BuzzlerCommentSection.Item]) {
