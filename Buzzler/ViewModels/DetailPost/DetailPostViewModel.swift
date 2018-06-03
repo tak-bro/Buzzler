@@ -116,14 +116,12 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                         .flatMap({ res -> Single<[MultipleSectionModel]> in
                             do {
                                 let data = try res.mapObject(DetailBuzzlerPost.self)
-                                
                                 // convert response to BuzzlerPost model
                                 let defaultPost = BuzzlerPost(id: data.id, title: data.title, content: data.content,
                                                               imageUrls: data.imageUrls, likeCount: data.likeCount, createdAt: data.createdAt,
                                                               authorId: data.authorId)
-                                
                                 // convert comments to CommentSection
-                                let comments = data.comments
+                                var comments = data.comments
                                     .sorted(by: BuzzlerComment.customCompare) // sort as comment order with parentId
                                     .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
                                         if let _ = comment.parentId {
@@ -133,19 +131,10 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                                         }
                                     })
                                 
-                                // init default MutlipleSection
-                                var sections: [MultipleSectionModel] = [
-                                    .PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]),
-                                    // .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment[0])])
-                                    // .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment[1])])
-                                    // .ReCommentSection(title: "CommentSection", items: [.CommentItem(item: comment[2])])
-                                    // .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment[3])])
-                                    // ...
-                                ]
-                                
                                 // create datasource for Table
-                                sections.append(contentsOf: comments)
-                                return Single.just(sections)
+                                // add PostSection to first index
+                                comments.insertFirst(.PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]))
+                                return Single.just(comments)
                             } catch {
                                 return Single.just([])
                             }
