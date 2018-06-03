@@ -122,6 +122,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                                                               imageUrls: data.imageUrls, likeCount: data.likeCount, createdAt: data.createdAt,
                                                               authorId: data.authorId)
                                 
+                                /*
                                 // create parent omment and child comment array
                                 var allComments = [BuzzlerComment]()
                                 var childComments = [BuzzlerComment]()
@@ -142,9 +143,12 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                                             allComments.insert(comment, at: idx+1)
                                         }
                                 }
+                                */
                                 
                                 // convert comments to CommentSection
-                                let comments = allComments
+                               //  let comments = allComments
+                                let comments = data.comments
+                                    .sorted(by: BuzzlerComment.customCompare)
                                     .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
                                         if let _ = comment.parentId {
                                             return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
@@ -153,10 +157,11 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                                         }
                                     })
                                 
+                                /*
                                 // delete all array
                                 childComments.removeAll()
                                 allComments.removeAll()
-                                
+                                */
                                 // init default MutlipleSection
                                 var sections: [MultipleSectionModel] = [
                                     .PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]),

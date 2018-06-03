@@ -40,6 +40,22 @@ public struct BuzzlerComment: Equatable, Mappable {
 
 extension BuzzlerComment {
     
+    func customCompare(e2: BuzzlerComment) -> ComparisonResult {
+        if let e1ParentId = parentId, let e2ParentId = e2.parentId {
+            return intCompare(e1: e1ParentId, e2: e2ParentId)
+        } else if let e1ParentId = parentId, e2.parentId == nil {
+            return intCompare(e1: e1ParentId, e2: e2.id)
+                // return e1ParentId.compare(e2.id.toString)
+        } else if parentId == nil, let e2ParentId = e2.parentId {
+            return intCompare(e1: id, e2: e2ParentId)
+            // return id.toString.compare(e2parentId)
+        } else {
+            // parentId가 없을 때
+            return intCompare(e1: id, e2: e2.id)
+            //return id.toString.compare(e2.id.toString)
+        }
+    }
+    
     func idCompare(e2: BuzzlerComment) -> ComparisonResult {
         return id.toString.compare(e2.id.toString)
     }
