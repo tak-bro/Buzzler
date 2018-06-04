@@ -53,6 +53,12 @@ class PostViewController: UIViewController {
         super.viewWillAppear(animated)
         self.lbl_parentCommentId.text = ""
     }
+    
+    @IBAction func pressedDismiss(_ sender: UIButton) {
+        resetCommentInfo()
+        self.txt_vw_comment.text = ""
+        self.txt_vw_comment.resignFirstResponder()
+    }
 }
 
 extension PostViewController: UITableViewDelegate {
@@ -132,10 +138,7 @@ extension PostViewController: UITableViewDelegate {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
                         self.refreshControl?.sendActions(for: .valueChanged)
                     })
-                    // reset parentId Info
-                    self.vw_parentComment.isHidden = true
-                    self.lbl_parentCommentId.text = ""
-                    self.lbl_parentAuthor.text = ""
+                    self.resetCommentInfo()
                 } else {
                     SVProgressHUD.showError(withStatus: "Server Error")
                 }
@@ -274,5 +277,12 @@ extension PostViewController: UITextViewDelegate {
         txt_vw_comment.addSubview(placeholderLabel)
         placeholderLabel.frame.origin = CGPoint(x: 5, y: (txt_vw_comment.font?.pointSize)! / 2)
         placeholderLabel.isHidden = !txt_vw_comment.text.isEmpty
+    }
+    
+    func resetCommentInfo() {
+        // reset parentId Info
+        self.vw_parentComment.isHidden = true
+        self.lbl_parentCommentId.text = ""
+        self.lbl_parentAuthor.text = ""
     }
 }

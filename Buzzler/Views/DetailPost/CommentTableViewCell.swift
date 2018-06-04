@@ -35,11 +35,11 @@ final class CommentTableViewCell: UITableViewCell, NibReusable {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        vw_commentContainer.setCornerRadius(radius: 25)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        vw_commentContainer.setCornerRadius(radius: 25)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
