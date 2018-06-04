@@ -1481,6 +1481,9 @@ Cg
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <state key="normal" image="btn_cloase_black"/>
+                                        <connections>
+                                            <action selector="pressedDismiss:" destination="LeS-wT-GJM" eventType="touchUpInside" id="gbU-zf-thf"/>
+                                        </connections>
                                     </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="parentCommentId" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcM-B3-j00">
                                         <rect key="frame" x="134" y="9" width="87" height="12"/>
