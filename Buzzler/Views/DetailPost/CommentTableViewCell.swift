@@ -39,7 +39,6 @@ final class CommentTableViewCell: UITableViewCell, NibReusable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.lbl_comment.preferredMaxLayoutWidth = bounds.width - 70
         vw_commentContainer.setCornerRadius(radius: 25)
     }
     

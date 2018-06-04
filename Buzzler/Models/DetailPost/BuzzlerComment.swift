@@ -42,7 +42,12 @@ extension BuzzlerComment {
     
     func customCompare(e2: BuzzlerComment) -> ComparisonResult {
         if let e1ParentId = parentId, let e2ParentId = e2.parentId {
-            return intCompare(e1: e1ParentId, e2: e2ParentId)
+            // return intCompare(e1: e1ParentId, e2: e2ParentId)
+            if e1ParentId != e2ParentId {
+                return intCompare(e1: e1ParentId, e2: e2ParentId)
+            } else {
+                return intCompare(e1: id, e2: e2.id)
+            }
         } else if let e1ParentId = parentId, e2.parentId == nil {
             return intCompare(e1: e1ParentId, e2: e2.id)
         } else if parentId == nil, let e2ParentId = e2.parentId {

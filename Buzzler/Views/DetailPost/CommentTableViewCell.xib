@@ -94,6 +94,7 @@
                     <constraint firstItem="o1l-5H-XOc" firstAttribute="centerY" secondItem="7aH-Rc-Qhz" secondAttribute="centerY" id="l2f-qN-Clt"/>
                     <constraint firstItem="SHp-iq-NRV" firstAttribute="centerY" secondItem="7AT-pi-X2d" secondAttribute="centerY" id="lD4-6f-Xta"/>
                     <constraint firstItem="7AT-pi-X2d" firstAttribute="top" secondItem="Ntb-Xc-02c" secondAttribute="bottom" constant="10" id="m2t-qq-evg"/>
+                    <constraint firstItem="Ntb-Xc-02c" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="gTF-yk-CNC" secondAttribute="trailing" constant="-25" id="rr6-EW-hhb"/>
                     <constraint firstAttribute="trailing" secondItem="gTF-yk-CNC" secondAttribute="trailing" constant="10" id="xE9-Dl-Eqe"/>
                     <constraint firstItem="7aH-Rc-Qhz" firstAttribute="leading" secondItem="fSI-MO-sYh" secondAttribute="trailing" constant="10" id="yeE-fN-9Zk"/>
                 </constraints>
