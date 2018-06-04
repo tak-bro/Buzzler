@@ -26,11 +26,12 @@ final class ReCommentTableViewCell: UITableViewCell, NibReusable  {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        vw_reCommentContainer.setCornerRadius(radius: 25)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.lbl_recomment.preferredMaxLayoutWidth = bounds.width - 90
+        vw_reCommentContainer.setCornerRadius(radius: 25)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
