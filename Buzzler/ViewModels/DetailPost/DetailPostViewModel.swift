@@ -130,10 +130,10 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                                             return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
                                         }
                                     })
-                                
-                                // create datasource for Table
                                 // add PostSection to first index
                                 comments.insertFirst(.PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]))
+                                
+                                // return datasource for Table
                                 return Single.just(comments)
                             } catch {
                                 return Single.just([])
