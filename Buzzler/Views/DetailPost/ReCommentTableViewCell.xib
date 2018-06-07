@@ -29,7 +29,7 @@
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNf-6D-GSU">
-                        <rect key="frame" x="40" y="5" width="162" height="227.5"/>
+                        <rect key="frame" x="40" y="5" width="157" height="227.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zwf-R2-mr9">
@@ -79,7 +79,7 @@
                     <constraint firstItem="AA4-WF-EN7" firstAttribute="centerY" secondItem="Y19-7O-AU3" secondAttribute="centerY" id="OBf-0D-zjY"/>
                     <constraint firstItem="Y19-7O-AU3" firstAttribute="leading" secondItem="lNf-6D-GSU" secondAttribute="leading" constant="15" id="S9a-UV-fYw"/>
                     <constraint firstItem="lNf-6D-GSU" firstAttribute="leading" secondItem="GQe-cu-Bgh" secondAttribute="leading" constant="40" id="V64-dX-hny"/>
-                    <constraint firstItem="YSw-K7-Opo" firstAttribute="trailing" secondItem="lNf-6D-GSU" secondAttribute="trailing" constant="-15" id="XtH-oo-ee6"/>
+                    <constraint firstItem="YSw-K7-Opo" firstAttribute="trailing" secondItem="lNf-6D-GSU" secondAttribute="trailing" constant="-10" id="XtH-oo-ee6"/>
                     <constraint firstAttribute="bottom" secondItem="YSw-K7-Opo" secondAttribute="baseline" constant="35" id="Y73-ob-W9I"/>
                     <constraint firstItem="Zwf-R2-mr9" firstAttribute="centerY" secondItem="yHj-og-65Z" secondAttribute="centerY" id="Ywc-pM-QNi"/>
                     <constraint firstItem="4WR-3F-Cey" firstAttribute="top" secondItem="GQe-cu-Bgh" secondAttribute="top" id="a0s-Ba-vSO"/>
