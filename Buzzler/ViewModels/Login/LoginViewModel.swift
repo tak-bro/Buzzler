@@ -106,7 +106,18 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     })
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)
+            }
+            .flatMapLatest{ loginResult in
+                return provider.request(Buzzler.getCategoriesByUser())
+                    .retry(3)
+                    .observeOn(MainScheduler.instance)
+                    .filterSuccessfulStatusCodes()
+                    .flatMap({ categories -> Single<Bool> in
+                        print("get categories: ", categories)
+                        return Single.just(loginResult)
+                    })
+                    .trackActivity(isLoading)
+                    .asDriver(onErrorJustReturn: false)
         }
     }
 }
-
