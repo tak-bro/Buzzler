@@ -33,6 +33,15 @@ class SignUpDoneViewController: UIViewController {
 
 extension SignUpDoneViewController {
     
+    func removeDefaults() {
+        var environment = Environment()
+        environment.major = ""
+        environment.univ = ""
+        environment.nickName = ""
+        environment.password = ""
+        environment.receiver = ""
+    }
+    
     func setUI() {
         // button
         btn_done.setTitleColor(Config.UI.buttonActiveColor, for: UIControlState.normal)
