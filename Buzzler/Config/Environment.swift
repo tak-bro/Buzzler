@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import SwiftyJSON
+
 struct Environment {
-    
+
     var token: String? {
         get {
             return self.userDefaults.value(forKey: UserDefaultsKeys.Token.rawValue) as! String?
@@ -81,6 +83,8 @@ struct Environment {
         case Password = "password"
         case Major = "major"
         case Univ = "univ"
+        // category
+        case category = "category"  // array value
     }
     
     init(userDefaults: UserDefaults) {

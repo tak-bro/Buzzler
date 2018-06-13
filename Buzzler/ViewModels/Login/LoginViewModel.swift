@@ -112,8 +112,10 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
-                    .flatMap({ categories -> Single<Bool> in
-                        print("get categories: ", categories)
+                    .flatMap({ res -> Single<Bool> in
+                        // TODO: save categories
+                        userCategories = try res.mapArray(UserCategory.self)
+                        print(userCategories)
                         return Single.just(loginResult)
                     })
                     .trackActivity(isLoading)
