@@ -115,7 +115,14 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     .flatMap({ res -> Single<Bool> in
                         // TODO: save categories
                         userCategories = try res.mapArray(UserCategory.self)
-                        print(userCategories)
+                        // create SideModel for SideSectionModel
+                        sideCategories = userCategories.map{ category in
+                            return SideModel.category(id: category.id, title: category.name)
+                        }
+                        sideCategories.append(SideModel.myPage(navTitle: "MyPageNavigationController"))
+                        sideCategories.append(SideModel.settings(navTitle: "SettingsNavigationController"))
+                        print(sideCategories)
+                        
                         return Single.just(loginResult)
                     })
                     .trackActivity(isLoading)

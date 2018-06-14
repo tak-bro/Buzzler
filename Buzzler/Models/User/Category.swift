@@ -47,3 +47,4 @@ public struct UserCategory: Mappable {
 
 // TODO: temp save data to global var
 var userCategories = [UserCategory]()
+var sideCategories: [SideModel] = []

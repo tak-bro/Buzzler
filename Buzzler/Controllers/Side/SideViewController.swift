@@ -14,12 +14,11 @@ import SVProgressHUD
 import SideMenu
 
 enum SideModel {
-    case category(id: String, title: String)
-    case myPage(id: String, navTitle: String)
-    case settings(id: String, navTitle: String)
+    case category(id: Int, title: String)
+    case myPage(navTitle: String)
+    case settings(navTitle: String)
 }
 typealias SideSectionModel = SectionModel<String, SideModel>
-
 
 class SideViewController: UIViewController, UITableViewDelegate {
     
@@ -30,15 +29,8 @@ class SideViewController: UIViewController, UITableViewDelegate {
     let dataSource = RxTableViewSectionedReloadDataSource<SideSectionModel>()
     let router = SideMenuRouter()
     
-    // Temp Category List
-    let categorySections = Observable.just([
-        SideSectionModel(model: "", items: [
-            SideModel.category(id: "3", title: "Seoul Univ."),
-            SideModel.category(id: "2", title: "Economics"),
-            SideModel.category(id: "1", title: "Anonymous"),
-            SideModel.myPage(id: "MyPage", navTitle: "MyPageNavigationController"),
-            SideModel.settings(id: "Settings", navTitle: "SettingsNavigationController"),
-            ]),
+    let categories$ = Observable.just([
+        SideSectionModel(model: "", items: sideCategories),
         ])
     
     override func viewDidLoad() {
@@ -62,14 +54,14 @@ class SideViewController: UIViewController, UITableViewDelegate {
                 cell.id = id
                 cell.lbl_category.text = title
                 cell.vw_sideBox.isHidden = false
-            case let .myPage(id, _):
-                cell.id = id
-                cell.lbl_category.text = id
+            case .myPage(_):
+                cell.id = -1
+                cell.lbl_category.text = "MyPage"
                 cell.vw_sideBox.isHidden = true
                 cell.lbl_category.textColor = Config.UI.buttonActiveColor
-            case let .settings(id, _):
-                cell.id = id
-                cell.lbl_category.text = id
+            case .settings(_):
+                cell.id = -2
+                cell.lbl_category.text = "Settings"
                 cell.vw_sideBox.isHidden = true
                 cell.lbl_category.textColor = Config.UI.lightFontColor
             }
@@ -86,18 +78,18 @@ class SideViewController: UIViewController, UITableViewDelegate {
                 case .category(id: let id, title: _):
                     print("id", id)
                     // NotificationCenter.default.post(name: Notification.Name.category, object: Int(id))
-                    self.router.category = Int(id)!
+                    self.router.category = id
                     self.router.perform(.home, from: self)
-                case .myPage(id: _, navTitle: _):
+                case .myPage(navTitle: _):
                     self.router.perform(.myPage, from: self)
-                case .settings(id: _, navTitle: _):
+                case .settings(navTitle: _):
                     self.router.perform(.settings, from: self)
                 }
             })
             .disposed(by: disposeBag)
         
         
-        categorySections
+        categories$
             .bind(to: self.tbl_category.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
