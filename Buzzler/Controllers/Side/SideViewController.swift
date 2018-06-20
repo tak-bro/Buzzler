@@ -76,8 +76,10 @@ class SideViewController: UIViewController, UITableViewDelegate {
             .subscribe(onNext: { item in
                 switch item {
                 case .category(id: let id, title: _):
-                    print("id", id)
-                    // NotificationCenter.default.post(name: Notification.Name.category, object: Int(id))
+                    // save current categoryId
+                    var environment = Environment()
+                    environment.categoryId = id
+                    
                     self.router.category = id
                     self.router.perform(.home, from: self)
                 case .myPage(navTitle: _):

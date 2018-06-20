@@ -89,7 +89,8 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(titleAndContents)
             .flatMapLatest{ tuple in
-                return provider.request(Buzzler.writePost(title: tuple.0!, content: tuple.1!, imageUrls: ["test.png", "test.png"]))
+                let environment = Environment()
+                return provider.request(Buzzler.writePost(title: tuple.0!, content: tuple.1!, imageUrls: ["test.png", "test.png"], categoryId: environment.categoryId!))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()

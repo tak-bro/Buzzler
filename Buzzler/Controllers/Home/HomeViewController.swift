@@ -32,6 +32,7 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // set SideMenu UI
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
         

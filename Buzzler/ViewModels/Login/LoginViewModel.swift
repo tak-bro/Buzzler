@@ -122,6 +122,10 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                         sideCategories.append(SideModel.myPage(navTitle: "MyPageNavigationController"))
                         sideCategories.append(SideModel.settings(navTitle: "SettingsNavigationController"))
                         print(sideCategories)
+                        // TODO: delete below
+                        // save default categoryId
+                        var environment = Environment()
+                        environment.categoryId = 1
                         
                         return Single.just(loginResult)
                     })
