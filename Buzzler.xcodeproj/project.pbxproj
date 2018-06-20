@@ -33,6 +33,7 @@
 		3B66DDCC20C0E961009944D1 /* MutipleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B66DDCB20C0E961009944D1 /* MutipleSection.swift */; };
 		3B823CBB20B81A5E000A68BA /* NewPasswordDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B823CBA20B81A5E000A68BA /* NewPasswordDoneViewController.swift */; };
 		3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85701820A9A945009FEC48 /* ValidationService.swift */; };
+		3BBE8D2020D1162800634B2F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE8D1F20D1162800634B2F /* Category.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
 		84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB420907D3200B7C98A /* SignUpViewModel.swift */; };
 		8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421B2C92086D1A900CBF4E3 /* LoginViewController.swift */; };
@@ -116,6 +117,7 @@
 		3B66DDCB20C0E961009944D1 /* MutipleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleSection.swift; sourceTree = "<group>"; };
 		3B823CBA20B81A5E000A68BA /* NewPasswordDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordDoneViewController.swift; sourceTree = "<group>"; };
 		3B85701820A9A945009FEC48 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
+		3BBE8D1F20D1162800634B2F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
 		84002EB22090613A00B7C98A /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +295,14 @@
 			path = DetailPost;
 			sourceTree = "<group>";
 		};
+		3BBE8D1E20D1161200634B2F /* User */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE8D1F20D1162800634B2F /* Category.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		84002EB12090611A00B7C98A /* DetailPost */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +455,7 @@
 		AF9F0FCE1DF1A66300FF8EC5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3BBE8D1E20D1161200634B2F /* User */,
 				AF9F0FCF1DF1A66E00FF8EC5 /* Home */,
 				3B66DDC820C0E1C6009944D1 /* DetailPost */,
 				3B48A9C220B2B26700E0BDA1 /* SignUp */,
@@ -516,8 +527,8 @@
 				844BC373208AF16000666486 /* Resource */,
 				AFA7EC821DEF4CA600138AEE /* Config */,
 				AF9F0FD51DF1A9B300FF8EC5 /* Views */,
-				AF9F0FCE1DF1A66300FF8EC5 /* Models */,
 				3B48A9C520B527E500E0BDA1 /* Routers */,
+				AF9F0FCE1DF1A66300FF8EC5 /* Models */,
 				AFCB661B1DF844B100916E1B /* ViewModels */,
 				AFA7EC7F1DEF4BB400138AEE /* Controllers */,
 				AFBDB25F1DF58ED9003E8EE2 /* Services */,
@@ -848,6 +859,7 @@
 				844BC37B208AF8FE00666486 /* SignUpViewController.swift in Sources */,
 				3B66DDC420C0D752009944D1 /* DetailPostViewModel.swift in Sources */,
 				84C4DED02095931600FD6BFD /* SideTableViewCell.swift in Sources */,
+				3BBE8D2020D1162800634B2F /* Category.swift in Sources */,
 				8421B2CE2086D6CE00CBF4E3 /* UIKit+Extensions.swift in Sources */,
 				84A1BFCE208C8D8400D0ADC7 /* HeaderLabel.swift in Sources */,
 				3B1CBD0320AA9EB60018D156 /* SelectMajorViewController.swift in Sources */,

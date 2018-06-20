@@ -106,7 +106,31 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     })
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)
+            }
+            .flatMapLatest{ loginResult in
+                return provider.request(Buzzler.getCategoriesByUser())
+                    .retry(3)
+                    .observeOn(MainScheduler.instance)
+                    .filterSuccessfulStatusCodes()
+                    .flatMap({ res -> Single<Bool> in
+                        // TODO: save categories
+                        userCategories = try res.mapArray(UserCategory.self)
+                        // create SideModel for SideSectionModel
+                        sideCategories = userCategories.map{ category in
+                            return SideModel.category(id: category.id, title: category.name)
+                        }
+                        sideCategories.append(SideModel.myPage(navTitle: "MyPageNavigationController"))
+                        sideCategories.append(SideModel.settings(navTitle: "SettingsNavigationController"))
+                        print(sideCategories)
+                        // TODO: delete below
+                        // save default categoryId
+                        var environment = Environment()
+                        environment.categoryId = 1
+                        
+                        return Single.just(loginResult)
+                    })
+                    .trackActivity(isLoading)
+                    .asDriver(onErrorJustReturn: false)
         }
     }
 }
-

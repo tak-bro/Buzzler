@@ -18,9 +18,10 @@ public enum Buzzler {
     case getMajor()
     case getUniv(email: String)
     case getDetailPost(id: Int)
+    case getCategoriesByUser()
     
     // POST
-    case writePost(title: String, content: String, imageUrls: [String])
+    case writePost(title: String, content: String, imageUrls: [String], categoryId: Int)
     case requestCode(receiver: String)
     case signUp(username: String, email: String, password: String, categoryAuth: [String])
     case signIn(email: String, password: String)
@@ -49,10 +50,12 @@ extension Buzzler: TargetType {
             return "/v1/categories"
         case .getDetailPost(let id):
             return "v1/posts/\(id)"
+        case .getCategoriesByUser():
+            return "v1/accounts/categories"
             
         // POST
-        case .writePost(_, _, _):
-            return "/v1/posts"
+        case .writePost(_, _, _, let categoryId):
+            return "/v1/categories/\(categoryId)/posts"
         case .requestCode:
             return "/v1/accounts/email-verification"
         case .signUp:
@@ -80,11 +83,12 @@ extension Buzzler: TargetType {
         case .getPost(_),
              .getMajor(_),
              .getUniv(_),
-             .getDetailPost(_):
+             .getDetailPost(_),
+             .getCategoriesByUser():
             return .get
             
         // POST
-        case .writePost(_, _, _),
+        case .writePost(_, _, _, _),
              .requestCode(_),
              .signUp(_, _, _, _),
              .signIn(_, _),
@@ -111,9 +115,11 @@ extension Buzzler: TargetType {
             return ["depth": 2]
         case .getDetailPost(id: _):
             return nil
+        case .getCategoriesByUser():
+            return nil
             
         // POST
-        case .writePost(let title, let content, let imageUrls):
+        case .writePost(let title, let content, let imageUrls, _):
             return ["title": title, "content": content, "imageUrls": imageUrls]
         case .requestCode(let receiver),
              .requestCodeForNewPassword(let receiver):
@@ -163,11 +169,13 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newParameterEncoding: URLEncoding.default)
         
-    case .getPost,
-         .getDetailPost:
+    case .getDetailPost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
         
-    case .writeComment:
+    case .getCategoriesByUser,
+         .writeComment,
+         .writePost,
+         .getPost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newHTTPHeaderFields: ["Authorization": "\(environment.token!)"])
             .adding(newParameterEncoding: JSONEncoding.default)

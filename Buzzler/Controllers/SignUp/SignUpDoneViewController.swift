@@ -15,6 +15,7 @@ class SignUpDoneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        resetEnv()
     }
     
     @IBAction func pressBackBtn(_ sender: UIBarButtonItem) {
@@ -32,6 +33,15 @@ class SignUpDoneViewController: UIViewController {
 }
 
 extension SignUpDoneViewController {
+    
+    func resetEnv() {
+        var environment = Environment()
+        environment.major = ""
+        environment.univ = ""
+        environment.nickName = ""
+        environment.password = ""
+        environment.receiver = ""
+    }
     
     func setUI() {
         // button

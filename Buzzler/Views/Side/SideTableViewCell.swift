@@ -14,7 +14,7 @@ class SideTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var vw_sideBox: UIView!
     @IBOutlet weak var lbl_category: UILabel!
     
-    var id: String!
+    var id: Int!
     static let height: CGFloat = UITableViewAutomaticDimension
     
     required init?(coder aDecoder: NSCoder) {

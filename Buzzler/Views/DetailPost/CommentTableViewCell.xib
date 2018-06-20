@@ -29,7 +29,7 @@
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w4j-xr-3Ps">
-                        <rect key="frame" x="20" y="5" width="197" height="184.66666666666666"/>
+                        <rect key="frame" x="20" y="5" width="192" height="184.66666666666666"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7aH-Rc-Qhz">
@@ -85,7 +85,7 @@
                     <constraint firstItem="fSI-MO-sYh" firstAttribute="leading" secondItem="SHp-iq-NRV" secondAttribute="trailing" constant="5" id="UtJ-q3-AEZ"/>
                     <constraint firstItem="gTF-yk-CNC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Xde-ue-Dcb"/>
                     <constraint firstAttribute="bottom" secondItem="gTF-yk-CNC" secondAttribute="bottom" id="XsH-Wl-huf"/>
-                    <constraint firstItem="Ntb-Xc-02c" firstAttribute="trailing" secondItem="w4j-xr-3Ps" secondAttribute="trailing" constant="-15" id="aRu-tR-p73"/>
+                    <constraint firstItem="Ntb-Xc-02c" firstAttribute="trailing" secondItem="w4j-xr-3Ps" secondAttribute="trailing" constant="-10" id="aRu-tR-p73"/>
                     <constraint firstItem="fSI-MO-sYh" firstAttribute="centerY" secondItem="7AT-pi-X2d" secondAttribute="centerY" id="bxA-JP-thh"/>
                     <constraint firstItem="o1l-5H-XOc" firstAttribute="leading" secondItem="7aH-Rc-Qhz" secondAttribute="trailing" constant="10" id="f5f-9m-svX"/>
                     <constraint firstAttribute="bottom" secondItem="Ntb-Xc-02c" secondAttribute="baseline" constant="40" id="fr7-b6-Jpt"/>
