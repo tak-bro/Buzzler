@@ -174,6 +174,7 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
         
     case .getCategoriesByUser,
          .writeComment,
+         .writePost,
          .getPost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newHTTPHeaderFields: ["Authorization": "\(environment.token!)"])
