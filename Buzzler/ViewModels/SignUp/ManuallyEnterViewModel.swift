@@ -100,24 +100,27 @@ class ManuallyEnterViewModel: ManuallyEnterViewModelInputs, ManuallyEnterViewMod
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(collegeAndMajor)
             .flatMapLatest{ data in
+                let environment = Environment()
+                let baseUrl = environment.receiver?.split("@")[1]
+
                 return Observable.merge(
-                    provider.request(Buzzler.createCategory(depth: 1, name: "네이버", baseUrl: "naver.com"))
+                    provider.request(Buzzler.createCategory(depth: 1, name: data.0!, baseUrl: baseUrl))
                         .retry(3)
                         .observeOn(MainScheduler.instance)
                         .filterSuccessfulStatusCodes()
                         .mapJSON()
                         .flatMap({ res -> Single<Bool> in
-                            print("createCategory res", res)
+                            print("createUniv res", res)
                             return Single.just(true)
                         })
                         .trackActivity(isLoading),
-                    provider.request(Buzzler.createCategory(depth: 2, name: "컴퓨터공학", baseUrl: ""))
+                    provider.request(Buzzler.createCategory(depth: 2, name: data.1!, baseUrl: ""))
                         .retry(3)
                         .observeOn(MainScheduler.instance)
                         .filterSuccessfulStatusCodes()
                         .mapJSON()
                         .flatMap({ res -> Single<Bool> in
-                            print("createCategory res", res)
+                            print("createMajor res", res)
                             return Single.just(true)
                         })
                         .trackActivity(isLoading)
