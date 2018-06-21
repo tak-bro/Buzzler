@@ -50,7 +50,7 @@ class ManuallyEnterViewModel: ManuallyEnterViewModelInputs, ManuallyEnterViewMod
     public var college: PublishSubject<String?>
     public var major: PublishSubject<String?>
     public var nextTaps: PublishSubject<Void>
-
+    
     public var inputs: ManuallyEnterViewModelInputs { return self }
     public var outputs: ManuallyEnterViewModelOutputs { return self }
     
@@ -85,16 +85,14 @@ class ManuallyEnterViewModel: ManuallyEnterViewModelInputs, ManuallyEnterViewMod
         self.setErrorMessage = Driver.combineLatest(validatedCollege, validatedMajor) { college, major in
             if college.isValid && major.isValid {
                 return ""
-            }
-            // return error message
-            if !college.isValid || !major.isValid {
+            } else {
                 return "Too short data!"
             }
         }
         
         let collegeAndMajor = Driver.combineLatest(self.college.asDriver(onErrorJustReturn: nil),
                                                    self.major.asDriver(onErrorJustReturn: nil)) { ($0, $1) }
-
+        
         let isLoading = ActivityIndicator()
         self.isLoading = isLoading.asDriver()
         
@@ -102,18 +100,29 @@ class ManuallyEnterViewModel: ManuallyEnterViewModelInputs, ManuallyEnterViewMod
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(collegeAndMajor)
             .flatMapLatest{ data in
-                return provider.request(Buzzler.createCategory(depth: 1, name: data.0!, baseUrl: ""))
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-                    .filterSuccessfulStatusCodes()
-                    .mapJSON()
-                    .flatMap({ res -> Single<Bool> in
-                        print("createCategory res", res)
-                        return Single.just(true)
-                    })
-                    .trackActivity(isLoading)
-                    .asDriver(onErrorJustReturn: false)
+                return Observable.merge(
+                    provider.request(Buzzler.createCategory(depth: 1, name: "네이버", baseUrl: "naver.com"))
+                        .retry(3)
+                        .observeOn(MainScheduler.instance)
+                        .filterSuccessfulStatusCodes()
+                        .mapJSON()
+                        .flatMap({ res -> Single<Bool> in
+                            print("createCategory res", res)
+                            return Single.just(true)
+                        })
+                        .trackActivity(isLoading),
+                    provider.request(Buzzler.createCategory(depth: 2, name: "컴퓨터공학", baseUrl: ""))
+                        .retry(3)
+                        .observeOn(MainScheduler.instance)
+                        .filterSuccessfulStatusCodes()
+                        .mapJSON()
+                        .flatMap({ res -> Single<Bool> in
+                            print("createCategory res", res)
+                            return Single.just(true)
+                        })
+                        .trackActivity(isLoading)
+                )
+                .asDriver(onErrorJustReturn: false)
         }
     }
-    
 }
