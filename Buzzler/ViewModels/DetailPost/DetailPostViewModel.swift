@@ -110,7 +110,9 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                     return Driver.empty()
                 } else {
                     self.elements.value.removeAll()
-                    return BuzzlerProvider.request(Buzzler.getDetailPost(id: id))
+                    let environment = Environment()
+                    let categoryId = environment.categoryId
+                    return BuzzlerProvider.request(Buzzler.getDetailPost(categoryId: categoryId!, id: id))
                         .retry(3)
                         .observeOn(MainScheduler.instance)
                         .flatMap({ res -> Single<[MultipleSectionModel]> in

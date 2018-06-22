@@ -17,7 +17,7 @@ public enum Buzzler {
     case getPost(category: Int)
     case getMajor()
     case getUniv(email: String)
-    case getDetailPost(id: Int)
+    case getDetailPost(categoryId: Int, id: Int)
     case getCategoriesByUser()
     
     // POST
@@ -49,8 +49,8 @@ extension Buzzler: TargetType {
             return "/v1/categories"
         case .getUniv:
             return "/v1/categories"
-        case .getDetailPost(let id):
-            return "v1/posts/\(id)"
+        case .getDetailPost(let categoryId, let id):
+            return "v1/categories/\(categoryId)/posts/\(id)"
         case .getCategoriesByUser():
             return "v1/accounts/categories"
             
@@ -87,7 +87,7 @@ extension Buzzler: TargetType {
         case .getPost(_),
              .getMajor(_),
              .getUniv(_),
-             .getDetailPost(_),
+             .getDetailPost(_, _),
              .getCategoriesByUser():
             return .get
             
@@ -118,7 +118,7 @@ extension Buzzler: TargetType {
             return ["depth": 1, "email": email]
         case .getMajor():
             return ["depth": 2]
-        case .getDetailPost(id: _):
+        case .getDetailPost(categoryId: _, id: _):
             return nil
         case .getCategoriesByUser():
             return nil
