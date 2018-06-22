@@ -92,8 +92,8 @@ class VerifyCodeViewController: UIViewController {
                     print(signedIn)
                     // push view controller
                     self.router.userInfo = self.inputUserInfo
-                    self.router.perform(.selectUniv, from: self)
-                    // self.router.perform(.selectMajor, from: self)
+                    // self.router.perform(.selectUniv, from: self)
+                    self.router.perform(.manuallyEnter, from: self)
                 } else {
                     SVProgressHUD.showError(withStatus: "Failed to verify code")
                 }

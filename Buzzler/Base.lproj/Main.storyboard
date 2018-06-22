@@ -678,7 +678,7 @@ Cg
         <!--Manually Enter View Controller-->
         <scene sceneID="Mae-Lf-znI">
             <objects>
-                <viewController id="3i6-uB-hfg" customClass="ManuallyEnterViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ManuallyEnterViewController" id="3i6-uB-hfg" customClass="ManuallyEnterViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4mN-OI-sbv"/>
                         <viewControllerLayoutGuide type="bottom" id="i2X-Zq-V4Q"/>

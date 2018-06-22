@@ -14,6 +14,7 @@ enum SignUpSegue {
     case selectUniv
     case selectMajor
     case done
+    case manuallyEnter
 }
 
 class SignUpRouter {
@@ -35,6 +36,9 @@ class SignUpRouter {
         case .selectUniv:
             let selectUnivVC = SignUpRouter.makeSelectUnivViewController(withUserInfo: userInfo)
             source.navigationController?.pushViewController(selectUnivVC, animated: true)
+        case .manuallyEnter:
+            let manuallyEnterVC = SignUpRouter.makeManuallayEnterViewController()
+            source.navigationController?.pushViewController(manuallyEnterVC, animated: true)
         }
     }
 }
@@ -68,5 +72,11 @@ private extension SignUpRouter {
         let signUpDoneVC = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "SignUpDoneViewController") as! SignUpDoneViewController
         return signUpDoneVC
+    }
+    
+    static func makeManuallayEnterViewController() -> ManuallyEnterViewController {
+        let manuallyEnterVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "ManuallyEnterViewController") as! ManuallyEnterViewController
+        return manuallyEnterVC
     }
 }
