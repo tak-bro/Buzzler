@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EeC-k0-aex">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EeC-k0-aex">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -593,26 +593,13 @@ Cg
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Univ" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="vC1-6Y-Ipj">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Major" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="8OT-gQ-7kz">
                                 <rect key="frame" x="47.5" y="197" width="280" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="NdL-Ol-SNf"/>
-                                    <constraint firstAttribute="height" constant="40" id="wLZ-Ex-Oti"/>
-                                </constraints>
-                                <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="doneAccessory" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Deprecated!!!!!!!!" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="8OT-gQ-7kz">
-                                <rect key="frame" x="47.5" y="247" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="sd5-hX-ZWn"/>
                                     <constraint firstAttribute="height" constant="40" id="zNE-f5-9Iu"/>
                                 </constraints>
-                                <color key="textColor" red="0.70980392156862748" green="0.70980392156862748" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -641,7 +628,7 @@ Cg
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aH7-Wo-Nzc">
-                                <rect key="frame" x="302.5" y="256" width="10" height="22"/>
+                                <rect key="frame" x="302.5" y="206" width="10" height="22"/>
                                 <state key="normal" image="icon_select_box"/>
                             </button>
                         </subviews>
@@ -649,25 +636,22 @@ Cg
                         <constraints>
                             <constraint firstItem="8OT-gQ-7kz" firstAttribute="centerX" secondItem="5iz-zq-B7D" secondAttribute="centerX" id="2Nq-9d-YAY"/>
                             <constraint firstItem="hm5-SW-ES4" firstAttribute="centerY" secondItem="5iz-zq-B7D" secondAttribute="centerY" multiplier="1.35" id="3PA-Ng-YB9"/>
-                            <constraint firstItem="vC1-6Y-Ipj" firstAttribute="centerX" secondItem="5iz-zq-B7D" secondAttribute="centerX" id="4Ay-OC-5YA"/>
                             <constraint firstItem="aH7-Wo-Nzc" firstAttribute="centerY" secondItem="8OT-gQ-7kz" secondAttribute="centerY" id="5hg-jc-ETq"/>
                             <constraint firstItem="o0i-aU-OMn" firstAttribute="centerY" secondItem="5iz-zq-B7D" secondAttribute="centerY" multiplier="1.1" id="6We-9a-bXd"/>
                             <constraint firstItem="SKP-dt-YqT" firstAttribute="centerX" secondItem="5iz-zq-B7D" secondAttribute="centerX" id="96q-es-KJ9"/>
                             <constraint firstItem="jBh-ZS-mc9" firstAttribute="centerX" secondItem="5iz-zq-B7D" secondAttribute="centerX" id="Cc2-Gx-9FT"/>
                             <constraint firstItem="o0i-aU-OMn" firstAttribute="centerX" secondItem="5iz-zq-B7D" secondAttribute="centerX" id="MKG-a6-I9k"/>
-                            <constraint firstItem="8OT-gQ-7kz" firstAttribute="centerY" secondItem="5iz-zq-B7D" secondAttribute="centerY" multiplier="0.8" id="TqP-6q-v70"/>
+                            <constraint firstItem="8OT-gQ-7kz" firstAttribute="centerY" secondItem="5iz-zq-B7D" secondAttribute="centerY" multiplier="0.65" id="TqP-6q-v70"/>
                             <constraint firstItem="jBh-ZS-mc9" firstAttribute="centerY" secondItem="5iz-zq-B7D" secondAttribute="centerY" multiplier="0.2" id="VR5-W6-pln"/>
                             <constraint firstItem="aH7-Wo-Nzc" firstAttribute="trailing" secondItem="8OT-gQ-7kz" secondAttribute="trailing" constant="-15" id="aTo-oz-Tsc"/>
                             <constraint firstItem="hm5-SW-ES4" firstAttribute="centerX" secondItem="5iz-zq-B7D" secondAttribute="centerX" id="gMr-sp-sdu"/>
                             <constraint firstItem="SKP-dt-YqT" firstAttribute="centerY" secondItem="5iz-zq-B7D" secondAttribute="centerY" multiplier="0.4" id="ksn-tH-Cki"/>
-                            <constraint firstItem="vC1-6Y-Ipj" firstAttribute="centerY" secondItem="5iz-zq-B7D" secondAttribute="centerY" multiplier="0.65" id="txy-OC-EGd"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btn_next" destination="o0i-aU-OMn" id="dQo-IT-L5n"/>
                         <outlet property="btn_wrong" destination="hm5-SW-ES4" id="qhc-cR-tMx"/>
                         <outlet property="txt_selectMajor" destination="8OT-gQ-7kz" id="VUu-Hw-gt7"/>
-                        <outlet property="txt_univ" destination="vC1-6Y-Ipj" id="jwd-p3-CtJ"/>
                         <segue destination="rOx-L5-hp1" kind="show" id="Etr-Jn-OhD"/>
                     </connections>
                 </viewController>
