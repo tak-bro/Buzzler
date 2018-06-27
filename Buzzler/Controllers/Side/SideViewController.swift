@@ -105,6 +105,16 @@ class SideViewController: UIViewController, UITableViewDelegate {
         tbl_category.estimatedRowHeight = 200
         tbl_category.separatorStyle = .none
     }
+    
+    fileprivate func resetEnv() {
+        var environment = Environment()
+        environment.major = ""
+        environment.univ = ""
+        environment.nickName = ""
+        environment.password = ""
+        environment.receiver = ""
+    }
+    
 }
 
 // MARK: - Actions
@@ -116,6 +126,7 @@ extension SideViewController {
     
     @IBAction func pressLogout(_ sender: UIButton) {
         dismiss(animated: false, completion: {
+            self.resetEnv()
             GlobalUIManager.loadLoginVC()
         })
     }
