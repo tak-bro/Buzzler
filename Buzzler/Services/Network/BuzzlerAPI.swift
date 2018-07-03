@@ -29,6 +29,7 @@ public enum Buzzler {
     case newPassword(email: String, password: String)
     case writeComment(postId: Int, parentId: String?, content: String)
     case createCategory(depth: Int, name: String, baseUrl: String?)
+    case uploadS3(categoryId: Int, fileName: String, encodedImage: String)
     
     // PUT
     case verifyCode(receiver: String, verificationCode: String)
@@ -71,6 +72,8 @@ extension Buzzler: TargetType {
             return "/v1/posts/\(postId)/comments"
         case .createCategory(_, _, _):
             return "/v1/categories"
+        case .uploadS3(let categoryId, _, _):
+            return "/\(categoryId)/images"
             
             
         // PUT
@@ -99,7 +102,8 @@ extension Buzzler: TargetType {
              .requestCodeForNewPassword(_),
              .newPassword(_, _),
              .writeComment(_, _, _),
-             .createCategory(_, _, _):
+             .createCategory(_, _, _),
+             .uploadS3(_):
             return .post
             
         // PUT
@@ -141,6 +145,8 @@ extension Buzzler: TargetType {
         case .createCategory(let depth, let name, let baseUrl):
             guard let baseUrl = baseUrl else { return ["depth": depth, "name": name] }
             return ["depth": depth, "name": name, "baseUrl": baseUrl]
+        case .uploadS3(_, let fileName, let encodedImage):
+            return ["name": fileName, "image": encodedImage]
 
         // PUT
         case .verifyCode(let receiver, let verificationCode),
@@ -186,6 +192,11 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
          .getPost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newHTTPHeaderFields: ["Authorization": "\(environment.token!)"])
+            .adding(newParameterEncoding: JSONEncoding.default)
+        
+    case .uploadS3:
+        return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newHTTPHeaderFields: ["x-api-key": "\(Dev.apiKey)"])
             .adding(newParameterEncoding: JSONEncoding.default)
         
     default:
