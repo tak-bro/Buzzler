@@ -33,6 +33,8 @@
 		3B66DDCC20C0E961009944D1 /* MutipleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B66DDCB20C0E961009944D1 /* MutipleSection.swift */; };
 		3B823CBB20B81A5E000A68BA /* NewPasswordDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B823CBA20B81A5E000A68BA /* NewPasswordDoneViewController.swift */; };
 		3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85701820A9A945009FEC48 /* ValidationService.swift */; };
+		3BA13D4320DB9A01009B8E5B /* ManuallyEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA13D4220DB9A01009B8E5B /* ManuallyEnterViewController.swift */; };
+		3BA13D4520DB9AE1009B8E5B /* ManuallyEnterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA13D4420DB9AE1009B8E5B /* ManuallyEnterViewModel.swift */; };
 		3BBE8D2020D1162800634B2F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE8D1F20D1162800634B2F /* Category.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
 		84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB420907D3200B7C98A /* SignUpViewModel.swift */; };
@@ -117,6 +119,8 @@
 		3B66DDCB20C0E961009944D1 /* MutipleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutipleSection.swift; sourceTree = "<group>"; };
 		3B823CBA20B81A5E000A68BA /* NewPasswordDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordDoneViewController.swift; sourceTree = "<group>"; };
 		3B85701820A9A945009FEC48 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
+		3BA13D4220DB9A01009B8E5B /* ManuallyEnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterViewController.swift; sourceTree = "<group>"; };
+		3BA13D4420DB9AE1009B8E5B /* ManuallyEnterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterViewModel.swift; sourceTree = "<group>"; };
 		3BBE8D1F20D1162800634B2F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 				3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */,
 				3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */,
 				844BC385208C462900666486 /* SignUpDoneViewController.swift */,
+				3BA13D4220DB9A01009B8E5B /* ManuallyEnterViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 				844BC383208B0C8300666486 /* VerifyCodeViewModel.swift */,
 				3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */,
 				3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */,
+				3BA13D4420DB9AE1009B8E5B /* ManuallyEnterViewModel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -840,6 +846,7 @@
 				3B66DDCA20C0E1DF009944D1 /* BuzzlerComment.swift in Sources */,
 				84C4DED42095A58100FD6BFD /* CommentTableViewCell.swift in Sources */,
 				3B52E6C320AE942C002B2BB6 /* LastStepViewController.swift in Sources */,
+				3BA13D4520DB9AE1009B8E5B /* ManuallyEnterViewModel.swift in Sources */,
 				844BC380208B065200666486 /* SignUpRouter.swift in Sources */,
 				3B1CBD0520AAC8770018D156 /* SelectMajorViewModel.swift in Sources */,
 				3B66DDCC20C0E961009944D1 /* MutipleSection.swift in Sources */,
@@ -852,6 +859,7 @@
 				8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */,
 				84A1BFCC208C899B00D0ADC7 /* StretchHeader.swift in Sources */,
 				AF69F0F01E0E0C9400735284 /* SideViewController.swift in Sources */,
+				3BA13D4320DB9A01009B8E5B /* ManuallyEnterViewController.swift in Sources */,
 				AF3C0C241E0AA851002644DD /* Config.swift in Sources */,
 				3B623E9D20B6B9AF000302C0 /* SideMenuRouter.swift in Sources */,
 				3B48A9C420B2B27F00E0BDA1 /* University.swift in Sources */,

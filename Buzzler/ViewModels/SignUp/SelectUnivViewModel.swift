@@ -73,10 +73,11 @@ class SelectUnivViewModel: SelectUnivViewModelInputs, SelectUnivViewModelOutputs
             .mapJSON()
             .map { JSON($0) }
             .map { json in
-                var environment = Environment()
-                environment.univ = json[0]["id"].stringValue
+                // var environment = Environment()
+                // environment.univ = json[0]["id"].stringValue
+                // return json[0]["name"].stringValue
                 
-                return json[0]["name"].stringValue
+                return "테스트"
             }
             .asDriver(onErrorJustReturn: "Error")
         

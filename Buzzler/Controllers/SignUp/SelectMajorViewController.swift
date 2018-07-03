@@ -18,7 +18,6 @@ class SelectMajorViewController: UIViewController {
     @IBOutlet weak var btn_wrong: UIButton!
     @IBOutlet weak var btn_next: UIButton!
     @IBOutlet weak var txt_selectMajor: UITextField!
-    @IBOutlet weak var txt_univ: UITextField!
     
     // major list
     var majors: [MajorInfo]?
@@ -44,10 +43,6 @@ class SelectMajorViewController: UIViewController {
             .bind(to: selectMajorViewModel.inputs.nextTaps)
             .disposed(by: disposeBag)
         
-        txt_univ.rx.text.orEmpty
-            .bind(to: selectMajorViewModel.inputs.univ)
-            .disposed(by: disposeBag)
-        
         txt_selectMajor.rx.text.orEmpty
             .bind(to: selectMajorViewModel.inputs.major)
             .disposed(by: disposeBag)
@@ -57,9 +52,6 @@ class SelectMajorViewController: UIViewController {
             self.btn_next.layer.borderColor = enable ? Config.UI.buttonActiveColor.cgColor : Config.UI.buttonInActiveColor.cgColor
         }).disposed(by: disposeBag)
         
-        selectMajorViewModel.outputs.validatedUniv
-            .drive()
-            .disposed(by: disposeBag)
         
         selectMajorViewModel.outputs.validatedMajor
             .drive()
@@ -109,8 +101,6 @@ extension SelectMajorViewController {
         btn_next.layer.borderColor = Config.UI.buttonInActiveColor.cgColor
         
         // textField
-        setBorderAndCornerRadius(layer: txt_univ.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
-        setLeftPadding(textField: txt_univ)
         setBorderAndCornerRadius(layer: txt_selectMajor.layer, width: 1, radius: 20, color: Config.UI.textFieldColor)
         setLeftPadding(textField: txt_selectMajor)
     }
