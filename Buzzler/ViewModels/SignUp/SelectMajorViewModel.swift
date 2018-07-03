@@ -71,12 +71,8 @@ class SelectMajorViewModel: SelectMajorViewModelInputs, SelectMajorViewModelOutp
         let isLoading = ActivityIndicator()
         self.isLoading = isLoading.asDriver()
         
-        let univAndMajar = Driver.combineLatest(self.univ.asDriver(onErrorJustReturn: nil),
-                                            self.major.asDriver(onErrorJustReturn: nil)) { ($0, $1) }
-        
         self.signedUp = self.nextTaps
             .asDriver(onErrorJustReturn: ())
-            .withLatestFrom(univAndMajar)
             .flatMapLatest { tuple in
                 let environment = Environment()
                 return provider.request(Buzzler.signUp(username: environment.nickName!,
