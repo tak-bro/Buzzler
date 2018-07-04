@@ -12,11 +12,20 @@ import RxSwift
 import RxCocoa
 import RxKeyboard
 import SVProgressHUD
+import Photos
+
+struct PostImage {
+    var fileName: String
+    var encodedImgData: String
+}
 
 class WritePostViewController: UIViewController {
 
     // MARK: - Outlets
     
+    @IBOutlet weak var imgVwConstraint: NSLayoutConstraint!
+    @IBOutlet weak var img_upload: UIImageView!
+    @IBOutlet weak var vw_imgContainer: UIView!
     @IBOutlet weak var vw_container: UIView!
     @IBOutlet weak var lbl_univ: UILabel!
     @IBOutlet weak var btn_post: UIButton!
@@ -112,6 +121,9 @@ extension WritePostViewController {
         
         addPlaceHolderToTextView()
         
+        // set imageView
+        self.imgVwConstraint.constant = 0
+        self.vw_imgContainer.isHidden = true
     }
     
     func setToolbar() {

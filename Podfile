@@ -28,6 +28,7 @@ def shared_pods
     pod 'SVProgressHUD'
     pod 'RxCocoa'
     pod 'AsyncTimer', '~> 2.2'
+    pod 'DKImagePickerController'
 end
 
 target :'Buzzler' do
