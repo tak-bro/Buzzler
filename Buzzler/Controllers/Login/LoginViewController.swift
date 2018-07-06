@@ -70,6 +70,7 @@ class LoginViewController: UIViewController, ShowsAlert {
         
         self.viewModel.outputs.signedIn
             .drive(onNext: { signedIn in
+                print("sig", signedIn)
                 if signedIn == true {
                     GlobalUIManager.loadHomeVC()
                 } else {

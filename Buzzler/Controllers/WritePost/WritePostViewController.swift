@@ -13,13 +13,14 @@ import RxCocoa
 import RxKeyboard
 import SVProgressHUD
 import Photos
+import DKImagePickerController
 
 struct PostImage {
     var fileName: String
     var encodedImgData: String
 }
 
-class WritePostViewController: UIViewController, ShowsAlert {
+class WritePostViewController: UIViewController {
 
     // MARK: - Outlets
     
@@ -37,6 +38,9 @@ class WritePostViewController: UIViewController, ShowsAlert {
     let viewModel = WritePostViewModel(provider: BuzzlerProvider)
     fileprivate let disposeBag = DisposeBag()
     
+    var assets: [DKAsset]? // picked images from picker
+    let pickerController = DKImagePickerController()
+    
     // MARK: - Init
     
     override func viewDidLoad() {
@@ -47,7 +51,7 @@ class WritePostViewController: UIViewController, ShowsAlert {
     }
     
     func addImage() {
-        print("test")
+        showAlbum()
     }
     
     // MARK: - Actions
@@ -96,7 +100,7 @@ extension WritePostViewController {
                     print(posting)
                     self?.dismiss(animated: true, completion: nil)
                 } else {
-                    self.showAlert(message: "Failed to post")
+                    SVProgressHUD.showError(withStatus: "Posting Error")
                 }
             }).disposed(by: disposeBag)
         
@@ -163,6 +167,41 @@ extension WritePostViewController: UITextViewDelegate {
         txt_contents.addSubview(placeholderLabel)
         placeholderLabel.frame.origin = CGPoint(x: 5, y: (txt_contents.font?.pointSize)! / 2)
         placeholderLabel.isHidden = !txt_contents.text.isEmpty
+    }
+    
+}
+
+// MARK: - ImagePickerViewController
+
+extension WritePostViewController {
+    
+    func showAlbum() {
+        self.pickerController.defaultSelectedAssets = self.assets
+        self.pickerController.sourceType = .photo
+        self.pickerController.showsCancelButton = true
+        self.pickerController.maxSelectableCount = 3
+        
+        self.pickerController.didCancel = { ()
+            print("didCancel")
+        }
+        
+        self.pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
+            self.updateAssets(assets: assets)
+        }
+        self.present(pickerController, animated: true) {}
+    }
+    
+    func updateAssets(assets: [DKAsset]) {
+        self.assets = assets
+
+        if let asset = self.assets, let size = self.assets?.count {
+            // set image
+            asset[0].fetchOriginalImage(true, completeBlock: { image, info in
+                self.img_upload.image = image
+                self.img
+                
+            })
+        }
     }
     
 }

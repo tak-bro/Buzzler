@@ -95,6 +95,7 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     .filterSuccessfulStatusCodes()
                     .mapJSON()
                     .flatMap({ token -> Single<Bool> in
+                            print("Token", token)
                         if token is String {
                             // add userDefaults
                             var environment = Environment()
@@ -113,6 +114,9 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
                     .flatMap({ res -> Single<Bool> in
+                        print("loginResult", loginResult)
+                        print("res", res)
+                        
                         // TODO: save categories
                         userCategories = try res.mapArray(UserCategory.self)
                         // create SideModel for SideSectionModel
