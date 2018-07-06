@@ -61,6 +61,9 @@ class WritePostViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func pickImage(_ sender: UIButton) {
+        addImage()
+    }
 }
 
 extension WritePostViewController {
@@ -138,15 +141,20 @@ extension WritePostViewController {
         toolbar.sizeToFit()
         
         let fixedSpaceButton = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        let nextButton  = UIBarButtonItem(image: UIImage(named: "btn_upload_img"), style: .plain, target: self, action: #selector(addImage))
+        let addButton  = UIBarButtonItem(image: UIImage(named: "btn_upload_img"), style: .plain, target: self, action: #selector(addImage))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneButtonAction))
   
-        toolbar.setItems([fixedSpaceButton, nextButton], animated: false)
+        toolbar.setItems([fixedSpaceButton, addButton, flexSpace, doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         
         txt_title.inputAccessoryView = toolbar
         txt_contents.inputAccessoryView = toolbar
     }
-    
+
+    func doneButtonAction() {
+        view.endEditing(true)
+    }
 
 }
 
@@ -183,7 +191,6 @@ extension WritePostViewController {
         self.pickerController.maxSelectableCount = 3
         
         self.pickerController.didCancel = { ()
-            print("didCancel")
         }
         
         self.pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
@@ -196,10 +203,14 @@ extension WritePostViewController {
         self.assets = assets
 
         if let asset = self.assets, let size = self.assets?.count {
-            // set image
+            // set imageView
             asset[0].fetchOriginalImage(true, completeBlock: { image, info in
                 self.img_upload.image = image
                 self.lbl_imgCnt.text = String(size - 1)
+                
+                let imageSize = self.view.frame.size.height
+                self.imgVwConstraint.constant = imageSize / 3
+                self.vw_imgContainer.isHidden = false
             })
         }
     }
