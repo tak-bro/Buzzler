@@ -13,7 +13,7 @@ import RxCocoa
 import RxKeyboard
 import SVProgressHUD
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, ShowsAlert {
     
     let viewModel = LoginViewModel(provider: BuzzlerProvider)
     
@@ -71,10 +71,9 @@ class LoginViewController: UIViewController {
         self.viewModel.outputs.signedIn
             .drive(onNext: { signedIn in
                 if signedIn == true {
-                    print(signedIn)
                     GlobalUIManager.loadHomeVC()
                 } else {
-                    SVProgressHUD.showError(withStatus: "Login Error")
+                    self.showAlert(message: "Login Error!")
                 }
             }).disposed(by: disposeBag)
         

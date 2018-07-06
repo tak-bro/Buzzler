@@ -13,7 +13,7 @@ import RxCocoa
 import RxKeyboard
 import SVProgressHUD
 
-class SelectMajorViewController: UIViewController {
+class SelectMajorViewController: UIViewController, ShowsAlert {
     
     @IBOutlet weak var btn_wrong: UIButton!
     @IBOutlet weak var btn_next: UIButton!
@@ -68,7 +68,7 @@ class SelectMajorViewController: UIViewController {
                     // push view controller
                     self.router.perform(.done, from: self)
                 } else {
-                    SVProgressHUD.showError(withStatus: "Failed to sign up")
+                    self.showAlert(message: "Failed to sign up!")
                 }
             }).disposed(by: disposeBag)
         

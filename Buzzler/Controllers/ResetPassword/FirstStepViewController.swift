@@ -13,7 +13,7 @@ import RxCocoa
 import RxKeyboard
 import SVProgressHUD
 
-class FirstStepViewController: UIViewController {
+class FirstStepViewController: UIViewController, ShowsAlert {
     
     @IBOutlet weak var lbl_error: UILabel!
     @IBOutlet weak var btn_next: UIButton!
@@ -64,7 +64,7 @@ class FirstStepViewController: UIViewController {
                     self.router.email = self.txt_email.text!
                     self.router.perform(.secondStep, from: self)
                 } else {
-                    SVProgressHUD.showError(withStatus: "Server Error")
+                    self.showAlert(message: "Server Error!")
                 }
             }).disposed(by: disposeBag)
         

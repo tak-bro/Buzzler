@@ -15,7 +15,7 @@ import RxDataSources
 import SVProgressHUD
 import RxKeyboard
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, ShowsAlert {
     
     @IBOutlet weak var vw_writeComment: UIView!
     @IBOutlet weak var txt_vw_comment: UITextView!
@@ -140,7 +140,7 @@ extension PostViewController: UITableViewDelegate {
                     })
                     self.resetCommentInfo()
                 } else {
-                    SVProgressHUD.showError(withStatus: "Server Error")
+                    self.showAlert(message: "Server Error!")
                 }
             }).disposed(by: disposeBag)
         

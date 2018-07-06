@@ -14,7 +14,7 @@ import RxKeyboard
 import SVProgressHUD
 
 
-class ManuallyEnterViewController: UIViewController {
+class ManuallyEnterViewController: UIViewController, ShowsAlert {
 
     @IBOutlet weak var lbl_title: UILabel!
     @IBOutlet weak var txt_major: UITextField!
@@ -74,7 +74,7 @@ class ManuallyEnterViewController: UIViewController {
                     print(signedIn)
                     // TODO: add push view controller
                 } else {
-                    SVProgressHUD.showError(withStatus: "Server Error")
+                    self.showAlert(message: "Server Error!")
                 }
             }).disposed(by: disposeBag)
         

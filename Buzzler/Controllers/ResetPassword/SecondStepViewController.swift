@@ -14,7 +14,7 @@ import RxKeyboard
 import SVProgressHUD
 import AsyncTimer
 
-class SecondStepViewController: UIViewController {
+class SecondStepViewController: UIViewController, ShowsAlert {
 
     @IBOutlet weak var btn_resend: UIButton!
     @IBOutlet weak var btn_next: UIButton!
@@ -93,7 +93,7 @@ class SecondStepViewController: UIViewController {
                     self.router.email = self.userEmail!
                     self.router.perform(.lastStep, from: self)
                 } else {
-                    SVProgressHUD.showError(withStatus: "Failed to verify code for new password")
+                    self.showAlert(message: "Failed to verify code for new password")
                 }
             }).disposed(by: disposeBag)
         
@@ -104,7 +104,7 @@ class SecondStepViewController: UIViewController {
                     // resend code
                     self.timer.restart()
                 } else {
-                    SVProgressHUD.showError(withStatus: "Failed to resend code for new password")
+                    self.showAlert(message: "Failed to resend code for new password")
                 }
             }).disposed(by: disposeBag)
         

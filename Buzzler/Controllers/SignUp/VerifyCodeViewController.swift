@@ -14,7 +14,7 @@ import RxKeyboard
 import SVProgressHUD
 import AsyncTimer
 
-class VerifyCodeViewController: UIViewController {
+class VerifyCodeViewController: UIViewController, ShowsAlert {
     
     @IBOutlet weak var txt_code: UITextField!
     @IBOutlet weak var btn_next: UIButton!
@@ -95,7 +95,7 @@ class VerifyCodeViewController: UIViewController {
                     self.router.perform(.selectUniv, from: self)
                     // self.router.perform(.manuallyEnter, from: self)
                 } else {
-                    SVProgressHUD.showError(withStatus: "Failed to verify code")
+                    self.showAlert(message: "Failed to verify code!")
                 }
             }).disposed(by: disposeBag)
         
@@ -106,7 +106,7 @@ class VerifyCodeViewController: UIViewController {
                     // resend code
                     self.timer.restart()
                 } else {
-                    SVProgressHUD.showError(withStatus: "Failed to resend code")
+                    self.showAlert(message: "Failed to resend code!")
                 }
             }).disposed(by: disposeBag)
         

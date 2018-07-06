@@ -13,7 +13,7 @@ import RxCocoa
 import RxKeyboard
 import SVProgressHUD
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, ShowsAlert {
     
     let router = SignUpRouter()
     let viewModel = SignUpViewModel(provider: BuzzlerProvider)
@@ -97,7 +97,7 @@ class SignUpViewController: UIViewController {
                     self.router.userInfo = inputInfo
                     self.router.perform(.verifyCode, from: self)
                 } else {
-                    SVProgressHUD.showError(withStatus: "Server Error")
+                    self.showAlert(message: "Server Error!")
                 }
             }).disposed(by: disposeBag)
         

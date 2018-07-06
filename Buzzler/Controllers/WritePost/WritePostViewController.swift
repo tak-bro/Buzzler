@@ -19,7 +19,7 @@ struct PostImage {
     var encodedImgData: String
 }
 
-class WritePostViewController: UIViewController {
+class WritePostViewController: UIViewController, ShowsAlert {
 
     // MARK: - Outlets
     
@@ -96,7 +96,7 @@ extension WritePostViewController {
                     print(posting)
                     self?.dismiss(animated: true, completion: nil)
                 } else {
-                    SVProgressHUD.showError(withStatus: "Posting Error")
+                    self.showAlert(message: "Failed to post")
                 }
             }).disposed(by: disposeBag)
         
