@@ -24,6 +24,7 @@ class WritePostViewController: UIViewController {
 
     // MARK: - Outlets
     
+    @IBOutlet weak var lbl_imgCnt: UILabel!
     @IBOutlet weak var imgVwConstraint: NSLayoutConstraint!
     @IBOutlet weak var img_upload: UIImageView!
     @IBOutlet weak var vw_imgContainer: UIView!
@@ -198,8 +199,7 @@ extension WritePostViewController {
             // set image
             asset[0].fetchOriginalImage(true, completeBlock: { image, info in
                 self.img_upload.image = image
-                self.img
-                
+                self.lbl_imgCnt.text = String(size - 1)
             })
         }
     }

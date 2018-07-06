@@ -1558,6 +1558,7 @@ Cg
                         <outlet property="btn_post" destination="hYG-y7-JYu" id="5rM-ha-q8v"/>
                         <outlet property="imgVwConstraint" destination="8M3-dH-iSq" id="dll-ar-mTI"/>
                         <outlet property="img_upload" destination="pNR-S1-9W2" id="xfU-35-mKA"/>
+                        <outlet property="lbl_imgCnt" destination="UaP-7W-05N" id="9dq-FO-5OC"/>
                         <outlet property="lbl_univ" destination="Dox-Zw-zqL" id="gqY-9j-Nrg"/>
                         <outlet property="txt_contents" destination="ZGw-rE-b34" id="SgL-7M-4PW"/>
                         <outlet property="txt_title" destination="nj9-AQ-X3A" id="pdn-Ro-9Wb"/>
