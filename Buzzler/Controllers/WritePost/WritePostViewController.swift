@@ -35,7 +35,7 @@ class WritePostViewController: UIViewController {
     let viewModel = WritePostViewModel(provider: BuzzlerProvider)
     fileprivate let disposeBag = DisposeBag()
     
-    var assets: [DKAsset]? // picked images from picker
+    var varAssets = Variable<[DKAsset]?>([]) // picked images from picker
     let pickerController = DKImagePickerController()
     
     // MARK: - Init
@@ -79,7 +79,7 @@ extension WritePostViewController {
             .disposed(by: disposeBag)
         
         // set asset to observable
-        Observable.just(self.assets)
+        self.varAssets.asObservable()
             .bind(to: self.viewModel.inputs.images)
             .disposed(by: disposeBag)
 
@@ -190,7 +190,6 @@ extension WritePostViewController: UITextViewDelegate {
 extension WritePostViewController {
     
     func showAlbum() {
-        self.pickerController.defaultSelectedAssets = self.assets
         self.pickerController.sourceType = .photo
         self.pickerController.showsCancelButton = true
         self.pickerController.maxSelectableCount = 3
@@ -202,14 +201,14 @@ extension WritePostViewController {
     }
     
     func updateAssets(assets: [DKAsset]) {
-        self.assets = assets
+        self.varAssets.value = assets
 
-        if let asset = self.assets, let size = self.assets?.count {
+        if assets.count > 0 {
             // set imageView
-            asset[0].fetchOriginalImage(true, completeBlock: { image, info in
+            assets[0].fetchOriginalImage(true, completeBlock: { image, info in
                 self.img_upload.image = image
-                self.lbl_imgCnt.text = "+" + String(size - 1)
-                self.vw_cntContainer.isHidden = size == 1 ? true : false
+                self.lbl_imgCnt.text = "+" + String(assets.count-1)
+                self.vw_cntContainer.isHidden = assets.count == 1 ? true : false
                 
                 let imageSize = self.view.frame.size.height
                 self.imgVwConstraint.constant = imageSize / 3

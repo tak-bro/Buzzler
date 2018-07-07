@@ -72,16 +72,13 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
         self.encodedImages = self.images
             .asDriver(onErrorJustReturn: nil)
             .map { images in
-                print("testa21323")
                 guard let images = images else { return [PostImage]() }
-                print(images.count)
                 return validationService.encodedImages(images)
         }
         
         self.validatedTitle = self.title
             .asDriver(onErrorJustReturn: nil)
             .map { title in
-                print(title)
                 return validationService.validateTextString(title!)
         }
         
