@@ -73,6 +73,7 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
             .asDriver(onErrorJustReturn: nil)
             .map { images in
                 guard let images = images else { return [PostImage]() }
+                print(images.count)
                 return validationService.encodedImages(images)
         }
         
@@ -101,21 +102,38 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
         
         self.posting = self.postTaps
             .asDriver(onErrorJustReturn:())
-            .withLatestFrom(titleAndContents)
-            .flatMapLatest{ tuple in
+            .withLatestFrom(self.encodedImages)
+            .flatMapLatest { encoded in
                 let environment = Environment()
-                return provider.request(Buzzler.writePost(title: tuple.0!, content: tuple.1!, imageUrls: ["test.png", "test.png"], categoryId: environment.categoryId!))
+                let categoryId = environment.categoryId
+                
+                return provider.request(Buzzler.uploadS3(categoryId: 0, fileName: encoded[0].fileName, encodedImage: encoded[0].encodedImgData))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
                     .mapJSON()
                     .flatMap({ res -> Single<Bool> in
-                        print("writePost res:", res)
+                        print(res)
                         return Single.just(true)
                     })
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)
-        }
+            }
+//            .withLatestFrom(titleAndContents)
+//            .flatMapLatest{ items in
+//                let environment = Environment()
+//                return provider.request(Buzzler.writePost(title: tuple.0!, content: tuple.1!, imageUrls: ["test.png", "test.png"], categoryId: environment.categoryId!))
+//                    .retry(3)
+//                    .observeOn(MainScheduler.instance)
+//                    .filterSuccessfulStatusCodes()
+//                    .mapJSON()
+//                    .flatMap({ res -> Single<Bool> in
+//                        print("writePost res:", res)
+//                        return Single.just(true)
+//                    })
+//                    .trackActivity(isLoading)
+//                    .asDriver(onErrorJustReturn: false)
+//        }
         
     }
 }
