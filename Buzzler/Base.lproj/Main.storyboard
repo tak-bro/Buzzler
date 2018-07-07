@@ -1565,6 +1565,7 @@ Cg
                         <outlet property="lbl_univ" destination="Dox-Zw-zqL" id="gqY-9j-Nrg"/>
                         <outlet property="txt_contents" destination="ZGw-rE-b34" id="SgL-7M-4PW"/>
                         <outlet property="txt_title" destination="nj9-AQ-X3A" id="pdn-Ro-9Wb"/>
+                        <outlet property="vw_cntContainer" destination="QT3-wH-AbB" id="YYJ-hI-nmT"/>
                         <outlet property="vw_container" destination="LXG-eY-md5" id="k9v-1P-hbb"/>
                         <outlet property="vw_imgContainer" destination="yPv-nT-qRd" id="J6c-Lr-QDF"/>
                     </connections>

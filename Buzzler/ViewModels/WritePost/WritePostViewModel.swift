@@ -12,18 +12,22 @@ import RxCocoa
 import Moya
 import RxOptional
 import RxDataSources
+import Photos
+import DKImagePickerController
 
 private let disposeBag = DisposeBag()
 
 public protocol WritePostViewModelInputs {
     var title: PublishSubject<String?> { get}
     var contents: PublishSubject<String?> { get }
+    var images: PublishSubject<[DKAsset]?> { get }
     var postTaps: PublishSubject<Void> { get }
 }
 
 public protocol WritePostViewModelOutputs {
     var validatedTitle: Driver<ValidationResult> { get }
     var validatedContents: Driver<ValidationResult> { get }
+    var encodedImages: Driver<[PostImage]>{ get }
     var enablePost: Driver<Bool>{ get }
     var posting: Driver<Bool> { get }
     var isLoading: Driver<Bool> { get }
@@ -36,10 +40,12 @@ public protocol WritePostViewModelType {
 
 class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, WritePostViewModelType {
     
+    public var encodedImages: Driver<[PostImage]>
     public var validatedTitle: Driver<ValidationResult>
     public var validatedContents: Driver<ValidationResult>
     public var enablePost: Driver<Bool>
     
+    public var images: PublishSubject<[DKAsset]?>
     public var postTaps: PublishSubject<Void>
     public var title: PublishSubject<String?>
     public var contents: PublishSubject<String?>
@@ -56,15 +62,26 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
     init(provider: RxMoyaProvider<Buzzler>) {
         self.provider = provider
         
+        self.images = PublishSubject<[DKAsset]?>()
         self.title = PublishSubject<String?>()
         self.contents = PublishSubject<String?>()
         self.postTaps = PublishSubject<Void>()
         
         let validationService = BuzzlerDefaultValidationService.sharedValidationService
         
+        self.encodedImages = self.images
+            .asDriver(onErrorJustReturn: nil)
+            .map { images in
+                print("testa21323")
+                guard let images = images else { return [PostImage]() }
+                print(images.count)
+                return validationService.encodedImages(images)
+        }
+        
         self.validatedTitle = self.title
             .asDriver(onErrorJustReturn: nil)
             .map { title in
+                print(title)
                 return validationService.validateTextString(title!)
         }
         

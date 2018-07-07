@@ -15,15 +15,11 @@ import SVProgressHUD
 import Photos
 import DKImagePickerController
 
-struct PostImage {
-    var fileName: String
-    var encodedImgData: String
-}
-
 class WritePostViewController: UIViewController {
 
     // MARK: - Outlets
     
+    @IBOutlet weak var vw_cntContainer: UIView!
     @IBOutlet weak var lbl_imgCnt: UILabel!
     @IBOutlet weak var imgVwConstraint: NSLayoutConstraint!
     @IBOutlet weak var img_upload: UIImageView!
@@ -71,15 +67,24 @@ extension WritePostViewController {
     func bindToRx() {
         
         btn_post.rx.tap
-            .bind(to:self.viewModel.inputs.postTaps)
+            .bind(to: self.viewModel.inputs.postTaps)
             .disposed(by: disposeBag)
         
         txt_title.rx.text.orEmpty
-            .bind(to:self.viewModel.inputs.title)
+            .bind(to: self.viewModel.inputs.title)
             .disposed(by: disposeBag)
         
         txt_contents.rx.text.orEmpty
-            .bind(to:self.viewModel.inputs.contents)
+            .bind(to: self.viewModel.inputs.contents)
+            .disposed(by: disposeBag)
+        
+        // set asset to observable
+        Observable.just(self.assets)
+            .bind(to: self.viewModel.inputs.images)
+            .disposed(by: disposeBag)
+
+        self.viewModel.outputs.encodedImages
+            .drive()
             .disposed(by: disposeBag)
         
         self.viewModel.outputs.enablePost.drive(onNext: { enable in
@@ -190,9 +195,6 @@ extension WritePostViewController {
         self.pickerController.showsCancelButton = true
         self.pickerController.maxSelectableCount = 3
         
-        self.pickerController.didCancel = { ()
-        }
-        
         self.pickerController.didSelectAssets = { [unowned self] (assets: [DKAsset]) in
             self.updateAssets(assets: assets)
         }
@@ -206,7 +208,8 @@ extension WritePostViewController {
             // set imageView
             asset[0].fetchOriginalImage(true, completeBlock: { image, info in
                 self.img_upload.image = image
-                self.lbl_imgCnt.text = String(size - 1)
+                self.lbl_imgCnt.text = "+" + String(size - 1)
+                self.vw_cntContainer.isHidden = size == 1 ? true : false
                 
                 let imageSize = self.view.frame.size.height
                 self.imgVwConstraint.constant = imageSize / 3

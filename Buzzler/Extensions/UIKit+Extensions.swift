@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Photos
 
 protocol ShowsAlert {}
 
@@ -18,6 +19,38 @@ extension ShowsAlert where Self: UIViewController {
         
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - For Async Image
+
+extension PHAsset {
+    
+    var originalFileName: String? {
+        var fname: String?
+        if #available(iOS 9.0, *) {
+            let resources = PHAssetResource.assetResources(for: self)
+            if let resource = resources.first {
+                fname = resource.originalFilename
+            }
+        }
+        if fname == nil {
+            // this is an undocumented workaround that works as of iOS 9.1
+            fname = self.value(forKey: "filename") as? String
+        }
+        
+        return fname
+    }
+}
+
+extension String {
+    
+    func fileName() -> String {
+        if let fileNameWithoutExtension = NSURL(fileURLWithPath: self).deletingPathExtension?.lastPathComponent {
+            return fileNameWithoutExtension
+        } else {
+            return ""
+        }
     }
 }
 
