@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>You can select photos to attach to post</string>
-	<key>NSCameraUsageDescription</key>
-	<string>You can take photos to upload your post</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -31,6 +27,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>You can take photos to upload your post</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You can select photos to attach to post</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSans-Bold</string>
@@ -39,6 +39,11 @@
 		<string>AvenirLTStd-Medium</string>
 		<string>AvenirLTStd-Book</string>
 		<string>Avenir LT 95 Black</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

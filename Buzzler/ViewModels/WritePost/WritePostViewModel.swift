@@ -58,9 +58,11 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
     
     // Private
     fileprivate let provider: RxMoyaProvider<Buzzler>
+    fileprivate let awsProvider: RxMoyaProvider<AWS>
     
-    init(provider: RxMoyaProvider<Buzzler>) {
+    init(provider: RxMoyaProvider<Buzzler>, awsProvider: RxMoyaProvider<AWS>) {
         self.provider = provider
+        self.awsProvider = awsProvider
         
         self.images = PublishSubject<[DKAsset]?>()
         self.title = PublishSubject<String?>()
@@ -107,13 +109,13 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
                 let environment = Environment()
                 let categoryId = environment.categoryId
                 
-                return provider.request(Buzzler.uploadS3(categoryId: 0, fileName: encoded[0].fileName, encodedImage: encoded[0].encodedImgData))
+                return awsProvider.request(AWS.uploadS3(categoryId: 0, fileName: encoded[0].fileName, encodedImage: encoded[0].encodedImgData))
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
                     .mapJSON()
                     .flatMap({ res -> Single<Bool> in
-                        print(res)
+                        print("res", res)
                         return Single.just(true)
                     })
                     .trackActivity(isLoading)

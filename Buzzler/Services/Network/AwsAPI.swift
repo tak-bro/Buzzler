@@ -24,7 +24,7 @@ extension AWS: TargetType {
     public var path: String {
         switch self {
         case .uploadS3(let categoryId, _, _):
-            return "/\(categoryId)/images"
+            return "/courses/\(categoryId)/reviews/images"
         }
     }
     
