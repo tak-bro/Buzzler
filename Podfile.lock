@@ -52,6 +52,7 @@ PODS:
   - SwiftyBeaver (1.4.1)
   - SwiftyJSON (3.1.4)
   - Then (2.1.1)
+  - Toaster (2.1.1)
 
 DEPENDENCIES:
   - Action (= 3.2.0)
@@ -80,6 +81,7 @@ DEPENDENCIES:
   - SwiftyBeaver (= 1.4.1)
   - SwiftyJSON (= 3.1.4)
   - Then (~> 2.1)
+  - Toaster
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -110,6 +112,7 @@ SPEC REPOS:
     - SwiftyBeaver
     - SwiftyJSON
     - Then
+    - Toaster
 
 SPEC CHECKSUMS:
   Action: 991c9e175e04675028724868768aa08f22c85476
@@ -139,7 +142,8 @@ SPEC CHECKSUMS:
   SwiftyBeaver: f04f739cca6826c5fb0f575fed8fa3293f76b83e
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Then: 823a7503a851737269ba8d40e688b4db874dbd2d
+  Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
 
-PODFILE CHECKSUM: d817ffd8c5051e491be6fb20a2a3981c6bd5beca
+PODFILE CHECKSUM: fa07004bc3cd91f05d309e15383586b2e8dc7914
 
 COCOAPODS: 1.5.2

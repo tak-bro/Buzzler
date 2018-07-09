@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupConfig()
         return true
     }
-
 }
 
 extension AppDelegate {

@@ -29,6 +29,7 @@ def shared_pods
     pod 'RxCocoa'
     pod 'AsyncTimer', '~> 2.2'
     pod 'DKImagePickerController', '3.6.1'
+    pod 'Toaster'
 end
 
 target :'Buzzler' do

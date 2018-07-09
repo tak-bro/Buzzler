@@ -75,7 +75,6 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
             .asDriver(onErrorJustReturn: nil)
             .map { images in
                 guard let images = images else { return [PostImage]() }
-                print(images.count)
                 return validationService.encodedImages(images)
         }
         
@@ -95,47 +94,59 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
             .combineLatest(validatedTitle, validatedContents) { title, contents in
                 return title.isValid && contents.isValid
         }
-        
-        let titleAndContents = Driver.combineLatest(self.title.asDriver(onErrorJustReturn: nil),
-                                                    self.contents.asDriver(onErrorJustReturn: nil)) { ($0,$1)  }
-        
+
         let isLoading = ActivityIndicator()
         self.isLoading = isLoading.asDriver()
         
+        let titleAndContentsAndImage = Driver.combineLatest(self.title.asDriver(onErrorJustReturn: nil),
+                                                            self.contents.asDriver(onErrorJustReturn: nil),
+                                                            self.encodedImages) { ($0,$1,$2)  }
+        
         self.posting = self.postTaps
             .asDriver(onErrorJustReturn:())
-            .withLatestFrom(self.encodedImages)
-            .flatMapLatest { encoded in
-                let environment = Environment()
-                let categoryId = environment.categoryId
+            .withLatestFrom(titleAndContentsAndImage)
+            .flatMapLatest { items in
+                let title = items.0
+                let contents = items.1
+                let encoded = items.2
                 
-                return awsProvider.request(AWS.uploadS3(categoryId: 0, fileName: encoded[0].fileName, encodedImage: encoded[0].encodedImgData))
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-                    .filterSuccessfulStatusCodes()
-                    .mapJSON()
-                    .flatMap({ res -> Single<Bool> in
-                        print("res", res)
-                        return Single.just(true)
-                    })
-                    .trackActivity(isLoading)
+                let environment = Environment()
+                var categoryId = environment.categoryId
+                categoryId = 0
+                
+                let uploadRequest = encoded.map { image in
+                    return awsProvider.request(AWS.uploadS3(categoryId: categoryId!, fileName: image.fileName, encodedImage: image.encodedImgData))
+                        .retry(3)
+                        .observeOn(MainScheduler.instance)
+                        .filterSuccessfulStatusCodes()
+                        .flatMap({ res -> Single<String> in
+                            do {
+                                let data = try res.mapObject(ImageReponse.self)
+                                return Single.just(data.url)
+                            } catch {
+                                return Single.just("")
+                            }
+                        })
+                        .trackActivity(isLoading)
+                }
+
+                return Observable.from(uploadRequest)
+                    .merge()
+                    .shareReplay(1)
+                    .toArray()
+                    .flatMapLatest { items in
+                        return provider.request(Buzzler.writePost(title: title!, content: contents!,  imageUrls: items, categoryId: environment.categoryId!))
+                            .retry(3)
+                            .observeOn(MainScheduler.instance)
+                            .filterSuccessfulStatusCodes()
+                            .mapJSON()
+                            .flatMap({ res -> Single<Bool> in
+                                print("writePost res:", res)
+                                return Single.just(true)
+                            })
+                            .trackActivity(isLoading)
+                    }
                     .asDriver(onErrorJustReturn: false)
-            }
-//            .withLatestFrom(titleAndContents)
-//            .flatMapLatest{ items in
-//                let environment = Environment()
-//                return provider.request(Buzzler.writePost(title: tuple.0!, content: tuple.1!, imageUrls: ["test.png", "test.png"], categoryId: environment.categoryId!))
-//                    .retry(3)
-//                    .observeOn(MainScheduler.instance)
-//                    .filterSuccessfulStatusCodes()
-//                    .mapJSON()
-//                    .flatMap({ res -> Single<Bool> in
-//                        print("writePost res:", res)
-//                        return Single.just(true)
-//                    })
-//                    .trackActivity(isLoading)
-//                    .asDriver(onErrorJustReturn: false)
-//        }
-        
+        }
     }
 }

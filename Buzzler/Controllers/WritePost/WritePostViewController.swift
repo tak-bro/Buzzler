@@ -14,6 +14,7 @@ import RxKeyboard
 import SVProgressHUD
 import Photos
 import DKImagePickerController
+import Toaster
 
 class WritePostViewController: UIViewController {
 
@@ -45,6 +46,7 @@ class WritePostViewController: UIViewController {
         bindToRx()
         setUI()
         setToolbar()
+       Toast(text: "Hello, worl2222d!").show()
     }
     
     func addImage() {
@@ -105,9 +107,11 @@ extension WritePostViewController {
         
         self.viewModel.outputs.posting
             .drive(onNext: { [weak self] posting in
+                print("posting result", posting)
                 if posting == true {
-                    print(posting)
-                    self?.dismiss(animated: true, completion: nil)
+                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                       Toast(text: "포스트 등록이 완료되었습니다.").show()
+                    })
                 } else {
                     SVProgressHUD.showError(withStatus: "Posting Error")
                 }
