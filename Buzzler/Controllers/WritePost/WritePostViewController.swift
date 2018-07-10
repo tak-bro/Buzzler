@@ -46,7 +46,6 @@ class WritePostViewController: UIViewController {
         bindToRx()
         setUI()
         setToolbar()
-       Toast(text: "Hello, worl2222d!").show()
     }
     
     func addImage() {
@@ -61,6 +60,9 @@ class WritePostViewController: UIViewController {
     
     @IBAction func pickImage(_ sender: UIButton) {
         addImage()
+    }
+    @IBAction func pressPosting(_ sender: UIButton) {
+         self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -108,23 +110,23 @@ extension WritePostViewController {
         self.viewModel.outputs.posting
             .drive(onNext: { [weak self] posting in
                 print("posting result", posting)
-                if posting == true {
-                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                       Toast(text: "포스트 등록이 완료되었습니다.").show()
-                    })
-                } else {
-                    SVProgressHUD.showError(withStatus: "Posting Error")
-                }
+                DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                    if posting == true {
+                        Toast(text: "포스트 등록이 완료되었습니다.").show()
+                    } else {
+                        Toast(text: "Posting Error!!").show()
+                    }
+                })
             }).disposed(by: disposeBag)
         
         self.viewModel.isLoading
             .drive(onNext: { isLoading in
                 switch isLoading {
                 case true:
-                    SVProgressHUD.show()
+                    //SVProgressHUD.show()
                     break
                 case false:
-                    SVProgressHUD.dismiss()
+                    //SVProgressHUD.dismiss()
                     break
                 }
             }).disposed(by: disposeBag)
