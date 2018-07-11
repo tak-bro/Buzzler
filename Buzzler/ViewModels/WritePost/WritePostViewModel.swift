@@ -115,18 +115,7 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
                 categoryId = 0
                 
                 let uploadRequest = encoded.map { image in
-                    return awsProvider.request(AWS.uploadS3(categoryId: categoryId!, fileName: image.fileName, encodedImage: image.encodedImgData))
-                        .retry(3)
-                        .observeOn(MainScheduler.instance)
-                        .filterSuccessfulStatusCodes()
-                        .flatMap({ res -> Single<String> in
-                            do {
-                                let data = try res.mapObject(ImageReponse.self)
-                                return Single.just(data.url)
-                            } catch {
-                                return Single.just("")
-                            }
-                        })
+                    return API.sharedAwsAPI.uploadS3(categoryId!, fileName: image.fileName, encodedImage: image.encodedImgData)
                         .trackActivity(isLoading)
                 }
 
