@@ -62,7 +62,11 @@ class WritePostViewController: UIViewController {
         addImage()
     }
     @IBAction func pressPosting(_ sender: UIButton) {
-         self.dismiss(animated: true, completion: nil)
+        // force set value for ViewModel
+        if (self.varAssets.value?.count == 0) {
+            self.varAssets.value = [DKAsset]()
+        }
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

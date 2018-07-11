@@ -114,28 +114,49 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
                 var categoryId = environment.categoryId
                 categoryId = 0
                 
-                let uploadRequest = encoded.map { image in
-                    return API.sharedAwsAPI.uploadS3(categoryId!, fileName: image.fileName, encodedImage: image.encodedImgData)
-                        .trackActivity(isLoading)
-                }
-
-                return Observable.from(uploadRequest)
-                    .merge()
-                    .shareReplay(1)
-                    .toArray()
-                    .flatMapLatest { items in
-                        return provider.request(Buzzler.writePost(title: title!, content: contents!,  imageUrls: items, categoryId: environment.categoryId!))
-                            .retry(3)
-                            .observeOn(MainScheduler.instance)
-                            .filterSuccessfulStatusCodes()
-                            .mapJSON()
-                            .flatMap({ res -> Single<Bool> in
-                                print("writePost res:", res)
-                                return Single.just(true)
-                            })
+                // check image data
+                print(encoded.count)
+                if (encoded.count > 0) {
+                    let uploadRequest = encoded.map { image in
+                        return API.sharedAwsAPI.uploadS3(categoryId!, fileName: image.fileName, encodedImage: image.encodedImgData)
                             .trackActivity(isLoading)
                     }
-                    .asDriver(onErrorJustReturn: false)
+                    // to check only one data in encoded
+                    // create array
+                    var uploadReqArr = [Observable<String>]()
+                    uploadReqArr += uploadRequest
+                    // request with S3 upload
+                    return Observable.from(uploadReqArr)
+                        .merge()
+                        .shareReplay(1)
+                        .toArray()
+                        .flatMapLatest { items in
+                            return provider.request(Buzzler.writePost(title: title!, content: contents!,  imageUrls: items, categoryId: environment.categoryId!))
+                                .retry(3)
+                                .observeOn(MainScheduler.instance)
+                                .filterSuccessfulStatusCodes()
+                                .mapJSON()
+                                .flatMap({ res -> Single<Bool> in
+                                    print("writePost res:", res)
+                                    return Single.just(true)
+                                })
+                                .trackActivity(isLoading)
+                        }
+                        .asDriver(onErrorJustReturn: false)
+                } else {
+                    // just request Buzzler API
+                    return provider.request(Buzzler.writePost(title: title!, content: contents!,  imageUrls: [], categoryId: environment.categoryId!))
+                        .retry(3)
+                        .observeOn(MainScheduler.instance)
+                        .filterSuccessfulStatusCodes()
+                        .mapJSON()
+                        .flatMap({ res -> Single<Bool> in
+                            print("writePost res:", res)
+                            return Single.just(true)
+                        })
+                        .trackActivity(isLoading)
+                        .asDriver(onErrorJustReturn: false)
+                }
         }
     }
 }
