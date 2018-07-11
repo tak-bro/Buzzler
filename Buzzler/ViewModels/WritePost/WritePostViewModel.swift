@@ -131,7 +131,7 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
                         .shareReplay(1)
                         .toArray()
                         .flatMapLatest { items in
-                            return provider.request(Buzzler.writePost(title: title!, content: contents!,  imageUrls: items, categoryId: environment.categoryId!))
+                            return provider.request(Buzzler.writePost(title: title!, content: contents!,  imageUrls: items, categoryId: categoryId!))
                                 .retry(3)
                                 .observeOn(MainScheduler.instance)
                                 .filterSuccessfulStatusCodes()
@@ -145,7 +145,7 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
                         .asDriver(onErrorJustReturn: false)
                 } else {
                     // just request Buzzler API
-                    return provider.request(Buzzler.writePost(title: title!, content: contents!,  imageUrls: [], categoryId: environment.categoryId!))
+                    return provider.request(Buzzler.writePost(title: title!, content: contents!,  imageUrls: [], categoryId: categoryId!))
                         .retry(3)
                         .observeOn(MainScheduler.instance)
                         .filterSuccessfulStatusCodes()
