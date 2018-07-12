@@ -12,18 +12,22 @@ import RxCocoa
 import Moya
 import RxOptional
 import RxDataSources
+import Photos
+import DKImagePickerController
 
 private let disposeBag = DisposeBag()
 
 public protocol WritePostViewModelInputs {
     var title: PublishSubject<String?> { get}
     var contents: PublishSubject<String?> { get }
+    var images: PublishSubject<[DKAsset]?> { get }
     var postTaps: PublishSubject<Void> { get }
 }
 
 public protocol WritePostViewModelOutputs {
     var validatedTitle: Driver<ValidationResult> { get }
     var validatedContents: Driver<ValidationResult> { get }
+    var encodedImages: Driver<[PostImage]>{ get }
     var enablePost: Driver<Bool>{ get }
     var posting: Driver<Bool> { get }
     var isLoading: Driver<Bool> { get }
@@ -36,10 +40,12 @@ public protocol WritePostViewModelType {
 
 class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, WritePostViewModelType {
     
+    public var encodedImages: Driver<[PostImage]>
     public var validatedTitle: Driver<ValidationResult>
     public var validatedContents: Driver<ValidationResult>
     public var enablePost: Driver<Bool>
     
+    public var images: PublishSubject<[DKAsset]?>
     public var postTaps: PublishSubject<Void>
     public var title: PublishSubject<String?>
     public var contents: PublishSubject<String?>
@@ -50,17 +56,20 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
     public var inputs: WritePostViewModelInputs { return self }
     public var outputs: WritePostViewModelOutputs { return self }
     
-    // Private
-    fileprivate let provider: RxMoyaProvider<Buzzler>
-    
-    init(provider: RxMoyaProvider<Buzzler>) {
-        self.provider = provider
-        
+    init() {
+        self.images = PublishSubject<[DKAsset]?>()
         self.title = PublishSubject<String?>()
         self.contents = PublishSubject<String?>()
         self.postTaps = PublishSubject<Void>()
         
         let validationService = BuzzlerDefaultValidationService.sharedValidationService
+        
+        self.encodedImages = self.images
+            .asDriver(onErrorJustReturn: nil)
+            .map { images in
+                guard let images = images else { return [PostImage]() }
+                return validationService.encodedImages(images)
+        }
         
         self.validatedTitle = self.title
             .asDriver(onErrorJustReturn: nil)
@@ -78,30 +87,53 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
             .combineLatest(validatedTitle, validatedContents) { title, contents in
                 return title.isValid && contents.isValid
         }
-        
-        let titleAndContents = Driver.combineLatest(self.title.asDriver(onErrorJustReturn: nil),
-                                                    self.contents.asDriver(onErrorJustReturn: nil)) { ($0,$1)  }
-        
+
         let isLoading = ActivityIndicator()
         self.isLoading = isLoading.asDriver()
         
+        let titleAndContentsAndImage = Driver.combineLatest(self.title.asDriver(onErrorJustReturn: nil),
+                                                            self.contents.asDriver(onErrorJustReturn: nil),
+                                                            self.encodedImages) { ($0,$1,$2)  }
+        
         self.posting = self.postTaps
             .asDriver(onErrorJustReturn:())
-            .withLatestFrom(titleAndContents)
-            .flatMapLatest{ tuple in
+            .withLatestFrom(titleAndContentsAndImage)
+            .flatMapLatest { items in
                 let environment = Environment()
-                return provider.request(Buzzler.writePost(title: tuple.0!, content: tuple.1!, imageUrls: ["test.png", "test.png"], categoryId: environment.categoryId!))
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-                    .filterSuccessfulStatusCodes()
-                    .mapJSON()
-                    .flatMap({ res -> Single<Bool> in
-                        print("writePost res:", res)
-                        return Single.just(true)
-                    })
-                    .trackActivity(isLoading)
-                    .asDriver(onErrorJustReturn: false)
+                let categoryId = environment.categoryId
+                
+                let title = items.0
+                let contents = items.1
+                let encoded = items.2
+                // check image data
+                if (encoded.count > 0) {
+                    let uploadRequest = encoded.map { image in
+                        return API.sharedAPI
+                            .uploadS3(categoryId!, fileName: image.fileName, encodedImage: image.encodedImgData)
+                            .trackActivity(isLoading)
+                    }
+                    // check only one data in encoded to create array
+                    var uploadReqArr = [Observable<String>]()
+                    uploadReqArr += uploadRequest
+                    
+                    // request with S3 upload
+                    return Observable.from(uploadReqArr)
+                        .merge()
+                        .shareReplay(1)
+                        .toArray()
+                        .flatMapLatest { items in
+                            return API.sharedAPI
+                                .writePost(title!, content: contents!, imageUrls: items, categoryId: categoryId!)
+                                .trackActivity(isLoading)
+                        }
+                        .asDriver(onErrorJustReturn: false)
+                } else {
+                    // just request Buzzler API
+                    return API.sharedAPI
+                        .writePost(title!, content: contents!, imageUrls: [], categoryId: categoryId!)
+                        .trackActivity(isLoading)
+                        .asDriver(onErrorJustReturn: false)
+                }
         }
-        
     }
 }

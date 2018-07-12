@@ -10,6 +10,24 @@ import Foundation
 import SwiftyJSON
 
 struct Environment {
+    
+    var saveEmail: Bool? {
+        get {
+            return self.userDefaults.value(forKey: UserDefaultsKeys.SaveEmail.rawValue) as! Bool?
+        }
+        set {
+            self.userDefaults.setValue(newValue, forKey: UserDefaultsKeys.SaveEmail.rawValue)
+        }
+    }
+    
+    var autoLogin: Bool? {
+        get {
+            return self.userDefaults.value(forKey: UserDefaultsKeys.AutoLoin.rawValue) as! Bool?
+        }
+        set {
+            self.userDefaults.setValue(newValue, forKey: UserDefaultsKeys.AutoLoin.rawValue)
+        }
+    }
 
     var token: String? {
         get {
@@ -94,6 +112,8 @@ struct Environment {
         case Univ = "univ"
         // category
         case CategoryId = "category_id"
+        case AutoLoin = "auto_login"
+        case SaveEmail = "save_email"
     }
     
     init(userDefaults: UserDefaults) {

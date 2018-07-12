@@ -27,6 +27,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>You can take photos to upload your post</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You can select photos to attach to post</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSans-Bold</string>
@@ -36,6 +40,8 @@
 		<string>AvenirLTStd-Book</string>
 		<string>Avenir LT 95 Black</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

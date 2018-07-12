@@ -13,7 +13,7 @@ import RxCocoa
 import RxKeyboard
 import SVProgressHUD
 
-class LastStepViewController: UIViewController {
+class LastStepViewController: UIViewController, ShowsAlert {
 
     @IBOutlet weak var btn_submit: UIButton!
     @IBOutlet weak var txt_confirmPassword: UITextField!
@@ -72,7 +72,7 @@ class LastStepViewController: UIViewController {
                 if success == true {
                     self.router.perform(.doneReset, from: self)
                 } else {
-                    SVProgressHUD.showError(withStatus: "Failed to verify code for new password")
+                    self.showAlert(message: "Failed to verify code for new password")
                 }
             }).disposed(by: disposeBag)
         

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0DC8F020F085D4001DE6DC /* AwsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */; };
+		3B0DC8F620F0AA8F001DE6DC /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */; };
 		3B0DC99920BBF76700A5D274 /* DetailBuzzlerPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */; };
 		3B1CBD0320AA9EB60018D156 /* SelectMajorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */; };
 		3B1CBD0520AAC8770018D156 /* SelectMajorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */; };
@@ -35,6 +37,7 @@
 		3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85701820A9A945009FEC48 /* ValidationService.swift */; };
 		3BA13D4320DB9A01009B8E5B /* ManuallyEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA13D4220DB9A01009B8E5B /* ManuallyEnterViewController.swift */; };
 		3BA13D4520DB9AE1009B8E5B /* ManuallyEnterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA13D4420DB9AE1009B8E5B /* ManuallyEnterViewModel.swift */; };
+		3BB6109120F5DB1F0075748F /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB6109020F5DB1F0075748F /* APIWrapper.swift */; };
 		3BBE8D2020D1162800634B2F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE8D1F20D1162800634B2F /* Category.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
 		84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB420907D3200B7C98A /* SignUpViewModel.swift */; };
@@ -93,6 +96,8 @@
 
 /* Begin PBXFileReference section */
 		08F076F0908B7F9506698A2F /* Pods-Buzzler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.debug.xcconfig"; sourceTree = "<group>"; };
+		3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwsAPI.swift; sourceTree = "<group>"; };
+		3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuzzlerPost.swift; sourceTree = "<group>"; };
 		3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorViewController.swift; sourceTree = "<group>"; };
 		3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorViewModel.swift; sourceTree = "<group>"; };
@@ -121,6 +126,7 @@
 		3B85701820A9A945009FEC48 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		3BA13D4220DB9A01009B8E5B /* ManuallyEnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterViewController.swift; sourceTree = "<group>"; };
 		3BA13D4420DB9AE1009B8E5B /* ManuallyEnterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterViewModel.swift; sourceTree = "<group>"; };
+		3BB6109020F5DB1F0075748F /* APIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWrapper.swift; sourceTree = "<group>"; };
 		3BBE8D1F20D1162800634B2F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
@@ -198,6 +204,14 @@
 				629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B0DC8F420F0AA79001DE6DC /* WritePost */ = {
+			isa = PBXGroup;
+			children = (
+				3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */,
+			);
+			path = WritePost;
 			sourceTree = "<group>";
 		};
 		3B2A42B620B1409F00E37D72 /* MyPage */ = {
@@ -465,6 +479,7 @@
 				AF9F0FCF1DF1A66E00FF8EC5 /* Home */,
 				3B66DDC820C0E1C6009944D1 /* DetailPost */,
 				3B48A9C220B2B26700E0BDA1 /* SignUp */,
+				3B0DC8F420F0AA79001DE6DC /* WritePost */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -599,6 +614,8 @@
 		AFBDB2601DF58EF1003E8EE2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				3BB6109020F5DB1F0075748F /* APIWrapper.swift */,
+				3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */,
 				84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */,
 				84BA76F82086FC7D0097FFD2 /* BuzzlerError.swift */,
 				84BA76F62086FC4B0097FFD2 /* Decodable.swift */,
@@ -665,6 +682,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 3PLZG2J4W7;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -739,6 +761,7 @@
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AsyncTimer/AsyncTimer.framework",
+				"${BUILT_PRODUCTS_DIR}/DKImagePickerController/DKImagePickerController.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/EZSwiftExtensions/EZSwiftExtensions.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -762,12 +785,14 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
+				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncTimer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DKImagePickerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZSwiftExtensions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -791,6 +816,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -824,11 +850,13 @@
 				84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */,
 				3B52E6C620AE9489002B2BB6 /* FirstStepViewModel.swift in Sources */,
 				3B48A9CE20B54FDF00E0BDA1 /* Environment.swift in Sources */,
+				3B0DC8F620F0AA8F001DE6DC /* ImageResponse.swift in Sources */,
 				844BC372208AF05500666486 /* StartSignUpViewController.swift in Sources */,
 				8421B2D12086D82C00CBF4E3 /* LoginViewModel.swift in Sources */,
 				3B52E6CA20AE94C7002B2BB6 /* LastStepViewModel.swift in Sources */,
 				AF9F0FD91DF1A9E900FF8EC5 /* HomeTableViewCell.swift in Sources */,
 				844BC382208B083600666486 /* VerifyCodeViewController.swift in Sources */,
+				3BB6109120F5DB1F0075748F /* APIWrapper.swift in Sources */,
 				3B52E6BF20AE93D0002B2BB6 /* FirstStepViewController.swift in Sources */,
 				844BC386208C462900666486 /* SignUpDoneViewController.swift in Sources */,
 				84DFF8F1209C403800AC63B0 /* ActiviityIndicator.swift in Sources */,
@@ -840,6 +868,7 @@
 				844BC384208B0C8300666486 /* VerifyCodeViewModel.swift in Sources */,
 				84BA76F92086FC7D0097FFD2 /* BuzzlerError.swift in Sources */,
 				844BC38A208C573000666486 /* HelperFunctions.swift in Sources */,
+				3B0DC8F020F085D4001DE6DC /* AwsAPI.swift in Sources */,
 				84A1BFC3208C67AD00D0ADC7 /* BuzzlerPost.swift in Sources */,
 				84A1BFC6208C7C6200D0ADC7 /* HomeImageTableViewCell.swift in Sources */,
 				3B823CBB20B81A5E000A68BA /* NewPasswordDoneViewController.swift in Sources */,

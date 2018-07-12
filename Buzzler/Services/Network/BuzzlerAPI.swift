@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import RxSwift
 
-let BuzzlerProvider = RxMoyaProvider<Buzzler>(endpointClosure: endpointClosure, plugins: [NetworkLoggerPlugin(verbose: true)])
+public let BuzzlerProvider = RxMoyaProvider<Buzzler>(endpointClosure: endpointClosure, plugins: [NetworkLoggerPlugin(verbose: true)])
 
 public enum Buzzler {
     // GET
@@ -29,7 +29,7 @@ public enum Buzzler {
     case newPassword(email: String, password: String)
     case writeComment(postId: Int, parentId: String?, content: String)
     case createCategory(depth: Int, name: String, baseUrl: String?)
-    
+
     // PUT
     case verifyCode(receiver: String, verificationCode: String)
     case verifyCodeForNewPassword(receiver: String, verificationCode: String)
@@ -71,8 +71,7 @@ extension Buzzler: TargetType {
             return "/v1/posts/\(postId)/comments"
         case .createCategory(_, _, _):
             return "/v1/categories"
-            
-            
+
         // PUT
         case .verifyCode:
             return "/v1/accounts/email-verification"
