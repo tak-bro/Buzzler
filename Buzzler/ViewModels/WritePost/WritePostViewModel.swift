@@ -115,45 +115,31 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
                 categoryId = 0
                 
                 // check image data
-                print(encoded.count)
                 if (encoded.count > 0) {
                     let uploadRequest = encoded.map { image in
-                        return API.sharedAwsAPI.uploadS3(categoryId!, fileName: image.fileName, encodedImage: image.encodedImgData)
+                        return API.sharedAPI
+                            .uploadS3(categoryId!, fileName: image.fileName, encodedImage: image.encodedImgData)
                             .trackActivity(isLoading)
                     }
-                    // to check only one data in encoded
-                    // create array
+                    // check only one data in encoded to create array
                     var uploadReqArr = [Observable<String>]()
                     uploadReqArr += uploadRequest
+                    
                     // request with S3 upload
                     return Observable.from(uploadReqArr)
                         .merge()
                         .shareReplay(1)
                         .toArray()
                         .flatMapLatest { items in
-                            return provider.request(Buzzler.writePost(title: title!, content: contents!,  imageUrls: items, categoryId: categoryId!))
-                                .retry(3)
-                                .observeOn(MainScheduler.instance)
-                                .filterSuccessfulStatusCodes()
-                                .mapJSON()
-                                .flatMap({ res -> Single<Bool> in
-                                    print("writePost res:", res)
-                                    return Single.just(true)
-                                })
+                            return API.sharedAPI
+                                .writePost(title!, content: contents!, imageUrls: items, categoryId: categoryId!)
                                 .trackActivity(isLoading)
                         }
                         .asDriver(onErrorJustReturn: false)
                 } else {
                     // just request Buzzler API
-                    return provider.request(Buzzler.writePost(title: title!, content: contents!,  imageUrls: [], categoryId: categoryId!))
-                        .retry(3)
-                        .observeOn(MainScheduler.instance)
-                        .filterSuccessfulStatusCodes()
-                        .mapJSON()
-                        .flatMap({ res -> Single<Bool> in
-                            print("writePost res:", res)
-                            return Single.just(true)
-                        })
+                    return API.sharedAPI
+                        .writePost(title!, content: contents!, imageUrls: [], categoryId: categoryId!)
                         .trackActivity(isLoading)
                         .asDriver(onErrorJustReturn: false)
                 }

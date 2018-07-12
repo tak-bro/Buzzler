@@ -614,13 +614,13 @@
 		AFBDB2601DF58EF1003E8EE2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				3BB6109020F5DB1F0075748F /* APIWrapper.swift */,
 				3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */,
 				84BA76F22086E21F0097FFD2 /* BuzzlerAPI.swift */,
 				84BA76F82086FC7D0097FFD2 /* BuzzlerError.swift */,
 				84BA76F62086FC4B0097FFD2 /* Decodable.swift */,
 				84BA76F42086F80C0097FFD2 /* Decodable+Rx.swift */,
 				3B85701820A9A945009FEC48 /* ValidationService.swift */,
-				3BB6109020F5DB1F0075748F /* APIWrapper.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
