@@ -68,17 +68,8 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelInputs, HomeViewMode
                 } else {
                     self.pageIndex = 1
                     self.elements.value.removeAll()
-                    return BuzzlerProvider.request(Buzzler.getPost(category: self.category))
-                        .retry(3)
-                        .observeOn(MainScheduler.instance)
-                        .flatMap({ res -> Single<[BuzzlerPost]> in
-                            do {
-                                let data = try res.mapArray(BuzzlerPost.self)
-                                return Single.just(data)
-                            } catch {
-                                return Single.just([])
-                            }
-                        })
+                    return API.sharedAPI
+                        .getPost(self.category)
                         .trackActivity(Loading)
                         .asDriver(onErrorJustReturn: [])
                 }
@@ -92,18 +83,8 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelInputs, HomeViewMode
                     return Driver.empty()
                 } else {
                     self.pageIndex = self.pageIndex + 1
-                    return BuzzlerProvider.request(Buzzler.getPost(category: self.category))
-                        .retry(3)
-                        .observeOn(MainScheduler.instance)
-                        .filterSuccessfulStatusCodes()
-                        .flatMap({ res -> Single<[BuzzlerPost]> in
-                            do {
-                                let data = try res.mapArray(BuzzlerPost.self)
-                                return Single.just(data)
-                            } catch {
-                                return Single.just([])
-                            }
-                        })
+                    return API.sharedAPI
+                        .getPost(self.category)
                         .trackActivity(Loading)
                         .asDriver(onErrorJustReturn: [])
                 }

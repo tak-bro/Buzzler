@@ -89,15 +89,8 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(commentAndParentId)
             .flatMapLatest{ tuple in
-                return BuzzlerProvider.request(Buzzler.writeComment(postId: id, parentId: tuple.1! == "" ? nil : tuple.1!, content: tuple.0!))
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-                    .filterSuccessfulStatusCodes()
-                    .mapJSON()
-                    .flatMap({ res -> Single<Bool> in
-                        print("res: ", res)
-                        return Single.just(true)
-                    })
+                return API.sharedAPI
+                    .writeComment(postId: id, parentId: tuple.1! == "" ? nil : tuple.1!, content: tuple.0!)
                     .trackActivity(Loading)
                     .asDriver(onErrorJustReturn: false)
         }
@@ -112,35 +105,8 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                     self.elements.value.removeAll()
                     let environment = Environment()
                     let categoryId = environment.categoryId
-                    return BuzzlerProvider.request(Buzzler.getDetailPost(categoryId: categoryId!, id: id))
-                        .retry(3)
-                        .observeOn(MainScheduler.instance)
-                        .flatMap({ res -> Single<[MultipleSectionModel]> in
-                            do {
-                                let data = try res.mapObject(DetailBuzzlerPost.self)
-                                // convert response to BuzzlerPost model
-                                let defaultPost = BuzzlerPost(id: data.id, title: data.title, content: data.content,
-                                                              imageUrls: data.imageUrls, likeCount: data.likeCount, createdAt: data.createdAt,
-                                                              authorId: data.authorId)
-                                // convert comments to CommentSection
-                                var comments = data.comments
-                                    .sorted(by: BuzzlerComment.customCompare) // sort as comment order with parentId
-                                    .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
-                                        if let _ = comment.parentId {
-                                            return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
-                                        } else {
-                                            return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
-                                        }
-                                    })
-                                // add PostSection to first index
-                                comments.insertFirst(.PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]))
-                                
-                                // return datasource for Table
-                                return Single.just(comments)
-                            } catch {
-                                return Single.just([])
-                            }
-                        })
+                    return API.sharedAPI
+                        .getDetailPost(categoryId: categoryId!, id: id)
                         .trackActivity(Loading)
                         .asDriver(onErrorJustReturn: [])
                 }

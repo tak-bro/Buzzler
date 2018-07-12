@@ -33,7 +33,7 @@ class WritePostViewController: UIViewController {
     @IBOutlet weak var txt_contents: UITextView!
     var placeholderLabel : UILabel!
     
-    let viewModel = WritePostViewModel(provider: BuzzlerProvider, awsProvider: AwsProvider)
+    let viewModel = WritePostViewModel()
     fileprivate let disposeBag = DisposeBag()
     
     var varAssets = Variable<[DKAsset]?>([]) // picked images from picker

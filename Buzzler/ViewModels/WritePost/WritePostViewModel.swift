@@ -56,14 +56,7 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
     public var inputs: WritePostViewModelInputs { return self }
     public var outputs: WritePostViewModelOutputs { return self }
     
-    // Private
-    fileprivate let provider: RxMoyaProvider<Buzzler>
-    fileprivate let awsProvider: RxMoyaProvider<AWS>
-    
-    init(provider: RxMoyaProvider<Buzzler>, awsProvider: RxMoyaProvider<AWS>) {
-        self.provider = provider
-        self.awsProvider = awsProvider
-        
+    init() {
         self.images = PublishSubject<[DKAsset]?>()
         self.title = PublishSubject<String?>()
         self.contents = PublishSubject<String?>()
