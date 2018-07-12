@@ -99,14 +99,12 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(titleAndContentsAndImage)
             .flatMapLatest { items in
+                let environment = Environment()
+                let categoryId = environment.categoryId
+                
                 let title = items.0
                 let contents = items.1
                 let encoded = items.2
-                
-                let environment = Environment()
-                var categoryId = environment.categoryId
-                categoryId = 0
-                
                 // check image data
                 if (encoded.count > 0) {
                     let uploadRequest = encoded.map { image in
