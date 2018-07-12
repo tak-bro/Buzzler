@@ -35,14 +35,22 @@ class LoginViewController: UIViewController, ShowsAlert {
         if let autoLogin = environment.autoLogin {
             // set button image
             autoLogin ? self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox"), for: .normal) : self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
-            self.viewModel.inputs.loginTaps.onNext(())
+            // event publish
+            self.viewModel
+                .inputs
+                .loginTaps
+                .onNext(())
         }
         
         if let saveEmail = environment.saveEmail {
             // set button image
             if saveEmail {
                 self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox"), for: .normal)
-                self.txt_email.text = environment.receiver
+                // event publish
+                self.viewModel
+                    .inputs
+                    .email
+                    .onNext(environment.receiver)
             } else {
                 self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
             }
