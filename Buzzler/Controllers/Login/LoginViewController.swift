@@ -23,12 +23,30 @@ class LoginViewController: UIViewController, ShowsAlert {
     @IBOutlet weak var btn_autoLogin: UIButton!
     @IBOutlet weak var btn_saveEmail: UIButton!
     
+    var environment = Environment()
+    
     fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bindToRx()
         setUI()
+        
+        if let autoLogin = environment.autoLogin {
+            // set button image
+            autoLogin ? self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox"), for: .normal) : self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
+            self.viewModel.inputs.loginTaps.onNext(())
+        }
+        
+        if let saveEmail = environment.saveEmail {
+            // set button image
+            if saveEmail {
+                self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox"), for: .normal)
+                self.txt_email.text = environment.receiver
+            } else {
+                self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +93,10 @@ class LoginViewController: UIViewController, ShowsAlert {
                     GlobalUIManager.loadHomeVC()
                 } else {
                     self.showAlert(message: "Login Error!")
+                    self.environment.autoLogin = false
+                    self.environment.saveEmail = false
+                    self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
+                    self.btn_autoLogin.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
                 }
             }).disposed(by: disposeBag)
         
@@ -103,6 +125,37 @@ class LoginViewController: UIViewController, ShowsAlert {
         view.endEditing(true)
     }
     
+    @IBAction func pressAutoLogin(_ sender: UIButton) {
+        if let autoLogin = self.environment.autoLogin {
+            if autoLogin {
+                sender.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
+                self.environment.autoLogin = false
+            } else {
+                sender.setImage(UIImage(named: "btn_checkbox"), for: .normal)
+                self.environment.autoLogin = true
+            }
+        } else {
+            // if autoLogin is nil
+            sender.setImage(UIImage(named: "btn_checkbox"), for: .normal)
+            self.environment.autoLogin = true
+        }
+    }
+    
+    @IBAction func pressSaveEmail(_ sender: UIButton) {
+        if let saveEmail = self.environment.saveEmail {
+            if saveEmail {
+                sender.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
+                self.environment.saveEmail = false
+            } else {
+                sender.setImage(UIImage(named: "btn_checkbox"), for: .normal)
+                self.environment.saveEmail = true
+            }
+        } else {
+            // if saveEmail is nil
+            sender.setImage(UIImage(named: "btn_checkbox"), for: .normal)
+            self.environment.saveEmail = true
+        }
+    }
 }
 
 extension LoginViewController {

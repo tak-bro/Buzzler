@@ -95,11 +95,22 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     .filterSuccessfulStatusCodes()
                     .mapJSON()
                     .flatMap({ token -> Single<Bool> in
-                            print("Token", token)
+                        print("Token", token)
                         if token is String {
                             // add userDefaults
                             var environment = Environment()
                             environment.token = token as? String
+                            // save auto login info
+                            if let autoLogin = environment.autoLogin, autoLogin {
+                                environment.receiver = tuple.0!
+                                environment.password = tuple.1!
+                            }
+                            
+                            // save auto login info
+                            if let saveEmail = environment.saveEmail, saveEmail {
+                                environment.receiver = tuple.0!
+                            }
+                            
                             return Single.just(true)
                         } else {
                             return Single.just(false)

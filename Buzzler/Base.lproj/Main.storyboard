@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZfL-1T-KXd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EeC-k0-aex">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -916,6 +916,9 @@ Cg
                                 <state key="normal" title="  Auto log in" image="btn_checkbox_empty">
                                     <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="pressAutoLogin:" destination="49f-oW-Hw4" eventType="touchUpInside" id="z6j-ed-1yC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kq2-IR-rtx">
                                 <rect key="frame" x="72" y="506" width="107" height="21"/>
@@ -923,6 +926,9 @@ Cg
                                 <state key="normal" title="  Remember me" image="btn_checkbox_empty">
                                     <color key="titleColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="pressSaveEmail:" destination="49f-oW-Hw4" eventType="touchUpInside" id="sBr-eh-f1B"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2h-Sa-IJE">
                                 <rect key="frame" x="139.5" y="555" width="96" height="24"/>
@@ -1587,37 +1593,6 @@ Cg
             </objects>
             <point key="canvasLocation" x="1872.8" y="-338.68065967016497"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="K6N-29-fxZ">
-            <objects>
-                <viewController id="ZfL-1T-KXd" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7Qz-Jc-d7J"/>
-                        <viewControllerLayoutGuide type="bottom" id="eox-M0-Za8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QJd-lh-zsB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SmU-QJ-hwZ">
-                                <rect key="frame" x="164.5" y="318" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="l2d-FS-koS" kind="presentation" id="Smu-mW-0yz"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="SmU-QJ-hwZ" firstAttribute="centerY" secondItem="QJd-lh-zsB" secondAttribute="centerY" id="57z-5Z-6WV"/>
-                            <constraint firstItem="SmU-QJ-hwZ" firstAttribute="centerX" secondItem="QJd-lh-zsB" secondAttribute="centerX" id="xMP-Wb-2eo"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EUR-Js-daj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3112.8000000000002" y="-281.10944527736132"/>
-        </scene>
         <!--Post View Controller-->
         <scene sceneID="T4s-aq-0cw">
             <objects>
@@ -2084,6 +2059,5 @@ Cg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gVB-h3-Ixr"/>
-        <segue reference="Smu-mW-0yz"/>
     </inferredMetricsTieBreakers>
 </document>
