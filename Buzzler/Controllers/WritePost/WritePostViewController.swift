@@ -15,6 +15,7 @@ import SVProgressHUD
 import Photos
 import DKImagePickerController
 import Toaster
+import Optik
 
 class WritePostViewController: UIViewController {
 
@@ -31,7 +32,7 @@ class WritePostViewController: UIViewController {
     @IBOutlet weak var btn_dismiss: UIButton!
     @IBOutlet weak var txt_title: UITextField!
     @IBOutlet weak var txt_contents: UITextView!
-    var placeholderLabel : UILabel!
+    var placeholderLabel: UILabel!
     
     let viewModel = WritePostViewModel()
     fileprivate let disposeBag = DisposeBag()
@@ -39,6 +40,8 @@ class WritePostViewController: UIViewController {
     var varAssets = Variable<[DKAsset]?>([]) // picked images from picker
     let pickerController = DKImagePickerController()
     
+    var imageList = [UIImage]()
+
     // MARK: - Init
     
     override func viewDidLoad() {
@@ -213,16 +216,24 @@ extension WritePostViewController {
         self.varAssets.value = assets
 
         if assets.count > 0 {
-            // set imageView
-            assets[0].fetchOriginalImage(true, completeBlock: { image, info in
-                self.img_upload.image = image
-                self.lbl_imgCnt.text = "+" + String(assets.count-1)
-                self.vw_cntContainer.isHidden = assets.count == 1 ? true : false
-                
-                let imageSize = self.view.frame.size.height
-                self.imgVwConstraint.constant = imageSize / 4
-                self.vw_imgContainer.isHidden = false
-            })
+            // add imageViewer
+            assets.enumerated()
+                .map { (index, asset) in
+                    asset.fetchOriginalImage(true, completeBlock: { image, info in
+                        // set imageView
+                        if index == 0 {
+                            self.img_upload.image = image
+                            self.lbl_imgCnt.text = "+" + String(assets.count-1)
+                            self.vw_cntContainer.isHidden = assets.count == 1 ? true : false
+                            
+                            let imageSize = self.view.frame.size.height
+                            self.imgVwConstraint.constant = imageSize / 3.5
+                            self.vw_imgContainer.isHidden = false
+                        }
+                        
+                        self.imageList.append(image!)
+                    })
+                }
         }
     }
     

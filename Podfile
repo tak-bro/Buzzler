@@ -30,6 +30,7 @@ def shared_pods
     pod 'AsyncTimer', '~> 2.2'
     pod 'DKImagePickerController', '3.6.1'
     pod 'Toaster'
+    pod "Optik"
 end
 
 target :'Buzzler' do
