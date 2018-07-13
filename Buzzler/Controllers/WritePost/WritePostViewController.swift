@@ -32,17 +32,17 @@ class WritePostViewController: UIViewController {
     @IBOutlet weak var btn_dismiss: UIButton!
     @IBOutlet weak var txt_title: UITextField!
     @IBOutlet weak var txt_contents: UITextView!
+    
+    fileprivate let disposeBag = DisposeBag()
+    let viewModel = WritePostViewModel()
     var placeholderLabel: UILabel!
     
-    let viewModel = WritePostViewModel()
-    fileprivate let disposeBag = DisposeBag()
-    
-    var varAssets = Variable<[DKAsset]?>([]) // picked images from picker
     let pickerController = DKImagePickerController()
-    
-    // image viewer
-    var imageList = [UIImage]()
-    let tapGesture = UITapGestureRecognizer()
+    var varAssets = Variable<[DKAsset]?>([]) // picked images from picker
+
+    // for image viewer
+    fileprivate let tapGesture = UITapGestureRecognizer()
+    fileprivate var imageList = [UIImage]()
     fileprivate var currentLocalImageIndex = 0 {
         didSet {
             self.img_upload.image = imageList[currentLocalImageIndex]
@@ -186,6 +186,7 @@ extension WritePostViewController {
                 let imageViewer = Optik.imageViewer(withImages: self.imageList,
                                                     initialImageDisplayIndex: self.currentLocalImageIndex,
                                                     delegate: self)
+                                                  //  dismissButtonImage: UIImage(named: "btn_viewer_dismiss"))
                 self.present(imageViewer, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
@@ -236,6 +237,8 @@ extension WritePostViewController {
     
     func updateAssets(assets: [DKAsset]) {
         self.varAssets.value = assets
+        // reset image viewer data
+        self.imageList.removeAll()
 
         if assets.count > 0 {
             // add imageViewer
@@ -256,13 +259,17 @@ extension WritePostViewController {
                         self.imageList.append(image!)
                     })
                 }
+            // reset index
+            self.currentLocalImageIndex = 0
+        } else {
+            self.imageList.removeAll()
+            self.vw_imgContainer.isHidden = true
         }
     }
 }
 
 extension WritePostViewController: ImageViewerDelegate {
-    
-    
+
     func transitionImageView(for index: Int) -> UIImageView {
         return self.img_upload
     }
