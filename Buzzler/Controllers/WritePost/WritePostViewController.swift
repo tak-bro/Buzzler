@@ -220,7 +220,7 @@ extension WritePostViewController {
                 self.vw_cntContainer.isHidden = assets.count == 1 ? true : false
                 
                 let imageSize = self.view.frame.size.height
-                self.imgVwConstraint.constant = imageSize / 3
+                self.imgVwConstraint.constant = imageSize / 4
                 self.vw_imgContainer.isHidden = false
             })
         }
