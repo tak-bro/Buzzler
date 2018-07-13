@@ -40,7 +40,14 @@ class WritePostViewController: UIViewController {
     var varAssets = Variable<[DKAsset]?>([]) // picked images from picker
     let pickerController = DKImagePickerController()
     
+    // image viewer
     var imageList = [UIImage]()
+    let tapGesture = UITapGestureRecognizer()
+    fileprivate var currentLocalImageIndex = 0 {
+        didSet {
+            self.img_upload.image = imageList[currentLocalImageIndex]
+        }
+    }
 
     // MARK: - Init
     
@@ -49,6 +56,7 @@ class WritePostViewController: UIViewController {
         bindToRx()
         setUI()
         setToolbar()
+        setGetureToView()
     }
     
     func addImage() {
@@ -168,6 +176,20 @@ extension WritePostViewController {
         txt_title.inputAccessoryView = toolbar
         txt_contents.inputAccessoryView = toolbar
     }
+    
+    func setGetureToView() {
+        vw_imgContainer.addGestureRecognizer(tapGesture)
+        
+        tapGesture.rx
+            .event
+            .bind(onNext: { recognizer in
+                let imageViewer = Optik.imageViewer(withImages: self.imageList,
+                                                    initialImageDisplayIndex: self.currentLocalImageIndex,
+                                                    delegate: self)
+                self.present(imageViewer, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+    }
 
     func doneButtonAction() {
         view.endEditing(true)
@@ -235,6 +257,18 @@ extension WritePostViewController {
                     })
                 }
         }
+    }
+}
+
+extension WritePostViewController: ImageViewerDelegate {
+    
+    
+    func transitionImageView(for index: Int) -> UIImageView {
+        return self.img_upload
+    }
+    
+    func imageViewerDidDisplayImage(at index: Int) {
+        currentLocalImageIndex = index
     }
     
 }
