@@ -90,7 +90,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             .withLatestFrom(commentAndParentId)
             .flatMapLatest{ tuple in
                 return API.sharedAPI
-                    .writeComment(postId: id, parentId: tuple.1! == "" ? nil : tuple.1!, content: tuple.0!)
+                    .writeComment(postId: id, parentId: tuple.1! == "" ? nil : tuple.1!, contents: tuple.0!)
                     .trackActivity(Loading)
                     .asDriver(onErrorJustReturn: false)
         }

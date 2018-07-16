@@ -16,7 +16,7 @@ public struct BuzzlerComment: Equatable, Mappable {
     var authorId: Int = 0
     var postId: Int = 0
     var parentId: Int?
-    var content: String = ""
+    var contents: String = ""
     var createdAt: Date = Date()
     
     public static func == (lhs: BuzzlerComment, rhs: BuzzlerComment) -> Bool {
@@ -32,7 +32,7 @@ public struct BuzzlerComment: Equatable, Mappable {
         authorId <- map["authorId"]
         postId <- map["postId"]
         parentId <- map["parentId"]
-        content <- map["content"]
+        contents <- map["contents"]
         createdAt <- map["createdAt"]
     }
     

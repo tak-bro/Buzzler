@@ -20,8 +20,8 @@ public protocol AwsAPI {
 public protocol BuzzlerAPI {
     func getPost(_ category: Int) -> Observable<[BuzzlerPost]>
     func getDetailPost(categoryId: Int, id: Int) -> Observable<[MultipleSectionModel]>
-    func writePost(_ title: String, content: String, imageUrls: [String], categoryId: Int) -> Observable<Bool>
-    func writeComment(postId: Int, parentId: String?, content: String) -> Observable<Bool>
+    func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<Bool>
+    func writeComment(postId: Int, parentId: String?, contents: String) -> Observable<Bool>
 }
 
 
@@ -53,7 +53,7 @@ public class API: AwsAPI, BuzzlerAPI {
                 do {
                     let data = try res.mapObject(DetailBuzzlerPost.self)
                     // convert response to BuzzlerPost model
-                    let defaultPost = BuzzlerPost(id: data.id, title: data.title, content: data.content,
+                    let defaultPost = BuzzlerPost(id: data.id, title: data.title, contents: data.contents,
                                                   imageUrls: data.imageUrls, likeCount: data.likeCount, createdAt: data.createdAt,
                                                   authorId: data.authorId)
                     // convert comments to CommentSection
@@ -77,8 +77,8 @@ public class API: AwsAPI, BuzzlerAPI {
             })
     }
     
-    public func writePost(_ title: String, content: String, imageUrls: [String], categoryId: Int) -> Observable<Bool> {
-        return BuzzlerProvider.request(Buzzler.writePost(title: title, content: content,  imageUrls: imageUrls, categoryId: categoryId))
+    public func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<Bool> {
+        return BuzzlerProvider.request(Buzzler.writePost(title: title, contents: contents,  imageUrls: imageUrls, categoryId: categoryId))
             .retry(3)
             .observeOn(MainScheduler.instance)
             .filterSuccessfulStatusCodes()
@@ -88,8 +88,8 @@ public class API: AwsAPI, BuzzlerAPI {
             })
     }
     
-    public func writeComment(postId: Int, parentId: String?, content: String) -> Observable<Bool> {
-        return BuzzlerProvider.request(Buzzler.writeComment(postId: postId, parentId: parentId, content: content))
+    public func writeComment(postId: Int, parentId: String?, contents: String) -> Observable<Bool> {
+        return BuzzlerProvider.request(Buzzler.writeComment(postId: postId, parentId: parentId, contents: contents))
             .retry(3)
             .observeOn(MainScheduler.instance)
             .filterSuccessfulStatusCodes()

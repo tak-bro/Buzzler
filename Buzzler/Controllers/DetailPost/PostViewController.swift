@@ -153,7 +153,7 @@ extension PostViewController: UITableViewDelegate {
                 if item.imageUrls.count > 0 {
                     let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                     imgCell.lbl_title.text = item.title
-                    imgCell.lbl_content.text = item.content
+                    imgCell.lbl_content.text = item.contents
                     imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
                     imgCell.lbl_likeCount.text = String(item.likeCount)
                     imgCell.lbl_author.text = "익명"
@@ -167,7 +167,7 @@ extension PostViewController: UITableViewDelegate {
                 } else {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                     cell.lbl_title.text = item.title
-                    cell.lbl_content.text = item.content
+                    cell.lbl_content.text = item.contents
                     cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
                     cell.lbl_likeCount.text = String(item.likeCount)
                     cell.lbl_author.text = "익명"
@@ -176,7 +176,7 @@ extension PostViewController: UITableViewDelegate {
                 return defaultCell
             case let .CommentItem(item):
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
-                cell.lbl_comment.text = item.content
+                cell.lbl_comment.text = item.contents
                 cell.lbl_comment.numberOfLines = 0
                 
                 // define action to write comment
@@ -193,7 +193,7 @@ extension PostViewController: UITableViewDelegate {
                 return cell
             case let .ReCommentItem(item):
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ReCommentTableViewCell.self)
-                cell.lbl_recomment.text = item.content
+                cell.lbl_recomment.text = item.contents
                 cell.lbl_recomment.numberOfLines = 0
                 return cell
             }

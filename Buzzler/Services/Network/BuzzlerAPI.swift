@@ -21,13 +21,13 @@ public enum Buzzler {
     case getCategoriesByUser()
     
     // POST
-    case writePost(title: String, content: String, imageUrls: [String], categoryId: Int)
+    case writePost(title: String, contents: String, imageUrls: [String], categoryId: Int)
     case requestCode(receiver: String)
     case signUp(username: String, email: String, password: String, categoryAuth: [String])
     case signIn(email: String, password: String)
     case requestCodeForNewPassword(receiver: String)
     case newPassword(email: String, password: String)
-    case writeComment(postId: Int, parentId: String?, content: String)
+    case writeComment(postId: Int, parentId: String?, contents: String)
     case createCategory(depth: Int, name: String, baseUrl: String?)
 
     // PUT
@@ -123,8 +123,8 @@ extension Buzzler: TargetType {
             return nil
             
         // POST
-        case .writePost(let title, let content, let imageUrls, _):
-            return ["title": title, "content": content, "imageUrls": imageUrls]
+        case .writePost(let title, let contents, let imageUrls, _):
+            return ["title": title, "contents": contents, "imageUrls": imageUrls]
         case .requestCode(let receiver),
              .requestCodeForNewPassword(let receiver):
             return ["receiver": receiver]
@@ -134,9 +134,9 @@ extension Buzzler: TargetType {
             return ["email": email, "password": password]
         case .newPassword(let email, let password):
             return ["email": email, "newPassword": password]
-        case .writeComment(_, let parentId, let content):
-            guard let parentId = parentId else { return ["content": content] }
-            return ["parentId": parentId, "content": content]
+        case .writeComment(_, let parentId, let contents):
+            guard let parentId = parentId else { return ["contents": contents] }
+            return ["parentId": parentId, "contents": contents]
         case .createCategory(let depth, let name, let baseUrl):
             guard let baseUrl = baseUrl else { return ["depth": depth, "name": name] }
             return ["depth": depth, "name": name, "baseUrl": baseUrl]
