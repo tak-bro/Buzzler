@@ -14,6 +14,7 @@ import RxCocoa
 import RxDataSources
 import SVProgressHUD
 import RxKeyboard
+import PopoverSwift
 
 class PostViewController: UIViewController, ShowsAlert {
     
@@ -30,12 +31,14 @@ class PostViewController: UIViewController, ShowsAlert {
     @IBOutlet weak var btn_dismissParentComment: UIButton!
     @IBOutlet weak var lbl_parentCommentId: UILabel!
     
-    var placeholderLabel : UILabel!
+    var placeholderLabel: UILabel!
     var viewModel: DetailPostViewModel?
     var refreshControl: UIRefreshControl?
     
     let disposeBag = DisposeBag()
     let dataSource = RxTableViewSectionedReloadDataSource<MultipleSectionModel>()
+    
+    var selectedPost = BuzzlerPost()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,6 +166,18 @@ extension PostViewController: UITableViewDelegate {
                     } else {
                         imgCell.vw_remainLabelContainer.isHidden = false
                     }
+                    
+                    // add post action for edit
+                    imgCell.btn_postAction.rx.tap.asDriver()
+                        .drive(onNext: { [weak self] in
+                            // save post data to local
+                            self?.selectedPost = item
+                            // present popover
+                            let controller = PopoverController(items: (self?.makePorverActions())!, fromView: imgCell.btn_postAction, direction: .down, style: .withImage)
+                            self?.popover(controller)
+                        })
+                        .disposed(by: imgCell.bag)
+                    
                     defaultCell = imgCell
                 } else {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
@@ -171,6 +186,16 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
                     cell.lbl_likeCount.text = String(item.likeCount)
                     cell.lbl_author.text = "익명"
+                    
+                    // add post action for edit
+                    cell.btn_postAction.rx.tap.asDriver()
+                        .drive(onNext: { [weak self] in
+                            self?.selectedPost = item
+                            let controller = PopoverController(items: (self?.makePorverActions())!, fromView: cell.btn_postAction, direction: .down, style: .withImage)
+                            self?.popover(controller)
+                        })
+                        .disposed(by: cell.bag)
+                    
                     defaultCell = cell
                 }
                 return defaultCell
@@ -284,5 +309,17 @@ extension PostViewController: UITextViewDelegate {
         self.vw_parentComment.isHidden = true
         self.lbl_parentCommentId.text = ""
         self.lbl_parentAuthor.text = ""
+    }
+    
+    func makePorverActions() -> [PopoverItem] {
+        let editAction = PopoverItem(title: "수정", image: UIImage(named: "brn_edit_post")) {
+            debugPrint($0.title)
+            print(self.selectedPost.title)
+        }
+        let deleteAction = PopoverItem(title: "삭제", image: UIImage(named: "brn_delete_post")) {
+            debugPrint($0.title)
+            print(self.selectedPost.title)
+        }
+        return [editAction, deleteAction]
     }
 }

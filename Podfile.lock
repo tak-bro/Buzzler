@@ -25,7 +25,7 @@ PODS:
     - RxSwift (~> 3.0)
   - ObjectMapper (2.2.8)
   - Optik (0.3.0)
-  - Popover (1.1.0)
+  - PopoverSwift (2.0.2)
   - PullToRefresher (2.0.2)
   - Result (3.2.3)
   - Reusable (3.0.0):
@@ -69,7 +69,7 @@ DEPENDENCIES:
   - "NSObject+Rx (= 3.0.0)"
   - ObjectMapper (= 2.2.8)
   - Optik
-  - Popover (= 1.1.0)
+  - PopoverSwift (= 2.0.2)
   - PullToRefresher (~> 2.0)
   - Reusable (= 3.0.0)
   - RxCocoa
@@ -101,7 +101,7 @@ SPEC REPOS:
     - "NSObject+Rx"
     - ObjectMapper
     - Optik
-    - Popover
+    - PopoverSwift
     - PullToRefresher
     - Result
     - Reusable
@@ -133,7 +133,7 @@ SPEC CHECKSUMS:
   "NSObject+Rx": 9c60a6e602ca647c0b2b34403383c305b1c6edc5
   ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
   Optik: ec44419b412111ada302728678022bae46a37c31
-  Popover: 8b4330c16d9e72f1ea8a2f6783d83b8692ae8776
+  PopoverSwift: 23abd7ce71f86a6ad6e0fe93ca346714a510c119
   PullToRefresher: 5e101a8c3523e67ee0291375ba932ef59e0853c2
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
   Reusable: ab77c4c51a4b9606946df70e30cb8ad9cf75c226
@@ -152,6 +152,6 @@ SPEC CHECKSUMS:
   Then: 823a7503a851737269ba8d40e688b4db874dbd2d
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
 
-PODFILE CHECKSUM: 80e10e904846ed2a68eae4f783492a76f85ae8e6
+PODFILE CHECKSUM: db0566ae4b067cb2fac7fc97e4059c0d1ac5ee16
 
 COCOAPODS: 1.5.2

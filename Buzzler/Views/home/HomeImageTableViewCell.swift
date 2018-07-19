@@ -8,6 +8,7 @@
 
 import UIKit
 import Reusable
+import RxSwift
 
 final class HomeImageTableViewCell: UITableViewCell, NibReusable {
 
@@ -23,9 +24,15 @@ final class HomeImageTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var vw_remainLabelContainer: UIView!
     @IBOutlet weak var vw_container: UIView!
     
-    
     static let height: CGFloat = UITableViewAutomaticDimension
+
+    var bag = DisposeBag()
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bag = DisposeBag()
+    }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

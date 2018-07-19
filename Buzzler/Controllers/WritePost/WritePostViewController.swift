@@ -123,7 +123,7 @@ extension WritePostViewController {
             .disposed(by: disposeBag)
         
         self.viewModel.outputs.posting
-            .drive(onNext: { [weak self] posting in
+            .drive(onNext: { posting in
                 print("posting result", posting)
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     if posting == true {

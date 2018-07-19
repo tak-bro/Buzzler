@@ -31,7 +31,7 @@ def shared_pods
     pod 'DKImagePickerController', '3.6.1'
     pod 'Toaster'
     pod 'Optik'
-    pod 'Popover', '1.1.0'
+    pod 'PopoverSwift', '2.0.2'
 end
 
 target :'Buzzler' do

@@ -31,6 +31,20 @@ public class API: AwsAPI, BuzzlerAPI {
     
     // Buzzler API
     
+    public func deletePost(by postId: Int) -> Observable<Bool> {
+        return BuzzlerProvider.request(Buzzler.deletePost(postId: postId))
+            .retry(3)
+            .observeOn(MainScheduler.instance)
+            .flatMap({ res -> Single<Bool> in
+                do {
+                    print(res)
+                    return Single.just(true)
+                } catch {
+                    return Single.just(false)
+                }
+            })
+    }
+    
     public func getPost(_ category: Int) -> Observable<[BuzzlerPost]> {
         return BuzzlerProvider.request(Buzzler.getPost(category: category))
             .retry(3)

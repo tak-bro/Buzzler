@@ -33,6 +33,9 @@ public enum Buzzler {
     // PUT
     case verifyCode(receiver: String, verificationCode: String)
     case verifyCodeForNewPassword(receiver: String, verificationCode: String)
+    
+    // DELETE
+    case deletePost(postId: Int)
 }
 
 extension Buzzler: TargetType {
@@ -77,6 +80,10 @@ extension Buzzler: TargetType {
             return "/v1/accounts/email-verification"
         case .verifyCodeForNewPassword:
             return "/v1/accounts/newpassword/email-verification"
+            
+        // DELETE
+        case .deletePost(let postId):
+            return "/v1/posts/\(postId)"
         }
     }
     
@@ -105,6 +112,10 @@ extension Buzzler: TargetType {
         case .verifyCode(_, _),
              .verifyCodeForNewPassword(_, _):
             return .put
+            
+        // DELETE
+        case .deletePost(_):
+            return .delete
         }
     }
     
@@ -145,6 +156,10 @@ extension Buzzler: TargetType {
         case .verifyCode(let receiver, let verificationCode),
              .verifyCodeForNewPassword(let receiver, let verificationCode):
             return ["receiver": receiver, "verificationCode": verificationCode]
+            
+        // DELETE
+        case .deletePost(_):
+            return nil
         }
     }
     
@@ -186,6 +201,10 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newHTTPHeaderFields: ["Authorization": "\(environment.token!)"])
             .adding(newParameterEncoding: JSONEncoding.default)
+        
+    case .deletePost:
+        return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
+            .adding(newHTTPHeaderFields: ["Authorization": "\(environment.token!)"])
         
     default:
         return endpoint
