@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Y2k-ds-XbA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EeC-k0-aex">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -658,6 +658,64 @@ Cg
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v5a-hP-P3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5606" y="-2014"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="zbK-3T-QTd">
+            <objects>
+                <viewController id="SWm-JJ-RpG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jjE-rx-ays"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Vd-j2-gUa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EHC-RJ-ofV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Z8W-XJ-1ZP">
+                                <rect key="frame" x="148.5" y="247.5" width="79" height="40"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="40"/>
+                                <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pix-7I-e5f">
+                                <rect key="frame" x="117.5" y="55" width="140" height="23"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="23"/>
+                                <state key="normal" title="Seoul Univ. " image="icon_lock">
+                                    <color key="titleColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ODF-9B-2SJ">
+                                <rect key="frame" x="46" y="480" width="240" height="128"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_battery" translatesAutoresizingMaskIntoConstraints="NO" id="CZe-yZ-cLp">
+                                        <rect key="frame" x="-68" y="-25" width="136" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="136" id="kqP-8h-Tye"/>
+                                            <constraint firstAttribute="height" constant="50" id="vGr-fh-sOE"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="CZe-yZ-cLp" firstAttribute="centerY" secondItem="ODF-9B-2SJ" secondAttribute="centerY" id="6tA-Wg-Jie"/>
+                                    <constraint firstItem="CZe-yZ-cLp" firstAttribute="centerX" secondItem="ODF-9B-2SJ" secondAttribute="centerX" id="Nyg-xB-Egb"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Z8W-XJ-1ZP" firstAttribute="centerY" secondItem="EHC-RJ-ofV" secondAttribute="centerY" multiplier="0.8" id="3JJ-IU-OAQ"/>
+                            <constraint firstItem="ODF-9B-2SJ" firstAttribute="centerX" secondItem="EHC-RJ-ofV" secondAttribute="centerX" id="FCm-jZ-4bp"/>
+                            <constraint firstItem="Z8W-XJ-1ZP" firstAttribute="centerX" secondItem="EHC-RJ-ofV" secondAttribute="centerX" id="Vjm-Uo-W1O"/>
+                            <constraint firstItem="Pix-7I-e5f" firstAttribute="centerY" secondItem="EHC-RJ-ofV" secondAttribute="centerY" multiplier="0.2" id="XI9-7i-bR2"/>
+                            <constraint firstItem="Pix-7I-e5f" firstAttribute="centerX" secondItem="EHC-RJ-ofV" secondAttribute="centerX" id="bOn-cR-vt1"/>
+                            <constraint firstItem="ODF-9B-2SJ" firstAttribute="centerY" secondItem="EHC-RJ-ofV" secondAttribute="centerY" id="v2N-bD-O8W"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nSI-ZU-5FX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5725.6000000000004" y="-2740.4797601199402"/>
         </scene>
         <!--Manually Enter View Controller-->
         <scene sceneID="Mae-Lf-znI">
@@ -2083,13 +2141,15 @@ Cg
         <image name="btn_signup_wrong" width="20" height="20"/>
         <image name="btn_upload_img" width="28" height="23"/>
         <image name="btn_write" width="25" height="22"/>
+        <image name="icon_lock" width="18" height="21"/>
         <image name="icon_select_box" width="10" height="6"/>
+        <image name="img_battery" width="136" height="50"/>
         <image name="img_done_check" width="84" height="84"/>
         <image name="img_logo_new" width="102" height="105"/>
         <image name="img_tmp" width="885" height="590"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gVB-h3-Ixr"/>
-        <segue reference="lb3-Gn-D4N"/>
+        <segue reference="y9G-8a-nQc"/>
     </inferredMetricsTieBreakers>
 </document>

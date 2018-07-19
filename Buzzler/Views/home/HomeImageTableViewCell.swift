@@ -11,6 +11,7 @@ import Reusable
 
 final class HomeImageTableViewCell: UITableViewCell, NibReusable {
 
+    @IBOutlet weak var btn_postAction: UIButton!
     @IBOutlet weak var lbl_content: UILabel!
     @IBOutlet weak var lbl_title: UILabel!
     @IBOutlet weak var lbl_time: UILabel!

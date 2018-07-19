@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,7 +18,11 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeTableViewCell" customModule="Buzzler" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeTableViewCell" customModule="Buzzler" customModuleProvider="target">
+            <connections>
+                <outlet property="btn_postAction" destination="7WU-By-zeE" id="1Oi-GV-upW"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="235" id="KGk-i7-Jjw" customClass="HomeTableViewCell" customModule="Buzzler" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="527" height="248"/>
@@ -37,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" verticalCompressionResistancePriority="763" text="님들아 조언좀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAI-ZH-US2">
-                                <rect key="frame" x="15" y="15" width="477" height="18"/>
+                                <rect key="frame" x="15" y="15" width="71" height="18"/>
                                 <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="13"/>
                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -105,16 +109,23 @@
                                     <constraint firstAttribute="height" constant="35" id="jln-kT-LXY"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7WU-By-zeE">
+                                <rect key="frame" x="477" y="13" width="15" height="22"/>
+                                <state key="normal" image="btn_post_action"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="M38-1E-WuD" firstAttribute="leading" secondItem="BC8-If-PmK" secondAttribute="leading" constant="15" id="46Y-us-hT5"/>
+                            <constraint firstAttribute="trailing" secondItem="7WU-By-zeE" secondAttribute="trailing" constant="15" id="6mq-mv-PvA"/>
                             <constraint firstItem="ban-6q-0Zg" firstAttribute="centerY" secondItem="M38-1E-WuD" secondAttribute="centerY" id="9Fa-QH-nj6"/>
                             <constraint firstAttribute="trailing" secondItem="pT7-Ha-nEh" secondAttribute="trailing" constant="15" id="9rE-gB-vrw"/>
                             <constraint firstItem="Jfs-y9-c9F" firstAttribute="centerY" secondItem="ban-6q-0Zg" secondAttribute="centerY" id="A7y-7C-vW5"/>
                             <constraint firstItem="pT7-Ha-nEh" firstAttribute="top" secondItem="Jfs-y9-c9F" secondAttribute="bottom" constant="15" id="BzU-kC-AKN"/>
+                            <constraint firstItem="7WU-By-zeE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aAI-ZH-US2" secondAttribute="trailing" constant="10" id="CdB-zj-87w"/>
                             <constraint firstAttribute="bottom" secondItem="HUu-xd-0dD" secondAttribute="bottom" id="LBc-JZ-0sH"/>
                             <constraint firstItem="pT7-Ha-nEh" firstAttribute="leading" secondItem="BC8-If-PmK" secondAttribute="leading" constant="15" id="NkW-pZ-wws"/>
+                            <constraint firstItem="7WU-By-zeE" firstAttribute="centerY" secondItem="aAI-ZH-US2" secondAttribute="centerY" id="Zdk-z4-ojc"/>
                             <constraint firstItem="ban-6q-0Zg" firstAttribute="leading" secondItem="M38-1E-WuD" secondAttribute="trailing" constant="5" id="bX2-Sj-gjs"/>
                             <constraint firstItem="aAI-ZH-US2" firstAttribute="top" secondItem="BC8-If-PmK" secondAttribute="top" constant="15" id="dEK-Lo-Ysc"/>
                             <constraint firstAttribute="trailing" secondItem="HUu-xd-0dD" secondAttribute="trailing" id="eia-BM-fgh"/>
@@ -123,7 +134,6 @@
                             <constraint firstItem="HUu-xd-0dD" firstAttribute="leading" secondItem="BC8-If-PmK" secondAttribute="leading" id="l78-QY-Bso"/>
                             <constraint firstItem="Jfs-y9-c9F" firstAttribute="top" secondItem="aAI-ZH-US2" secondAttribute="bottom" constant="7" id="uM8-so-I4E"/>
                             <constraint firstItem="HUu-xd-0dD" firstAttribute="firstBaseline" secondItem="pT7-Ha-nEh" secondAttribute="baseline" constant="15" id="uwq-ZC-ILd"/>
-                            <constraint firstAttribute="trailing" secondItem="aAI-ZH-US2" secondAttribute="trailing" constant="15" id="vbp-F0-RSV"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -150,6 +160,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="btn_post_action" width="15" height="3"/>
         <image name="icon_comment" width="12" height="12"/>
         <image name="icon_like" width="14" height="14"/>
     </resources>
