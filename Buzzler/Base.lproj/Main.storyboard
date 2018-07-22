@@ -947,6 +947,88 @@ Cg
             </objects>
             <point key="canvasLocation" x="6543.1999999999998" y="-2738.6806596701649"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="0Kx-dI-9N7">
+            <objects>
+                <viewController id="Qa9-b7-bVV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BHA-mH-KPs"/>
+                        <viewControllerLayoutGuide type="bottom" id="gZ4-bb-2aB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mKc-ED-caD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KdG-68-yZv">
+                                <rect key="frame" x="42.5" y="198.5" width="290" height="270"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQw-Ts-rSe">
+                                        <rect key="frame" x="25" y="199" width="240" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="Iw1-bh-8et"/>
+                                            <constraint firstAttribute="width" constant="240" id="pwZ-vT-UfN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirLT-Black" family="Avenir LT 65 Medium" pointSize="16"/>
+                                        <state key="normal" title="OK">
+                                            <color key="titleColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blN-m0-Yji">
+                                        <rect key="frame" x="30.5" y="134" width="229.5" height="43.5"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">해당 학교에 대한 정보가 없어 확인이 필요합니다.
+가입승인까지는 약 1~2일 소요될 수 있습니다.
+가입 승인여부는 메일로 전송됩니다.</string>
+                                                <attributes>
+                                                    <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" size="12" name="AppleSDGothicNeo-Light"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait for approval." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZFq-2b-mJT">
+                                        <rect key="frame" x="44.5" y="79" width="201" height="18"/>
+                                        <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="18"/>
+                                        <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="blN-m0-Yji" firstAttribute="centerX" secondItem="KdG-68-yZv" secondAttribute="centerX" id="K8T-36-gjt"/>
+                                    <constraint firstItem="blN-m0-Yji" firstAttribute="centerY" secondItem="KdG-68-yZv" secondAttribute="centerY" multiplier="1.15" id="NKt-ef-IvI"/>
+                                    <constraint firstItem="ZFq-2b-mJT" firstAttribute="centerX" secondItem="KdG-68-yZv" secondAttribute="centerX" id="Ntt-ai-Ryu"/>
+                                    <constraint firstItem="GQw-Ts-rSe" firstAttribute="centerX" secondItem="KdG-68-yZv" secondAttribute="centerX" id="PzQ-h7-2au"/>
+                                    <constraint firstItem="GQw-Ts-rSe" firstAttribute="centerY" secondItem="KdG-68-yZv" secondAttribute="centerY" multiplier="1.65" id="Qz9-Rm-MA2"/>
+                                    <constraint firstAttribute="height" constant="270" id="dXa-PU-Tcx"/>
+                                    <constraint firstItem="ZFq-2b-mJT" firstAttribute="centerY" secondItem="KdG-68-yZv" secondAttribute="centerY" multiplier="0.65" id="kt5-Io-lSv"/>
+                                    <constraint firstAttribute="width" constant="290" id="mdI-Dv-Za1"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_wait_face" translatesAutoresizingMaskIntoConstraints="NO" id="l0U-c6-oq0">
+                                <rect key="frame" x="149" y="168.5" width="77" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="AVp-Hk-gVw"/>
+                                    <constraint firstAttribute="height" constant="77" id="Xgf-xZ-xGh"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KdG-68-yZv" firstAttribute="centerY" secondItem="mKc-ED-caD" secondAttribute="centerY" id="25O-O8-FQr"/>
+                            <constraint firstItem="l0U-c6-oq0" firstAttribute="top" secondItem="KdG-68-yZv" secondAttribute="top" constant="-30" id="Cjz-I8-FvP"/>
+                            <constraint firstItem="KdG-68-yZv" firstAttribute="centerX" secondItem="mKc-ED-caD" secondAttribute="centerX" id="E8F-SX-V35"/>
+                            <constraint firstItem="l0U-c6-oq0" firstAttribute="centerX" secondItem="mKc-ED-caD" secondAttribute="centerX" id="buo-3N-03j"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ik-J1-shG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7343" y="-2740"/>
+        </scene>
         <!--Manually Enter View Controller-->
         <scene sceneID="Mae-Lf-znI">
             <objects>
@@ -2378,6 +2460,7 @@ Cg
         <image name="img_done_check" width="84" height="84"/>
         <image name="img_logo_new" width="102" height="105"/>
         <image name="img_tmp" width="885" height="590"/>
+        <image name="img_wait_face" width="77" height="77"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gVB-h3-Ixr"/>
