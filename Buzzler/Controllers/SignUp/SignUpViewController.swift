@@ -97,7 +97,13 @@ class SignUpViewController: UIViewController, ShowsAlert {
                     self.router.userInfo = inputInfo
                     self.router.perform(.verifyCode, from: self)
                 } else {
-                    self.showAlert(message: "Server Error!")
+                    // self.showAlert(message: "Server Error!")
+
+                    // TODO: delete below for test
+ //                   let blakListVC = BlackListPopUpViewController(nibName: "BlackListPopUpViewController", bundle: nil)
+                    let blakListVC = ApprovalPopUpViewController(nibName: "ApprovalPopUpViewController", bundle: nil)
+                    blakListVC.modalPresentationStyle = .overCurrentContext
+                    self.present(blakListVC, animated: true, completion: nil)
                 }
             }).disposed(by: disposeBag)
         

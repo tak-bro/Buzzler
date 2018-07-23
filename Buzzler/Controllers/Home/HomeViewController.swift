@@ -154,7 +154,7 @@ extension HomeViewController: UITableViewDelegate {
             // push to PostViewController
             let detailPostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
             detailPostVC.viewModel = detailPostViewModel
-            self.navigationController?.pushViewController(detailPostVC, animated: true)
+            self.navigationController?.pushViewController(detailPostVC, animated: true)           
         }).disposed(by: disposeBag)
     }
 }
