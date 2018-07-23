@@ -86,7 +86,7 @@ extension HomeViewController: UITableViewDelegate {
             if item.imageUrls.count > 0 {
                 let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                 imgCell.lbl_title.text = item.title
-                imgCell.lbl_content.text = item.content
+                imgCell.lbl_content.text = item.contents
                 imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
                 imgCell.lbl_likeCount.text = String(item.likeCount)
                 imgCell.lbl_author.text = "익명"
@@ -101,7 +101,7 @@ extension HomeViewController: UITableViewDelegate {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                 print("item.createat", item.createdAt)
                 cell.lbl_title.text = item.title
-                cell.lbl_content.text = item.content
+                cell.lbl_content.text = item.contents
                 cell.lbl_time.text = item.createdAt.toString()
                 cell.lbl_likeCount.text = String(item.likeCount)
                 cell.lbl_author.text = "익명"
@@ -154,7 +154,7 @@ extension HomeViewController: UITableViewDelegate {
             // push to PostViewController
             let detailPostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
             detailPostVC.viewModel = detailPostViewModel
-            self.navigationController?.pushViewController(detailPostVC, animated: true)
+            self.navigationController?.pushViewController(detailPostVC, animated: true)           
         }).disposed(by: disposeBag)
     }
 }

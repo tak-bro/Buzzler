@@ -16,7 +16,9 @@ public protocol DetailPostViewModelInputs {
     var loadDetailPostTrigger: PublishSubject<Void> { get }
     var inputtedComment: PublishSubject<String?> { get }
     var writeCommentTaps: PublishSubject<Void> { get }
+    var deletePostTaps: PublishSubject<Void> { get }
     var parentId: PublishSubject<String?> { get }
+    var postId: PublishSubject<Int?> { get }
     func refresh()
 }
 
@@ -25,6 +27,7 @@ public protocol DetailPostViewModelOutputs {
     var elements: Variable<[MultipleSectionModel]> { get }
     var enableWriteButton: Driver<Bool> { get }
     var requestWriteComment: Driver<Bool> { get }
+    var requestDeletePost: Driver<Bool> { get }
     var validatedComment: Driver<ValidationResult> { get }
 }
 
@@ -34,7 +37,7 @@ public protocol DetailPostViewModelType {
 }
 
 public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModelOutputs, DetailPostViewModelType {
-    
+
     public var loadDetailPostTrigger: PublishSubject<Void>
     public var isLoading: Driver<Bool>
     public var elements: Variable<[MultipleSectionModel]>
@@ -44,10 +47,14 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
     // write comment action
     public var inputtedComment: PublishSubject<String?>
     public var enableWriteButton: Driver<Bool>
-    public var writeCommentTaps: PublishSubject<Void>
-    public var requestWriteComment: Driver<Bool>
     public var validatedComment: Driver<ValidationResult>
     
+    // http request
+    public var writeCommentTaps: PublishSubject<Void>
+    public var deletePostTaps: PublishSubject<Void>
+    public var requestWriteComment: Driver<Bool>
+    public var requestDeletePost: Driver<Bool>
+
     private let disposeBag = DisposeBag()
     private let error = PublishSubject<Swift.Error>()
     
@@ -57,6 +64,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
     }
     
     public var parentId: PublishSubject<String?>
+    public var postId: PublishSubject<Int?>
     
     init(id: Int) {
         self.loadDetailPostTrigger = PublishSubject<Void>()
@@ -66,6 +74,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
         
         self.inputtedComment = PublishSubject<String?>()
         self.writeCommentTaps = PublishSubject<Void>()
+        self.deletePostTaps = PublishSubject<Void>()
         
         let validationService = BuzzlerDefaultValidationService.sharedValidationService
         
@@ -80,6 +89,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
         }
         
         self.parentId = PublishSubject<String?>()
+        self.postId = PublishSubject<Int?>()
         
         let commentAndParentId = Driver.combineLatest(self.inputtedComment.asDriver(onErrorJustReturn: nil),
                                                       self.parentId.asDriver(onErrorJustReturn: nil)) { ($0, $1) }
@@ -90,7 +100,18 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             .withLatestFrom(commentAndParentId)
             .flatMapLatest{ tuple in
                 return API.sharedAPI
-                    .writeComment(postId: id, parentId: tuple.1! == "" ? nil : tuple.1!, content: tuple.0!)
+                    .writeComment(postId: id, parentId: tuple.1! == "" ? nil : tuple.1!, contents: tuple.0!)
+                    .trackActivity(Loading)
+                    .asDriver(onErrorJustReturn: false)
+        }
+        
+        // delete Buzzler post
+        self.requestDeletePost = self.deletePostTaps
+            .asDriver(onErrorJustReturn:())
+            .withLatestFrom(self.postId.asDriver(onErrorJustReturn: nil))
+            .flatMapLatest{ postId in
+                return API.sharedAPI
+                    .deletePost(by: postId!)
                     .trackActivity(Loading)
                     .asDriver(onErrorJustReturn: false)
         }

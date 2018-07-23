@@ -14,7 +14,7 @@ public struct DetailBuzzlerPost: Equatable, Mappable {
     
     var id: Int = 0
     var title: String = ""
-    var content: String = ""
+    var contents: String = ""
     var imageUrls: [String] = []
     var likeCount: Int = 0
     var createdAt: Date = Date()
@@ -32,7 +32,7 @@ public struct DetailBuzzlerPost: Equatable, Mappable {
     mutating public func mapping(map: Map) {
         id <- map["id"]
         title <- map["title"]
-        content <- map["content"]
+        contents <- map["contents"]
         imageUrls <- map["imageUrls"]
         likeCount <- map["likeCount"]
         createdAt <- map["createdAt"]

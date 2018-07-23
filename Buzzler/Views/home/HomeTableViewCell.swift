@@ -8,9 +8,11 @@
 
 import UIKit
 import Reusable
+import RxSwift
 
 final class HomeTableViewCell: UITableViewCell, NibReusable {
 
+    @IBOutlet weak var btn_postAction: UIButton!
     @IBOutlet weak var lbl_content: UILabel!
     @IBOutlet weak var lbl_title: UILabel!
     @IBOutlet weak var lbl_time: UILabel!
@@ -19,6 +21,13 @@ final class HomeTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var lbl_remainTime: UILabel!
     @IBOutlet weak var lbl_author: UILabel!
     @IBOutlet weak var vw_container: UIView!
+    
+    var bag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bag = DisposeBag()
+    }
     
     static let height: CGFloat = UITableViewAutomaticDimension
 

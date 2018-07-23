@@ -123,14 +123,14 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
                         .toArray()
                         .flatMapLatest { items in
                             return API.sharedAPI
-                                .writePost(title!, content: contents!, imageUrls: items, categoryId: categoryId!)
+                                .writePost(title!, contents: contents!, imageUrls: items, categoryId: categoryId!)
                                 .trackActivity(isLoading)
                         }
                         .asDriver(onErrorJustReturn: false)
                 } else {
                     // just request Buzzler API
                     return API.sharedAPI
-                        .writePost(title!, content: contents!, imageUrls: [], categoryId: categoryId!)
+                        .writePost(title!, contents: contents!, imageUrls: [], categoryId: categoryId!)
                         .trackActivity(isLoading)
                         .asDriver(onErrorJustReturn: false)
                 }

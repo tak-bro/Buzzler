@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir LT 95 Black.ttf">
+            <string>AvenirLT-Black</string>
+        </array>
+        <array key="AvenirLTStd-Medium.otf">
+            <string>AvenirLTStd-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ApprovalPopUpViewController" customModule="Buzzler" customModuleProvider="target">
+            <connections>
+                <outlet property="btn_ok" destination="vKs-RE-BKe" id="MtJ-1j-kAe"/>
+                <outlet property="view" destination="0qe-gp-vhf" id="Oy5-oU-4aJ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="0qe-gp-vhf">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wj8-yZ-6Hd">
+                    <rect key="frame" x="42.5" y="188.5" width="290" height="290"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKs-RE-BKe">
+                            <rect key="frame" x="25" y="216" width="240" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="240" id="dn2-Ng-BeD"/>
+                                <constraint firstAttribute="height" constant="48" id="m3I-IX-ZQv"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="AvenirLT-Black" family="Avenir LT 65 Medium" pointSize="16"/>
+                            <state key="normal" title="OK">
+                                <color key="titleColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="pressedOK:" destination="-1" eventType="touchUpInside" id="sLy-eb-9s4"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlM-sT-a2c">
+                            <rect key="frame" x="30.5" y="138" width="229.5" height="43.5"/>
+                            <attributedString key="attributedText">
+                                <fragment>
+                                    <string key="content">해당 학교에 대한 정보가 없어 확인이 필요합니다.
+가입승인까지는 약 1~2일 소요될 수 있습니다.
+가입 승인여부는 메일로 전송됩니다.</string>
+                                    <attributes>
+                                        <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" size="12" name="AppleSDGothicNeo-Light"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait for approval." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Igp-EW-Eiw">
+                            <rect key="frame" x="44.5" y="86" width="201" height="18"/>
+                            <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="18"/>
+                            <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Igp-EW-Eiw" firstAttribute="centerX" secondItem="wj8-yZ-6Hd" secondAttribute="centerX" id="CF0-hP-jRI"/>
+                        <constraint firstItem="vKs-RE-BKe" firstAttribute="centerX" secondItem="wj8-yZ-6Hd" secondAttribute="centerX" id="QVa-8B-6tK"/>
+                        <constraint firstItem="hlM-sT-a2c" firstAttribute="centerX" secondItem="wj8-yZ-6Hd" secondAttribute="centerX" id="T6S-Fr-bjE"/>
+                        <constraint firstAttribute="width" constant="290" id="YTh-W7-6RB"/>
+                        <constraint firstItem="hlM-sT-a2c" firstAttribute="centerY" secondItem="wj8-yZ-6Hd" secondAttribute="centerY" multiplier="1.1" id="bdO-or-gLH"/>
+                        <constraint firstItem="vKs-RE-BKe" firstAttribute="centerY" secondItem="wj8-yZ-6Hd" secondAttribute="centerY" multiplier="1.65" id="h58-f9-19E"/>
+                        <constraint firstItem="Igp-EW-Eiw" firstAttribute="centerY" secondItem="wj8-yZ-6Hd" secondAttribute="centerY" multiplier="0.65" id="qBn-Vq-NwX"/>
+                        <constraint firstAttribute="height" constant="290" id="t6n-0P-og9"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_wait_face" translatesAutoresizingMaskIntoConstraints="NO" id="Dtd-Vm-Ecf">
+                    <rect key="frame" x="149" y="158.5" width="77" height="77"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="77" id="1iv-4l-2H1"/>
+                        <constraint firstAttribute="height" constant="77" id="bey-bL-epu"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Dtd-Vm-Ecf" firstAttribute="top" secondItem="wj8-yZ-6Hd" secondAttribute="top" constant="-30" id="4Q7-uh-jo9"/>
+                <constraint firstItem="Dtd-Vm-Ecf" firstAttribute="centerX" secondItem="0qe-gp-vhf" secondAttribute="centerX" id="IwC-Xd-yeA"/>
+                <constraint firstItem="wj8-yZ-6Hd" firstAttribute="centerY" secondItem="0qe-gp-vhf" secondAttribute="centerY" id="NTP-eL-fcY"/>
+                <constraint firstItem="wj8-yZ-6Hd" firstAttribute="centerX" secondItem="0qe-gp-vhf" secondAttribute="centerX" id="r2y-sh-Lxu"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="seq-Xf-HWV"/>
+            <point key="canvasLocation" x="45" y="48"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="img_wait_face" width="77" height="77"/>
+    </resources>
+</document>

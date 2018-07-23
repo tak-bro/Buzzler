@@ -14,6 +14,7 @@ import RxCocoa
 import RxDataSources
 import SVProgressHUD
 import RxKeyboard
+import PopoverSwift
 
 class PostViewController: UIViewController, ShowsAlert {
     
@@ -30,12 +31,14 @@ class PostViewController: UIViewController, ShowsAlert {
     @IBOutlet weak var btn_dismissParentComment: UIButton!
     @IBOutlet weak var lbl_parentCommentId: UILabel!
     
-    var placeholderLabel : UILabel!
+    var placeholderLabel: UILabel!
     var viewModel: DetailPostViewModel?
     var refreshControl: UIRefreshControl?
     
     let disposeBag = DisposeBag()
     let dataSource = RxTableViewSectionedReloadDataSource<MultipleSectionModel>()
+    
+    var selectedPost = BuzzlerPost()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,7 +156,7 @@ extension PostViewController: UITableViewDelegate {
                 if item.imageUrls.count > 0 {
                     let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                     imgCell.lbl_title.text = item.title
-                    imgCell.lbl_content.text = item.content
+                    imgCell.lbl_content.text = item.contents
                     imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
                     imgCell.lbl_likeCount.text = String(item.likeCount)
                     imgCell.lbl_author.text = "익명"
@@ -163,20 +166,42 @@ extension PostViewController: UITableViewDelegate {
                     } else {
                         imgCell.vw_remainLabelContainer.isHidden = false
                     }
+                    
+                    // add post action for edit
+                    imgCell.btn_postAction.rx.tap.asDriver()
+                        .drive(onNext: { [weak self] in
+                            // save post data to local
+                            self?.selectedPost = item
+                            // present popover
+                            let controller = PopoverController(items: (self?.makePorverActions())!, fromView: imgCell.btn_postAction, direction: .down, style: .withImage)
+                            self?.popover(controller)
+                        })
+                        .disposed(by: imgCell.bag)
+                    
                     defaultCell = imgCell
                 } else {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                     cell.lbl_title.text = item.title
-                    cell.lbl_content.text = item.content
+                    cell.lbl_content.text = item.contents
                     cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
                     cell.lbl_likeCount.text = String(item.likeCount)
                     cell.lbl_author.text = "익명"
+                    
+                    // add post action for edit
+                    cell.btn_postAction.rx.tap.asDriver()
+                        .drive(onNext: { [weak self] in
+                            self?.selectedPost = item
+                            let controller = PopoverController(items: (self?.makePorverActions())!, fromView: cell.btn_postAction, direction: .down, style: .withImage)
+                            self?.popover(controller)
+                        })
+                        .disposed(by: cell.bag)
+                    
                     defaultCell = cell
                 }
                 return defaultCell
             case let .CommentItem(item):
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
-                cell.lbl_comment.text = item.content
+                cell.lbl_comment.text = item.contents
                 cell.lbl_comment.numberOfLines = 0
                 
                 // define action to write comment
@@ -193,7 +218,7 @@ extension PostViewController: UITableViewDelegate {
                 return cell
             case let .ReCommentItem(item):
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ReCommentTableViewCell.self)
-                cell.lbl_recomment.text = item.content
+                cell.lbl_recomment.text = item.contents
                 cell.lbl_recomment.numberOfLines = 0
                 return cell
             }
@@ -284,5 +309,17 @@ extension PostViewController: UITextViewDelegate {
         self.vw_parentComment.isHidden = true
         self.lbl_parentCommentId.text = ""
         self.lbl_parentAuthor.text = ""
+    }
+    
+    func makePorverActions() -> [PopoverItem] {
+        let editAction = PopoverItem(title: "수정", image: UIImage(named: "brn_edit_post")) {
+            debugPrint($0.title)
+            print(self.selectedPost.title)
+        }
+        let deleteAction = PopoverItem(title: "삭제", image: UIImage(named: "brn_delete_post")) {
+            debugPrint($0.title)
+            print(self.selectedPost.title)
+        }
+        return [editAction, deleteAction]
     }
 }

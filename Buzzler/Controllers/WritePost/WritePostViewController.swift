@@ -15,6 +15,7 @@ import SVProgressHUD
 import Photos
 import DKImagePickerController
 import Toaster
+import Optik
 
 class WritePostViewController: UIViewController {
 
@@ -31,14 +32,23 @@ class WritePostViewController: UIViewController {
     @IBOutlet weak var btn_dismiss: UIButton!
     @IBOutlet weak var txt_title: UITextField!
     @IBOutlet weak var txt_contents: UITextView!
-    var placeholderLabel : UILabel!
     
-    let viewModel = WritePostViewModel()
     fileprivate let disposeBag = DisposeBag()
+    let viewModel = WritePostViewModel()
+    var placeholderLabel: UILabel!
     
-    var varAssets = Variable<[DKAsset]?>([]) // picked images from picker
     let pickerController = DKImagePickerController()
-    
+    var varAssets = Variable<[DKAsset]?>([]) // picked images from picker
+
+    // for image viewer
+    fileprivate let tapGesture = UITapGestureRecognizer()
+    fileprivate var imageList = [UIImage]()
+    fileprivate var currentLocalImageIndex = 0 {
+        didSet {
+            self.img_upload.image = imageList[currentLocalImageIndex]
+        }
+    }
+
     // MARK: - Init
     
     override func viewDidLoad() {
@@ -46,6 +56,7 @@ class WritePostViewController: UIViewController {
         bindToRx()
         setUI()
         setToolbar()
+        setGetureToView()
     }
     
     func addImage() {
@@ -112,7 +123,7 @@ extension WritePostViewController {
             .disposed(by: disposeBag)
         
         self.viewModel.outputs.posting
-            .drive(onNext: { [weak self] posting in
+            .drive(onNext: { posting in
                 print("posting result", posting)
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     if posting == true {
@@ -165,6 +176,21 @@ extension WritePostViewController {
         txt_title.inputAccessoryView = toolbar
         txt_contents.inputAccessoryView = toolbar
     }
+    
+    func setGetureToView() {
+        vw_imgContainer.addGestureRecognizer(tapGesture)
+        
+        tapGesture.rx
+            .event
+            .bind(onNext: { recognizer in
+                let imageViewer = Optik.imageViewer(withImages: self.imageList,
+                                                    initialImageDisplayIndex: self.currentLocalImageIndex,
+                                                    delegate: self)
+                                                  //  dismissButtonImage: UIImage(named: "btn_viewer_dismiss"))
+                self.present(imageViewer, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+    }
 
     func doneButtonAction() {
         view.endEditing(true)
@@ -211,19 +237,45 @@ extension WritePostViewController {
     
     func updateAssets(assets: [DKAsset]) {
         self.varAssets.value = assets
+        // reset image viewer data
+        self.imageList.removeAll()
 
         if assets.count > 0 {
-            // set imageView
-            assets[0].fetchOriginalImage(true, completeBlock: { image, info in
-                self.img_upload.image = image
-                self.lbl_imgCnt.text = "+" + String(assets.count-1)
-                self.vw_cntContainer.isHidden = assets.count == 1 ? true : false
-                
-                let imageSize = self.view.frame.size.height
-                self.imgVwConstraint.constant = imageSize / 3
-                self.vw_imgContainer.isHidden = false
-            })
+            // add imageViewer
+            assets.enumerated()
+                .map { (index, asset) in
+                    asset.fetchOriginalImage(true, completeBlock: { image, info in
+                        // set imageView
+                        if index == 0 {
+                            self.img_upload.image = image
+                            self.lbl_imgCnt.text = "+" + String(assets.count-1)
+                            self.vw_cntContainer.isHidden = assets.count == 1 ? true : false
+                            
+                            let imageSize = self.view.frame.size.height
+                            self.imgVwConstraint.constant = imageSize / 3.5
+                            self.vw_imgContainer.isHidden = false
+                        }
+                        
+                        self.imageList.append(image!)
+                    })
+                }
+            // reset index
+            self.currentLocalImageIndex = 0
+        } else {
+            self.imageList.removeAll()
+            self.vw_imgContainer.isHidden = true
         }
+    }
+}
+
+extension WritePostViewController: ImageViewerDelegate {
+
+    func transitionImageView(for index: Int) -> UIImageView {
+        return self.img_upload
+    }
+    
+    func imageViewerDidDisplayImage(at index: Int) {
+        currentLocalImageIndex = index
     }
     
 }

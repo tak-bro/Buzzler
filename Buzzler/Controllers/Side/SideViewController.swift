@@ -113,6 +113,8 @@ class SideViewController: UIViewController, UITableViewDelegate {
         environment.nickName = ""
         environment.password = ""
         environment.receiver = ""
+        environment.autoLogin = false
+        environment.saveEmail = false
     }
     
 }

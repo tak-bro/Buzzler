@@ -39,6 +39,10 @@
 		3BA13D4520DB9AE1009B8E5B /* ManuallyEnterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA13D4420DB9AE1009B8E5B /* ManuallyEnterViewModel.swift */; };
 		3BB6109120F5DB1F0075748F /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB6109020F5DB1F0075748F /* APIWrapper.swift */; };
 		3BBE8D2020D1162800634B2F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE8D1F20D1162800634B2F /* Category.swift */; };
+		3BD6EE922105608E0094E318 /* BlackListPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6EE902105608E0094E318 /* BlackListPopUpViewController.swift */; };
+		3BD6EE932105608E0094E318 /* BlackListPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */; };
+		3BD6EE96210560A40094E318 /* ApprovalPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */; };
+		3BD6EE97210560A40094E318 /* ApprovalPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD6EE95210560A40094E318 /* ApprovalPopUpViewController.xib */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
 		84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB420907D3200B7C98A /* SignUpViewModel.swift */; };
 		8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421B2C92086D1A900CBF4E3 /* LoginViewController.swift */; };
@@ -128,6 +132,10 @@
 		3BA13D4420DB9AE1009B8E5B /* ManuallyEnterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterViewModel.swift; sourceTree = "<group>"; };
 		3BB6109020F5DB1F0075748F /* APIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWrapper.swift; sourceTree = "<group>"; };
 		3BBE8D1F20D1162800634B2F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		3BD6EE902105608E0094E318 /* BlackListPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackListPopUpViewController.swift; sourceTree = "<group>"; };
+		3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlackListPopUpViewController.xib; sourceTree = "<group>"; };
+		3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalPopUpViewController.swift; sourceTree = "<group>"; };
+		3BD6EE95210560A40094E318 /* ApprovalPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApprovalPopUpViewController.xib; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
 		84002EB22090613A00B7C98A /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +329,17 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		3BD6EE8F210560650094E318 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				3BD6EE902105608E0094E318 /* BlackListPopUpViewController.swift */,
+				3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */,
+				3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */,
+				3BD6EE95210560A40094E318 /* ApprovalPopUpViewController.xib */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		84002EB12090611A00B7C98A /* DetailPost */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +525,7 @@
 			children = (
 				AF9F0FD61DF1A9C100FF8EC5 /* Home */,
 				84F437AC2085C40900E71358 /* DetailPost */,
+				3BD6EE8F210560650094E318 /* SignUp */,
 				84C4DEC920958BC000FD6BFD /* Side */,
 			);
 			path = Views;
@@ -716,10 +736,12 @@
 				3B51CCD120C252CA0087BFF5 /* ReCommentTableViewCell.xib in Resources */,
 				84A05AB8209BEA8A009AD3EB /* NotoSans-Regular.ttf in Resources */,
 				AFA7EC781DEEDEDC00138AEE /* LaunchScreen.storyboard in Resources */,
+				3BD6EE932105608E0094E318 /* BlackListPopUpViewController.xib in Resources */,
 				84C4DED12095931600FD6BFD /* SideTableViewCell.xib in Resources */,
 				AFA7EC751DEEDEDC00138AEE /* Assets.xcassets in Resources */,
 				84A05AB7209BEA8A009AD3EB /* NotoSans-Bold.ttf in Resources */,
 				84A1BFC7208C7C6200D0ADC7 /* HomeImageTableViewCell.xib in Resources */,
+				3BD6EE97210560A40094E318 /* ApprovalPopUpViewController.xib in Resources */,
 				844BC377208AF17800666486 /* Avenir LT 95 Black.ttf in Resources */,
 				844BC378208AF17800666486 /* AvenirLTStd-Book.otf in Resources */,
 				AF9F0FDA1DF1A9E900FF8EC5 /* HomeTableViewCell.xib in Resources */,
@@ -769,6 +791,8 @@
 				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
 				"${BUILT_PRODUCTS_DIR}/NoticeBar/NoticeBar.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Optik/Optik.framework",
+				"${BUILT_PRODUCTS_DIR}/PopoverSwift/PopoverSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PullToRefresher/PullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/Reusable/Reusable.framework",
@@ -800,6 +824,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NoticeBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Optik.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopoverSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reusable.framework",
@@ -866,6 +892,7 @@
 				84F437AA2085C3E700E71358 /* WritePostViewController.swift in Sources */,
 				3B2A42B220AEADA300E37D72 /* ResetPasswordRouter.swift in Sources */,
 				844BC384208B0C8300666486 /* VerifyCodeViewModel.swift in Sources */,
+				3BD6EE96210560A40094E318 /* ApprovalPopUpViewController.swift in Sources */,
 				84BA76F92086FC7D0097FFD2 /* BuzzlerError.swift in Sources */,
 				844BC38A208C573000666486 /* HelperFunctions.swift in Sources */,
 				3B0DC8F020F085D4001DE6DC /* AwsAPI.swift in Sources */,
@@ -886,6 +913,7 @@
 				3B48A9BD20B2A30700E0BDA1 /* SelectUnivViewController.swift in Sources */,
 				84BA76F72086FC4B0097FFD2 /* Decodable.swift in Sources */,
 				8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */,
+				3BD6EE922105608E0094E318 /* BlackListPopUpViewController.swift in Sources */,
 				84A1BFCC208C899B00D0ADC7 /* StretchHeader.swift in Sources */,
 				AF69F0F01E0E0C9400735284 /* SideViewController.swift in Sources */,
 				3BA13D4320DB9A01009B8E5B /* ManuallyEnterViewController.swift in Sources */,
