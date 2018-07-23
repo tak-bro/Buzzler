@@ -70,8 +70,17 @@ public class API: AwsAPI, BuzzlerAPI {
                     let defaultPost = BuzzlerPost(id: data.id, title: data.title, contents: data.contents,
                                                   imageUrls: data.imageUrls, likeCount: data.likeCount, createdAt: data.createdAt,
                                                   authorId: data.authorId)
+                    
+                    // join all comments with child
+                    let allChildComments = data.comments
+                        .map { item in
+                            return item.childComments
+                        }
+                        .flatMap{ $0 }
+                    let allComments = allChildComments + data.comments
+
                     // convert comments to CommentSection
-                    var comments = data.comments
+                    var comments = allComments
                         .sorted(by: BuzzlerComment.customCompare) // sort as comment order with parentId
                         .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
                             if let _ = comment.parentId {
@@ -80,6 +89,7 @@ public class API: AwsAPI, BuzzlerAPI {
                                 return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
                             }
                         })
+                    
                     // add PostSection to first index
                     comments.insertFirst(.PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]))
                     

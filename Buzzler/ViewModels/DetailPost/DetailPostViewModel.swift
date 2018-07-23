@@ -105,7 +105,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                     .asDriver(onErrorJustReturn: false)
         }
         
-        // delte Buzzler post
+        // delete Buzzler post
         self.requestDeletePost = self.deletePostTaps
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(self.postId.asDriver(onErrorJustReturn: nil))
