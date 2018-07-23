@@ -103,6 +103,7 @@ class SignUpViewController: UIViewController, ShowsAlert {
  //                   let blakListVC = BlackListPopUpViewController(nibName: "BlackListPopUpViewController", bundle: nil)
                     let blakListVC = ApprovalPopUpViewController(nibName: "ApprovalPopUpViewController", bundle: nil)
                     blakListVC.modalPresentationStyle = .overCurrentContext
+                    blakListVC.modalTransitionStyle = .crossDissolve
                     self.present(blakListVC, animated: true, completion: nil)
                 }
             }).disposed(by: disposeBag)
