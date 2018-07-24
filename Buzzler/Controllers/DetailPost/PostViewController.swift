@@ -19,13 +19,14 @@ import Optik
 
 class PostViewController: UIViewController, ShowsAlert {
     
+    @IBOutlet weak var img_heartPopup: UIImageView!
     @IBOutlet weak var vw_writeComment: UIView!
     @IBOutlet weak var txt_vw_comment: UITextView!
     @IBOutlet weak var tbl_post: UITableView!
     @IBOutlet weak var commentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var commentBottom: NSLayoutConstraint!
     @IBOutlet weak var btn_writeComment: UIButton!
-
+    
     // to show parent comment info
     @IBOutlet weak var lbl_parentAuthor: UILabel!
     @IBOutlet weak var vw_parentComment: UIView!
@@ -42,6 +43,9 @@ class PostViewController: UIViewController, ShowsAlert {
     var selectedPost = BuzzlerPost()
     fileprivate let tapGesture = UITapGestureRecognizer()
     var selectedPostId: Int?
+    
+    var originTitle: String?
+    var originContents: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -182,6 +186,10 @@ extension PostViewController: UITableViewDelegate {
                         imgCell.vw_remainLabelContainer.isHidden = false
                     }
                     
+                    // set origin info
+                    self.originTitle = item.title
+                    self.originContents = item.contents
+                    
                     // set image
                     let encodedURL = item.imageUrls[0].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                     imgCell.img_items.kf.indicatorType = .activity
@@ -197,7 +205,7 @@ extension PostViewController: UITableViewDelegate {
                             self?.popover(controller)
                         })
                         .disposed(by: imgCell.bag)
-
+                    
                     // like action
                     imgCell.btn_like.rx.tap.asDriver()
                         .drive(onNext: { _ in
@@ -217,20 +225,18 @@ extension PostViewController: UITableViewDelegate {
                                 case let .success(moyaResponse):
                                     let statusCode = moyaResponse.statusCode // Int - 200, 401, 500, etc
                                     if statusCode == 201 {
-                                        guard let likeImg = UIImage(named: "img_big_like") else { return }
-                                        SVProgressHUD.setForegroundColor(Config.UI.heartColor)
-                                        SVProgressHUD.show(likeImg, status: "Completed")
+                                        self.likeAnimation()
                                     } else {
                                         self.showAlert(message: "Already Liked before")
                                     }
                                     
                                 case .failure(_):
-                                     self.showAlert(message: "Server Error!")
+                                    self.showAlert(message: "Server Error!")
                                 }
                             }
                         })
                         .disposed(by: imgCell.bag)
-
+                    
                     
                     // add image viewer
                     imgCell.vw_imgContainer.addGestureRecognizer(self.tapGesture)
@@ -246,7 +252,7 @@ extension PostViewController: UITableViewDelegate {
                             self.present(imageViewer, animated: true, completion: nil)
                         })
                         .disposed(by: imgCell.bag)
-
+                    
                     defaultCell = imgCell
                 } else {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
@@ -255,6 +261,10 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
                     cell.lbl_likeCount.text = String(item.likeCount)
                     cell.lbl_author.text = "익명"
+                    
+                    // set origin info
+                    self.originTitle = item.title
+                    self.originContents = item.contents
                     
                     // add post action for edit
                     cell.btn_postAction.rx.tap.asDriver()
@@ -284,9 +294,7 @@ extension PostViewController: UITableViewDelegate {
                                 case let .success(moyaResponse):
                                     let statusCode = moyaResponse.statusCode
                                     if statusCode == 201 {
-                                        guard let likeImg = UIImage(named: "img_big_like") else { return }
-                                        SVProgressHUD.setForegroundColor(Config.UI.heartColor)
-                                        SVProgressHUD.show(likeImg, status: "Completed")
+                                        self.likeAnimation()
                                     } else {
                                         self.showAlert(message: "Already Liked before")
                                     }
@@ -297,7 +305,7 @@ extension PostViewController: UITableViewDelegate {
                             }
                         })
                         .disposed(by: cell.bag)
-
+                    
                     defaultCell = cell
                 }
                 
@@ -371,6 +379,7 @@ extension PostViewController: UITextViewDelegate {
     
     func setUI() {
         self.vw_parentComment.isHidden = true
+        self.img_heartPopup.alpha = 0.0
         resetNavBar()
     }
     
@@ -418,6 +427,15 @@ extension PostViewController: UITextViewDelegate {
         let editAction = PopoverItem(title: "수정", image: UIImage(named: "btn_edit_post")) {
             debugPrint($0.title)
             print(self.selectedPost.title)
+            
+            let writePostVC = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "WritePostViewController") as! WritePostViewController
+            
+            writePostVC.isUpdate = true
+            writePostVC.originContents = self.originContents
+            writePostVC.originTitle = self.originTitle
+            
+            self.present(writePostVC, animated: true, completion: nil)
         }
         
         let deleteAction = PopoverItem(title: "삭제", image: UIImage(named: "btn_delete_post")) {
@@ -426,5 +444,23 @@ extension PostViewController: UITextViewDelegate {
         }
         
         return [editAction, deleteAction]
+    }
+    
+    func likeAnimation() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {() -> Void in
+            self.img_heartPopup.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.img_heartPopup.alpha = 1.0
+        }, completion: {(_ finished: Bool) -> Void in
+            UIView.animate(withDuration: 0.1, delay: 0, options: .allowUserInteraction, animations: {() -> Void in
+                self.img_heartPopup.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }, completion: {(_ finished: Bool) -> Void in
+                UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {() -> Void in
+                    self.img_heartPopup.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                    self.img_heartPopup.alpha = 0.0
+                }, completion: {(_ finished: Bool) -> Void in
+                    self.img_heartPopup.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                })
+            })
+        })
     }
 }

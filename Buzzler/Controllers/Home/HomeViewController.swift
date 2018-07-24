@@ -186,7 +186,7 @@ extension HomeViewController {
         // add first header label
         var firstHeaderLabel = HeaderLabel()
         firstHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
-        firstHeaderLabel.text = "Seoul Univ."
+        firstHeaderLabel.text = Environment().categoryTitle
         
         // add second header label
         var secondHeaderLabel = HeaderLabel()

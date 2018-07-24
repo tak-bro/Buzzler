@@ -99,6 +99,15 @@ struct Environment {
         }
     }
     
+    var categoryTitle: String? {
+        get {
+            return self.userDefaults.value(forKey: UserDefaultsKeys.CategoryTitle.rawValue) as! String?
+        }
+        set {
+            self.userDefaults.setValue(newValue, forKey: UserDefaultsKeys.CategoryTitle.rawValue)
+        }
+    }
+    
     private let userDefaults: UserDefaults
     
     private enum UserDefaultsKeys: String {
@@ -112,6 +121,7 @@ struct Environment {
         case Univ = "univ"
         // category
         case CategoryId = "category_id"
+        case CategoryTitle = "category_title"
         case AutoLoin = "auto_login"
         case SaveEmail = "save_email"
     }

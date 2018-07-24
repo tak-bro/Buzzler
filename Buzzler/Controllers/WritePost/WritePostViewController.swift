@@ -48,15 +48,31 @@ class WritePostViewController: UIViewController {
             self.img_upload.image = imageList[currentLocalImageIndex]
         }
     }
+    
+    // MARK: - is Update
+    var isUpdate: Bool = false
+    var originTitle: String?
+    var originContents: String?
 
     // MARK: - Init
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindToRx()
         setUI()
         setToolbar()
         setGetureToView()
+        
+        if isUpdate {
+            self.txt_title.text = self.originTitle
+            self.txt_contents.text = self.originContents
+            
+            self.viewModel.inputs.title.on(.next(self.originTitle))
+            self.viewModel.inputs.contents.on(.next(self.originContents))
+            
+            if self.txt_contents.text.count > 0 {
+                placeholderLabel.isHidden = true
+            }
+        }
     }
     
     func addImage() {
@@ -127,7 +143,7 @@ extension WritePostViewController {
                 print("posting result", posting)
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     if posting == true {
-                        Toast(text: "포스트 등록이 완료되었습니다.").show()
+                        Toast(text: "포스트 등록이 완료되었습니다.", duration: Delay.long).show()
                     } else {
                         Toast(text: "Posting Error!!").show()
                     }

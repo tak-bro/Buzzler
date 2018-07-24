@@ -17,6 +17,8 @@
 		3B2A42B220AEADA300E37D72 /* ResetPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42B120AEADA300E37D72 /* ResetPasswordRouter.swift */; };
 		3B2A42B820B140C000E37D72 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42B720B140C000E37D72 /* MyPageViewController.swift */; };
 		3B2A42BB20B14D0100E37D72 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */; };
+		3B2E9C472107111B00132C74 /* WaitUnivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2E9C452107111B00132C74 /* WaitUnivViewController.swift */; };
+		3B2E9C482107111B00132C74 /* WaitUnivViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B2E9C462107111B00132C74 /* WaitUnivViewController.xib */; };
 		3B48A9BD20B2A30700E0BDA1 /* SelectUnivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */; };
 		3B48A9BF20B2A37100E0BDA1 /* SelectUnivViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */; };
 		3B48A9C420B2B27F00E0BDA1 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9C320B2B27F00E0BDA1 /* University.swift */; };
@@ -112,6 +114,8 @@
 		3B2A42B120AEADA300E37D72 /* ResetPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordRouter.swift; sourceTree = "<group>"; };
 		3B2A42B720B140C000E37D72 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3B2E9C452107111B00132C74 /* WaitUnivViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitUnivViewController.swift; sourceTree = "<group>"; };
+		3B2E9C462107111B00132C74 /* WaitUnivViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitUnivViewController.xib; sourceTree = "<group>"; };
 		3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUnivViewController.swift; sourceTree = "<group>"; };
 		3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUnivViewModel.swift; sourceTree = "<group>"; };
 		3B48A9C320B2B27F00E0BDA1 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 				3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */,
 				3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */,
 				3BD6EE95210560A40094E318 /* ApprovalPopUpViewController.xib */,
+				3B2E9C452107111B00132C74 /* WaitUnivViewController.swift */,
+				3B2E9C462107111B00132C74 /* WaitUnivViewController.xib */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -752,6 +758,7 @@
 				844BC378208AF17800666486 /* AvenirLTStd-Book.otf in Resources */,
 				AF9F0FDA1DF1A9E900FF8EC5 /* HomeTableViewCell.xib in Resources */,
 				AFA7EC731DEEDEDC00138AEE /* Main.storyboard in Resources */,
+				3B2E9C482107111B00132C74 /* WaitUnivViewController.xib in Resources */,
 				844BC379208AF17800666486 /* AvenirLTStd-Medium.otf in Resources */,
 				84A05AB9209BEA8A009AD3EB /* NotoSans-Light.ttf in Resources */,
 				84C4DED52095A58100FD6BFD /* CommentTableViewCell.xib in Resources */,
@@ -884,6 +891,7 @@
 				3B2A42BB20B14D0100E37D72 /* SettingsViewController.swift in Sources */,
 				84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */,
 				3B52E6C620AE9489002B2BB6 /* FirstStepViewModel.swift in Sources */,
+				3B2E9C472107111B00132C74 /* WaitUnivViewController.swift in Sources */,
 				3B48A9CE20B54FDF00E0BDA1 /* Environment.swift in Sources */,
 				3B0DC8F620F0AA8F001DE6DC /* ImageResponse.swift in Sources */,
 				844BC372208AF05500666486 /* StartSignUpViewController.swift in Sources */,

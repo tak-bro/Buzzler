@@ -141,6 +141,7 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                         // save default categoryId
                         var environment = Environment()
                         environment.categoryId = 1
+                        environment.categoryTitle = "Secret Lounge"
                         
                         return Single.just(loginResult)
                     })
