@@ -17,6 +17,7 @@ public protocol DetailPostViewModelInputs {
     var inputtedComment: PublishSubject<String?> { get }
     var writeCommentTaps: PublishSubject<Void> { get }
     var deletePostTaps: PublishSubject<Void> { get }
+    var likePostTaps: PublishSubject<Void> { get }
     var parentId: PublishSubject<String?> { get }
     var postId: PublishSubject<Int?> { get }
     func refresh()
@@ -28,6 +29,7 @@ public protocol DetailPostViewModelOutputs {
     var enableWriteButton: Driver<Bool> { get }
     var requestWriteComment: Driver<Bool> { get }
     var requestDeletePost: Driver<Bool> { get }
+    var requestLikePost: Driver<Bool> { get }
     var validatedComment: Driver<ValidationResult> { get }
 }
 
@@ -52,8 +54,10 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
     // http request
     public var writeCommentTaps: PublishSubject<Void>
     public var deletePostTaps: PublishSubject<Void>
+    public var likePostTaps: PublishSubject<Void>
     public var requestWriteComment: Driver<Bool>
     public var requestDeletePost: Driver<Bool>
+    public var requestLikePost: Driver<Bool>
 
     private let disposeBag = DisposeBag()
     private let error = PublishSubject<Swift.Error>()
@@ -75,6 +79,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
         self.inputtedComment = PublishSubject<String?>()
         self.writeCommentTaps = PublishSubject<Void>()
         self.deletePostTaps = PublishSubject<Void>()
+        self.likePostTaps = PublishSubject<Void>()
         
         let validationService = BuzzlerDefaultValidationService.sharedValidationService
         
@@ -99,8 +104,11 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(commentAndParentId)
             .flatMapLatest{ tuple in
+                let environment = Environment()
+                let categoryId = environment.categoryId
+                
                 return API.sharedAPI
-                    .writeComment(postId: id, parentId: tuple.1! == "" ? nil : tuple.1!, contents: tuple.0!)
+                    .writeComment(categoryId: categoryId!, postId: id, parentId: tuple.1! == "" ? nil : tuple.1!, contents: tuple.0!)
                     .trackActivity(Loading)
                     .asDriver(onErrorJustReturn: false)
         }
@@ -112,6 +120,20 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             .flatMapLatest{ postId in
                 return API.sharedAPI
                     .deletePost(by: postId!)
+                    .trackActivity(Loading)
+                    .asDriver(onErrorJustReturn: false)
+        }
+        
+        // like Buzzler post
+        self.requestLikePost = self.likePostTaps
+            .asDriver(onErrorJustReturn:())
+            .withLatestFrom(self.postId.asDriver(onErrorJustReturn: nil))
+            .flatMapLatest{ postId in
+                let environment = Environment()
+                let categoryId = environment.categoryId
+                
+                return API.sharedAPI
+                    .likePost(categoryId: categoryId!, postId: postId!)
                     .trackActivity(Loading)
                     .asDriver(onErrorJustReturn: false)
         }

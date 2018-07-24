@@ -147,6 +147,16 @@ extension PostViewController: UITableViewDelegate {
                 }
             }).disposed(by: disposeBag)
         
+        viewModel.outputs.requestLikePost
+            .drive(onNext: { res in
+                if res == true {
+                    guard let likeImg = UIImage(named: "img_big_lie") else { return }
+                    SVProgressHUD.show(likeImg, status: "Success")
+                } else {
+                    self.showAlert(message: "Server Error!")
+                }
+            }).disposed(by: disposeBag)
+        
         // set table
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let defaultCell: UITableViewCell
@@ -161,6 +171,7 @@ extension PostViewController: UITableViewDelegate {
                     imgCell.lbl_likeCount.text = String(item.likeCount)
                     imgCell.lbl_author.text = "익명"
                     imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
+                    
                     if item.imageUrls.count == 1 {
                         imgCell.vw_remainLabelContainer.isHidden = true
                     } else {
@@ -176,6 +187,11 @@ extension PostViewController: UITableViewDelegate {
                             let controller = PopoverController(items: (self?.makePorverActions())!, fromView: imgCell.btn_postAction, direction: .down, style: .withImage)
                             self?.popover(controller)
                         })
+                        .disposed(by: imgCell.bag)
+                    
+                    // like post action
+                    imgCell.btn_like.rx.tap
+                        .bind(to: viewModel.inputs.likePostTaps)
                         .disposed(by: imgCell.bag)
                     
                     defaultCell = imgCell
@@ -196,6 +212,11 @@ extension PostViewController: UITableViewDelegate {
                         })
                         .disposed(by: cell.bag)
                     
+                    // like post action
+                    cell.btn_like.rx.tap
+                        .bind(to: viewModel.inputs.likePostTaps)
+                        .disposed(by: cell.bag)
+
                     defaultCell = cell
                 }
                 return defaultCell
@@ -316,10 +337,12 @@ extension PostViewController: UITextViewDelegate {
             debugPrint($0.title)
             print(self.selectedPost.title)
         }
+        
         let deleteAction = PopoverItem(title: "삭제", image: UIImage(named: "brn_delete_post")) {
             debugPrint($0.title)
             print(self.selectedPost.title)
         }
+        
         return [editAction, deleteAction]
     }
 }
