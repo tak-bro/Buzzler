@@ -9,9 +9,12 @@
 import UIKit
 import Reusable
 import RxSwift
+import Optik
 
 final class HomeImageTableViewCell: UITableViewCell, NibReusable {
 
+    @IBOutlet weak var vw_imgContainer: UIView!
+    @IBOutlet weak var img_items: UIImageView!
     @IBOutlet weak var btn_like: UIButton!
     @IBOutlet weak var btn_postAction: UIButton!
     @IBOutlet weak var lbl_content: UILabel!
@@ -28,6 +31,7 @@ final class HomeImageTableViewCell: UITableViewCell, NibReusable {
     static let height: CGFloat = UITableViewAutomaticDimension
 
     var bag = DisposeBag()
+    let subject = PublishSubject<Void>()
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -54,4 +58,5 @@ final class HomeImageTableViewCell: UITableViewCell, NibReusable {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
 }

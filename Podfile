@@ -32,6 +32,7 @@ def shared_pods
     pod 'Toaster'
     pod 'Optik'
     pod 'PopoverSwift', '2.0.2'
+    pod 'AlamofireImage', '3.3.0'
 end
 
 target :'Buzzler' do

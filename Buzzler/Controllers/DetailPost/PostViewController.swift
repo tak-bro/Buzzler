@@ -15,6 +15,7 @@ import RxDataSources
 import SVProgressHUD
 import RxKeyboard
 import PopoverSwift
+import Optik
 
 class PostViewController: UIViewController, ShowsAlert {
     
@@ -39,6 +40,8 @@ class PostViewController: UIViewController, ShowsAlert {
     let dataSource = RxTableViewSectionedReloadDataSource<MultipleSectionModel>()
     
     var selectedPost = BuzzlerPost()
+    fileprivate let tapGesture = UITapGestureRecognizer()
+    var selectedPostId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,7 +153,7 @@ extension PostViewController: UITableViewDelegate {
         viewModel.outputs.requestLikePost
             .drive(onNext: { res in
                 if res == true {
-                    guard let likeImg = UIImage(named: "img_big_lie") else { return }
+                    guard let likeImg = UIImage(named: "img_big_like") else { return }
                     SVProgressHUD.show(likeImg, status: "Success")
                 } else {
                     self.showAlert(message: "Server Error!")
@@ -160,6 +163,7 @@ extension PostViewController: UITableViewDelegate {
         // set table
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let defaultCell: UITableViewCell
+            let viewModel = self.viewModel
             
             switch dataSource[indexPath] {
             case let .PostItem(item):
@@ -167,7 +171,7 @@ extension PostViewController: UITableViewDelegate {
                     let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                     imgCell.lbl_title.text = item.title
                     imgCell.lbl_content.text = item.contents
-                    imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                    imgCell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
                     imgCell.lbl_likeCount.text = String(item.likeCount)
                     imgCell.lbl_author.text = "익명"
                     imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
@@ -177,6 +181,11 @@ extension PostViewController: UITableViewDelegate {
                     } else {
                         imgCell.vw_remainLabelContainer.isHidden = false
                     }
+                    
+                    // set image
+                    let encodedURL = item.imageUrls[0].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    imgCell.img_items.kf.indicatorType = .activity
+                    imgCell.img_items.kf.setImage(with: URL(string: encodedURL!), placeholder: nil)
                     
                     // add post action for edit
                     imgCell.btn_postAction.rx.tap.asDriver()
@@ -188,18 +197,62 @@ extension PostViewController: UITableViewDelegate {
                             self?.popover(controller)
                         })
                         .disposed(by: imgCell.bag)
-                    
-                    // like post action
-                    imgCell.btn_like.rx.tap
-                        .bind(to: viewModel.inputs.likePostTaps)
+
+                    // like action
+                    imgCell.btn_like.rx.tap.asDriver()
+                        .drive(onNext: { _ in
+                            let environment = Environment()
+                            guard let categoryId = environment.categoryId, let postId = self.selectedPostId else { return }
+                            
+                            // set disabled like button
+                            imgCell.btn_like.isEnabled = false
+                            SVProgressHUD.show()
+                            
+                            BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: postId)) { result in
+                                // set enabled
+                                imgCell.btn_like.isEnabled = true
+                                SVProgressHUD.dismiss()
+                                
+                                switch result {
+                                case let .success(moyaResponse):
+                                    let statusCode = moyaResponse.statusCode // Int - 200, 401, 500, etc
+                                    if statusCode == 201 {
+                                        guard let likeImg = UIImage(named: "img_big_like") else { return }
+                                        SVProgressHUD.setForegroundColor(Config.UI.heartColor)
+                                        SVProgressHUD.show(likeImg, status: "Completed")
+                                    } else {
+                                        self.showAlert(message: "Already Liked before")
+                                    }
+                                    
+                                case .failure(_):
+                                     self.showAlert(message: "Server Error!")
+                                }
+                            }
+                        })
                         .disposed(by: imgCell.bag)
+
                     
+                    // add image viewer
+                    imgCell.vw_imgContainer.addGestureRecognizer(self.tapGesture)
+                    let urls = item.imageUrls
+                        .map { img -> URL in
+                            guard let encodedURL = img.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return URL(string: "")! }
+                            return URL(string: encodedURL)!
+                    }
+                    self.tapGesture.rx.event
+                        .bind(onNext: { recognizer in
+                            let imageDownloader = AlamofireImageDownloader()
+                            let imageViewer = Optik.imageViewer(withURLs: urls, imageDownloader: imageDownloader)
+                            self.present(imageViewer, animated: true, completion: nil)
+                        })
+                        .disposed(by: imgCell.bag)
+
                     defaultCell = imgCell
                 } else {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                     cell.lbl_title.text = item.title
                     cell.lbl_content.text = item.contents
-                    cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                    cell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
                     cell.lbl_likeCount.text = String(item.likeCount)
                     cell.lbl_author.text = "익명"
                     
@@ -213,12 +266,41 @@ extension PostViewController: UITableViewDelegate {
                         .disposed(by: cell.bag)
                     
                     // like post action
-                    cell.btn_like.rx.tap
-                        .bind(to: viewModel.inputs.likePostTaps)
+                    cell.btn_like.rx.tap.asDriver()
+                        .drive(onNext: { _ in
+                            let environment = Environment()
+                            guard let categoryId = environment.categoryId, let postId = self.selectedPostId else { return }
+                            
+                            // set disabled like button
+                            cell.btn_like.isEnabled = false
+                            SVProgressHUD.show()
+                            
+                            BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: postId)) { result in
+                                // set enabled
+                                cell.btn_like.isEnabled = true
+                                SVProgressHUD.dismiss()
+                                
+                                switch result {
+                                case let .success(moyaResponse):
+                                    let statusCode = moyaResponse.statusCode
+                                    if statusCode == 201 {
+                                        guard let likeImg = UIImage(named: "img_big_like") else { return }
+                                        SVProgressHUD.setForegroundColor(Config.UI.heartColor)
+                                        SVProgressHUD.show(likeImg, status: "Completed")
+                                    } else {
+                                        self.showAlert(message: "Already Liked before")
+                                    }
+                                    
+                                case .failure(_):
+                                    self.showAlert(message: "Server Error!")
+                                }
+                            }
+                        })
                         .disposed(by: cell.bag)
 
                     defaultCell = cell
                 }
+                
                 return defaultCell
             case let .CommentItem(item):
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
@@ -333,12 +415,12 @@ extension PostViewController: UITextViewDelegate {
     }
     
     func makePorverActions() -> [PopoverItem] {
-        let editAction = PopoverItem(title: "수정", image: UIImage(named: "brn_edit_post")) {
+        let editAction = PopoverItem(title: "수정", image: UIImage(named: "btn_edit_post")) {
             debugPrint($0.title)
             print(self.selectedPost.title)
         }
         
-        let deleteAction = PopoverItem(title: "삭제", image: UIImage(named: "brn_delete_post")) {
+        let deleteAction = PopoverItem(title: "삭제", image: UIImage(named: "btn_delete_post")) {
             debugPrint($0.title)
             print(self.selectedPost.title)
         }

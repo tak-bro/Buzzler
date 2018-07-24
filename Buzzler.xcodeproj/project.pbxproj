@@ -10,6 +10,8 @@
 		3B0DC8F020F085D4001DE6DC /* AwsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */; };
 		3B0DC8F620F0AA8F001DE6DC /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */; };
 		3B0DC99920BBF76700A5D274 /* DetailBuzzlerPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */; };
+		3B142A9C2106C4A100CE7E7A /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B142A9B2106C4A100CE7E7A /* Author.swift */; };
+		3B142A9E2106C8B300CE7E7A /* AlamofireImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B142A9D2106C8B300CE7E7A /* AlamofireImageDownloader.swift */; };
 		3B1CBD0320AA9EB60018D156 /* SelectMajorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */; };
 		3B1CBD0520AAC8770018D156 /* SelectMajorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */; };
 		3B2A42B220AEADA300E37D72 /* ResetPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42B120AEADA300E37D72 /* ResetPasswordRouter.swift */; };
@@ -103,6 +105,8 @@
 		3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwsAPI.swift; sourceTree = "<group>"; };
 		3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuzzlerPost.swift; sourceTree = "<group>"; };
+		3B142A9B2106C4A100CE7E7A /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		3B142A9D2106C8B300CE7E7A /* AlamofireImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireImageDownloader.swift; sourceTree = "<group>"; };
 		3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorViewController.swift; sourceTree = "<group>"; };
 		3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorViewModel.swift; sourceTree = "<group>"; };
 		3B2A42B120AEADA300E37D72 /* ResetPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordRouter.swift; sourceTree = "<group>"; };
@@ -508,6 +512,7 @@
 			children = (
 				AF9F0FD01DF1A6CD00FF8EC5 /* Brick.swift */,
 				84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */,
+				3B142A9B2106C4A100CE7E7A /* Author.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -616,6 +621,7 @@
 				AFBBA5CC1E06F783003605D1 /* Response+ObjectMapper.swift */,
 				8421B2CD2086D6CE00CBF4E3 /* UIKit+Extensions.swift */,
 				844BC389208C573000666486 /* HelperFunctions.swift */,
+				3B142A9D2106C8B300CE7E7A /* AlamofireImageDownloader.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -782,6 +788,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AsyncTimer/AsyncTimer.framework",
 				"${BUILT_PRODUCTS_DIR}/DKImagePickerController/DKImagePickerController.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
@@ -815,6 +822,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncTimer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DKImagePickerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
@@ -868,6 +876,7 @@
 				AFCB661E1DF844DB00916E1B /* HomeViewModel.swift in Sources */,
 				AFA7EC6E1DEEDEDC00138AEE /* AppDelegate.swift in Sources */,
 				AF9F0FD11DF1A6CD00FF8EC5 /* Brick.swift in Sources */,
+				3B142A9C2106C4A100CE7E7A /* Author.swift in Sources */,
 				84A1BFCA208C898D00D0ADC7 /* StretchHeaderOptions.swift in Sources */,
 				AFBBA5CD1E06F783003605D1 /* Response+ObjectMapper.swift in Sources */,
 				3B52E6C820AE94AA002B2BB6 /* SecondStepViewModel.swift in Sources */,
@@ -920,6 +929,7 @@
 				AF3C0C241E0AA851002644DD /* Config.swift in Sources */,
 				3B623E9D20B6B9AF000302C0 /* SideMenuRouter.swift in Sources */,
 				3B48A9C420B2B27F00E0BDA1 /* University.swift in Sources */,
+				3B142A9E2106C8B300CE7E7A /* AlamofireImageDownloader.swift in Sources */,
 				AF9F0FD41DF1A91300FF8EC5 /* HomeViewController.swift in Sources */,
 				844BC37B208AF8FE00666486 /* SignUpViewController.swift in Sources */,
 				3B66DDC420C0D752009944D1 /* DetailPostViewModel.swift in Sources */,

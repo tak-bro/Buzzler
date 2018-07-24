@@ -70,7 +70,11 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
     public var parentId: PublishSubject<String?>
     public var postId: PublishSubject<Int?>
     
+    public var selectedPostId: Int
+    
     init(id: Int) {
+        self.selectedPostId = id
+        
         self.loadDetailPostTrigger = PublishSubject<Void>()
         self.elements = Variable<[MultipleSectionModel]>([])
         let Loading = ActivityIndicator()

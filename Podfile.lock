@@ -3,6 +3,8 @@ PODS:
     - RxCocoa (~> 3.4)
     - RxSwift (~> 3.4)
   - Alamofire (4.5.1)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
   - AsyncTimer (2.2.0)
   - Differentiator (2.0.2)
   - DKImagePickerController (3.6.1):
@@ -59,6 +61,7 @@ PODS:
 DEPENDENCIES:
   - Action (= 3.2.0)
   - Alamofire (= 4.5.1)
+  - AlamofireImage (= 3.3.0)
   - AsyncTimer (~> 2.2)
   - DKImagePickerController (= 3.6.1)
   - EZSwiftExtensions (= 1.11)
@@ -91,6 +94,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Action
     - Alamofire
+    - AlamofireImage
     - AsyncTimer
     - Differentiator
     - DKImagePickerController
@@ -123,6 +127,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Action: 991c9e175e04675028724868768aa08f22c85476
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   AsyncTimer: d8512868a7f4de79f58b6962d590f04b8dab5f7a
   Differentiator: caa9b3957981a2ac8e6b2eac8a676af461caa604
   DKImagePickerController: 4f8072aed44119a33955c9583273ea7c8739c0f4
@@ -152,6 +157,6 @@ SPEC CHECKSUMS:
   Then: 823a7503a851737269ba8d40e688b4db874dbd2d
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
 
-PODFILE CHECKSUM: db0566ae4b067cb2fac7fc97e4059c0d1ac5ee16
+PODFILE CHECKSUM: 2b5f70d754a6a9d144ea7b30e43a9ce052df0e43
 
 COCOAPODS: 1.5.2

@@ -70,6 +70,10 @@ extension BuzzlerComment {
         return createdAt.toString().compare(e2.createdAt.toString())
     }
     
+    func ascCreatedAtCompare(e2: BuzzlerComment) -> ComparisonResult {
+        return e2.createdAt.toString().compare(createdAt.toString())
+    }
+    
 }
 
 

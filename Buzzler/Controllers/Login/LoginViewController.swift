@@ -30,16 +30,16 @@ class LoginViewController: UIViewController, ShowsAlert {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindToRx()
-        setUI()
-        
         if let autoLogin = environment.autoLogin {
             // set button image
-            autoLogin ? self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox"), for: .normal) : self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
-            // event publish
-            self.viewModel
-                .inputs
-                .loginTaps
-                .onNext(())
+            autoLogin ? self.btn_autoLogin.setImage(UIImage(named: "btn_checkbox"), for: .normal) : self.btn_autoLogin.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
+            
+            if autoLogin {
+                self.viewModel.inputs.email.on(.next(environment.receiver))
+                self.viewModel.inputs.password.on(.next(environment.password))
+                // event publish
+                self.viewModel.inputs.loginTaps.on(.next())
+            }
         }
         
         if let saveEmail = environment.saveEmail {
@@ -47,14 +47,14 @@ class LoginViewController: UIViewController, ShowsAlert {
             if saveEmail {
                 self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox"), for: .normal)
                 // event publish
-                self.viewModel
-                    .inputs
-                    .email
-                    .onNext(environment.receiver)
+                self.txt_email.text = environment.receiver
+                self.viewModel.inputs.email.on(.next(environment.receiver))
             } else {
                 self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
             }
         }
+        
+        setUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
