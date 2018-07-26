@@ -430,6 +430,9 @@ extension PostViewController: UITextViewDelegate {
         self.lbl_parentCommentId.text = ""
         self.lbl_parentAuthor.text = ""
     }
+}
+
+extension PostViewController {
     
     func makePorverActions() -> [PopoverItem] {
         let editAction = PopoverItem(title: "수정", image: UIImage(named: "btn_edit_post")) {

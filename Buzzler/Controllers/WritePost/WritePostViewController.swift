@@ -88,17 +88,22 @@ class WritePostViewController: UIViewController {
         addImage()
     }
     @IBAction func pressPosting(_ sender: UIButton) {
+        guard let titleLength = self.txt_title.text?.length else { return }
+        
         // force set value for ViewModel
-        if (self.varAssets.value?.count == 0) {
+        if self.varAssets.value?.count == 0 {
             self.varAssets.value = [DKAsset]()
         }
-        self.dismiss(animated: true, completion: { [weak self] in
-            // emit post taps event after dismissed
-            self?.viewModel.inputs.postTaps.on(.next())
-            }
-        )
+        
+        if titleLength > 0 && self.txt_contents.text.length > 0 {
+            self.dismiss(animated: true, completion: { [weak self] in
+                // emit post taps event after dismissed
+                self?.viewModel.inputs.postTaps.on(.next())
+                }
+            )
+        }
     }
-    
+
 }
 
 extension WritePostViewController {
