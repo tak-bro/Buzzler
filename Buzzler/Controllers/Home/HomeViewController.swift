@@ -27,6 +27,7 @@ final class HomeViewController: UIViewController {
     
     var refreshControl : UIRefreshControl?
     var category: Int = 1
+    var isAddedShadow = false
 
     // MARK: - Life Cycle
     
@@ -39,6 +40,14 @@ final class HomeViewController: UIViewController {
         configureTableView()
         configBinding()
         setupHeaderView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !self.isAddedShadow {
+            deleteShadow()
+        }
     }
 }
 
@@ -234,18 +243,19 @@ extension HomeViewController {
         // NavigationHeader alpha update
         let offset: CGFloat = scrollView.contentOffset.y
         if (offset > 50) {
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
             addShadowToNav()
+            self.isAddedShadow = true
             let environment = Environment()
             title = environment.categoryTitle
         } else {
-            self.navigationController?.navigationBar.barTintColor = Config.UI.themeColor
             deleteShadow()
+            self.isAddedShadow = false
             title = " "
         }
     }
     
     func addShadowToNav() {
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         self.navigationController?.navigationBar.layer.shadowRadius = 1.0
@@ -254,6 +264,7 @@ extension HomeViewController {
     }
     
     func deleteShadow() {
+        self.navigationController?.navigationBar.barTintColor = Config.UI.themeColor
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.clear.cgColor
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         self.navigationController?.navigationBar.layer.shadowRadius = 0.0

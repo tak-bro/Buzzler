@@ -16,6 +16,7 @@ import Photos
 import DKImagePickerController
 import Toaster
 import SKPhotoBrowser
+import Whisper
 
 class WritePostViewController: UIViewController {
 
@@ -88,18 +89,19 @@ class WritePostViewController: UIViewController {
         if (self.varAssets.value?.count == 0) {
             self.varAssets.value = [DKAsset]()
         }
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: { [weak self] in
+            // emit post taps event after dismissed
+            self?.viewModel.inputs.postTaps.on(.next())
+            }
+        )
     }
+    
 }
 
 extension WritePostViewController {
     
     func bindToRx() {
-        
-        btn_post.rx.tap
-            .bind(to: self.viewModel.inputs.postTaps)
-            .disposed(by: disposeBag)
-        
+
         txt_title.rx.text.orEmpty
             .bind(to: self.viewModel.inputs.title)
             .disposed(by: disposeBag)
@@ -149,10 +151,12 @@ extension WritePostViewController {
             .drive(onNext: { isLoading in
                 switch isLoading {
                 case true:
-                    //SVProgressHUD.show()
+                    // SVProgressHUD.show()
+                    let murmur = Murmur(title: "Posting....", backgroundColor: Config.UI.titleColor, titleColor: UIColor.white, font: UIFont.systemFont(ofSize: 12), action: nil)
+                    Whisper.show(whistle: murmur, action: .present)
                     break
                 case false:
-                    //SVProgressHUD.dismiss()
+                    hide()
                     break
                 }
             }).disposed(by: disposeBag)
