@@ -14,6 +14,8 @@ class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
+        deleteShadow(from: self)
+        title = " "
     }
 
 }

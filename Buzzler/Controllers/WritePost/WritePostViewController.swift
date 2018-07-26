@@ -33,7 +33,9 @@ class WritePostViewController: UIViewController {
     @IBOutlet weak var btn_dismiss: UIButton!
     @IBOutlet weak var txt_title: UITextField!
     @IBOutlet weak var txt_contents: UITextView!
+    @IBOutlet weak var txt_isAnonymous: UITextField!
     
+    fileprivate let selectAnonymous = ["소속학교 비노출", "소속학교 노출"]
     fileprivate let disposeBag = DisposeBag()
     let viewModel = WritePostViewModel()
     var placeholderLabel: UILabel!
@@ -57,6 +59,7 @@ class WritePostViewController: UIViewController {
         setUI()
         setToolbar()
         setGetureToView()
+        setPicker()
         
         if isUpdate {
             self.txt_title.text = self.originTitle
@@ -147,16 +150,30 @@ extension WritePostViewController {
                 })
             }).disposed(by: disposeBag)
         
+        // S3로 업로드시 나오는 statusbar notification
+        self.viewModel.isImageUploading
+            .drive(onNext: { isImageUploading in
+                switch isImageUploading {
+                case true:
+                    let murmur = Murmur(title: "Uploading images...", backgroundColor: Config.UI.titleColor, titleColor: UIColor.white, font: UIFont.systemFont(ofSize: 12), action: nil)
+                    Whisper.show(whistle: murmur, action: .present)
+                    break
+                case false:
+                    hide(whistleAfter: 0.5)
+                    break
+                }
+            }).disposed(by: disposeBag)
+        
         self.viewModel.isLoading
             .drive(onNext: { isLoading in
                 switch isLoading {
                 case true:
                     // SVProgressHUD.show()
-                    let murmur = Murmur(title: "Posting....", backgroundColor: Config.UI.titleColor, titleColor: UIColor.white, font: UIFont.systemFont(ofSize: 12), action: nil)
+                    let murmur = Murmur(title: "Posting...", backgroundColor: Config.UI.titleColor, titleColor: UIColor.white, font: UIFont.systemFont(ofSize: 12), action: nil)
                     Whisper.show(whistle: murmur, action: .present)
                     break
                 case false:
-                    hide()
+                    hide(whistleAfter: 0.3)
                     break
                 }
             }).disposed(by: disposeBag)
@@ -281,5 +298,30 @@ extension WritePostViewController {
             self.imageList.removeAll()
             self.vw_imgContainer.isHidden = true
         }
+    }
+}
+
+extension WritePostViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func setPicker() {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        txt_isAnonymous.inputView = pickerView
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.selectAnonymous.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.selectAnonymous[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        txt_isAnonymous.text = selectAnonymous[row]
     }
 }

@@ -29,6 +29,10 @@ class LoginViewController: UIViewController, ShowsAlert {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // add subview for auto login
+        addAppLogoView()
+        
+        // main logic
         bindToRx()
         setAutoLogin()
         setUI()
@@ -182,7 +186,11 @@ extension LoginViewController {
                 self.viewModel.inputs.password.on(.next(environment.password))
                 // event publish
                 self.viewModel.inputs.loginTaps.on(.next())
+            } else {
+                removeAppLogoView()
             }
+        } else {
+            removeAppLogoView()
         }
         
         if let saveEmail = environment.saveEmail {
@@ -194,5 +202,16 @@ extension LoginViewController {
                 self.viewModel.inputs.email.on(.next(environment.receiver))
             }
         }
+    }
+    
+    func addAppLogoView() {
+        let appLogoView = AppLogoView.instanceFromNib()
+        appLogoView.frame = self.view.frame
+        appLogoView.tag = 100
+        self.view.addSubview(appLogoView)
+    }
+    
+    func removeAppLogoView() {
+        self.view.viewWithTag(100)?.removeFromSuperview()
     }
 }

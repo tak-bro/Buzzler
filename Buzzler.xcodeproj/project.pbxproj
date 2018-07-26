@@ -18,6 +18,8 @@
 		3B2A42BB20B14D0100E37D72 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */; };
 		3B2E9C472107111B00132C74 /* WaitUnivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2E9C452107111B00132C74 /* WaitUnivViewController.swift */; };
 		3B2E9C482107111B00132C74 /* WaitUnivViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B2E9C462107111B00132C74 /* WaitUnivViewController.xib */; };
+		3B2E9C4B2109B06B00132C74 /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2E9C4A2109B06B00132C74 /* AppLogoView.swift */; };
+		3B2E9C4D2109B07A00132C74 /* AppLogoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B2E9C4C2109B07A00132C74 /* AppLogoView.xib */; };
 		3B48A9BD20B2A30700E0BDA1 /* SelectUnivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */; };
 		3B48A9BF20B2A37100E0BDA1 /* SelectUnivViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */; };
 		3B48A9C420B2B27F00E0BDA1 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9C320B2B27F00E0BDA1 /* University.swift */; };
@@ -114,6 +116,8 @@
 		3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3B2E9C452107111B00132C74 /* WaitUnivViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitUnivViewController.swift; sourceTree = "<group>"; };
 		3B2E9C462107111B00132C74 /* WaitUnivViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitUnivViewController.xib; sourceTree = "<group>"; };
+		3B2E9C4A2109B06B00132C74 /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
+		3B2E9C4C2109B07A00132C74 /* AppLogoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppLogoView.xib; sourceTree = "<group>"; };
 		3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUnivViewController.swift; sourceTree = "<group>"; };
 		3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUnivViewModel.swift; sourceTree = "<group>"; };
 		3B48A9C320B2B27F00E0BDA1 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
@@ -242,6 +246,15 @@
 				3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		3B2E9C492109AFEF00132C74 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3B2E9C4A2109B06B00132C74 /* AppLogoView.swift */,
+				3B2E9C4C2109B07A00132C74 /* AppLogoView.xib */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		3B48A9C220B2B26700E0BDA1 /* SignUp */ = {
@@ -532,6 +545,7 @@
 		AF9F0FD51DF1A9B300FF8EC5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3B2E9C492109AFEF00132C74 /* Login */,
 				AF9F0FD61DF1A9C100FF8EC5 /* Home */,
 				84F437AC2085C40900E71358 /* DetailPost */,
 				3BD6EE8F210560650094E318 /* SignUp */,
@@ -757,6 +771,7 @@
 				AFA7EC731DEEDEDC00138AEE /* Main.storyboard in Resources */,
 				3B2E9C482107111B00132C74 /* WaitUnivViewController.xib in Resources */,
 				844BC379208AF17800666486 /* AvenirLTStd-Medium.otf in Resources */,
+				3B2E9C4D2109B07A00132C74 /* AppLogoView.xib in Resources */,
 				84A05AB9209BEA8A009AD3EB /* NotoSans-Light.ttf in Resources */,
 				84C4DED52095A58100FD6BFD /* CommentTableViewCell.xib in Resources */,
 			);
@@ -924,6 +939,7 @@
 				3B52E6C120AE93E3002B2BB6 /* SecondStepViewController.swift in Sources */,
 				84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */,
 				AF69F0EB1E0E055D00735284 /* SideMenuNavigationController.swift in Sources */,
+				3B2E9C4B2109B06B00132C74 /* AppLogoView.swift in Sources */,
 				3B48A9BD20B2A30700E0BDA1 /* SelectUnivViewController.swift in Sources */,
 				84BA76F72086FC4B0097FFD2 /* Decodable.swift in Sources */,
 				8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */,

@@ -45,8 +45,13 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // set title and Nav bar
         if !self.isAddedShadow {
             deleteShadow()
+            title = " "
+        } else {
+            let environment = Environment()
+            self.navigationItem.title = environment.categoryTitle
         }
     }
 }
@@ -58,7 +63,6 @@ extension HomeViewController: UITableViewDelegate {
     fileprivate func configureTableView() {
         
         // set tableView UI
-        title = " "
         tableView.backgroundColor = Config.UI.themeColor
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
@@ -106,7 +110,7 @@ extension HomeViewController: UITableViewDelegate {
                     imgCell.vw_remainLabelContainer.isHidden = false
                 }
                 // set image
-                let encodedURL = item.imageUrls[0].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                let encodedURL = item.imageUrls.sorted()[0].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 imgCell.img_items.kf.indicatorType = .activity
                 imgCell.img_items.kf.setImage(with: URL(string: encodedURL!), placeholder: nil)
                 
