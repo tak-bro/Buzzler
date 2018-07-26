@@ -9,7 +9,6 @@
 import UIKit
 import Reusable
 import RxSwift
-import Optik
 
 final class HomeImageTableViewCell: UITableViewCell, NibReusable {
 

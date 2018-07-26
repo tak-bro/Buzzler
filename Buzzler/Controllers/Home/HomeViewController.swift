@@ -236,7 +236,8 @@ extension HomeViewController {
         if (offset > 50) {
             self.navigationController?.navigationBar.barTintColor = UIColor.white
             addShadowToNav()
-            title = "Seoul Univ."
+            let environment = Environment()
+            title = environment.categoryTitle
         } else {
             self.navigationController?.navigationBar.barTintColor = Config.UI.themeColor
             deleteShadow()

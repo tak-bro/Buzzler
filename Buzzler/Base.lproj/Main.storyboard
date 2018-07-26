@@ -1614,7 +1614,7 @@ Cg
                                 <rect key="frame" x="142" y="295" width="91" height="76"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ep3-q7-FFt">
-                                <rect key="frame" x="10" y="576" width="355" height="30"/>
+                                <rect key="frame" x="10" y="577" width="355" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="parentId" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ML-eH-dvt">
                                         <rect key="frame" x="15" y="8.5" width="41" height="14"/>
@@ -1708,7 +1708,7 @@ Cg
                             <constraint firstItem="Zow-VQ-OZr" firstAttribute="top" secondItem="oRM-8N-d5e" secondAttribute="bottom" id="1B6-cB-whR"/>
                             <constraint firstAttribute="trailing" secondItem="Zow-VQ-OZr" secondAttribute="trailing" id="3tQ-JO-dQO"/>
                             <constraint firstItem="QgC-I6-YAd" firstAttribute="top" secondItem="wZh-KU-fRA" secondAttribute="bottom" id="8y4-u1-zW4"/>
-                            <constraint firstItem="wZh-KU-fRA" firstAttribute="top" secondItem="Ep3-q7-FFt" secondAttribute="bottom" constant="1" id="9nb-Ix-6R7"/>
+                            <constraint firstItem="wZh-KU-fRA" firstAttribute="top" secondItem="Ep3-q7-FFt" secondAttribute="bottom" id="9nb-Ix-6R7"/>
                             <constraint firstItem="Zow-VQ-OZr" firstAttribute="leading" secondItem="edB-pi-TE8" secondAttribute="leading" id="Dg7-dU-p4Z"/>
                             <constraint firstItem="wZh-KU-fRA" firstAttribute="leading" secondItem="edB-pi-TE8" secondAttribute="leading" constant="10" id="Vbx-bF-2zm"/>
                             <constraint firstItem="QgC-I6-YAd" firstAttribute="top" secondItem="Zow-VQ-OZr" secondAttribute="bottom" id="YyX-rG-4vQ"/>

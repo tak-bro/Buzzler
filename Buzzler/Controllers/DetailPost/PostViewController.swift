@@ -15,7 +15,7 @@ import RxDataSources
 import SVProgressHUD
 import RxKeyboard
 import PopoverSwift
-import Optik
+import SKPhotoBrowser
 
 class PostViewController: UIViewController, ShowsAlert {
     
@@ -177,7 +177,7 @@ extension PostViewController: UITableViewDelegate {
                     imgCell.lbl_content.text = item.contents
                     imgCell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
                     imgCell.lbl_likeCount.text = String(item.likeCount)
-                    imgCell.lbl_author.text = "익명"
+                    imgCell.lbl_author.text = item.author.username
                     imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
                     
                     if item.imageUrls.count == 1 {
@@ -240,16 +240,24 @@ extension PostViewController: UITableViewDelegate {
                     
                     // add image viewer
                     imgCell.vw_imgContainer.addGestureRecognizer(self.tapGesture)
-                    let urls = item.imageUrls
-                        .map { img -> URL in
-                            guard let encodedURL = img.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return URL(string: "")! }
-                            return URL(string: encodedURL)!
+                    // create URL Array
+                    var skImages = [SKPhoto]()
+                    let photos = item.imageUrls
+                        .map { img -> SKPhoto in
+                            guard let encodedURL = img.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return SKPhoto.photoWithImageURL("") }
+                            let photo = SKPhoto.photoWithImageURL(encodedURL)
+                            photo.shouldCachePhotoURLImage = true
+                            return photo
                     }
+                    skImages = photos
+
                     self.tapGesture.rx.event
                         .bind(onNext: { recognizer in
-                            let imageDownloader = AlamofireImageDownloader()
-                            let imageViewer = Optik.imageViewer(withURLs: urls, imageDownloader: imageDownloader)
-                            self.present(imageViewer, animated: true, completion: nil)
+                            // create PhotoBrowser Instance, and present.
+                            SKPhotoBrowserOptions.displayAction = false
+                            let browser = SKPhotoBrowser(photos: skImages)
+                            browser.initializePageIndex(0)
+                            self.present(browser, animated: true, completion: {})
                         })
                         .disposed(by: imgCell.bag)
                     
@@ -260,7 +268,7 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_content.text = item.contents
                     cell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
                     cell.lbl_likeCount.text = String(item.likeCount)
-                    cell.lbl_author.text = "익명"
+                    cell.lbl_author.text = item.author.username
                     
                     // set origin info
                     self.originTitle = item.title
@@ -323,7 +331,7 @@ extension PostViewController: UITableViewDelegate {
                         // set parent comment Info
                         self.lbl_parentCommentId.text = item.id.toString
                         self.vw_parentComment.isHidden = false
-                        self.lbl_parentAuthor.text = item.authorId.toString
+                        self.lbl_parentAuthor.text = item.author.username
                     }).disposed(by: cell.bag)
                 
                 return cell

@@ -30,30 +30,7 @@ class LoginViewController: UIViewController, ShowsAlert {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindToRx()
-        if let autoLogin = environment.autoLogin {
-            // set button image
-            autoLogin ? self.btn_autoLogin.setImage(UIImage(named: "btn_checkbox"), for: .normal) : self.btn_autoLogin.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
-            
-            if autoLogin {
-                self.viewModel.inputs.email.on(.next(environment.receiver))
-                self.viewModel.inputs.password.on(.next(environment.password))
-                // event publish
-                self.viewModel.inputs.loginTaps.on(.next())
-            }
-        }
-        
-        if let saveEmail = environment.saveEmail {
-            // set button image
-            if saveEmail {
-                self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox"), for: .normal)
-                // event publish
-                self.txt_email.text = environment.receiver
-                self.viewModel.inputs.email.on(.next(environment.receiver))
-            } else {
-                self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
-            }
-        }
-        
+        setAutoLogin()
         setUI()
     }
     
@@ -194,5 +171,28 @@ extension LoginViewController {
         btn_login.setTitleColor(Config.UI.buttonInActiveColor, for: UIControlState.disabled)
         btn_login.layer.borderWidth = 2.5
         btn_login.layer.borderColor = Config.UI.buttonInActiveColor.cgColor
+    }
+    
+    func setAutoLogin() {
+        if let autoLogin = environment.autoLogin {
+            // set button image
+            autoLogin ? self.btn_autoLogin.setImage(UIImage(named: "btn_checkbox"), for: .normal) : self.btn_autoLogin.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
+            if autoLogin == true {
+                self.viewModel.inputs.email.on(.next(environment.receiver))
+                self.viewModel.inputs.password.on(.next(environment.password))
+                // event publish
+                self.viewModel.inputs.loginTaps.on(.next())
+            }
+        }
+        
+        if let saveEmail = environment.saveEmail {
+            // set button image
+            saveEmail ? self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox"), for: .normal) : self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
+            if saveEmail == true {
+                // event publish
+                self.txt_email.text = environment.receiver
+                self.viewModel.inputs.email.on(.next(environment.receiver))
+            }
+        }
     }
 }

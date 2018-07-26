@@ -106,7 +106,7 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                                 environment.password = tuple.1!
                             }
                             
-                            // save auto login info
+                            // save email info
                             if let saveEmail = environment.saveEmail, saveEmail {
                                 environment.receiver = tuple.0!
                             }

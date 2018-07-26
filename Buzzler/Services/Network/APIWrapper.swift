@@ -85,10 +85,9 @@ public class API: AwsAPI, BuzzlerAPI {
                 do {
                     let data = try res.mapObject(DetailBuzzlerPost.self)
                     // convert response to BuzzlerPost model
-                    let author = Author(id: data.authorId, username: "Test")
                     let defaultPost = BuzzlerPost(id: data.id, title: data.title, contents: data.contents,
                                                   imageUrls: data.imageUrls, likeCount: data.likeCount, createdAt: data.createdAt,
-                                                  author: author)
+                                                  author: data.author)
                     
                     // join comments with child
                     let commentsData = data.comments
