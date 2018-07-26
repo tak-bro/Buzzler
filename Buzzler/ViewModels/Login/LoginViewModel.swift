@@ -106,7 +106,7 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                                 environment.password = tuple.1!
                             }
                             
-                            // save auto login info
+                            // save email info
                             if let saveEmail = environment.saveEmail, saveEmail {
                                 environment.receiver = tuple.0!
                             }
@@ -141,6 +141,7 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                         // save default categoryId
                         var environment = Environment()
                         environment.categoryId = 1
+                        environment.categoryTitle = "Secret Lounge"
                         
                         return Single.just(loginResult)
                     })

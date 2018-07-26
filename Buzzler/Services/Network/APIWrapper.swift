@@ -21,7 +21,7 @@ public protocol BuzzlerAPI {
     func getPost(_ category: Int) -> Observable<[BuzzlerPost]>
     func getDetailPost(categoryId: Int, id: Int) -> Observable<[MultipleSectionModel]>
     func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<Bool>
-    func writeComment(postId: Int, parentId: String?, contents: String) -> Observable<Bool>
+    func writeComment(categoryId: Int, postId: Int, parentId: String?, contents: String) -> Observable<Bool>
 }
 
 
@@ -31,9 +31,25 @@ public class API: AwsAPI, BuzzlerAPI {
     
     // Buzzler API
     
+    public func likePost(categoryId: Int, postId: Int) -> Observable<Bool> {
+        return BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: postId))
+            .retry(3)
+            .filterSuccessfulStatusCodes()
+            .observeOn(MainScheduler.instance)
+            .flatMap({ res -> Single<Bool> in
+                do {
+                    print(res)
+                    return Single.just(true)
+                } catch {
+                    return Single.just(false)
+                }
+            })
+    }
+    
     public func deletePost(by postId: Int) -> Observable<Bool> {
         return BuzzlerProvider.request(Buzzler.deletePost(postId: postId))
             .retry(3)
+            .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
             .flatMap({ res -> Single<Bool> in
                 do {
@@ -48,6 +64,7 @@ public class API: AwsAPI, BuzzlerAPI {
     public func getPost(_ category: Int) -> Observable<[BuzzlerPost]> {
         return BuzzlerProvider.request(Buzzler.getPost(category: category))
             .retry(3)
+            .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
             .flatMap({ res -> Single<[BuzzlerPost]> in
                 do {
@@ -62,6 +79,7 @@ public class API: AwsAPI, BuzzlerAPI {
     public func getDetailPost(categoryId: Int, id: Int) -> Observable<[MultipleSectionModel]> {
         return BuzzlerProvider.request(Buzzler.getDetailPost(categoryId: categoryId, id: id))
             .retry(3)
+            .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
             .flatMap({ res -> Single<[MultipleSectionModel]> in
                 do {
@@ -69,21 +87,25 @@ public class API: AwsAPI, BuzzlerAPI {
                     // convert response to BuzzlerPost model
                     let defaultPost = BuzzlerPost(id: data.id, title: data.title, contents: data.contents,
                                                   imageUrls: data.imageUrls, likeCount: data.likeCount, createdAt: data.createdAt,
-                                                  authorId: data.authorId)
+                                                  author: data.author)
                     
-                    // join all comments with child
-                    let allChildComments = data.comments
-                        .map { item in
-                            return item.childComments
+                    // join comments with child
+                    let commentsData = data.comments
+                        .map { item -> [BuzzlerComment] in
+                            var commentsWithChild = [BuzzlerComment]()
+                            commentsWithChild.insertFirst(item)
+                            
+                            if item.childComments.count > 0 {
+                                commentsWithChild = commentsWithChild + item.childComments
+                            }
+                            return commentsWithChild
                         }
                         .flatMap{ $0 }
-                    let allComments = allChildComments + data.comments
 
                     // convert comments to CommentSection
-                    var comments = allComments
-                        .sorted(by: BuzzlerComment.customCompare) // sort as comment order with parentId
+                    var comments = commentsData
                         .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
-                            if let _ = comment.parentId {
+                            if data.id != comment.parentId {
                                 return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
                             } else {
                                 return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
@@ -104,6 +126,7 @@ public class API: AwsAPI, BuzzlerAPI {
     public func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<Bool> {
         return BuzzlerProvider.request(Buzzler.writePost(title: title, contents: contents,  imageUrls: imageUrls, categoryId: categoryId))
             .retry(3)
+            .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
             .filterSuccessfulStatusCodes()
             .mapJSON()
@@ -112,9 +135,10 @@ public class API: AwsAPI, BuzzlerAPI {
             })
     }
     
-    public func writeComment(postId: Int, parentId: String?, contents: String) -> Observable<Bool> {
-        return BuzzlerProvider.request(Buzzler.writeComment(postId: postId, parentId: parentId, contents: contents))
+    public func writeComment(categoryId: Int, postId: Int, parentId: String?, contents: String) -> Observable<Bool> {
+        return BuzzlerProvider.request(Buzzler.writeComment(categoryId: categoryId, postId: postId, parentId: parentId, contents: contents))
             .retry(3)
+            .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
             .filterSuccessfulStatusCodes()
             .mapJSON()
@@ -129,6 +153,7 @@ public class API: AwsAPI, BuzzlerAPI {
     public func uploadS3(_ categoryId: Int, fileName: String, encodedImage: String) -> Observable<String> {
         return AwsProvider.request(AWS.uploadS3(categoryId: categoryId, fileName: fileName, encodedImage: encodedImage))
             .retry(3)
+            .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
             .filterSuccessfulStatusCodes()
             .flatMap({ res -> Single<String> in

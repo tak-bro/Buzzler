@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirLTStd-Medium.otf">
+            <string>AvenirLTStd-Medium</string>
+        </array>
+        <array key="NotoSans-Regular.ttf">
+            <string>NotoSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WaitUnivViewController" customModule="Buzzler" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="z1k-lb-skO" id="w5a-vs-FDn"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="z1k-lb-skO">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yca-W3-Ca9">
+                    <rect key="frame" x="148.5" y="247.5" width="79" height="40"/>
+                    <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="40"/>
+                    <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIM-d5-Znu">
+                    <rect key="frame" x="117.5" y="55" width="140" height="23"/>
+                    <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="23"/>
+                    <state key="normal" title="Seoul Univ. " image="icon_lock">
+                        <color key="titleColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SG-1E-0af">
+                    <rect key="frame" x="117.5" y="308.5" width="140" height="50"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_battery" translatesAutoresizingMaskIntoConstraints="NO" id="csY-np-6tV">
+                            <rect key="frame" x="1.5" y="-0.5" width="136" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="136" id="GJE-Y3-prA"/>
+                                <constraint firstAttribute="height" constant="50" id="hzE-SB-Kg0"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13/50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tl-zJ-WQf">
+                            <rect key="frame" x="0.0" y="14" width="130" height="22"/>
+                            <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="16"/>
+                            <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jsa-NC-y1i">
+                            <rect key="frame" x="7" y="4" width="25" height="41"/>
+                            <color key="backgroundColor" red="0.71372549019999998" green="0.86274509799999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="FEd-6K-1KF"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="9tl-zJ-WQf" firstAttribute="centerY" secondItem="9SG-1E-0af" secondAttribute="centerY" id="4cr-mn-dJ5"/>
+                        <constraint firstItem="csY-np-6tV" firstAttribute="centerX" secondItem="9SG-1E-0af" secondAttribute="centerX" id="ArY-kX-Wp2"/>
+                        <constraint firstAttribute="bottom" secondItem="Jsa-NC-y1i" secondAttribute="bottom" constant="5" id="VmE-QM-Ck7"/>
+                        <constraint firstItem="9tl-zJ-WQf" firstAttribute="leading" secondItem="9SG-1E-0af" secondAttribute="leading" id="ZCz-2a-2xJ"/>
+                        <constraint firstItem="Jsa-NC-y1i" firstAttribute="leading" secondItem="9SG-1E-0af" secondAttribute="leading" constant="7" id="abE-8g-EfV"/>
+                        <constraint firstItem="Jsa-NC-y1i" firstAttribute="top" secondItem="9SG-1E-0af" secondAttribute="top" constant="4" id="hDK-mI-irg"/>
+                        <constraint firstAttribute="width" constant="140" id="hGr-AE-m10"/>
+                        <constraint firstAttribute="height" constant="50" id="hKS-a6-haa"/>
+                        <constraint firstAttribute="trailing" secondItem="9tl-zJ-WQf" secondAttribute="trailing" constant="10" id="k3t-DX-CTy"/>
+                        <constraint firstItem="csY-np-6tV" firstAttribute="centerY" secondItem="9SG-1E-0af" secondAttribute="centerY" id="wpF-tS-fsH"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40i-Qn-sr1">
+                    <rect key="frame" x="113.5" y="395" width="147" height="44"/>
+                    <string key="text">오픈 최소인원 달성까지
+앞으로 27명</string>
+                    <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="16"/>
+                    <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="wIM-d5-Znu" firstAttribute="centerY" secondItem="z1k-lb-skO" secondAttribute="centerY" multiplier="0.2" id="4IF-XT-5Ds"/>
+                <constraint firstItem="9SG-1E-0af" firstAttribute="centerY" secondItem="z1k-lb-skO" secondAttribute="centerY" id="4wp-j8-mNC"/>
+                <constraint firstItem="9SG-1E-0af" firstAttribute="centerX" secondItem="z1k-lb-skO" secondAttribute="centerX" id="KZl-KS-zmY"/>
+                <constraint firstItem="40i-Qn-sr1" firstAttribute="centerY" secondItem="z1k-lb-skO" secondAttribute="centerY" multiplier="1.25" id="VOP-bd-11T"/>
+                <constraint firstItem="yca-W3-Ca9" firstAttribute="centerX" secondItem="z1k-lb-skO" secondAttribute="centerX" id="X6x-uW-g0R"/>
+                <constraint firstItem="yca-W3-Ca9" firstAttribute="centerY" secondItem="z1k-lb-skO" secondAttribute="centerY" multiplier="0.8" id="kRd-qy-YyY"/>
+                <constraint firstItem="40i-Qn-sr1" firstAttribute="centerX" secondItem="z1k-lb-skO" secondAttribute="centerX" id="sev-xV-vyI"/>
+                <constraint firstItem="wIM-d5-Znu" firstAttribute="centerX" secondItem="z1k-lb-skO" secondAttribute="centerX" id="vWu-7K-nFb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="k4b-oB-NRp"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_lock" width="18" height="21"/>
+        <image name="img_battery" width="136" height="50"/>
+    </resources>
+</document>

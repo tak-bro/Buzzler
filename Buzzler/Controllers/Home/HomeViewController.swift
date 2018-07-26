@@ -87,24 +87,33 @@ extension HomeViewController: UITableViewDelegate {
                 let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                 imgCell.lbl_title.text = item.title
                 imgCell.lbl_content.text = item.contents
-                imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                imgCell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
                 imgCell.lbl_likeCount.text = String(item.likeCount)
-                imgCell.lbl_author.text = "익명"
+                imgCell.lbl_author.text = item.author.username
                 imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
                 if item.imageUrls.count == 1 {
                     imgCell.vw_remainLabelContainer.isHidden = true
                 } else {
                     imgCell.vw_remainLabelContainer.isHidden = false
                 }
+                // set image
+                let encodedURL = item.imageUrls[0].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                imgCell.img_items.kf.indicatorType = .activity
+                imgCell.img_items.kf.setImage(with: URL(string: encodedURL!), placeholder: nil)
+                
+                // hide action button
+                imgCell.btn_postAction.isHidden = true
+                
                 defaultCell = imgCell
             } else {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
-                print("item.createat", item.createdAt)
                 cell.lbl_title.text = item.title
                 cell.lbl_content.text = item.contents
-                cell.lbl_time.text = item.createdAt.toString()
+                cell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
                 cell.lbl_likeCount.text = String(item.likeCount)
-                cell.lbl_author.text = "익명"
+                cell.lbl_author.text = item.author.username
+                cell.btn_postAction.isHidden = true
+                
                 defaultCell = cell
             }
             return defaultCell
@@ -154,6 +163,7 @@ extension HomeViewController: UITableViewDelegate {
             // push to PostViewController
             let detailPostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
             detailPostVC.viewModel = detailPostViewModel
+            detailPostVC.selectedPostId = detailPostViewModel.selectedPostId
             self.navigationController?.pushViewController(detailPostVC, animated: true)           
         }).disposed(by: disposeBag)
     }
@@ -176,7 +186,7 @@ extension HomeViewController {
         // add first header label
         var firstHeaderLabel = HeaderLabel()
         firstHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
-        firstHeaderLabel.text = "Seoul Univ."
+        firstHeaderLabel.text = Environment().categoryTitle
         
         // add second header label
         var secondHeaderLabel = HeaderLabel()
@@ -226,7 +236,8 @@ extension HomeViewController {
         if (offset > 50) {
             self.navigationController?.navigationBar.barTintColor = UIColor.white
             addShadowToNav()
-            title = "Seoul Univ."
+            let environment = Environment()
+            title = environment.categoryTitle
         } else {
             self.navigationController?.navigationBar.barTintColor = Config.UI.themeColor
             deleteShadow()

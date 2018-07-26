@@ -13,7 +13,7 @@ import ObjectMapper
 public struct BuzzlerComment: Equatable, Mappable {
     
     var id: Int = 0
-    var authorId: Int = 0
+    var author: Author = Author()
     var postId: Int = 0
     var parentId: Int?
     var contents: String = ""
@@ -31,7 +31,7 @@ public struct BuzzlerComment: Equatable, Mappable {
     
     mutating public func mapping(map: Map) {
         id <- map["id"]
-        authorId <- map["authorId"]
+        author <- map["author"]
         postId <- map["postId"]
         parentId <- map["parentId"]
         contents <- map["contents"]
@@ -68,6 +68,10 @@ extension BuzzlerComment {
     
     func createdAtCompare(e2: BuzzlerComment) -> ComparisonResult {
         return createdAt.toString().compare(e2.createdAt.toString())
+    }
+    
+    func ascCreatedAtCompare(e2: BuzzlerComment) -> ComparisonResult {
+        return e2.createdAt.toString().compare(createdAt.toString())
     }
     
 }

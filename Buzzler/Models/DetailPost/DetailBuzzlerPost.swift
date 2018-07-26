@@ -18,7 +18,7 @@ public struct DetailBuzzlerPost: Equatable, Mappable {
     var imageUrls: [String] = []
     var likeCount: Int = 0
     var createdAt: Date = Date()
-    var authorId: Int = 0
+    var author: Author = Author()
     var comments: [BuzzlerComment] = []
     
     public static func == (lhs: DetailBuzzlerPost, rhs: DetailBuzzlerPost) -> Bool {
@@ -36,7 +36,7 @@ public struct DetailBuzzlerPost: Equatable, Mappable {
         imageUrls <- map["imageUrls"]
         likeCount <- map["likeCount"]
         createdAt <- map["createdAt"]
-        authorId <- map["authorId"]
+        author <- map["author"]
         comments <- map["comments"]
     }
     

@@ -10,11 +10,14 @@
 		3B0DC8F020F085D4001DE6DC /* AwsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */; };
 		3B0DC8F620F0AA8F001DE6DC /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */; };
 		3B0DC99920BBF76700A5D274 /* DetailBuzzlerPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */; };
+		3B142A9C2106C4A100CE7E7A /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B142A9B2106C4A100CE7E7A /* Author.swift */; };
 		3B1CBD0320AA9EB60018D156 /* SelectMajorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */; };
 		3B1CBD0520AAC8770018D156 /* SelectMajorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */; };
 		3B2A42B220AEADA300E37D72 /* ResetPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42B120AEADA300E37D72 /* ResetPasswordRouter.swift */; };
 		3B2A42B820B140C000E37D72 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42B720B140C000E37D72 /* MyPageViewController.swift */; };
 		3B2A42BB20B14D0100E37D72 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */; };
+		3B2E9C472107111B00132C74 /* WaitUnivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2E9C452107111B00132C74 /* WaitUnivViewController.swift */; };
+		3B2E9C482107111B00132C74 /* WaitUnivViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B2E9C462107111B00132C74 /* WaitUnivViewController.xib */; };
 		3B48A9BD20B2A30700E0BDA1 /* SelectUnivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */; };
 		3B48A9BF20B2A37100E0BDA1 /* SelectUnivViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */; };
 		3B48A9C420B2B27F00E0BDA1 /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A9C320B2B27F00E0BDA1 /* University.swift */; };
@@ -103,11 +106,14 @@
 		3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwsAPI.swift; sourceTree = "<group>"; };
 		3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuzzlerPost.swift; sourceTree = "<group>"; };
+		3B142A9B2106C4A100CE7E7A /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorViewController.swift; sourceTree = "<group>"; };
 		3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorViewModel.swift; sourceTree = "<group>"; };
 		3B2A42B120AEADA300E37D72 /* ResetPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordRouter.swift; sourceTree = "<group>"; };
 		3B2A42B720B140C000E37D72 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3B2E9C452107111B00132C74 /* WaitUnivViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitUnivViewController.swift; sourceTree = "<group>"; };
+		3B2E9C462107111B00132C74 /* WaitUnivViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitUnivViewController.xib; sourceTree = "<group>"; };
 		3B48A9BC20B2A30700E0BDA1 /* SelectUnivViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUnivViewController.swift; sourceTree = "<group>"; };
 		3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUnivViewModel.swift; sourceTree = "<group>"; };
 		3B48A9C320B2B27F00E0BDA1 /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
@@ -336,6 +342,8 @@
 				3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */,
 				3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */,
 				3BD6EE95210560A40094E318 /* ApprovalPopUpViewController.xib */,
+				3B2E9C452107111B00132C74 /* WaitUnivViewController.swift */,
+				3B2E9C462107111B00132C74 /* WaitUnivViewController.xib */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -508,6 +516,7 @@
 			children = (
 				AF9F0FD01DF1A6CD00FF8EC5 /* Brick.swift */,
 				84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */,
+				3B142A9B2106C4A100CE7E7A /* Author.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -746,6 +755,7 @@
 				844BC378208AF17800666486 /* AvenirLTStd-Book.otf in Resources */,
 				AF9F0FDA1DF1A9E900FF8EC5 /* HomeTableViewCell.xib in Resources */,
 				AFA7EC731DEEDEDC00138AEE /* Main.storyboard in Resources */,
+				3B2E9C482107111B00132C74 /* WaitUnivViewController.xib in Resources */,
 				844BC379208AF17800666486 /* AvenirLTStd-Medium.otf in Resources */,
 				84A05AB9209BEA8A009AD3EB /* NotoSans-Light.ttf in Resources */,
 				84C4DED52095A58100FD6BFD /* CommentTableViewCell.xib in Resources */,
@@ -791,7 +801,6 @@
 				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
 				"${BUILT_PRODUCTS_DIR}/NoticeBar/NoticeBar.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/Optik/Optik.framework",
 				"${BUILT_PRODUCTS_DIR}/PopoverSwift/PopoverSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PullToRefresher/PullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -801,6 +810,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
 				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -824,7 +834,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NoticeBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Optik.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopoverSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -834,6 +843,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SKPhotoBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -868,6 +878,7 @@
 				AFCB661E1DF844DB00916E1B /* HomeViewModel.swift in Sources */,
 				AFA7EC6E1DEEDEDC00138AEE /* AppDelegate.swift in Sources */,
 				AF9F0FD11DF1A6CD00FF8EC5 /* Brick.swift in Sources */,
+				3B142A9C2106C4A100CE7E7A /* Author.swift in Sources */,
 				84A1BFCA208C898D00D0ADC7 /* StretchHeaderOptions.swift in Sources */,
 				AFBBA5CD1E06F783003605D1 /* Response+ObjectMapper.swift in Sources */,
 				3B52E6C820AE94AA002B2BB6 /* SecondStepViewModel.swift in Sources */,
@@ -875,6 +886,7 @@
 				3B2A42BB20B14D0100E37D72 /* SettingsViewController.swift in Sources */,
 				84BA76F52086F80C0097FFD2 /* Decodable+Rx.swift in Sources */,
 				3B52E6C620AE9489002B2BB6 /* FirstStepViewModel.swift in Sources */,
+				3B2E9C472107111B00132C74 /* WaitUnivViewController.swift in Sources */,
 				3B48A9CE20B54FDF00E0BDA1 /* Environment.swift in Sources */,
 				3B0DC8F620F0AA8F001DE6DC /* ImageResponse.swift in Sources */,
 				844BC372208AF05500666486 /* StartSignUpViewController.swift in Sources */,

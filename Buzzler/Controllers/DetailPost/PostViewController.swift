@@ -15,16 +15,18 @@ import RxDataSources
 import SVProgressHUD
 import RxKeyboard
 import PopoverSwift
+import SKPhotoBrowser
 
 class PostViewController: UIViewController, ShowsAlert {
     
+    @IBOutlet weak var img_heartPopup: UIImageView!
     @IBOutlet weak var vw_writeComment: UIView!
     @IBOutlet weak var txt_vw_comment: UITextView!
     @IBOutlet weak var tbl_post: UITableView!
     @IBOutlet weak var commentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var commentBottom: NSLayoutConstraint!
     @IBOutlet weak var btn_writeComment: UIButton!
-
+    
     // to show parent comment info
     @IBOutlet weak var lbl_parentAuthor: UILabel!
     @IBOutlet weak var vw_parentComment: UIView!
@@ -39,6 +41,11 @@ class PostViewController: UIViewController, ShowsAlert {
     let dataSource = RxTableViewSectionedReloadDataSource<MultipleSectionModel>()
     
     var selectedPost = BuzzlerPost()
+    fileprivate let tapGesture = UITapGestureRecognizer()
+    var selectedPostId: Int?
+    
+    var originTitle: String?
+    var originContents: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,9 +154,20 @@ extension PostViewController: UITableViewDelegate {
                 }
             }).disposed(by: disposeBag)
         
+        viewModel.outputs.requestLikePost
+            .drive(onNext: { res in
+                if res == true {
+                    guard let likeImg = UIImage(named: "img_big_like") else { return }
+                    SVProgressHUD.show(likeImg, status: "Success")
+                } else {
+                    self.showAlert(message: "Server Error!")
+                }
+            }).disposed(by: disposeBag)
+        
         // set table
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let defaultCell: UITableViewCell
+            let viewModel = self.viewModel
             
             switch dataSource[indexPath] {
             case let .PostItem(item):
@@ -157,15 +175,25 @@ extension PostViewController: UITableViewDelegate {
                     let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                     imgCell.lbl_title.text = item.title
                     imgCell.lbl_content.text = item.contents
-                    imgCell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                    imgCell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
                     imgCell.lbl_likeCount.text = String(item.likeCount)
-                    imgCell.lbl_author.text = "익명"
+                    imgCell.lbl_author.text = item.author.username
                     imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
+                    
                     if item.imageUrls.count == 1 {
                         imgCell.vw_remainLabelContainer.isHidden = true
                     } else {
                         imgCell.vw_remainLabelContainer.isHidden = false
                     }
+                    
+                    // set origin info
+                    self.originTitle = item.title
+                    self.originContents = item.contents
+                    
+                    // set image
+                    let encodedURL = item.imageUrls[0].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    imgCell.img_items.kf.indicatorType = .activity
+                    imgCell.img_items.kf.setImage(with: URL(string: encodedURL!), placeholder: nil)
                     
                     // add post action for edit
                     imgCell.btn_postAction.rx.tap.asDriver()
@@ -178,14 +206,73 @@ extension PostViewController: UITableViewDelegate {
                         })
                         .disposed(by: imgCell.bag)
                     
+                    // like action
+                    imgCell.btn_like.rx.tap.asDriver()
+                        .drive(onNext: { _ in
+                            let environment = Environment()
+                            guard let categoryId = environment.categoryId, let postId = self.selectedPostId else { return }
+                            
+                            // set disabled like button
+                            imgCell.btn_like.isEnabled = false
+                            SVProgressHUD.show()
+                            
+                            BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: postId)) { result in
+                                // set enabled
+                                imgCell.btn_like.isEnabled = true
+                                SVProgressHUD.dismiss()
+                                
+                                switch result {
+                                case let .success(moyaResponse):
+                                    let statusCode = moyaResponse.statusCode // Int - 200, 401, 500, etc
+                                    if statusCode == 201 {
+                                        self.likeAnimation()
+                                    } else {
+                                        self.showAlert(message: "Already Liked before")
+                                    }
+                                    
+                                case .failure(_):
+                                    self.showAlert(message: "Server Error!")
+                                }
+                            }
+                        })
+                        .disposed(by: imgCell.bag)
+                    
+                    
+                    // add image viewer
+                    imgCell.vw_imgContainer.addGestureRecognizer(self.tapGesture)
+                    // create URL Array
+                    var skImages = [SKPhoto]()
+                    let photos = item.imageUrls
+                        .map { img -> SKPhoto in
+                            guard let encodedURL = img.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return SKPhoto.photoWithImageURL("") }
+                            let photo = SKPhoto.photoWithImageURL(encodedURL)
+                            photo.shouldCachePhotoURLImage = true
+                            return photo
+                    }
+                    skImages = photos
+
+                    self.tapGesture.rx.event
+                        .bind(onNext: { recognizer in
+                            // create PhotoBrowser Instance, and present.
+                            SKPhotoBrowserOptions.displayAction = false
+                            let browser = SKPhotoBrowser(photos: skImages)
+                            browser.initializePageIndex(0)
+                            self.present(browser, animated: true, completion: {})
+                        })
+                        .disposed(by: imgCell.bag)
+                    
                     defaultCell = imgCell
                 } else {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                     cell.lbl_title.text = item.title
                     cell.lbl_content.text = item.contents
-                    cell.lbl_time.text = item.createdAt.toString(format: "YYYY/MM/DD")
+                    cell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
                     cell.lbl_likeCount.text = String(item.likeCount)
-                    cell.lbl_author.text = "익명"
+                    cell.lbl_author.text = item.author.username
+                    
+                    // set origin info
+                    self.originTitle = item.title
+                    self.originContents = item.contents
                     
                     // add post action for edit
                     cell.btn_postAction.rx.tap.asDriver()
@@ -196,8 +283,40 @@ extension PostViewController: UITableViewDelegate {
                         })
                         .disposed(by: cell.bag)
                     
+                    // like post action
+                    cell.btn_like.rx.tap.asDriver()
+                        .drive(onNext: { _ in
+                            let environment = Environment()
+                            guard let categoryId = environment.categoryId, let postId = self.selectedPostId else { return }
+                            
+                            // set disabled like button
+                            cell.btn_like.isEnabled = false
+                            SVProgressHUD.show()
+                            
+                            BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: postId)) { result in
+                                // set enabled
+                                cell.btn_like.isEnabled = true
+                                SVProgressHUD.dismiss()
+                                
+                                switch result {
+                                case let .success(moyaResponse):
+                                    let statusCode = moyaResponse.statusCode
+                                    if statusCode == 201 {
+                                        self.likeAnimation()
+                                    } else {
+                                        self.showAlert(message: "Already Liked before")
+                                    }
+                                    
+                                case .failure(_):
+                                    self.showAlert(message: "Server Error!")
+                                }
+                            }
+                        })
+                        .disposed(by: cell.bag)
+                    
                     defaultCell = cell
                 }
+                
                 return defaultCell
             case let .CommentItem(item):
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
@@ -212,7 +331,7 @@ extension PostViewController: UITableViewDelegate {
                         // set parent comment Info
                         self.lbl_parentCommentId.text = item.id.toString
                         self.vw_parentComment.isHidden = false
-                        self.lbl_parentAuthor.text = item.authorId.toString
+                        self.lbl_parentAuthor.text = item.author.username
                     }).disposed(by: cell.bag)
                 
                 return cell
@@ -268,6 +387,7 @@ extension PostViewController: UITextViewDelegate {
     
     func setUI() {
         self.vw_parentComment.isHidden = true
+        self.img_heartPopup.alpha = 0.0
         resetNavBar()
     }
     
@@ -312,14 +432,43 @@ extension PostViewController: UITextViewDelegate {
     }
     
     func makePorverActions() -> [PopoverItem] {
-        let editAction = PopoverItem(title: "수정", image: UIImage(named: "brn_edit_post")) {
+        let editAction = PopoverItem(title: "수정", image: UIImage(named: "btn_edit_post")) {
+            debugPrint($0.title)
+            print(self.selectedPost.title)
+            
+            let writePostVC = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "WritePostViewController") as! WritePostViewController
+            
+            writePostVC.isUpdate = true
+            writePostVC.originContents = self.originContents
+            writePostVC.originTitle = self.originTitle
+            
+            self.present(writePostVC, animated: true, completion: nil)
+        }
+        
+        let deleteAction = PopoverItem(title: "삭제", image: UIImage(named: "btn_delete_post")) {
             debugPrint($0.title)
             print(self.selectedPost.title)
         }
-        let deleteAction = PopoverItem(title: "삭제", image: UIImage(named: "brn_delete_post")) {
-            debugPrint($0.title)
-            print(self.selectedPost.title)
-        }
+        
         return [editAction, deleteAction]
+    }
+    
+    func likeAnimation() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {() -> Void in
+            self.img_heartPopup.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.img_heartPopup.alpha = 1.0
+        }, completion: {(_ finished: Bool) -> Void in
+            UIView.animate(withDuration: 0.1, delay: 0, options: .allowUserInteraction, animations: {() -> Void in
+                self.img_heartPopup.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }, completion: {(_ finished: Bool) -> Void in
+                UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {() -> Void in
+                    self.img_heartPopup.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                    self.img_heartPopup.alpha = 0.0
+                }, completion: {(_ finished: Bool) -> Void in
+                    self.img_heartPopup.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                })
+            })
+        })
     }
 }

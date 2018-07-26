@@ -12,6 +12,7 @@ import RxSwift
 
 final class HomeTableViewCell: UITableViewCell, NibReusable {
 
+    @IBOutlet weak var btn_like: UIButton!
     @IBOutlet weak var btn_postAction: UIButton!
     @IBOutlet weak var lbl_content: UILabel!
     @IBOutlet weak var lbl_title: UILabel!

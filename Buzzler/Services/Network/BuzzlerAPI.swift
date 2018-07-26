@@ -27,15 +27,18 @@ public enum Buzzler {
     case signIn(email: String, password: String)
     case requestCodeForNewPassword(receiver: String)
     case newPassword(email: String, password: String)
-    case writeComment(postId: Int, parentId: String?, contents: String)
+    case writeComment(categoryId: Int, postId: Int, parentId: String?, contents: String)
     case createCategory(depth: Int, name: String, baseUrl: String?)
 
     // PUT
     case verifyCode(receiver: String, verificationCode: String)
     case verifyCodeForNewPassword(receiver: String, verificationCode: String)
-    
+
     // DELETE
     case deletePost(postId: Int)
+    
+    // POST
+    case likePost(categoryId: Int, postId: Int)
 }
 
 extension Buzzler: TargetType {
@@ -70,10 +73,12 @@ extension Buzzler: TargetType {
             return "/v1/accounts/newpassword/email-verification"
         case .newPassword:
             return "/v1/accounts/newpassword"
-        case .writeComment(let postId, _, _):
-            return "/v1/posts/\(postId)/comments"
+        case .writeComment(let categoryId, let postId, _, _):
+            return "/v1/categories/\(categoryId)/posts/\(postId)/comments"
         case .createCategory(_, _, _):
             return "/v1/categories"
+        case .likePost(let categoryId, let postId):
+            return "/v1/categories/\(categoryId)/posts/\(postId)/like"
 
         // PUT
         case .verifyCode:
@@ -104,8 +109,9 @@ extension Buzzler: TargetType {
              .signIn(_, _),
              .requestCodeForNewPassword(_),
              .newPassword(_, _),
-             .writeComment(_, _, _),
-             .createCategory(_, _, _):
+             .writeComment(_, _, _, _),
+             .createCategory(_, _, _),
+             .likePost(_, _):
             return .post
             
         // PUT
@@ -145,13 +151,15 @@ extension Buzzler: TargetType {
             return ["email": email, "password": password]
         case .newPassword(let email, let password):
             return ["email": email, "newPassword": password]
-        case .writeComment(_, let parentId, let contents):
-            guard let parentId = parentId else { return ["contents": contents] }
-            return ["parentId": parentId, "contents": contents]
+        case .writeComment(_, _, let parentId, let contents):
+            guard let parentId = parentId else { return ["content": contents] }
+            return ["parentId": parentId, "content": contents]
         case .createCategory(let depth, let name, let baseUrl):
             guard let baseUrl = baseUrl else { return ["depth": depth, "name": name] }
             return ["depth": depth, "name": name, "baseUrl": baseUrl]
-
+        case .likePost(_, _):
+            return nil
+            
         // PUT
         case .verifyCode(let receiver, let verificationCode),
              .verifyCodeForNewPassword(let receiver, let verificationCode):
@@ -191,9 +199,6 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newParameterEncoding: URLEncoding.default)
         
-    case .getDetailPost:
-        return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
-        
     case .getCategoriesByUser,
          .writeComment,
          .writePost,
@@ -202,7 +207,9 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
             .adding(newHTTPHeaderFields: ["Authorization": "\(environment.token!)"])
             .adding(newParameterEncoding: JSONEncoding.default)
         
-    case .deletePost:
+    case .getDetailPost,
+         .deletePost,
+         .likePost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newHTTPHeaderFields: ["Authorization": "\(environment.token!)"])
         

@@ -75,10 +75,11 @@ class SideViewController: UIViewController, UITableViewDelegate {
             }
             .subscribe(onNext: { item in
                 switch item {
-                case .category(id: let id, title: _):
+                case .category(id: let id, title: let title):
                     // save current categoryId
                     var environment = Environment()
                     environment.categoryId = id
+                    environment.categoryTitle = title
                     
                     self.router.category = id
                     self.router.perform(.home, from: self)

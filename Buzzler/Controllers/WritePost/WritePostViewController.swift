@@ -15,7 +15,7 @@ import SVProgressHUD
 import Photos
 import DKImagePickerController
 import Toaster
-import Optik
+import SKPhotoBrowser
 
 class WritePostViewController: UIViewController {
 
@@ -43,20 +43,31 @@ class WritePostViewController: UIViewController {
     // for image viewer
     fileprivate let tapGesture = UITapGestureRecognizer()
     fileprivate var imageList = [UIImage]()
-    fileprivate var currentLocalImageIndex = 0 {
-        didSet {
-            self.img_upload.image = imageList[currentLocalImageIndex]
-        }
-    }
+
+    // MARK: - is Update
+    var isUpdate: Bool = false
+    var originTitle: String?
+    var originContents: String?
 
     // MARK: - Init
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindToRx()
         setUI()
         setToolbar()
         setGetureToView()
+        
+        if isUpdate {
+            self.txt_title.text = self.originTitle
+            self.txt_contents.text = self.originContents
+            
+            self.viewModel.inputs.title.on(.next(self.originTitle))
+            self.viewModel.inputs.contents.on(.next(self.originContents))
+            
+            if self.txt_contents.text.count > 0 {
+                placeholderLabel.isHidden = true
+            }
+        }
     }
     
     func addImage() {
@@ -127,7 +138,7 @@ extension WritePostViewController {
                 print("posting result", posting)
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     if posting == true {
-                        Toast(text: "포스트 등록이 완료되었습니다.").show()
+                        Toast(text: "포스트 등록이 완료되었습니다.", duration: Delay.long).show()
                     } else {
                         Toast(text: "Posting Error!!").show()
                     }
@@ -183,11 +194,14 @@ extension WritePostViewController {
         tapGesture.rx
             .event
             .bind(onNext: { recognizer in
-                let imageViewer = Optik.imageViewer(withImages: self.imageList,
-                                                    initialImageDisplayIndex: self.currentLocalImageIndex,
-                                                    delegate: self)
-                                                  //  dismissButtonImage: UIImage(named: "btn_viewer_dismiss"))
-                self.present(imageViewer, animated: true, completion: nil)
+                let photos = self.imageList.map { image in
+                    return SKPhoto.photoWithImage(image)
+                }
+
+                SKPhotoBrowserOptions.displayAction = false
+                let browser = SKPhotoBrowser(photos: photos)
+                browser.initializePageIndex(0)
+                self.present(browser, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }
@@ -259,23 +273,9 @@ extension WritePostViewController {
                         self.imageList.append(image!)
                     })
                 }
-            // reset index
-            self.currentLocalImageIndex = 0
         } else {
             self.imageList.removeAll()
             self.vw_imgContainer.isHidden = true
         }
     }
-}
-
-extension WritePostViewController: ImageViewerDelegate {
-
-    func transitionImageView(for index: Int) -> UIImageView {
-        return self.img_upload
-    }
-    
-    func imageViewerDidDisplayImage(at index: Int) {
-        currentLocalImageIndex = index
-    }
-    
 }

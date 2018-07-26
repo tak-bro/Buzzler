@@ -18,11 +18,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeImageTableViewCell" customModule="Buzzler" customModuleProvider="target">
-            <connections>
-                <outlet property="btn_postAction" destination="Jxh-R1-DuZ" id="qei-n4-EzL"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeImageTableViewCell" customModule="Buzzler" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="319" id="KGk-i7-Jjw" customClass="HomeImageTableViewCell" customModule="Buzzler" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="473" height="319"/>
@@ -77,7 +73,7 @@
                                         <color key="textColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PB2-mb-Uj4">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PB2-mb-Uj4">
                                         <rect key="frame" x="15" y="6.5" width="14" height="22"/>
                                         <state key="normal" image="icon_like"/>
                                     </button>
@@ -186,6 +182,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btn_like" destination="PB2-mb-Uj4" id="5ZT-dX-npF"/>
+                <outlet property="btn_postAction" destination="Jxh-R1-DuZ" id="c6t-gV-qpx"/>
+                <outlet property="img_items" destination="9ec-LI-iVX" id="S0e-8X-29k"/>
                 <outlet property="lbl_author" destination="v2M-ES-hTS" id="JTY-yQ-bl9"/>
                 <outlet property="lbl_commentCount" destination="yRf-P1-RXr" id="V7X-rH-8un"/>
                 <outlet property="lbl_content" destination="Q74-DK-Nhn" id="lUi-ty-xUe"/>
@@ -195,6 +194,7 @@
                 <outlet property="lbl_time" destination="reZ-hO-dNc" id="FVE-VL-Dfb"/>
                 <outlet property="lbl_title" destination="UaF-Yh-QWZ" id="RYr-Xe-SVV"/>
                 <outlet property="vw_container" destination="l8d-3u-n4y" id="mVp-eo-080"/>
+                <outlet property="vw_imgContainer" destination="qyo-kj-xzm" id="Zh4-58-aaz"/>
                 <outlet property="vw_remainLabelContainer" destination="1hH-Nb-2Mg" id="ho0-GJ-gzy"/>
             </connections>
             <point key="canvasLocation" x="37.5" y="480.5"/>
