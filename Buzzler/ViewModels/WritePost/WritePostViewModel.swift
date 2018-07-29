@@ -52,7 +52,7 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
     // public var imageUrls: PublishSubject<[String]?>
     public var posting: Driver<Bool>
     public var isLoading: Driver<Bool>
-    
+
     public var inputs: WritePostViewModelInputs { return self }
     public var outputs: WritePostViewModelOutputs { return self }
     

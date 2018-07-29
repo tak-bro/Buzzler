@@ -16,6 +16,7 @@ import Photos
 import DKImagePickerController
 import Toaster
 import SKPhotoBrowser
+import CWStatusBarNotification
 
 class WritePostViewController: UIViewController {
 
@@ -32,7 +33,9 @@ class WritePostViewController: UIViewController {
     @IBOutlet weak var btn_dismiss: UIButton!
     @IBOutlet weak var txt_title: UITextField!
     @IBOutlet weak var txt_contents: UITextView!
+    @IBOutlet weak var txt_isAnonymous: UITextField!
     
+    fileprivate let selectAnonymous = ["소속학교 비노출", "소속학교 노출"]
     fileprivate let disposeBag = DisposeBag()
     let viewModel = WritePostViewModel()
     var placeholderLabel: UILabel!
@@ -48,6 +51,8 @@ class WritePostViewController: UIViewController {
     var isUpdate: Bool = false
     var originTitle: String?
     var originContents: String?
+    
+    let notification = CWStatusBarNotification()
 
     // MARK: - Init
     override func viewDidLoad() {
@@ -56,6 +61,7 @@ class WritePostViewController: UIViewController {
         setUI()
         setToolbar()
         setGetureToView()
+        setPicker()
         
         if isUpdate {
             self.txt_title.text = self.originTitle
@@ -84,22 +90,28 @@ class WritePostViewController: UIViewController {
         addImage()
     }
     @IBAction func pressPosting(_ sender: UIButton) {
+        guard let titleLength = self.txt_title.text?.length else { return }
+        
         // force set value for ViewModel
-        if (self.varAssets.value?.count == 0) {
+        if self.varAssets.value?.count == 0 {
             self.varAssets.value = [DKAsset]()
         }
-        self.dismiss(animated: true, completion: nil)
+        
+        if titleLength > 0 && self.txt_contents.text.length > 0 {
+            self.dismiss(animated: true, completion: { [weak self] in
+                // emit post taps event after dismissed
+                self?.viewModel.inputs.postTaps.on(.next())
+                }
+            )
+        }
     }
+
 }
 
 extension WritePostViewController {
     
     func bindToRx() {
-        
-        btn_post.rx.tap
-            .bind(to: self.viewModel.inputs.postTaps)
-            .disposed(by: disposeBag)
-        
+
         txt_title.rx.text.orEmpty
             .bind(to: self.viewModel.inputs.title)
             .disposed(by: disposeBag)
@@ -138,7 +150,7 @@ extension WritePostViewController {
                 print("posting result", posting)
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     if posting == true {
-                        Toast(text: "포스트 등록이 완료되었습니다.", duration: Delay.long).show()
+                        self.notification.dismiss()
                     } else {
                         Toast(text: "Posting Error!!").show()
                     }
@@ -149,10 +161,11 @@ extension WritePostViewController {
             .drive(onNext: { isLoading in
                 switch isLoading {
                 case true:
-                    //SVProgressHUD.show()
+                    self.notification.display(withMessage: "Posting...", completion: {
+                        Toast(text: "포스트 등록이 완료되었습니다.", duration: Delay.long).show()
+                    })
                     break
                 case false:
-                    //SVProgressHUD.dismiss()
                     break
                 }
             }).disposed(by: disposeBag)
@@ -168,6 +181,10 @@ extension WritePostViewController {
         // set imageView
         self.imgVwConstraint.constant = 0
         self.vw_imgContainer.isHidden = true
+        
+        // set notifiaction
+        self.notification.notificationLabelBackgroundColor = Config.UI.titleColor
+        self.notification.notificationLabelTextColor = UIColor.white
     }
     
     func setToolbar() {
@@ -277,5 +294,30 @@ extension WritePostViewController {
             self.imageList.removeAll()
             self.vw_imgContainer.isHidden = true
         }
+    }
+}
+
+extension WritePostViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func setPicker() {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        txt_isAnonymous.inputView = pickerView
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.selectAnonymous.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.selectAnonymous[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        txt_isAnonymous.text = selectAnonymous[row]
     }
 }

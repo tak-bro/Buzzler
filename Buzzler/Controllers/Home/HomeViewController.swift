@@ -27,6 +27,7 @@ final class HomeViewController: UIViewController {
     
     var refreshControl : UIRefreshControl?
     var category: Int = 1
+    var isAddedShadow = false
 
     // MARK: - Life Cycle
     
@@ -40,6 +41,19 @@ final class HomeViewController: UIViewController {
         configBinding()
         setupHeaderView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // set title and Nav bar
+        if !self.isAddedShadow {
+            deleteShadow()
+            title = " "
+        } else {
+            let environment = Environment()
+            self.navigationItem.title = environment.categoryTitle
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDelegate {
@@ -49,7 +63,6 @@ extension HomeViewController: UITableViewDelegate {
     fileprivate func configureTableView() {
         
         // set tableView UI
-        title = " "
         tableView.backgroundColor = Config.UI.themeColor
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
@@ -97,7 +110,7 @@ extension HomeViewController: UITableViewDelegate {
                     imgCell.vw_remainLabelContainer.isHidden = false
                 }
                 // set image
-                let encodedURL = item.imageUrls[0].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                let encodedURL = item.imageUrls.sorted()[0].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 imgCell.img_items.kf.indicatorType = .activity
                 imgCell.img_items.kf.setImage(with: URL(string: encodedURL!), placeholder: nil)
                 
@@ -234,18 +247,19 @@ extension HomeViewController {
         // NavigationHeader alpha update
         let offset: CGFloat = scrollView.contentOffset.y
         if (offset > 50) {
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
             addShadowToNav()
+            self.isAddedShadow = true
             let environment = Environment()
             title = environment.categoryTitle
         } else {
-            self.navigationController?.navigationBar.barTintColor = Config.UI.themeColor
             deleteShadow()
+            self.isAddedShadow = false
             title = " "
         }
     }
     
     func addShadowToNav() {
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         self.navigationController?.navigationBar.layer.shadowRadius = 1.0
@@ -254,6 +268,7 @@ extension HomeViewController {
     }
     
     func deleteShadow() {
+        self.navigationController?.navigationBar.barTintColor = Config.UI.themeColor
         self.navigationController?.navigationBar.layer.shadowColor = UIColor.clear.cgColor
         self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         self.navigationController?.navigationBar.layer.shadowRadius = 0.0

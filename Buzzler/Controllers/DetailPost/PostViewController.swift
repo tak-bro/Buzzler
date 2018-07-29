@@ -191,7 +191,7 @@ extension PostViewController: UITableViewDelegate {
                     self.originContents = item.contents
                     
                     // set image
-                    let encodedURL = item.imageUrls[0].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    let encodedURL = item.imageUrls.sorted()[0].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                     imgCell.img_items.kf.indicatorType = .activity
                     imgCell.img_items.kf.setImage(with: URL(string: encodedURL!), placeholder: nil)
                     
@@ -430,6 +430,9 @@ extension PostViewController: UITextViewDelegate {
         self.lbl_parentCommentId.text = ""
         self.lbl_parentAuthor.text = ""
     }
+}
+
+extension PostViewController {
     
     func makePorverActions() -> [PopoverItem] {
         let editAction = PopoverItem(title: "수정", image: UIImage(named: "btn_edit_post")) {

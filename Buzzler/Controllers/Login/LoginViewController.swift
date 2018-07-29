@@ -29,15 +29,15 @@ class LoginViewController: UIViewController, ShowsAlert {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // add subview for auto login
+        addAppLogoView()
+        
+        // main logic
         bindToRx()
         setAutoLogin()
         setUI()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
+
      func bindToRx() {
         
         btn_login.rx.tap
@@ -73,7 +73,6 @@ class LoginViewController: UIViewController, ShowsAlert {
         
         self.viewModel.outputs.signedIn
             .drive(onNext: { signedIn in
-                print("sig", signedIn)
                 if signedIn == true {
                     GlobalUIManager.loadHomeVC()
                 } else {
@@ -82,6 +81,7 @@ class LoginViewController: UIViewController, ShowsAlert {
                     self.environment.saveEmail = false
                     self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
                     self.btn_autoLogin.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
+                    self.removeAppLogoView()
                 }
             }).disposed(by: disposeBag)
         
@@ -182,7 +182,11 @@ extension LoginViewController {
                 self.viewModel.inputs.password.on(.next(environment.password))
                 // event publish
                 self.viewModel.inputs.loginTaps.on(.next())
+            } else {
+                removeAppLogoView()
             }
+        } else {
+            removeAppLogoView()
         }
         
         if let saveEmail = environment.saveEmail {
@@ -194,5 +198,16 @@ extension LoginViewController {
                 self.viewModel.inputs.email.on(.next(environment.receiver))
             }
         }
+    }
+    
+    func addAppLogoView() {
+        let appLogoView = AppLogoView.instanceFromNib()
+        appLogoView.frame = self.view.frame
+        appLogoView.tag = 100
+        self.view.addSubview(appLogoView)
+    }
+    
+    func removeAppLogoView() {
+        self.view.viewWithTag(100)?.removeFromSuperview()
     }
 }
