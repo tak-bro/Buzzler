@@ -16,7 +16,7 @@ import Photos
 import DKImagePickerController
 import Toaster
 import SKPhotoBrowser
-import Whisper
+import CWStatusBarNotification
 
 class WritePostViewController: UIViewController {
 
@@ -51,6 +51,8 @@ class WritePostViewController: UIViewController {
     var isUpdate: Bool = false
     var originTitle: String?
     var originContents: String?
+    
+    let notification = CWStatusBarNotification()
 
     // MARK: - Init
     override func viewDidLoad() {
@@ -148,37 +150,22 @@ extension WritePostViewController {
                 print("posting result", posting)
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     if posting == true {
-                        Toast(text: "포스트 등록이 완료되었습니다.", duration: Delay.long).show()
+                        self.notification.dismiss()
                     } else {
                         Toast(text: "Posting Error!!").show()
                     }
                 })
             }).disposed(by: disposeBag)
         
-        // S3로 업로드시 나오는 statusbar notification
-        self.viewModel.isImageUploading
-            .drive(onNext: { isImageUploading in
-                switch isImageUploading {
-                case true:
-                    let murmur = Murmur(title: "Uploading images...", backgroundColor: Config.UI.titleColor, titleColor: UIColor.white, font: UIFont.systemFont(ofSize: 12), action: nil)
-                    Whisper.show(whistle: murmur, action: .present)
-                    break
-                case false:
-                    hide(whistleAfter: 0.5)
-                    break
-                }
-            }).disposed(by: disposeBag)
-        
         self.viewModel.isLoading
             .drive(onNext: { isLoading in
                 switch isLoading {
                 case true:
-                    // SVProgressHUD.show()
-                    let murmur = Murmur(title: "Posting...", backgroundColor: Config.UI.titleColor, titleColor: UIColor.white, font: UIFont.systemFont(ofSize: 12), action: nil)
-                    Whisper.show(whistle: murmur, action: .present)
+                    self.notification.display(withMessage: "Posting...", completion: {
+                        Toast(text: "포스트 등록이 완료되었습니다.", duration: Delay.long).show()
+                    })
                     break
                 case false:
-                    hide(whistleAfter: 0.3)
                     break
                 }
             }).disposed(by: disposeBag)
@@ -194,6 +181,10 @@ extension WritePostViewController {
         // set imageView
         self.imgVwConstraint.constant = 0
         self.vw_imgContainer.isHidden = true
+        
+        // set notifiaction
+        self.notification.notificationLabelBackgroundColor = Config.UI.titleColor
+        self.notification.notificationLabelTextColor = UIColor.white
     }
     
     func setToolbar() {

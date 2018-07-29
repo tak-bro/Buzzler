@@ -31,7 +31,6 @@ public protocol WritePostViewModelOutputs {
     var enablePost: Driver<Bool>{ get }
     var posting: Driver<Bool> { get }
     var isLoading: Driver<Bool> { get }
-    var isImageUploading: Driver<Bool> { get }
 }
 
 public protocol WritePostViewModelType {
@@ -53,8 +52,7 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
     // public var imageUrls: PublishSubject<[String]?>
     public var posting: Driver<Bool>
     public var isLoading: Driver<Bool>
-    public var isImageUploading: Driver<Bool>
-    
+
     public var inputs: WritePostViewModelInputs { return self }
     public var outputs: WritePostViewModelOutputs { return self }
     
@@ -93,9 +91,6 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
         let isLoading = ActivityIndicator()
         self.isLoading = isLoading.asDriver()
         
-        let isImageUploading = ActivityIndicator()
-        self.isImageUploading = isImageUploading.asDriver()
-        
         let titleAndContentsAndImage = Driver.combineLatest(self.title.asDriver(onErrorJustReturn: nil),
                                                             self.contents.asDriver(onErrorJustReturn: nil),
                                                             self.encodedImages) { ($0,$1,$2)  }
@@ -115,7 +110,7 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
                     let uploadRequest = encoded.map { image in
                         return API.sharedAPI
                             .uploadS3(categoryId!, fileName: image.fileName, encodedImage: image.encodedImgData)
-                            .trackActivity(isImageUploading)
+                            .trackActivity(isLoading)
                     }
                     // check only one data in encoded to create array
                     var uploadReqArr = [Observable<String>]()

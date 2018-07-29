@@ -37,11 +37,7 @@ class LoginViewController: UIViewController, ShowsAlert {
         setAutoLogin()
         setUI()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
+
      func bindToRx() {
         
         btn_login.rx.tap
@@ -77,7 +73,6 @@ class LoginViewController: UIViewController, ShowsAlert {
         
         self.viewModel.outputs.signedIn
             .drive(onNext: { signedIn in
-                print("sig", signedIn)
                 if signedIn == true {
                     GlobalUIManager.loadHomeVC()
                 } else {
@@ -86,6 +81,7 @@ class LoginViewController: UIViewController, ShowsAlert {
                     self.environment.saveEmail = false
                     self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
                     self.btn_autoLogin.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
+                    self.removeAppLogoView()
                 }
             }).disposed(by: disposeBag)
         

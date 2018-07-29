@@ -1829,16 +1829,6 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4S1-2P-044">
-                                <rect key="frame" x="20" y="617" width="79" height="20"/>
-                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
-                                <state key="normal" title="Logout  " image="btn_logout">
-                                    <color key="titleColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="pressLogout:" destination="EFl-Ds-3uT" eventType="touchUpInside" id="jaQ-nq-Aiq"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vOV-tv-ZJ8">
                                 <rect key="frame" x="0.0" y="25" width="375" height="150"/>
                                 <subviews>
@@ -1849,8 +1839,8 @@ Cg
                                             <action selector="pressDismiss:" destination="EFl-Ds-3uT" eventType="touchUpInside" id="Qum-H9-kSF"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Judy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVq-ea-Rab">
-                                        <rect key="frame" x="20" y="40" width="39" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVq-ea-Rab">
+                                        <rect key="frame" x="20" y="40" width="27.5" height="18"/>
                                         <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="18"/>
                                         <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1878,43 +1868,42 @@ Cg
                                     <constraint firstItem="Q8r-oy-EpB" firstAttribute="leading" secondItem="GQu-df-hXH" secondAttribute="trailing" constant="8" id="1kU-Ht-0lS"/>
                                     <constraint firstItem="Q8r-oy-EpB" firstAttribute="centerY" secondItem="GQu-df-hXH" secondAttribute="centerY" id="Csl-VE-y1Z"/>
                                     <constraint firstItem="dS5-jb-RtG" firstAttribute="top" secondItem="kVq-ea-Rab" secondAttribute="bottom" constant="10" id="EDc-Wl-xJO"/>
+                                    <constraint firstAttribute="height" constant="150" id="WIe-Iz-tZc"/>
                                     <constraint firstItem="GQu-df-hXH" firstAttribute="leading" secondItem="vOV-tv-ZJ8" secondAttribute="leading" constant="20" id="Y6N-Tm-CCN"/>
                                     <constraint firstAttribute="trailing" secondItem="PaY-lX-M8L" secondAttribute="trailing" constant="15" id="ZDJ-LD-OH4"/>
                                     <constraint firstItem="dS5-jb-RtG" firstAttribute="leading" secondItem="vOV-tv-ZJ8" secondAttribute="leading" constant="20" id="a3a-mK-7wq"/>
                                     <constraint firstItem="kVq-ea-Rab" firstAttribute="top" secondItem="vOV-tv-ZJ8" secondAttribute="top" constant="40" id="grN-w4-mlP"/>
                                     <constraint firstItem="GQu-df-hXH" firstAttribute="top" secondItem="dS5-jb-RtG" secondAttribute="bottom" constant="14" id="lXg-Tb-t2D"/>
                                     <constraint firstItem="kVq-ea-Rab" firstAttribute="leading" secondItem="vOV-tv-ZJ8" secondAttribute="leading" constant="20" id="ue8-Jf-J73"/>
-                                    <constraint firstAttribute="height" constant="150" id="x99-g4-a89"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xpq-ig-XuA">
-                                <rect key="frame" x="0.0" y="172" width="375" height="415"/>
+                                <rect key="frame" x="0.0" y="172" width="375" height="495"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="g45-cX-Zx6">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g45-cX-Zx6" id="oR6-UN-1oA">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4S1-2P-044">
+                                <rect key="frame" x="20" y="617" width="79" height="20"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Book" family="Avenir LT Std" pointSize="14"/>
+                                <state key="normal" title="Logout  " image="btn_logout">
+                                    <color key="titleColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressLogout:" destination="EFl-Ds-3uT" eventType="touchUpInside" id="jaQ-nq-Aiq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="vOV-tv-ZJ8" firstAttribute="leading" secondItem="yNC-UI-8GG" secondAttribute="leading" id="034-sJ-tuE"/>
-                            <constraint firstItem="xpq-ig-XuA" firstAttribute="top" secondItem="jDH-Pb-7Ad" secondAttribute="bottom" constant="152" id="4vj-fP-t6m"/>
-                            <constraint firstAttribute="trailing" secondItem="vOV-tv-ZJ8" secondAttribute="trailing" id="Dq0-KC-d2S"/>
-                            <constraint firstItem="xpq-ig-XuA" firstAttribute="leading" secondItem="vOV-tv-ZJ8" secondAttribute="leading" id="Fjb-ff-3K5"/>
+                            <constraint firstItem="vOV-tv-ZJ8" firstAttribute="top" secondItem="jDH-Pb-7Ad" secondAttribute="bottom" constant="5" id="683-ag-M0n"/>
+                            <constraint firstItem="vOV-tv-ZJ8" firstAttribute="leading" secondItem="yNC-UI-8GG" secondAttribute="leading" id="9C6-P8-4Ka"/>
+                            <constraint firstAttribute="trailing" secondItem="xpq-ig-XuA" secondAttribute="trailing" id="UDo-dg-pSL"/>
                             <constraint firstItem="yDa-ut-Knm" firstAttribute="top" secondItem="4S1-2P-044" secondAttribute="bottom" constant="30" id="VLs-I6-Lg7"/>
                             <constraint firstItem="4S1-2P-044" firstAttribute="leading" secondItem="yNC-UI-8GG" secondAttribute="leading" constant="20" id="XUU-xa-5gZ"/>
-                            <constraint firstItem="vOV-tv-ZJ8" firstAttribute="leading" secondItem="yNC-UI-8GG" secondAttribute="leading" id="fGU-v0-swv"/>
-                            <constraint firstItem="vOV-tv-ZJ8" firstAttribute="top" secondItem="jDH-Pb-7Ad" secondAttribute="bottom" constant="5" id="hUP-yM-axO"/>
-                            <constraint firstItem="4S1-2P-044" firstAttribute="top" secondItem="xpq-ig-XuA" secondAttribute="bottom" constant="30" id="lmc-hg-5b3"/>
-                            <constraint firstAttribute="trailing" secondItem="vOV-tv-ZJ8" secondAttribute="trailing" id="wqO-fY-n9v"/>
-                            <constraint firstItem="xpq-ig-XuA" firstAttribute="trailing" secondItem="vOV-tv-ZJ8" secondAttribute="trailing" id="xry-Wh-6XC"/>
+                            <constraint firstAttribute="trailing" secondItem="vOV-tv-ZJ8" secondAttribute="trailing" id="aLT-zK-sfV"/>
+                            <constraint firstItem="yDa-ut-Knm" firstAttribute="top" secondItem="xpq-ig-XuA" secondAttribute="bottom" id="dGD-Fx-iFH"/>
+                            <constraint firstItem="xpq-ig-XuA" firstAttribute="top" secondItem="vOV-tv-ZJ8" secondAttribute="bottom" constant="-3" id="ot3-GS-sdG"/>
+                            <constraint firstItem="vOV-tv-ZJ8" firstAttribute="top" secondItem="jDH-Pb-7Ad" secondAttribute="bottom" constant="5" id="tpR-Yd-qTx"/>
+                            <constraint firstItem="xpq-ig-XuA" firstAttribute="leading" secondItem="yNC-UI-8GG" secondAttribute="leading" id="ycG-L2-1Uz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2AJ-Ie-0wK"/>
@@ -1925,7 +1914,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tB8-7x-ANm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1223" y="876"/>
+            <point key="canvasLocation" x="-1223.2" y="875.71214392803608"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="F3a-SF-K25">
