@@ -32,7 +32,7 @@ def shared_pods
     pod 'Toaster'
     pod 'PopoverSwift', '2.0.2'
     pod 'SKPhotoBrowser', '4.0.0'
-    pod 'CWStatusBarNotification'
+    pod 'SwiftMessages'
 end
 
 target :'Buzzler' do

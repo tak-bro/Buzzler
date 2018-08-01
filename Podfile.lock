@@ -4,7 +4,6 @@ PODS:
     - RxSwift (~> 3.4)
   - Alamofire (4.5.1)
   - AsyncTimer (2.2.0)
-  - CWStatusBarNotification (2.3.5)
   - Differentiator (2.0.2)
   - DKImagePickerController (3.6.1):
     - DKImagePickerController/Camera (= 3.6.1)
@@ -50,6 +49,7 @@ PODS:
   - SKPhotoBrowser (4.0.0)
   - SnapKit (3.0.2)
   - SVProgressHUD (2.2.5)
+  - SwiftMessages (4.1.2)
   - SwiftWebVC (0.4.1)
   - SwiftyAttributes (4.1.0)
   - SwiftyBeaver (1.4.1)
@@ -61,7 +61,6 @@ DEPENDENCIES:
   - Action (= 3.2.0)
   - Alamofire (= 4.5.1)
   - AsyncTimer (~> 2.2)
-  - CWStatusBarNotification
   - DKImagePickerController (= 3.6.1)
   - EZSwiftExtensions (= 1.11)
   - Kingfisher (~> 3.10.0)
@@ -82,6 +81,7 @@ DEPENDENCIES:
   - SKPhotoBrowser (= 4.0.0)
   - SnapKit (~> 3.0.2)
   - SVProgressHUD
+  - SwiftMessages
   - SwiftWebVC (= 0.4.1)
   - SwiftyAttributes
   - SwiftyBeaver (= 1.4.1)
@@ -94,7 +94,6 @@ SPEC REPOS:
     - Action
     - Alamofire
     - AsyncTimer
-    - CWStatusBarNotification
     - Differentiator
     - DKImagePickerController
     - EZSwiftExtensions
@@ -116,6 +115,7 @@ SPEC REPOS:
     - SKPhotoBrowser
     - SnapKit
     - SVProgressHUD
+    - SwiftMessages
     - SwiftWebVC
     - SwiftyAttributes
     - SwiftyBeaver
@@ -127,7 +127,6 @@ SPEC CHECKSUMS:
   Action: 991c9e175e04675028724868768aa08f22c85476
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AsyncTimer: d8512868a7f4de79f58b6962d590f04b8dab5f7a
-  CWStatusBarNotification: 3d2738b25c3207f60cc50201388d3c96182545ff
   Differentiator: caa9b3957981a2ac8e6b2eac8a676af461caa604
   DKImagePickerController: 4f8072aed44119a33955c9583273ea7c8739c0f4
   EZSwiftExtensions: 84000042202d9fd574f626cda3064143f27fa767
@@ -149,6 +148,7 @@ SPEC CHECKSUMS:
   SKPhotoBrowser: bc33eca22f4abd6b99d8d260509ca30c01752a87
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftMessages: d81f48c1f8b6bc1dbebdfffe11226f0344f937ca
   SwiftWebVC: 17ad75e1fac143d421e0498fb40d7e37532f26d1
   SwiftyAttributes: cef9463f6e7da1ab393896ca036c9ac37d8a406b
   SwiftyBeaver: f04f739cca6826c5fb0f575fed8fa3293f76b83e
@@ -156,6 +156,6 @@ SPEC CHECKSUMS:
   Then: 823a7503a851737269ba8d40e688b4db874dbd2d
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
 
-PODFILE CHECKSUM: 18cec1efad7c92e73198dd9ee96c63a44dfdbdfd
+PODFILE CHECKSUM: 952ffd009378ace24ad813d08da95b93e341f3b8
 
 COCOAPODS: 1.5.2

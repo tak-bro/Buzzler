@@ -16,7 +16,7 @@ import Photos
 import DKImagePickerController
 import Toaster
 import SKPhotoBrowser
-import CWStatusBarNotification
+import SwiftMessages
 
 class WritePostViewController: UIViewController {
 
@@ -52,17 +52,17 @@ class WritePostViewController: UIViewController {
     var originTitle: String?
     var originContents: String?
     
-    let notification = CWStatusBarNotification()
+    var messageConfig = SwiftMessages.defaultConfig
+    var messageView = MessageView.viewFromNib(layout: .statusLine)
 
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         bindToRx()
         setUI()
-        setToolbar()
         setGetureToView()
         setPicker()
-        
+
         if isUpdate {
             self.txt_title.text = self.originTitle
             self.txt_contents.text = self.originContents
@@ -148,22 +148,32 @@ extension WritePostViewController {
         self.viewModel.outputs.posting
             .drive(onNext: { posting in
                 print("posting result", posting)
-                DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                    if posting == true {
-                        self.notification.dismiss()
-                    } else {
-                        Toast(text: "Posting Error!!").show()
-                    }
-                })
+                SwiftMessages.hideAll()
+                
+                let outputNoti = MessageView.viewFromNib(layout: .statusLine)
+                if posting == true {
+                    outputNoti.backgroundView.backgroundColor = UIColor.orange
+                    outputNoti.bodyLabel?.textColor = UIColor.white
+                    outputNoti.configureContent(body: "Success !!")
+                } else {
+                    outputNoti.backgroundView.backgroundColor = UIColor.red
+                    outputNoti.bodyLabel?.textColor = UIColor.white
+                    outputNoti.configureContent(body: "Failed !!")
+                }
+                self.messageConfig.duration = .automatic
+                
+                SwiftMessages.show(config: self.messageConfig, view: outputNoti)
             }).disposed(by: disposeBag)
         
         self.viewModel.isLoading
             .drive(onNext: { isLoading in
                 switch isLoading {
                 case true:
-                    self.notification.display(withMessage: "Posting...", completion: {
-                        Toast(text: "포스트 등록이 완료되었습니다.", duration: Delay.long).show()
-                    })
+                    self.messageView.backgroundView.backgroundColor = Config.UI.buttonActiveColor
+                    self.messageView.bodyLabel?.textColor = UIColor.white
+                    self.messageView.configureContent(body: "Posting...")
+                    self.messageConfig.duration = .forever
+                    SwiftMessages.show(config: self.messageConfig, view: self.messageView)
                     break
                 case false:
                     break
@@ -182,9 +192,11 @@ extension WritePostViewController {
         self.imgVwConstraint.constant = 0
         self.vw_imgContainer.isHidden = true
         
-        // set notifiaction
-        self.notification.notificationLabelBackgroundColor = Config.UI.titleColor
-        self.notification.notificationLabelTextColor = UIColor.white
+        // set notification
+        self.setNotificationUI()
+        
+        // set toolbar
+        self.setToolbar()
     }
     
     func setToolbar() {
@@ -225,6 +237,11 @@ extension WritePostViewController {
 
     func doneButtonAction() {
         view.endEditing(true)
+    }
+    
+    func setNotificationUI() {
+        self.messageConfig.presentationContext = .window(windowLevel: UIWindowLevelNormal)
+        self.messageConfig.preferredStatusBarStyle = .lightContent
     }
 
 }
