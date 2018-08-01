@@ -17,6 +17,7 @@ public struct DetailBuzzlerPost: Equatable, Mappable {
     var contents: String = ""
     var imageUrls: [String] = []
     var likeCount: Int = 0
+    var commentCount: Int = 0
     var createdAt: Date = Date()
     var author: Author = Author()
     var comments: [BuzzlerComment] = []
@@ -38,6 +39,7 @@ public struct DetailBuzzlerPost: Equatable, Mappable {
         createdAt <- map["createdAt"]
         author <- map["author"]
         comments <- map["comments"]
+        commentCount <- map["commentCount"]
     }
     
 }

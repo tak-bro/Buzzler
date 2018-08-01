@@ -177,6 +177,7 @@ extension PostViewController: UITableViewDelegate {
                     imgCell.lbl_content.text = item.contents
                     imgCell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
                     imgCell.lbl_likeCount.text = String(item.likeCount)
+                    imgCell.lbl_commentCount.text = String(item.commentCount)
                     imgCell.lbl_author.text = item.author.username
                     imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
                     
@@ -268,6 +269,7 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_content.text = item.contents
                     cell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
                     cell.lbl_likeCount.text = String(item.likeCount)
+                    cell.lbl_commentCount.text = String(item.commentCount)
                     cell.lbl_author.text = item.author.username
                     
                     // set origin info
