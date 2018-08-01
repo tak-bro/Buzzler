@@ -165,8 +165,8 @@ extension PostViewController: UITableViewDelegate {
                     imgCell.lbl_title.text = item.title
                     imgCell.lbl_content.text = item.contents
                     imgCell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
-                    imgCell.lbl_likeCount.text = String(item.likeCount)
-                    imgCell.lbl_commentCount.text = String(item.commentCount)
+                    imgCell.lbl_likeCount.text = String(item.likeCount) + " Likes"
+                    imgCell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     imgCell.lbl_author.text = item.author.username
                     imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
                     
@@ -215,7 +215,7 @@ extension PostViewController: UITableViewDelegate {
                                     if statusCode == 201 {
                                         self.likeAnimation()
                                         imgCell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal)
-                                        imgCell.lbl_likeCount.text = String(item.likeCount+1)
+                                        imgCell.lbl_likeCount.text = String(item.likeCount+1) + " Likes"
                                     } else {
                                         self.showAlert(message: "Already Liked before")
                                     }
@@ -257,8 +257,8 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_title.text = item.title
                     cell.lbl_content.text = item.contents
                     cell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
-                    cell.lbl_likeCount.text = String(item.likeCount)
-                    cell.lbl_commentCount.text = String(item.commentCount)
+                    cell.lbl_likeCount.text = String(item.likeCount) + " Likes"
+                    cell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     cell.lbl_author.text = item.author.username
                     
                     // set origin info
@@ -293,7 +293,7 @@ extension PostViewController: UITableViewDelegate {
                                     if statusCode == 201 {
                                         self.likeAnimation()
                                         cell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal)
-                                        cell.lbl_likeCount.text = String(item.likeCount+1)
+                                        cell.lbl_likeCount.text = String(item.likeCount+1) + " Likes"
                                     } else {
                                         self.showAlert(message: "Already Liked before")
                                     }
@@ -437,12 +437,22 @@ extension PostViewController {
             writePostVC.originContents = self.originContents
             writePostVC.originTitle = self.originTitle
             
+//            let deleteVC = CantDeletePostPopUpViewController(nibName: "CantDeletePostPopUpViewController", bundle: nil)
+//            deleteVC.modalPresentationStyle = .overCurrentContext
+//            deleteVC.modalTransitionStyle = .crossDissolve
+//            self.present(deleteVC, animated: true, completion: nil)
+            
             self.present(writePostVC, animated: true, completion: nil)
         }
         
         let deleteAction = PopoverItem(title: "삭제", image: UIImage(named: "btn_delete_post")) {
             debugPrint($0.title)
             print(self.selectedPost.title)
+            
+            let deleteVC = DeletePostPopUpViewController(nibName: "DeletePostPopUpViewController", bundle: nil)
+            deleteVC.modalPresentationStyle = .overCurrentContext
+            deleteVC.modalTransitionStyle = .crossDissolve
+            self.present(deleteVC, animated: true, completion: nil)
         }
         
         return [editAction, deleteAction]

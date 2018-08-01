@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -74,17 +75,17 @@
                                         <state key="normal" image="icon_like_empty"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEe-RR-Ix6">
-                                        <rect key="frame" x="34" y="11" width="5.5" height="13.5"/>
+                                        <rect key="frame" x="36" y="11" width="5.5" height="13.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CKM-rd-M4S">
-                                        <rect key="frame" x="69" y="7" width="12" height="22"/>
+                                        <rect key="frame" x="66.5" y="7.5" width="12" height="22"/>
                                         <state key="normal" image="icon_comment"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POa-Ht-yOE">
-                                        <rect key="frame" x="86" y="11.5" width="5.5" height="13.5"/>
+                                        <rect key="frame" x="85.5" y="11" width="5.5" height="13.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -92,15 +93,15 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="CKM-rd-M4S" firstAttribute="leading" secondItem="mCb-ww-kpg" secondAttribute="trailing" constant="40" id="4FN-sU-xjH"/>
-                                    <constraint firstItem="gEe-RR-Ix6" firstAttribute="leading" secondItem="mCb-ww-kpg" secondAttribute="trailing" constant="5" id="Ah0-cl-X3R"/>
-                                    <constraint firstItem="POa-Ht-yOE" firstAttribute="leading" secondItem="CKM-rd-M4S" secondAttribute="trailing" constant="5" id="HKR-pi-lmF"/>
-                                    <constraint firstItem="CKM-rd-M4S" firstAttribute="centerY" secondItem="mCb-ww-kpg" secondAttribute="centerY" id="HuR-SI-6MW"/>
-                                    <constraint firstItem="POa-Ht-yOE" firstAttribute="centerY" secondItem="CKM-rd-M4S" secondAttribute="centerY" id="KgH-Qs-jw4"/>
+                                    <constraint firstItem="gEe-RR-Ix6" firstAttribute="leading" secondItem="mCb-ww-kpg" secondAttribute="trailing" constant="7" id="Ah0-cl-X3R"/>
+                                    <constraint firstItem="POa-Ht-yOE" firstAttribute="leading" secondItem="CKM-rd-M4S" secondAttribute="trailing" constant="7" id="HKR-pi-lmF"/>
+                                    <constraint firstItem="CKM-rd-M4S" firstAttribute="centerY" secondItem="mCb-ww-kpg" secondAttribute="centerY" multiplier="1.05" id="HuR-SI-6MW"/>
                                     <constraint firstItem="mCb-ww-kpg" firstAttribute="centerY" secondItem="HUu-xd-0dD" secondAttribute="centerY" id="Mce-Up-pDV"/>
                                     <constraint firstItem="mCb-ww-kpg" firstAttribute="leading" secondItem="HUu-xd-0dD" secondAttribute="leading" constant="15" id="PRS-TB-Qbx"/>
+                                    <constraint firstItem="CKM-rd-M4S" firstAttribute="leading" secondItem="gEe-RR-Ix6" secondAttribute="trailing" constant="25" id="TBK-Uj-y1K"/>
                                     <constraint firstAttribute="trailing" secondItem="09u-Zb-QDy" secondAttribute="trailing" constant="15" id="Vez-pA-MYN"/>
                                     <constraint firstItem="09u-Zb-QDy" firstAttribute="centerY" secondItem="HUu-xd-0dD" secondAttribute="centerY" id="aE6-St-SJO"/>
+                                    <constraint firstItem="POa-Ht-yOE" firstAttribute="centerY" secondItem="mCb-ww-kpg" secondAttribute="centerY" id="aLy-gB-5Q0"/>
                                     <constraint firstItem="gEe-RR-Ix6" firstAttribute="centerY" secondItem="mCb-ww-kpg" secondAttribute="centerY" id="ibm-ne-nii"/>
                                     <constraint firstAttribute="height" constant="35" id="jln-kT-LXY"/>
                                 </constraints>

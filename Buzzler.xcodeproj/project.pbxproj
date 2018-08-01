@@ -10,6 +10,10 @@
 		3B0DC8F020F085D4001DE6DC /* AwsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */; };
 		3B0DC8F620F0AA8F001DE6DC /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */; };
 		3B0DC99920BBF76700A5D274 /* DetailBuzzlerPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */; };
+		3B10BD202111983400C76562 /* DeletePostPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10BD1E2111983400C76562 /* DeletePostPopUpViewController.swift */; };
+		3B10BD212111983400C76562 /* DeletePostPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B10BD1F2111983400C76562 /* DeletePostPopUpViewController.xib */; };
+		3B10BD242111984200C76562 /* CantDeletePostPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10BD222111984200C76562 /* CantDeletePostPopUpViewController.swift */; };
+		3B10BD252111984200C76562 /* CantDeletePostPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B10BD232111984200C76562 /* CantDeletePostPopUpViewController.xib */; };
 		3B142A9C2106C4A100CE7E7A /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B142A9B2106C4A100CE7E7A /* Author.swift */; };
 		3B1CBD0320AA9EB60018D156 /* SelectMajorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */; };
 		3B1CBD0520AAC8770018D156 /* SelectMajorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */; };
@@ -108,6 +112,10 @@
 		3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwsAPI.swift; sourceTree = "<group>"; };
 		3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuzzlerPost.swift; sourceTree = "<group>"; };
+		3B10BD1E2111983400C76562 /* DeletePostPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostPopUpViewController.swift; sourceTree = "<group>"; };
+		3B10BD1F2111983400C76562 /* DeletePostPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeletePostPopUpViewController.xib; sourceTree = "<group>"; };
+		3B10BD222111984200C76562 /* CantDeletePostPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CantDeletePostPopUpViewController.swift; sourceTree = "<group>"; };
+		3B10BD232111984200C76562 /* CantDeletePostPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CantDeletePostPopUpViewController.xib; sourceTree = "<group>"; };
 		3B142A9B2106C4A100CE7E7A /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		3B1CBD0220AA9EB60018D156 /* SelectMajorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorViewController.swift; sourceTree = "<group>"; };
 		3B1CBD0420AAC8770018D156 /* SelectMajorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMajorViewModel.swift; sourceTree = "<group>"; };
@@ -230,6 +238,28 @@
 				3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */,
 			);
 			path = WritePost;
+			sourceTree = "<group>";
+		};
+		3B10BD1C211197EF00C76562 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				84C4DED22095A58100FD6BFD /* CommentTableViewCell.swift */,
+				84C4DED32095A58100FD6BFD /* CommentTableViewCell.xib */,
+				3B51CCCE20C252CA0087BFF5 /* ReCommentTableViewCell.swift */,
+				3B51CCCF20C252CA0087BFF5 /* ReCommentTableViewCell.xib */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		3B10BD1D211197FB00C76562 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				3B10BD1E2111983400C76562 /* DeletePostPopUpViewController.swift */,
+				3B10BD1F2111983400C76562 /* DeletePostPopUpViewController.xib */,
+				3B10BD222111984200C76562 /* CantDeletePostPopUpViewController.swift */,
+				3B10BD232111984200C76562 /* CantDeletePostPopUpViewController.xib */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		3B2A42B620B1409F00E37D72 /* MyPage */ = {
@@ -478,10 +508,8 @@
 		84F437AC2085C40900E71358 /* DetailPost */ = {
 			isa = PBXGroup;
 			children = (
-				84C4DED22095A58100FD6BFD /* CommentTableViewCell.swift */,
-				84C4DED32095A58100FD6BFD /* CommentTableViewCell.xib */,
-				3B51CCCE20C252CA0087BFF5 /* ReCommentTableViewCell.swift */,
-				3B51CCCF20C252CA0087BFF5 /* ReCommentTableViewCell.xib */,
+				3B10BD1D211197FB00C76562 /* Edit */,
+				3B10BD1C211197EF00C76562 /* Comment */,
 			);
 			path = DetailPost;
 			sourceTree = "<group>";
@@ -766,7 +794,9 @@
 				84A1BFC7208C7C6200D0ADC7 /* HomeImageTableViewCell.xib in Resources */,
 				3BD6EE97210560A40094E318 /* ApprovalPopUpViewController.xib in Resources */,
 				844BC377208AF17800666486 /* Avenir LT 95 Black.ttf in Resources */,
+				3B10BD252111984200C76562 /* CantDeletePostPopUpViewController.xib in Resources */,
 				844BC378208AF17800666486 /* AvenirLTStd-Book.otf in Resources */,
+				3B10BD212111983400C76562 /* DeletePostPopUpViewController.xib in Resources */,
 				AF9F0FDA1DF1A9E900FF8EC5 /* HomeTableViewCell.xib in Resources */,
 				AFA7EC731DEEDEDC00138AEE /* Main.storyboard in Resources */,
 				3B2E9C482107111B00132C74 /* WaitUnivViewController.xib in Resources */,
@@ -886,6 +916,7 @@
 				3B0DC99920BBF76700A5D274 /* DetailBuzzlerPost.swift in Sources */,
 				84F437A82085C3D500E71358 /* WritePostViewModel.swift in Sources */,
 				84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */,
+				3B10BD242111984200C76562 /* CantDeletePostPopUpViewController.swift in Sources */,
 				844BC388208C539A00666486 /* SignUpResult.swift in Sources */,
 				3B51CCD020C252CA0087BFF5 /* ReCommentTableViewCell.swift in Sources */,
 				84002EB32090613A00B7C98A /* PostViewController.swift in Sources */,
@@ -924,6 +955,7 @@
 				3BD6EE96210560A40094E318 /* ApprovalPopUpViewController.swift in Sources */,
 				84BA76F92086FC7D0097FFD2 /* BuzzlerError.swift in Sources */,
 				844BC38A208C573000666486 /* HelperFunctions.swift in Sources */,
+				3B10BD202111983400C76562 /* DeletePostPopUpViewController.swift in Sources */,
 				3B0DC8F020F085D4001DE6DC /* AwsAPI.swift in Sources */,
 				84A1BFC3208C67AD00D0ADC7 /* BuzzlerPost.swift in Sources */,
 				84A1BFC6208C7C6200D0ADC7 /* HomeImageTableViewCell.swift in Sources */,
