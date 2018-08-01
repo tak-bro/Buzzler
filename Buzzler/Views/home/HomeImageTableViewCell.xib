@@ -75,7 +75,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PB2-mb-Uj4">
                                         <rect key="frame" x="15" y="6.5" width="14" height="22"/>
-                                        <state key="normal" image="icon_like"/>
+                                        <state key="normal" image="icon_like_empty"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNS-8M-476">
                                         <rect key="frame" x="34" y="11" width="5.5" height="13.5"/>
@@ -203,7 +203,7 @@
     <resources>
         <image name="btn_post_action" width="15" height="3"/>
         <image name="icon_comment" width="12" height="12"/>
-        <image name="icon_like" width="14" height="14"/>
+        <image name="icon_like_empty" width="14" height="14"/>
         <image name="img_tmp" width="885" height="590"/>
     </resources>
 </document>

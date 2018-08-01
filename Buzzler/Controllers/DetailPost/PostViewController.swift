@@ -153,22 +153,11 @@ extension PostViewController: UITableViewDelegate {
                     self.showAlert(message: "Server Error!")
                 }
             }).disposed(by: disposeBag)
-        
-        viewModel.outputs.requestLikePost
-            .drive(onNext: { res in
-                if res == true {
-                    guard let likeImg = UIImage(named: "img_big_like") else { return }
-                    SVProgressHUD.show(likeImg, status: "Success")
-                } else {
-                    self.showAlert(message: "Server Error!")
-                }
-            }).disposed(by: disposeBag)
-        
+
         // set table
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let defaultCell: UITableViewCell
-            let viewModel = self.viewModel
-            
+
             switch dataSource[indexPath] {
             case let .PostItem(item):
                 if item.imageUrls.count > 0 {
@@ -215,18 +204,18 @@ extension PostViewController: UITableViewDelegate {
                             
                             // set disabled like button
                             imgCell.btn_like.isEnabled = false
-                            SVProgressHUD.show()
-                            
+
                             BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: postId)) { result in
                                 // set enabled
                                 imgCell.btn_like.isEnabled = true
-                                SVProgressHUD.dismiss()
-                                
+
                                 switch result {
                                 case let .success(moyaResponse):
                                     let statusCode = moyaResponse.statusCode // Int - 200, 401, 500, etc
                                     if statusCode == 201 {
                                         self.likeAnimation()
+                                        imgCell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal)
+                                        imgCell.lbl_likeCount.text = String(item.likeCount+1)
                                     } else {
                                         self.showAlert(message: "Already Liked before")
                                     }
@@ -293,18 +282,18 @@ extension PostViewController: UITableViewDelegate {
                             
                             // set disabled like button
                             cell.btn_like.isEnabled = false
-                            SVProgressHUD.show()
-                            
+
                             BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: postId)) { result in
                                 // set enabled
                                 cell.btn_like.isEnabled = true
-                                SVProgressHUD.dismiss()
-                                
+
                                 switch result {
                                 case let .success(moyaResponse):
                                     let statusCode = moyaResponse.statusCode
                                     if statusCode == 201 {
                                         self.likeAnimation()
+                                        cell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal)
+                                        cell.lbl_likeCount.text = String(item.likeCount+1)
                                     } else {
                                         self.showAlert(message: "Already Liked before")
                                     }
