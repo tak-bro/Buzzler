@@ -11,6 +11,7 @@ import UIKit
 import SVProgressHUD
 import RxSwift
 import RxCocoa
+import DateToolsSwift
 
 func setBorderAndCornerRadius(layer: CALayer, width: CGFloat, radius: CGFloat, color: UIColor) {
     layer.borderColor = color.cgColor
@@ -66,4 +67,38 @@ func deleteShadow(from source: UIViewController) {
     source.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
     source.navigationController?.navigationBar.layer.shadowRadius = 0.0
     source.navigationController?.navigationBar.layer.shadowOpacity = 0.0
+}
+
+func getDateFromString(date: String) -> Date {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+    dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+    let formattedDate = dateFormatter.date(from: date)
+    
+    return formattedDate!
+}
+
+func convertDateFormatter(dateStr: String) -> String {
+    let date = getDateFromString(date: dateStr)
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy/MM/dd" ///this is what you want to convert format
+    dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+    let timeStamp = dateFormatter.string(from: date)
+    
+    return timeStamp
+}
+
+func getRemainTimeString(createdAt: String) -> String {
+    
+    let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+    let rewardTime = createdAt.toDate(format: dateFormat)! + 3.days
+    
+    if Date() > rewardTime {
+        return "Rewarded"
+    } else {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day, .hour]
+        formatter.unitsStyle = .abbreviated
+        return formatter.string(from: Date(), to: rewardTime)! + " left"
+    }
 }

@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -75,20 +76,20 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PB2-mb-Uj4">
                                         <rect key="frame" x="15" y="6.5" width="14" height="22"/>
-                                        <state key="normal" image="icon_like"/>
+                                        <state key="normal" image="icon_like_empty"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNS-8M-476">
-                                        <rect key="frame" x="34" y="11" width="5.5" height="13.5"/>
+                                        <rect key="frame" x="36" y="11" width="5.5" height="13.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ufu-fs-KRW">
-                                        <rect key="frame" x="69" y="7" width="12" height="22"/>
+                                        <rect key="frame" x="66.5" y="7.5" width="12" height="22"/>
                                         <state key="normal" image="icon_comment"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRf-P1-RXr">
-                                        <rect key="frame" x="86" y="11.5" width="5.5" height="13.5"/>
+                                        <rect key="frame" x="85.5" y="11.5" width="5.5" height="13.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -97,16 +98,16 @@
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="vNS-8M-476" firstAttribute="centerY" secondItem="PB2-mb-Uj4" secondAttribute="centerY" id="34E-Lw-hId"/>
-                                    <constraint firstItem="yRf-P1-RXr" firstAttribute="leading" secondItem="Ufu-fs-KRW" secondAttribute="trailing" constant="5" id="6rq-ZJ-9Em"/>
+                                    <constraint firstItem="yRf-P1-RXr" firstAttribute="centerY" secondItem="PB2-mb-Uj4" secondAttribute="centerY" id="6Q5-DY-sf8"/>
+                                    <constraint firstItem="yRf-P1-RXr" firstAttribute="leading" secondItem="Ufu-fs-KRW" secondAttribute="trailing" constant="7" id="6rq-ZJ-9Em"/>
                                     <constraint firstItem="PB2-mb-Uj4" firstAttribute="centerY" secondItem="Udu-4S-gPH" secondAttribute="centerY" id="Fcb-Iz-zuU"/>
                                     <constraint firstItem="PB2-mb-Uj4" firstAttribute="leading" secondItem="Udu-4S-gPH" secondAttribute="leading" constant="15" id="SC2-gR-yWi"/>
-                                    <constraint firstItem="vNS-8M-476" firstAttribute="leading" secondItem="PB2-mb-Uj4" secondAttribute="trailing" constant="5" id="Xea-St-a1u"/>
-                                    <constraint firstItem="Ufu-fs-KRW" firstAttribute="leading" secondItem="PB2-mb-Uj4" secondAttribute="trailing" constant="40" id="bDS-gF-VDo"/>
+                                    <constraint firstItem="Ufu-fs-KRW" firstAttribute="leading" secondItem="vNS-8M-476" secondAttribute="trailing" constant="25" id="Sct-Mx-IaZ"/>
+                                    <constraint firstItem="vNS-8M-476" firstAttribute="leading" secondItem="PB2-mb-Uj4" secondAttribute="trailing" constant="7" id="Xea-St-a1u"/>
                                     <constraint firstAttribute="trailing" secondItem="GIq-o8-uB3" secondAttribute="trailing" constant="15" id="gZC-Kr-JXs"/>
-                                    <constraint firstItem="Ufu-fs-KRW" firstAttribute="centerY" secondItem="PB2-mb-Uj4" secondAttribute="centerY" id="gdh-3b-3su"/>
+                                    <constraint firstItem="Ufu-fs-KRW" firstAttribute="centerY" secondItem="PB2-mb-Uj4" secondAttribute="centerY" multiplier="1.05" id="gdh-3b-3su"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="rPs-B7-hQC"/>
                                     <constraint firstAttribute="height" constant="35" id="uTA-Eh-VEy"/>
-                                    <constraint firstItem="yRf-P1-RXr" firstAttribute="centerY" secondItem="Ufu-fs-KRW" secondAttribute="centerY" id="w4g-ni-vnu"/>
                                     <constraint firstItem="GIq-o8-uB3" firstAttribute="centerY" secondItem="Udu-4S-gPH" secondAttribute="centerY" id="z3e-9n-RN4"/>
                                 </constraints>
                             </view>
@@ -203,7 +204,7 @@
     <resources>
         <image name="btn_post_action" width="15" height="3"/>
         <image name="icon_comment" width="12" height="12"/>
-        <image name="icon_like" width="14" height="14"/>
+        <image name="icon_like_empty" width="14" height="14"/>
         <image name="img_tmp" width="885" height="590"/>
     </resources>
 </document>

@@ -15,7 +15,7 @@ struct University {
     let name: String
     let baseUrl: String
     let secondUrl: String
-    let createdAt: Date
+    let createdAt: String
 }
 
 extension University: Decodable {
@@ -27,14 +27,14 @@ extension University: Decodable {
         let name = json["name"].stringValue
         let baseUrl = json["baseUrl"].stringValue
         let secondUrl = json["secondUrl"].stringValue
-        let createdAt = Date(httpDateString: json["createdAt"].stringValue)
+        let createdAt = json["createdAt"].stringValue
 
         return University(id: id,
                           categoryDepth: categoryDepth,
                           name: name,
                           baseUrl: baseUrl,
                           secondUrl: secondUrl,
-                          createdAt: createdAt!
+                          createdAt: createdAt
         )
     }
 }

@@ -26,6 +26,7 @@ class PostViewController: UIViewController, ShowsAlert {
     @IBOutlet weak var commentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var commentBottom: NSLayoutConstraint!
     @IBOutlet weak var btn_writeComment: UIButton!
+    @IBOutlet weak var vw_dimmed: UIView!
     
     // to show parent comment info
     @IBOutlet weak var lbl_parentAuthor: UILabel!
@@ -153,32 +154,23 @@ extension PostViewController: UITableViewDelegate {
                     self.showAlert(message: "Server Error!")
                 }
             }).disposed(by: disposeBag)
-        
-        viewModel.outputs.requestLikePost
-            .drive(onNext: { res in
-                if res == true {
-                    guard let likeImg = UIImage(named: "img_big_like") else { return }
-                    SVProgressHUD.show(likeImg, status: "Success")
-                } else {
-                    self.showAlert(message: "Server Error!")
-                }
-            }).disposed(by: disposeBag)
-        
+
         // set table
         dataSource.configureCell = { dataSource, tableView, indexPath, item in
             let defaultCell: UITableViewCell
-            let viewModel = self.viewModel
-            
+
             switch dataSource[indexPath] {
             case let .PostItem(item):
                 if item.imageUrls.count > 0 {
                     let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                     imgCell.lbl_title.text = item.title
                     imgCell.lbl_content.text = item.contents
-                    imgCell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
-                    imgCell.lbl_likeCount.text = String(item.likeCount)
+                    imgCell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
+                    imgCell.lbl_likeCount.text = String(item.likeCount) + " Likes"
+                    imgCell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     imgCell.lbl_author.text = item.author.username
                     imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
+                    imgCell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
                     
                     if item.imageUrls.count == 1 {
                         imgCell.vw_remainLabelContainer.isHidden = true
@@ -200,8 +192,15 @@ extension PostViewController: UITableViewDelegate {
                         .drive(onNext: { [weak self] in
                             // save post data to local
                             self?.selectedPost = item
+                            self?.addDimmedView()
                             // present popover
-                            let controller = PopoverController(items: (self?.makePorverActions())!, fromView: imgCell.btn_postAction, direction: .down, style: .withImage)
+                            let controller = PopoverController(items:(self?.makePorverActions())!,
+                                                               fromView: imgCell.btn_postAction,
+                                                               direction: .down,
+                                                               style: .withImage,
+                                                               dismissHandler: {
+                                                                self?.removeDimmedView()
+                            })
                             self?.popover(controller)
                         })
                         .disposed(by: imgCell.bag)
@@ -214,18 +213,18 @@ extension PostViewController: UITableViewDelegate {
                             
                             // set disabled like button
                             imgCell.btn_like.isEnabled = false
-                            SVProgressHUD.show()
-                            
+
                             BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: postId)) { result in
                                 // set enabled
                                 imgCell.btn_like.isEnabled = true
-                                SVProgressHUD.dismiss()
-                                
+
                                 switch result {
                                 case let .success(moyaResponse):
                                     let statusCode = moyaResponse.statusCode // Int - 200, 401, 500, etc
                                     if statusCode == 201 {
                                         self.likeAnimation()
+                                        imgCell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal)
+                                        imgCell.lbl_likeCount.text = String(item.likeCount+1) + " Likes"
                                     } else {
                                         self.showAlert(message: "Already Liked before")
                                     }
@@ -266,9 +265,11 @@ extension PostViewController: UITableViewDelegate {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                     cell.lbl_title.text = item.title
                     cell.lbl_content.text = item.contents
-                    cell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
-                    cell.lbl_likeCount.text = String(item.likeCount)
+                    cell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
+                    cell.lbl_likeCount.text = String(item.likeCount) + " Likes"
+                    cell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     cell.lbl_author.text = item.author.username
+                    cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
                     
                     // set origin info
                     self.originTitle = item.title
@@ -278,7 +279,14 @@ extension PostViewController: UITableViewDelegate {
                     cell.btn_postAction.rx.tap.asDriver()
                         .drive(onNext: { [weak self] in
                             self?.selectedPost = item
-                            let controller = PopoverController(items: (self?.makePorverActions())!, fromView: cell.btn_postAction, direction: .down, style: .withImage)
+                            let controller = PopoverController(items:(self?.makePorverActions())!,
+                                                               fromView: cell.btn_postAction,
+                                                               direction: .down,
+                                                               style: .withImage,
+                                                               dismissHandler: {
+                                                                self?.removeDimmedView()
+                            })
+                            self?.addDimmedView()
                             self?.popover(controller)
                         })
                         .disposed(by: cell.bag)
@@ -291,18 +299,18 @@ extension PostViewController: UITableViewDelegate {
                             
                             // set disabled like button
                             cell.btn_like.isEnabled = false
-                            SVProgressHUD.show()
-                            
+
                             BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: postId)) { result in
                                 // set enabled
                                 cell.btn_like.isEnabled = true
-                                SVProgressHUD.dismiss()
-                                
+
                                 switch result {
                                 case let .success(moyaResponse):
                                     let statusCode = moyaResponse.statusCode
                                     if statusCode == 201 {
                                         self.likeAnimation()
+                                        cell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal)
+                                        cell.lbl_likeCount.text = String(item.likeCount+1) + " Likes"
                                     } else {
                                         self.showAlert(message: "Already Liked before")
                                     }
@@ -388,7 +396,8 @@ extension PostViewController: UITextViewDelegate {
     func setUI() {
         self.vw_parentComment.isHidden = true
         self.img_heartPopup.alpha = 0.0
-        resetNavBar()
+        self.resetNavBar()
+        self.vw_dimmed.isHidden = true
     }
     
     func resetNavBar() {
@@ -446,12 +455,23 @@ extension PostViewController {
             writePostVC.originContents = self.originContents
             writePostVC.originTitle = self.originTitle
             
+//            let deleteVC = CantDeletePostPopUpViewController(nibName: "CantDeletePostPopUpViewController", bundle: nil)
+//            deleteVC.modalPresentationStyle = .overCurrentContext
+//            deleteVC.modalTransitionStyle = .crossDissolve
+//            self.present(deleteVC, animated: true, completion: nil)
+            
             self.present(writePostVC, animated: true, completion: nil)
         }
         
         let deleteAction = PopoverItem(title: "삭제", image: UIImage(named: "btn_delete_post")) {
             debugPrint($0.title)
             print(self.selectedPost.title)
+            
+            let deleteVC = DeletePostPopUpViewController(nibName: "DeletePostPopUpViewController", bundle: nil)
+            deleteVC.modalPresentationStyle = .overCurrentContext
+            deleteVC.modalTransitionStyle = .crossDissolve
+            deleteVC.postId = self.selectedPostId
+            self.present(deleteVC, animated: true, completion: nil)
         }
         
         return [editAction, deleteAction]
@@ -473,5 +493,13 @@ extension PostViewController {
                 })
             })
         })
+    }
+    
+    func addDimmedView() {
+        self.vw_dimmed.isHidden = false
+    }
+    
+    func removeDimmedView() {
+        self.vw_dimmed.isHidden = true
     }
 }

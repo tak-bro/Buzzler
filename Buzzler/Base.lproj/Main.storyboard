@@ -1706,6 +1706,10 @@ Cg
                                     <constraint firstItem="YWV-mv-BLE" firstAttribute="top" secondItem="wZh-KU-fRA" secondAttribute="top" constant="20" id="xz2-3Z-ylh"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ya7-Tg-Zeg">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1713,7 +1717,11 @@ Cg
                             <constraint firstAttribute="trailing" secondItem="Zow-VQ-OZr" secondAttribute="trailing" id="3tQ-JO-dQO"/>
                             <constraint firstItem="QgC-I6-YAd" firstAttribute="top" secondItem="wZh-KU-fRA" secondAttribute="bottom" id="8y4-u1-zW4"/>
                             <constraint firstItem="wZh-KU-fRA" firstAttribute="top" secondItem="Ep3-q7-FFt" secondAttribute="bottom" id="9nb-Ix-6R7"/>
+                            <constraint firstItem="QgC-I6-YAd" firstAttribute="top" secondItem="ya7-Tg-Zeg" secondAttribute="bottom" id="Aly-OR-Ffy"/>
+                            <constraint firstItem="ya7-Tg-Zeg" firstAttribute="top" secondItem="oRM-8N-d5e" secondAttribute="bottom" id="Cpe-Mg-N5f"/>
                             <constraint firstItem="Zow-VQ-OZr" firstAttribute="leading" secondItem="edB-pi-TE8" secondAttribute="leading" id="Dg7-dU-p4Z"/>
+                            <constraint firstAttribute="trailing" secondItem="ya7-Tg-Zeg" secondAttribute="trailing" id="Fn9-S5-3FJ"/>
+                            <constraint firstItem="ya7-Tg-Zeg" firstAttribute="leading" secondItem="edB-pi-TE8" secondAttribute="leading" id="K8y-Gr-dSr"/>
                             <constraint firstItem="wZh-KU-fRA" firstAttribute="leading" secondItem="edB-pi-TE8" secondAttribute="leading" constant="10" id="Vbx-bF-2zm"/>
                             <constraint firstItem="QgC-I6-YAd" firstAttribute="top" secondItem="Zow-VQ-OZr" secondAttribute="bottom" id="YyX-rG-4vQ"/>
                             <constraint firstItem="uOU-z7-oCH" firstAttribute="centerY" secondItem="edB-pi-TE8" secondAttribute="centerY" id="eJp-BT-iA9"/>
@@ -1733,6 +1741,7 @@ Cg
                         <outlet property="lbl_parentCommentId" destination="PcM-B3-j00" id="6uo-o7-zKy"/>
                         <outlet property="tbl_post" destination="Zow-VQ-OZr" id="XJ3-22-JVW"/>
                         <outlet property="txt_vw_comment" destination="YWV-mv-BLE" id="gVp-GN-rmM"/>
+                        <outlet property="vw_dimmed" destination="ya7-Tg-Zeg" id="G1U-ot-djW"/>
                         <outlet property="vw_parentComment" destination="Ep3-q7-FFt" id="P1w-KH-ckP"/>
                         <outlet property="vw_writeComment" destination="wZh-KU-fRA" id="fVb-ml-q82"/>
                     </connections>

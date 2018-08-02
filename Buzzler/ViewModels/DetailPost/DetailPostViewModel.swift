@@ -29,7 +29,6 @@ public protocol DetailPostViewModelOutputs {
     var enableWriteButton: Driver<Bool> { get }
     var requestWriteComment: Driver<Bool> { get }
     var requestDeletePost: Driver<Bool> { get }
-    var requestLikePost: Driver<Bool> { get }
     var validatedComment: Driver<ValidationResult> { get }
 }
 
@@ -57,7 +56,6 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
     public var likePostTaps: PublishSubject<Void>
     public var requestWriteComment: Driver<Bool>
     public var requestDeletePost: Driver<Bool>
-    public var requestLikePost: Driver<Bool>
 
     private let disposeBag = DisposeBag()
     private let error = PublishSubject<Swift.Error>()
@@ -124,20 +122,6 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
             .flatMapLatest{ postId in
                 return API.sharedAPI
                     .deletePost(by: postId!)
-                    .trackActivity(Loading)
-                    .asDriver(onErrorJustReturn: false)
-        }
-        
-        // like Buzzler post
-        self.requestLikePost = self.likePostTaps
-            .asDriver(onErrorJustReturn:())
-            .withLatestFrom(self.postId.asDriver(onErrorJustReturn: nil))
-            .flatMapLatest{ postId in
-                let environment = Environment()
-                let categoryId = environment.categoryId
-                
-                return API.sharedAPI
-                    .likePost(categoryId: categoryId!, postId: postId!)
                     .trackActivity(Loading)
                     .asDriver(onErrorJustReturn: false)
         }

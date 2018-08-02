@@ -18,7 +18,7 @@ public struct BuzzlerComment: Equatable, Mappable {
     var parentId: Int?
     var contents: String = ""
     var likeCount: Int = 0
-    var createdAt: Date = Date()
+    var createdAt: String = ""
     var childComments: [BuzzlerComment] = [BuzzlerComment]()
     
     public static func == (lhs: BuzzlerComment, rhs: BuzzlerComment) -> Bool {
@@ -65,13 +65,13 @@ extension BuzzlerComment {
     func idCompare(e2: BuzzlerComment) -> ComparisonResult {
         return intCompare(e1: id, e2: e2.id)
     }
-    
+
     func createdAtCompare(e2: BuzzlerComment) -> ComparisonResult {
-        return createdAt.toString().compare(e2.createdAt.toString())
+        return createdAt.compare(e2.createdAt)
     }
-    
+
     func ascCreatedAtCompare(e2: BuzzlerComment) -> ComparisonResult {
-        return e2.createdAt.toString().compare(createdAt.toString())
+        return e2.createdAt.compare(createdAt)
     }
     
 }

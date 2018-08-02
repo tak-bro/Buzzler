@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir LT 95 Black.ttf">
+            <string>AvenirLT-Black</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CantDeletePostPopUpViewController" customModule="Buzzler" customModuleProvider="target">
+            <connections>
+                <outlet property="btn_ok" destination="jGi-4f-3Kf" id="3Dw-LF-qhy"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nD-vp-tTY">
+                    <rect key="frame" x="42.5" y="198.5" width="290" height="270"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGi-4f-3Kf">
+                            <rect key="frame" x="25" y="199" width="240" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="240" id="wQp-z4-GvB"/>
+                                <constraint firstAttribute="height" constant="48" id="wR7-k6-0ql"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="AvenirLT-Black" family="Avenir LT 65 Medium" pointSize="16"/>
+                            <state key="normal" title="OK">
+                                <color key="titleColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="pressOK:" destination="-1" eventType="touchUpInside" id="loG-Os-Uyq"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9C-aM-ymf">
+                            <rect key="frame" x="71.5" y="134" width="147" height="29"/>
+                            <attributedString key="attributedText">
+                                <fragment content="작성한지 3일이 지난 글은">
+                                    <attributes>
+                                        <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" size="12" name="AppleSDGothicNeo-Light"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment>
+                                    <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                    <attributes>
+                                        <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" size="12" name="AvenirLTStd-Book"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content="수정 또는 삭제가 불가능합니다.">
+                                    <attributes>
+                                        <color key="NSColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" size="12" name="AppleSDGothicNeo-Light"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수정/삭제할 수 없는 글입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mqY-1h-hoP">
+                            <rect key="frame" x="51.5" y="78" width="188" height="19.5"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="16"/>
+                            <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="jGi-4f-3Kf" firstAttribute="centerY" secondItem="7nD-vp-tTY" secondAttribute="centerY" multiplier="1.65" id="8Vn-RZ-cQI"/>
+                        <constraint firstItem="mqY-1h-hoP" firstAttribute="centerY" secondItem="7nD-vp-tTY" secondAttribute="centerY" multiplier="0.65" id="J6f-hg-tfA"/>
+                        <constraint firstItem="jGi-4f-3Kf" firstAttribute="centerX" secondItem="7nD-vp-tTY" secondAttribute="centerX" id="KKY-z4-SFf"/>
+                        <constraint firstAttribute="width" constant="290" id="TLV-iL-efs"/>
+                        <constraint firstItem="q9C-aM-ymf" firstAttribute="centerX" secondItem="7nD-vp-tTY" secondAttribute="centerX" id="VG5-wz-0WK"/>
+                        <constraint firstAttribute="height" constant="270" id="rgY-WC-09Z"/>
+                        <constraint firstItem="q9C-aM-ymf" firstAttribute="centerY" secondItem="7nD-vp-tTY" secondAttribute="centerY" multiplier="1.1" id="us9-GI-YKg"/>
+                        <constraint firstItem="mqY-1h-hoP" firstAttribute="centerX" secondItem="7nD-vp-tTY" secondAttribute="centerX" id="x7T-eA-2B2"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_block_face" translatesAutoresizingMaskIntoConstraints="NO" id="7Qj-dq-fqt">
+                    <rect key="frame" x="149" y="168.5" width="77" height="77"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="77" id="bFh-PX-xiH"/>
+                        <constraint firstAttribute="width" constant="77" id="qZO-aP-oU1"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39501054447852763" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="7Qj-dq-fqt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6f5-7u-R3E"/>
+                <constraint firstItem="7nD-vp-tTY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QVj-FC-DHk"/>
+                <constraint firstItem="7Qj-dq-fqt" firstAttribute="top" secondItem="7nD-vp-tTY" secondAttribute="top" constant="-30" id="crA-B0-Pp8"/>
+                <constraint firstItem="7nD-vp-tTY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="oOB-eL-HfI"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="img_block_face" width="77" height="77"/>
+    </resources>
+</document>
