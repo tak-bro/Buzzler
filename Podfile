@@ -32,7 +32,7 @@ def shared_pods
     pod 'SKPhotoBrowser', '4.0.0'
     pod 'SwiftMessages'
     pod 'DateToolsSwift'
-    pod 'PopoverSwift', :git => 'https://github.com/njir/Popover.git', :commit => 'f79c0d1bbcde646d91ef8284eff60038dea055d2'
+    pod 'PopoverSwift', :git => 'https://github.com/njir/Popover.git', :branch => 'swift3'
 end
 
 target :'Buzzler' do
