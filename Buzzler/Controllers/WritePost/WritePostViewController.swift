@@ -14,7 +14,6 @@ import RxKeyboard
 import SVProgressHUD
 import Photos
 import DKImagePickerController
-import Toaster
 import SKPhotoBrowser
 import SwiftMessages
 

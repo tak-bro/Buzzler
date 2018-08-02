@@ -18,7 +18,7 @@ public struct DetailBuzzlerPost: Equatable, Mappable {
     var imageUrls: [String] = []
     var likeCount: Int = 0
     var commentCount: Int = 0
-    var createdAt: Date = Date()
+    var createdAt: String = ""
     var author: Author = Author()
     var comments: [BuzzlerComment] = []
     

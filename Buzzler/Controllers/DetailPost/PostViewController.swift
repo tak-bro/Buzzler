@@ -26,6 +26,7 @@ class PostViewController: UIViewController, ShowsAlert {
     @IBOutlet weak var commentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var commentBottom: NSLayoutConstraint!
     @IBOutlet weak var btn_writeComment: UIButton!
+    @IBOutlet weak var vw_dimmed: UIView!
     
     // to show parent comment info
     @IBOutlet weak var lbl_parentAuthor: UILabel!
@@ -164,11 +165,12 @@ extension PostViewController: UITableViewDelegate {
                     let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                     imgCell.lbl_title.text = item.title
                     imgCell.lbl_content.text = item.contents
-                    imgCell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
+                    imgCell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
                     imgCell.lbl_likeCount.text = String(item.likeCount) + " Likes"
                     imgCell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     imgCell.lbl_author.text = item.author.username
                     imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
+                    imgCell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
                     
                     if item.imageUrls.count == 1 {
                         imgCell.vw_remainLabelContainer.isHidden = true
@@ -190,8 +192,15 @@ extension PostViewController: UITableViewDelegate {
                         .drive(onNext: { [weak self] in
                             // save post data to local
                             self?.selectedPost = item
+                            self?.addDimmedView()
                             // present popover
-                            let controller = PopoverController(items: (self?.makePorverActions())!, fromView: imgCell.btn_postAction, direction: .down, style: .withImage)
+                            let controller = PopoverController(items:(self?.makePorverActions())!,
+                                                               fromView: imgCell.btn_postAction,
+                                                               direction: .down,
+                                                               style: .withImage,
+                                                               dismissHandler: {
+                                                                self?.removeDimmedView()
+                            })
                             self?.popover(controller)
                         })
                         .disposed(by: imgCell.bag)
@@ -256,10 +265,11 @@ extension PostViewController: UITableViewDelegate {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                     cell.lbl_title.text = item.title
                     cell.lbl_content.text = item.contents
-                    cell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
+                    cell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
                     cell.lbl_likeCount.text = String(item.likeCount) + " Likes"
                     cell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     cell.lbl_author.text = item.author.username
+                    cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
                     
                     // set origin info
                     self.originTitle = item.title
@@ -269,7 +279,14 @@ extension PostViewController: UITableViewDelegate {
                     cell.btn_postAction.rx.tap.asDriver()
                         .drive(onNext: { [weak self] in
                             self?.selectedPost = item
-                            let controller = PopoverController(items: (self?.makePorverActions())!, fromView: cell.btn_postAction, direction: .down, style: .withImage)
+                            let controller = PopoverController(items:(self?.makePorverActions())!,
+                                                               fromView: cell.btn_postAction,
+                                                               direction: .down,
+                                                               style: .withImage,
+                                                               dismissHandler: {
+                                                                self?.removeDimmedView()
+                            })
+                            self?.addDimmedView()
                             self?.popover(controller)
                         })
                         .disposed(by: cell.bag)
@@ -379,7 +396,8 @@ extension PostViewController: UITextViewDelegate {
     func setUI() {
         self.vw_parentComment.isHidden = true
         self.img_heartPopup.alpha = 0.0
-        resetNavBar()
+        self.resetNavBar()
+        self.vw_dimmed.isHidden = true
     }
     
     func resetNavBar() {
@@ -452,6 +470,7 @@ extension PostViewController {
             let deleteVC = DeletePostPopUpViewController(nibName: "DeletePostPopUpViewController", bundle: nil)
             deleteVC.modalPresentationStyle = .overCurrentContext
             deleteVC.modalTransitionStyle = .crossDissolve
+            deleteVC.postId = self.selectedPostId
             self.present(deleteVC, animated: true, completion: nil)
         }
         
@@ -474,5 +493,13 @@ extension PostViewController {
                 })
             })
         })
+    }
+    
+    func addDimmedView() {
+        self.vw_dimmed.isHidden = false
+    }
+    
+    func removeDimmedView() {
+        self.vw_dimmed.isHidden = true
     }
 }

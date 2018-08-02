@@ -18,7 +18,7 @@ public struct BuzzlerPost: Equatable, Mappable {
     var imageUrls: [String] = []
     var likeCount: Int = 0
     var commentCount: Int = 0
-    var createdAt: Date = Date()
+    var createdAt: String = ""
     var author: Author = Author()
     
     public static func == (lhs: BuzzlerPost, rhs: BuzzlerPost) -> Bool {
@@ -41,7 +41,7 @@ public struct BuzzlerPost: Equatable, Mappable {
     }
     
     init(id: Int, title: String, contents: String, commentCount: Int,
-         imageUrls: [String], likeCount: Int, createdAt: Date,
+         imageUrls: [String], likeCount: Int, createdAt: String,
          author: Author) {
         self.id = id
         self.title = title

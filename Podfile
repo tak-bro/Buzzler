@@ -29,10 +29,10 @@ def shared_pods
     pod 'RxCocoa'
     pod 'AsyncTimer', '~> 2.2'
     pod 'DKImagePickerController', '3.6.1'
-    pod 'Toaster'
-    pod 'PopoverSwift', '2.0.2'
     pod 'SKPhotoBrowser', '4.0.0'
     pod 'SwiftMessages'
+    pod 'DateToolsSwift'
+    pod 'PopoverSwift', :git => 'https://github.com/njir/Popover.git', :commit => 'f79c0d1bbcde646d91ef8284eff60038dea055d2'
 end
 
 target :'Buzzler' do

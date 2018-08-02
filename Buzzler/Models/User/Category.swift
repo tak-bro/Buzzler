@@ -15,7 +15,7 @@ public struct UserCategory: Mappable {
     var name: String = ""
     var baseUrl: String? = ""
     var secondUrl: String? = ""
-    var createdAt: Date = Date()
+    var createdAt: String? = ""
     
     public init?(map: Map) { }
     
@@ -30,7 +30,7 @@ public struct UserCategory: Mappable {
         createdAt <- map["createdAt"]
     }
     
-    init(id: Int, categoryDepth: Int, name: String, baseUrl: String?, secondUrl: String?, createdAt: Date) {
+    init(id: Int, categoryDepth: Int, name: String, baseUrl: String?, secondUrl: String?, createdAt: String?) {
         if let baseUrl = baseUrl {
             self.baseUrl = baseUrl
         }

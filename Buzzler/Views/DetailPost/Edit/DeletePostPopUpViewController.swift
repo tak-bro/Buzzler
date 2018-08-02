@@ -13,6 +13,8 @@ class DeletePostPopUpViewController: UIViewController {
     @IBOutlet weak var btn_ok: UIButton!
     @IBOutlet weak var btn_cancel: UIButton!
     
+    var postId: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

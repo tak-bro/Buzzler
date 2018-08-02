@@ -100,16 +100,18 @@ extension HomeViewController: UITableViewDelegate {
                 let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                 imgCell.lbl_title.text = item.title
                 imgCell.lbl_content.text = item.contents
-                imgCell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
+                imgCell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
                 imgCell.lbl_likeCount.text = String(item.likeCount)
                 imgCell.lbl_commentCount.text = String(item.commentCount)
                 imgCell.lbl_author.text = item.author.username
                 imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
+                imgCell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
                 if item.imageUrls.count == 1 {
                     imgCell.vw_remainLabelContainer.isHidden = true
                 } else {
                     imgCell.vw_remainLabelContainer.isHidden = false
                 }
+            
                 // set image
                 let encodedURL = item.imageUrls.sorted()[0].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 imgCell.img_items.kf.indicatorType = .activity
@@ -123,12 +125,13 @@ extension HomeViewController: UITableViewDelegate {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                 cell.lbl_title.text = item.title
                 cell.lbl_content.text = item.contents
-                cell.lbl_time.text = item.createdAt.toString(format: "yyyy/MM/dd")
+                cell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
                 cell.lbl_likeCount.text = String(item.likeCount)
                 cell.lbl_commentCount.text = String(item.commentCount)
                 cell.lbl_author.text = item.author.username
+                cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
                 cell.btn_postAction.isHidden = true
-                
+
                 defaultCell = cell
             }
             return defaultCell
