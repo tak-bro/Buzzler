@@ -200,8 +200,20 @@ extension PostViewController: UITableViewDelegate {
                                                                style: .withImage,
                                                                dismissHandler: {
                                                                 self?.removeDimmedView()
+                                                                // remove dimmed view from navigation bar
+                                                                if let navigationBar = self?.navigationController?.navigationBar {
+                                                                    navigationBar.removeSubviews()
+                                                                }
                             })
                             self?.popover(controller)
+                            
+                            // add dimmed view to navigation bar
+                            if let navigationBar = self?.navigationController?.navigationBar {
+                                let dimmedFrame = CGRect(x: 0, y: 0, width: navigationBar.frame.width, height: navigationBar.frame.height)
+                                let dimmedNavView = UIView(frame: dimmedFrame)
+                                dimmedNavView.backgroundColor = Config.UI.blackTransparencyColor
+                                navigationBar.addSubview(dimmedNavView)
+                            }
                         })
                         .disposed(by: imgCell.bag)
                     
@@ -285,9 +297,20 @@ extension PostViewController: UITableViewDelegate {
                                                                style: .withImage,
                                                                dismissHandler: {
                                                                 self?.removeDimmedView()
+                                                                // remove dimmed view from navigation bar
+                                                                if let navigationBar = self?.navigationController?.navigationBar {
+                                                                    navigationBar.removeSubviews()
+                                                                }
                             })
                             self?.addDimmedView()
                             self?.popover(controller)
+                            // add dimmed view to navigation bar
+                            if let navigationBar = self?.navigationController?.navigationBar {
+                                let dimmedFrame = CGRect(x: 0, y: 0, width: navigationBar.frame.width, height: navigationBar.frame.height)
+                                let dimmedNavView = UIView(frame: dimmedFrame)
+                                dimmedNavView.backgroundColor = Config.UI.blackTransparencyColor
+                                navigationBar.addSubview(dimmedNavView)
+                            }
                         })
                         .disposed(by: cell.bag)
                     

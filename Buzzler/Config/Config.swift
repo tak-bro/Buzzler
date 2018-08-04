@@ -18,7 +18,7 @@ struct Config {
         static let placeholderColor = UIColor(red:0.78, green:0.78, blue:0.80, alpha:1.00)
         static let heartColor = UIColor(red:0.95, green:0.36, blue:0.45, alpha:1.00)
         
-        static let blackTransparencyColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        static let blackTransparencyColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
     }
 }
 
