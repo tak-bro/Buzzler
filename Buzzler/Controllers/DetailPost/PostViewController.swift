@@ -344,6 +344,35 @@ extension PostViewController: UITableViewDelegate {
                         self.lbl_parentAuthor.text = item.author.username
                     }).disposed(by: cell.bag)
                 
+                // like post action
+                cell.btn_like.rx.tap.asDriver()
+                    .drive(onNext: { _ in
+                        let environment = Environment()
+                        guard let categoryId = environment.categoryId else { return }
+                        
+                        // set disabled like button
+                        cell.btn_like.isEnabled = false
+                        
+                        BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: item.id)) { result in
+                            // set enabled
+                            cell.btn_like.isEnabled = true
+                            
+                            switch result {
+                            case let .success(moyaResponse):
+                                let statusCode = moyaResponse.statusCode
+                                if statusCode == 201 {
+                                    self.likeAnimation()
+                                } else {
+                                    self.showAlert(message: "Already Liked before")
+                                }
+                                
+                            case .failure(_):
+                                self.showAlert(message: "Server Error!")
+                            }
+                        }
+                    })
+                    .disposed(by: cell.bag)
+                
                 return cell
             case let .ReCommentItem(item):
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ReCommentTableViewCell.self)
