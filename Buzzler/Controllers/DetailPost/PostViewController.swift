@@ -330,6 +330,8 @@ extension PostViewController: UITableViewDelegate {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
                 cell.lbl_comment.text = item.contents
                 cell.lbl_comment.numberOfLines = 0
+                cell.lbl_author.text = item.author.username
+                cell.lbl_createdAt.text = getDateFromString(date: item.createdAt).timeAgoSinceNow
 
                 // define action to write comment
                 cell.btn_writeRecomment.rx.tap.asDriver()
@@ -347,6 +349,8 @@ extension PostViewController: UITableViewDelegate {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: ReCommentTableViewCell.self)
                 cell.lbl_recomment.text = item.contents
                 cell.lbl_recomment.numberOfLines = 0
+                cell.lbl_author.text = item.author.username
+                cell.lbl_createdAt.text = getDateFromString(date: item.createdAt).timeAgoSinceNow
                 return cell
             }
         }

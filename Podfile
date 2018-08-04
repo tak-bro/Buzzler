@@ -31,7 +31,7 @@ def shared_pods
     pod 'DKImagePickerController', '3.6.1'
     pod 'SKPhotoBrowser', '4.0.0'
     pod 'SwiftMessages'
-    pod 'DateToolsSwift'
+    pod 'DateToolsSwift', :git => 'https://github.com/njir/DateTools.git', :commit => 'f7a6f26c7c9b6c7a39405ee3f907e0af4abe8c64'
     pod 'PopoverSwift', :git => 'https://github.com/njir/Popover.git', :branch => 'swift3'
 end
 
