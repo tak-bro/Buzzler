@@ -13,6 +13,8 @@ final class ReCommentTableViewCell: UITableViewCell, NibReusable  {
 
     @IBOutlet weak var vw_reCommentContainer: UIView!
     @IBOutlet weak var lbl_recomment: UILabel!
+    @IBOutlet weak var lbl_author: UILabel!
+    @IBOutlet weak var lbl_createdAt: UILabel!
     
     static let height: CGFloat = UITableViewAutomaticDimension
     

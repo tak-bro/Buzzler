@@ -330,7 +330,7 @@ extension PostViewController: UITableViewDelegate {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: CommentTableViewCell.self)
                 cell.lbl_comment.text = item.contents
                 cell.lbl_comment.numberOfLines = 0
-                
+
                 // define action to write comment
                 cell.btn_writeRecomment.rx.tap.asDriver()
                     .drive(onNext: { _ in

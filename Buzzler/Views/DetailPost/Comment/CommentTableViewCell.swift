@@ -16,6 +16,9 @@ final class CommentTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var vw_commentContainer: UIView!
     @IBOutlet weak var lbl_comment: UILabel!
     @IBOutlet weak var btn_writeRecomment: UIButton!
+    @IBOutlet weak var btn_like: UIButton!
+    @IBOutlet weak var lbl_author: UILabel!
+    @IBOutlet weak var lbl_createdAt: UILabel!
     
     var bag = DisposeBag()
     static let height: CGFloat = UITableViewAutomaticDimension
