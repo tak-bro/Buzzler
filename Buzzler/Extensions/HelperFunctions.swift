@@ -88,8 +88,14 @@ func convertDateFormatter(dateStr: String) -> String {
     return timeStamp
 }
 
-func getRemainTimeString(createdAt: String) -> String {
+func checkIsRewarded(createdAt: String) -> Bool {
+    let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+    let rewardTime = createdAt.toDate(format: dateFormat)! + 3.days
     
+    return Date() > rewardTime ? true : false
+}
+
+func getRemainTimeString(createdAt: String) -> String {
     let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
     let rewardTime = createdAt.toDate(format: dateFormat)! + 3.days
     

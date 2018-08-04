@@ -44,6 +44,7 @@ class PostViewController: UIViewController, ShowsAlert {
     var selectedPost = BuzzlerPost()
     fileprivate let tapGesture = UITapGestureRecognizer()
     var selectedPostId: Int?
+    var selectedPostCreatedAt: String?
     
     var originTitle: String?
     var originContents: String?
@@ -178,6 +179,13 @@ extension PostViewController: UITableViewDelegate {
                         imgCell.vw_remainLabelContainer.isHidden = false
                     }
                     
+                    // check rewarded
+                    if checkIsRewarded(createdAt: item.createdAt) {
+                        imgCell.btn_like.isEnabled = false
+                    } else {
+                        imgCell.btn_like.isEnabled = true
+                    }
+                    
                     // set origin info
                     self.originTitle = item.title
                     self.originContents = item.contents
@@ -283,6 +291,13 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_author.text = item.author.username
                     cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
                     
+                    // check rewarded
+                    if checkIsRewarded(createdAt: item.createdAt) {
+                        cell.btn_like.isEnabled = false
+                    } else {
+                        cell.btn_like.isEnabled = true
+                    }
+                    
                     // set origin info
                     self.originTitle = item.title
                     self.originContents = item.contents
@@ -356,6 +371,15 @@ extension PostViewController: UITableViewDelegate {
                 cell.lbl_author.text = item.author.username
                 cell.lbl_createdAt.text = getDateFromString(date: item.createdAt).timeAgoSinceNow
 
+                // check rewarded with selected Post CreatedAt
+                if let postCreatedAt = self.selectedPostCreatedAt {
+                    if checkIsRewarded(createdAt: postCreatedAt){
+                        cell.btn_like.isEnabled = false
+                    } else {
+                        cell.btn_like.isEnabled = true
+                    }
+                }
+                
                 // define action to write comment
                 cell.btn_writeRecomment.rx.tap.asDriver()
                     .drive(onNext: { _ in

@@ -182,6 +182,7 @@ extension HomeViewController: UITableViewDelegate {
             let detailPostVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
             detailPostVC.viewModel = detailPostViewModel
             detailPostVC.selectedPostId = detailPostViewModel.selectedPostId
+            detailPostVC.selectedPostCreatedAt = detailPostViewModel.selectedPostCreatedAt
             self.navigationController?.pushViewController(detailPostVC, animated: true)           
         }).disposed(by: disposeBag)
     }

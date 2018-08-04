@@ -69,9 +69,11 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
     public var postId: PublishSubject<Int?>
     
     public var selectedPostId: Int
+    public var selectedPostCreatedAt: String
     
-    init(id: Int) {
-        self.selectedPostId = id
+    init(selectedPost: BuzzlerPost) {
+        self.selectedPostId = selectedPost.id
+        self.selectedPostCreatedAt = selectedPost.createdAt
         
         self.loadDetailPostTrigger = PublishSubject<Void>()
         self.elements = Variable<[MultipleSectionModel]>([])
@@ -110,7 +112,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                 let categoryId = environment.categoryId
                 
                 return API.sharedAPI
-                    .writeComment(categoryId: categoryId!, postId: id, parentId: tuple.1! == "" ? nil : tuple.1!, contents: tuple.0!)
+                    .writeComment(categoryId: categoryId!, postId: selectedPost.id, parentId: tuple.1! == "" ? nil : tuple.1!, contents: tuple.0!)
                     .trackActivity(Loading)
                     .asDriver(onErrorJustReturn: false)
         }
@@ -137,7 +139,7 @@ public class DetailPostViewModel: DetailPostViewModelInputs, DetailPostViewModel
                     let environment = Environment()
                     let categoryId = environment.categoryId
                     return API.sharedAPI
-                        .getDetailPost(categoryId: categoryId!, id: id)
+                        .getDetailPost(categoryId: categoryId!, id: selectedPost.id)
                         .trackActivity(Loading)
                         .asDriver(onErrorJustReturn: [])
                 }
