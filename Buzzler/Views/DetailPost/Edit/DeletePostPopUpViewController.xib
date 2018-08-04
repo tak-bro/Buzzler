@@ -110,7 +110,7 @@ Cg
                         <constraint firstItem="muL-Gt-X3g" firstAttribute="centerY" secondItem="UVI-rb-Cpm" secondAttribute="centerY" multiplier="0.65" id="zQH-NY-JRP"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_block_face" translatesAutoresizingMaskIntoConstraints="NO" id="EB3-Zo-R5g">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_trash_enabled" translatesAutoresizingMaskIntoConstraints="NO" id="EB3-Zo-R5g">
                     <rect key="frame" x="149" y="168" width="77" height="77"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="77" id="WUa-Ln-anp"/>
@@ -129,6 +129,6 @@ Cg
         </view>
     </objects>
     <resources>
-        <image name="img_block_face" width="77" height="77"/>
+        <image name="img_trash_enabled" width="77" height="77"/>
     </resources>
 </document>
