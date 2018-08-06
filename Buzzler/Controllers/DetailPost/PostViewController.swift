@@ -166,13 +166,14 @@ extension PostViewController: UITableViewDelegate {
                     let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                     imgCell.lbl_title.text = item.title
                     imgCell.lbl_content.text = item.contents
+                    imgCell.lbl_content.numberOfLines = 0
                     imgCell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
                     imgCell.lbl_likeCount.text = String(item.likeCount) + " Likes"
                     imgCell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     imgCell.lbl_author.text = item.author.username
                     imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
                     imgCell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
-                    
+
                     if item.imageUrls.count == 1 {
                         imgCell.vw_remainLabelContainer.isHidden = true
                     } else {
@@ -285,6 +286,7 @@ extension PostViewController: UITableViewDelegate {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                     cell.lbl_title.text = item.title
                     cell.lbl_content.text = item.contents
+                    cell.lbl_content.numberOfLines = 0
                     cell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
                     cell.lbl_likeCount.text = String(item.likeCount) + " Likes"
                     cell.lbl_commentCount.text = String(item.commentCount) + " Comments"
