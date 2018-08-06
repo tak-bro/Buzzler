@@ -33,7 +33,7 @@ class SecondStepViewController: UIViewController, ShowsAlert {
             }, completion: { [weak self] in
                 // show invalidate text
                 let invalidateText = "invalidated".withAttributes([
-                    .textColor(Config.UI.errorFontColor),
+                    .textColor(Config.UI.errorColor),
                     .font(.AvenirNext(type: .Book, size: 12))
                     ])
                 self?.lbl_timer.attributedText = invalidateText

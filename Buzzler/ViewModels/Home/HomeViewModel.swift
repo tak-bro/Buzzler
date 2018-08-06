@@ -118,7 +118,7 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelInputs, HomeViewMode
         self.selectedViewModel = self.post.asDriver()
             .filterNil()
             .flatMapLatest{ post -> Driver<DetailPostViewModel> in
-                return Driver.just(DetailPostViewModel(id: post.id))
+                return Driver.just(DetailPostViewModel(selectedPost: post))
         }
     }
     

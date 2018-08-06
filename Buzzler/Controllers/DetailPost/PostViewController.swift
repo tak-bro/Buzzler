@@ -44,6 +44,7 @@ class PostViewController: UIViewController, ShowsAlert {
     var selectedPost = BuzzlerPost()
     fileprivate let tapGesture = UITapGestureRecognizer()
     var selectedPostId: Int?
+    var selectedPostCreatedAt: String?
     
     var originTitle: String?
     var originContents: String?
@@ -165,17 +166,25 @@ extension PostViewController: UITableViewDelegate {
                     let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                     imgCell.lbl_title.text = item.title
                     imgCell.lbl_content.text = item.contents
+                    imgCell.lbl_content.numberOfLines = 0
                     imgCell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
                     imgCell.lbl_likeCount.text = String(item.likeCount) + " Likes"
                     imgCell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     imgCell.lbl_author.text = item.author.username
                     imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
                     imgCell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
-                    
+
                     if item.imageUrls.count == 1 {
                         imgCell.vw_remainLabelContainer.isHidden = true
                     } else {
                         imgCell.vw_remainLabelContainer.isHidden = false
+                    }
+                    
+                    // check rewarded
+                    if checkIsRewarded(createdAt: item.createdAt) {
+                        imgCell.btn_like.isEnabled = false
+                    } else {
+                        imgCell.btn_like.isEnabled = true
                     }
                     
                     // set origin info
@@ -200,8 +209,20 @@ extension PostViewController: UITableViewDelegate {
                                                                style: .withImage,
                                                                dismissHandler: {
                                                                 self?.removeDimmedView()
+                                                                // remove dimmed view from navigation bar
+                                                                if let navigationBar = self?.navigationController?.navigationBar {
+                                                                    navigationBar.removeSubviews()
+                                                                }
                             })
                             self?.popover(controller)
+                            
+                            // add dimmed view to navigation bar
+                            if let navigationBar = self?.navigationController?.navigationBar {
+                                let dimmedFrame = CGRect(x: 0, y: 0, width: navigationBar.frame.width, height: navigationBar.frame.height)
+                                let dimmedNavView = UIView(frame: dimmedFrame)
+                                dimmedNavView.backgroundColor = Config.UI.blackTransparencyColor
+                                navigationBar.addSubview(dimmedNavView)
+                            }
                         })
                         .disposed(by: imgCell.bag)
                     
@@ -265,11 +286,19 @@ extension PostViewController: UITableViewDelegate {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                     cell.lbl_title.text = item.title
                     cell.lbl_content.text = item.contents
+                    cell.lbl_content.numberOfLines = 0
                     cell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
                     cell.lbl_likeCount.text = String(item.likeCount) + " Likes"
                     cell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     cell.lbl_author.text = item.author.username
                     cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
+                    
+                    // check rewarded
+                    if checkIsRewarded(createdAt: item.createdAt) {
+                        cell.btn_like.isEnabled = false
+                    } else {
+                        cell.btn_like.isEnabled = true
+                    }
                     
                     // set origin info
                     self.originTitle = item.title
@@ -285,9 +314,20 @@ extension PostViewController: UITableViewDelegate {
                                                                style: .withImage,
                                                                dismissHandler: {
                                                                 self?.removeDimmedView()
+                                                                // remove dimmed view from navigation bar
+                                                                if let navigationBar = self?.navigationController?.navigationBar {
+                                                                    navigationBar.removeSubviews()
+                                                                }
                             })
                             self?.addDimmedView()
                             self?.popover(controller)
+                            // add dimmed view to navigation bar
+                            if let navigationBar = self?.navigationController?.navigationBar {
+                                let dimmedFrame = CGRect(x: 0, y: 0, width: navigationBar.frame.width, height: navigationBar.frame.height)
+                                let dimmedNavView = UIView(frame: dimmedFrame)
+                                dimmedNavView.backgroundColor = Config.UI.blackTransparencyColor
+                                navigationBar.addSubview(dimmedNavView)
+                            }
                         })
                         .disposed(by: cell.bag)
                     
@@ -333,6 +373,15 @@ extension PostViewController: UITableViewDelegate {
                 cell.lbl_author.text = item.author.username
                 cell.lbl_createdAt.text = getDateFromString(date: item.createdAt).timeAgoSinceNow
 
+                // check rewarded with selected Post CreatedAt
+                if let postCreatedAt = self.selectedPostCreatedAt {
+                    if checkIsRewarded(createdAt: postCreatedAt){
+                        cell.btn_like.isEnabled = false
+                    } else {
+                        cell.btn_like.isEnabled = true
+                    }
+                }
+                
                 // define action to write comment
                 cell.btn_writeRecomment.rx.tap.asDriver()
                     .drive(onNext: { _ in
@@ -343,6 +392,35 @@ extension PostViewController: UITableViewDelegate {
                         self.vw_parentComment.isHidden = false
                         self.lbl_parentAuthor.text = item.author.username
                     }).disposed(by: cell.bag)
+                
+                // like post action
+                cell.btn_like.rx.tap.asDriver()
+                    .drive(onNext: { _ in
+                        let environment = Environment()
+                        guard let categoryId = environment.categoryId else { return }
+                        
+                        // set disabled like button
+                        cell.btn_like.isEnabled = false
+                        
+                        BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: item.id)) { result in
+                            // set enabled
+                            cell.btn_like.isEnabled = true
+                            
+                            switch result {
+                            case let .success(moyaResponse):
+                                let statusCode = moyaResponse.statusCode
+                                if statusCode == 201 {
+                                    self.likeAnimation()
+                                } else {
+                                    self.showAlert(message: "Already Liked before")
+                                }
+                                
+                            case .failure(_):
+                                self.showAlert(message: "Server Error!")
+                            }
+                        }
+                    })
+                    .disposed(by: cell.bag)
                 
                 return cell
             case let .ReCommentItem(item):

@@ -147,28 +147,27 @@ extension WritePostViewController {
         self.viewModel.outputs.posting
             .drive(onNext: { posting in
                 print("posting result", posting)
-                SwiftMessages.hideAll()
-                
-                let outputNoti = MessageView.viewFromNib(layout: .statusLine)
+
                 if posting == true {
-                    outputNoti.backgroundView.backgroundColor = UIColor.orange
-                    outputNoti.bodyLabel?.textColor = UIColor.white
-                    outputNoti.configureContent(body: "Success !!")
+                    self.messageView.backgroundView.backgroundColor = Config.UI.buttonActiveColor
+                    self.messageView.bodyLabel?.textColor = UIColor.white
+                    self.messageView.configureContent(body: "Success to upload")
                 } else {
-                    outputNoti.backgroundView.backgroundColor = UIColor.red
-                    outputNoti.bodyLabel?.textColor = UIColor.white
-                    outputNoti.configureContent(body: "Failed !!")
+                    self.messageView.backgroundView.backgroundColor = Config.UI.errorColor
+                    self.messageView.bodyLabel?.textColor = UIColor.white
+                    self.messageView.configureContent(body: "Failed to upload")
                 }
-                self.messageConfig.duration = .automatic
-                
-                SwiftMessages.show(config: self.messageConfig, view: outputNoti)
+
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5, execute: {
+                    SwiftMessages.hideAll()
+                })
             }).disposed(by: disposeBag)
         
         self.viewModel.isLoading
             .drive(onNext: { isLoading in
                 switch isLoading {
                 case true:
-                    self.messageView.backgroundView.backgroundColor = Config.UI.buttonActiveColor
+                    self.messageView.backgroundView.backgroundColor = Config.UI.uploadingColor
                     self.messageView.bodyLabel?.textColor = UIColor.white
                     self.messageView.configureContent(body: "Posting...")
                     self.messageConfig.duration = .forever
