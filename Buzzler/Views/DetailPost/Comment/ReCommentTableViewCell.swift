@@ -7,17 +7,26 @@
 //
 
 import UIKit
+import RxSwift
 import Reusable
 
 final class ReCommentTableViewCell: UITableViewCell, NibReusable  {
 
+    @IBOutlet weak var vw_shadow: UIView!
     @IBOutlet weak var vw_reCommentContainer: UIView!
     @IBOutlet weak var lbl_recomment: UILabel!
     @IBOutlet weak var lbl_author: UILabel!
     @IBOutlet weak var lbl_createdAt: UILabel!
+    @IBOutlet weak var btn_like: UIButton!
     
+    var bag = DisposeBag()
     static let height: CGFloat = UITableViewAutomaticDimension
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bag = DisposeBag()
+    }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

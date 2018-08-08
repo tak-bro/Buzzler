@@ -165,6 +165,8 @@ extension PostViewController: UITableViewDelegate {
                 if item.imageUrls.count > 0 {
                     let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                     imgCell.lbl_title.text = item.title
+                    imgCell.lbl_title.numberOfLines = 0
+                    imgCell.leadingConstraint.constant = 15
                     imgCell.lbl_content.text = item.contents
                     imgCell.lbl_content.numberOfLines = 0
                     imgCell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
@@ -180,13 +182,6 @@ extension PostViewController: UITableViewDelegate {
                         imgCell.vw_remainLabelContainer.isHidden = false
                     }
                     
-                    // check rewarded
-                    if checkIsRewarded(createdAt: item.createdAt) {
-                        imgCell.btn_like.isEnabled = false
-                    } else {
-                        imgCell.btn_like.isEnabled = true
-                    }
-                    
                     // set origin info
                     self.originTitle = item.title
                     self.originContents = item.contents
@@ -199,6 +194,7 @@ extension PostViewController: UITableViewDelegate {
                     // add post action for edit
                     imgCell.btn_postAction.rx.tap.asDriver()
                         .drive(onNext: { [weak self] in
+
                             // save post data to local
                             self?.selectedPost = item
                             self?.addDimmedView()
@@ -229,6 +225,18 @@ extension PostViewController: UITableViewDelegate {
                     // like action
                     imgCell.btn_like.rx.tap.asDriver()
                         .drive(onNext: { _ in
+                            
+                            // check rewarded
+                            imgCell.btn_like.isEnabled = false
+                            if checkIsRewarded(createdAt: item.createdAt) {
+                                Toast.show(message: "등록한지 3일이 지난 글에는 좋아요를 할 수 없습니다.", controller: self, dismissHandler: {
+                                    imgCell.btn_like.isEnabled = true
+                                })
+                                return
+                            } else {
+                                imgCell.btn_like.isEnabled = true
+                            }
+                            
                             let environment = Environment()
                             guard let categoryId = environment.categoryId, let postId = self.selectedPostId else { return }
                             
@@ -285,6 +293,8 @@ extension PostViewController: UITableViewDelegate {
                 } else {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                     cell.lbl_title.text = item.title
+                    cell.lbl_title.numberOfLines = 0
+                    cell.leadingConstraint.constant = 15
                     cell.lbl_content.text = item.contents
                     cell.lbl_content.numberOfLines = 0
                     cell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
@@ -292,14 +302,7 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     cell.lbl_author.text = item.author.username
                     cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
-                    
-                    // check rewarded
-                    if checkIsRewarded(createdAt: item.createdAt) {
-                        cell.btn_like.isEnabled = false
-                    } else {
-                        cell.btn_like.isEnabled = true
-                    }
-                    
+
                     // set origin info
                     self.originTitle = item.title
                     self.originContents = item.contents
@@ -307,6 +310,7 @@ extension PostViewController: UITableViewDelegate {
                     // add post action for edit
                     cell.btn_postAction.rx.tap.asDriver()
                         .drive(onNext: { [weak self] in
+
                             self?.selectedPost = item
                             let controller = PopoverController(items:(self?.makePorverActions())!,
                                                                fromView: cell.btn_postAction,
@@ -334,6 +338,18 @@ extension PostViewController: UITableViewDelegate {
                     // like post action
                     cell.btn_like.rx.tap.asDriver()
                         .drive(onNext: { _ in
+                            
+                            // check rewarded
+                            cell.btn_like.isEnabled = false
+                            if checkIsRewarded(createdAt: item.createdAt) {
+                                Toast.show(message: "등록한지 3일이 지난 글에는 좋아요를 할 수 없습니다.", controller: self, dismissHandler: {
+                                    cell.btn_like.isEnabled = true
+                                })
+                                return
+                            } else {
+                                cell.btn_like.isEnabled = true
+                            }
+                            
                             let environment = Environment()
                             guard let categoryId = environment.categoryId, let postId = self.selectedPostId else { return }
                             
@@ -348,6 +364,7 @@ extension PostViewController: UITableViewDelegate {
                                 case let .success(moyaResponse):
                                     let statusCode = moyaResponse.statusCode
                                     if statusCode == 201 {
+                                        // self.img_heartPopup.image = UIImage(named: "img_like_heart")
                                         self.likeAnimation()
                                         cell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal)
                                         cell.lbl_likeCount.text = String(item.likeCount+1) + " Likes"
@@ -373,15 +390,6 @@ extension PostViewController: UITableViewDelegate {
                 cell.lbl_author.text = item.author.username
                 cell.lbl_createdAt.text = getDateFromString(date: item.createdAt).timeAgoSinceNow
 
-                // check rewarded with selected Post CreatedAt
-                if let postCreatedAt = self.selectedPostCreatedAt {
-                    if checkIsRewarded(createdAt: postCreatedAt){
-                        cell.btn_like.isEnabled = false
-                    } else {
-                        cell.btn_like.isEnabled = true
-                    }
-                }
-                
                 // define action to write comment
                 cell.btn_writeRecomment.rx.tap.asDriver()
                     .drive(onNext: { _ in
@@ -396,6 +404,20 @@ extension PostViewController: UITableViewDelegate {
                 // like post action
                 cell.btn_like.rx.tap.asDriver()
                     .drive(onNext: { _ in
+                        
+                        // check rewarded
+                        cell.btn_like.isEnabled = false
+                        if let postCreatedAt = self.selectedPostCreatedAt {
+                            if checkIsRewarded(createdAt: postCreatedAt){
+                                Toast.show(message: "등록한지 3일이 지난 글에는 좋아요를 할 수 없습니다.", controller: self, dismissHandler: {
+                                    cell.btn_like.isEnabled = true
+                                })
+                                return
+                            } else {
+                                cell.btn_like.isEnabled = true
+                            }
+                        }
+                        
                         let environment = Environment()
                         guard let categoryId = environment.categoryId else { return }
                         
@@ -411,6 +433,7 @@ extension PostViewController: UITableViewDelegate {
                                 let statusCode = moyaResponse.statusCode
                                 if statusCode == 201 {
                                     self.likeAnimation()
+                                    cell.btn_like.setTitleColor(Config.UI.buttonActiveColor, for: .normal)
                                 } else {
                                     self.showAlert(message: "Already Liked before")
                                 }
@@ -429,6 +452,51 @@ extension PostViewController: UITableViewDelegate {
                 cell.lbl_recomment.numberOfLines = 0
                 cell.lbl_author.text = item.author.username
                 cell.lbl_createdAt.text = getDateFromString(date: item.createdAt).timeAgoSinceNow
+                
+                // like post action
+                cell.btn_like.rx.tap.asDriver()
+                    .drive(onNext: { _ in
+                        cell.btn_like.isEnabled = false
+                        
+                        // check rewarded with selected Post CreatedAt
+                        if let postCreatedAt = self.selectedPostCreatedAt {
+                            if checkIsRewarded(createdAt: postCreatedAt) {
+                                Toast.show(message: "등록한지 3일이 지난 글에는 좋아요를 할 수 없습니다.", controller: self, dismissHandler: {
+                                    cell.btn_like.isEnabled = true
+                                })
+                                return
+                            } else {
+                                cell.btn_like.isEnabled = true
+                            }
+                        }
+                        
+                        let environment = Environment()
+                        guard let categoryId = environment.categoryId else { return }
+                        
+                        // set disabled like button
+                        cell.btn_like.isEnabled = false
+                        
+                        BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: item.id)) { result in
+                            // set enabled
+                            cell.btn_like.isEnabled = true
+                            
+                            switch result {
+                            case let .success(moyaResponse):
+                                let statusCode = moyaResponse.statusCode
+                                if statusCode == 201 {
+                                    self.likeAnimation()
+                                    cell.btn_like.setTitleColor(Config.UI.buttonActiveColor, for: .normal)
+                                } else {
+                                    self.showAlert(message: "Already Liked before")
+                                }
+                                
+                            case .failure(_):
+                                self.showAlert(message: "Server Error!")
+                            }
+                        }
+                    })
+                    .disposed(by: cell.bag)
+                
                 return cell
             }
         }
@@ -549,11 +617,22 @@ extension PostViewController {
             debugPrint($0.title)
             print(self.selectedPost.title)
             
-            let deleteVC = DeletePostPopUpViewController(nibName: "DeletePostPopUpViewController", bundle: nil)
-            deleteVC.modalPresentationStyle = .overCurrentContext
-            deleteVC.modalTransitionStyle = .crossDissolve
-            deleteVC.postId = self.selectedPostId
-            self.present(deleteVC, animated: true, completion: nil)
+            // check rewarded with selected Post CreatedAt
+            if let postCreatedAt = self.selectedPostCreatedAt {
+                if checkIsRewarded(createdAt: postCreatedAt){
+                    let cantDeleteVC = CantDeletePostPopUpViewController(nibName: "CantDeletePostPopUpViewController", bundle: nil)
+                    cantDeleteVC.modalPresentationStyle = .overCurrentContext
+                    cantDeleteVC.modalTransitionStyle = .crossDissolve
+                    self.present(cantDeleteVC, animated: true, completion: nil)
+                } else {
+                    let deleteVC = DeletePostPopUpViewController(nibName: "DeletePostPopUpViewController", bundle: nil)
+                    deleteVC.modalPresentationStyle = .overCurrentContext
+                    deleteVC.modalTransitionStyle = .crossDissolve
+                    deleteVC.postId = self.selectedPostId
+                    self.present(deleteVC, animated: true, completion: nil)
+                }
+            }
+            
         }
         
         return [editAction, deleteAction]

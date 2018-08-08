@@ -22,6 +22,7 @@ class ManuallyEnterViewController: UIViewController, ShowsAlert {
     @IBOutlet weak var btn_next: UIButton!
     
     let viewModel = ManuallyEnterViewModel(provider: BuzzlerProvider)
+    let router = SignUpRouter()
     
     fileprivate let disposeBag = DisposeBag()
     
@@ -73,6 +74,7 @@ class ManuallyEnterViewController: UIViewController, ShowsAlert {
                 if signedIn == true {
                     print(signedIn)
                     // TODO: add push view controller
+                    // self.router.perform(.done, from: self)
                 } else {
                     self.showAlert(message: "Server Error!")
                 }

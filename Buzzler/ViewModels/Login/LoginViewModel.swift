@@ -119,7 +119,11 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)
             }
-            .flatMapLatest{ loginResult in
+            .flatMapLatest{ loginResult -> SharedSequence<DriverSharingStrategy, Bool> in
+                if loginResult != true {
+                    return Driver.of(loginResult)
+                }
+                
                 return provider.request(Buzzler.getCategoriesByUser())
                     .retry(3)
                     .observeOn(MainScheduler.instance)
@@ -141,8 +145,28 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                         // save default categoryId
                         var environment = Environment()
                         environment.categoryId = 1
-                        environment.categoryTitle = "Secret Lounge"
+                        environment.categoryTitle = "익명"
                         
+                        return Single.just(loginResult)
+                    })
+                    .trackActivity(isLoading)
+                    .asDriver(onErrorJustReturn: false)
+            }
+            .flatMapLatest{ loginResult in
+                if loginResult != true {
+                    return Driver.of(loginResult)
+                }
+
+                return provider.request(Buzzler.getUserInfo())
+                    .retry(3)
+                    .observeOn(MainScheduler.instance)
+                    .filterSuccessfulStatusCodes()
+                    .flatMap({ res -> Single<Bool> in
+                        print("res", res)
+                        
+                        // TODO: save categories
+                        globalAccountInfo = try res.mapObject(AccountInfo.self)
+                        // TODO: delete below
                         return Single.just(loginResult)
                     })
                     .trackActivity(isLoading)

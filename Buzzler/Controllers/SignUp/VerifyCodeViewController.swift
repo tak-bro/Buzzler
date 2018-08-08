@@ -92,8 +92,8 @@ class VerifyCodeViewController: UIViewController, ShowsAlert {
                     print(signedIn)
                     // push view controller
                     self.router.userInfo = self.inputUserInfo
-                    self.router.perform(.selectUniv, from: self)
-                    // self.router.perform(.manuallyEnter, from: self)
+                    //self.router.perform(.selectUniv, from: self)
+                    self.router.perform(.manuallyEnter, from: self)
                 } else {
                     self.showAlert(message: "Failed to verify code!")
                 }
