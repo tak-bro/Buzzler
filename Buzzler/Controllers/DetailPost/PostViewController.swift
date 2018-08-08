@@ -165,6 +165,8 @@ extension PostViewController: UITableViewDelegate {
                 if item.imageUrls.count > 0 {
                     let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
                     imgCell.lbl_title.text = item.title
+                    imgCell.lbl_title.numberOfLines = 0
+                    imgCell.leadingConstraint.constant = 15
                     imgCell.lbl_content.text = item.contents
                     imgCell.lbl_content.numberOfLines = 0
                     imgCell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
@@ -285,6 +287,8 @@ extension PostViewController: UITableViewDelegate {
                 } else {
                     let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
                     cell.lbl_title.text = item.title
+                    cell.lbl_title.numberOfLines = 0
+                    cell.leadingConstraint.constant = 15
                     cell.lbl_content.text = item.contents
                     cell.lbl_content.numberOfLines = 0
                     cell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
@@ -292,7 +296,7 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     cell.lbl_author.text = item.author.username
                     cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
-                    
+
                     // check rewarded
                     if checkIsRewarded(createdAt: item.createdAt) {
                         cell.btn_like.isEnabled = false
@@ -549,11 +553,22 @@ extension PostViewController {
             debugPrint($0.title)
             print(self.selectedPost.title)
             
-            let deleteVC = DeletePostPopUpViewController(nibName: "DeletePostPopUpViewController", bundle: nil)
-            deleteVC.modalPresentationStyle = .overCurrentContext
-            deleteVC.modalTransitionStyle = .crossDissolve
-            deleteVC.postId = self.selectedPostId
-            self.present(deleteVC, animated: true, completion: nil)
+            // check rewarded with selected Post CreatedAt
+            if let postCreatedAt = self.selectedPostCreatedAt {
+                if checkIsRewarded(createdAt: postCreatedAt){
+                    let cantDeleteVC = CantDeletePostPopUpViewController(nibName: "CantDeletePostPopUpViewController", bundle: nil)
+                    cantDeleteVC.modalPresentationStyle = .overCurrentContext
+                    cantDeleteVC.modalTransitionStyle = .crossDissolve
+                    self.present(cantDeleteVC, animated: true, completion: nil)
+                } else {
+                    let deleteVC = DeletePostPopUpViewController(nibName: "DeletePostPopUpViewController", bundle: nil)
+                    deleteVC.modalPresentationStyle = .overCurrentContext
+                    deleteVC.modalTransitionStyle = .crossDissolve
+                    deleteVC.postId = self.selectedPostId
+                    self.present(deleteVC, animated: true, completion: nil)
+                }
+            }
+            
         }
         
         return [editAction, deleteAction]

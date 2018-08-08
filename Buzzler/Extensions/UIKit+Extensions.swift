@@ -71,6 +71,7 @@ extension UIView {
         self.layer.shadowOpacity = 1.0
         self.layer.shadowRadius = 2.0
         self.layer.masksToBounds = false
+        self.layer.shouldRasterize = true
     }
     // OUTPUT 2
     func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {

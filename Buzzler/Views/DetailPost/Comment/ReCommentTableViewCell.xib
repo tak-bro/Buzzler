@@ -103,6 +103,7 @@
                 <outlet property="lbl_createdAt" destination="yHj-og-65Z" id="3HE-dn-1YF"/>
                 <outlet property="lbl_recomment" destination="YSw-K7-Opo" id="SAH-cJ-STf"/>
                 <outlet property="vw_reCommentContainer" destination="lNf-6D-GSU" id="q5G-uU-akd"/>
+                <outlet property="vw_shadow" destination="4WR-3F-Cey" id="HEL-4O-KQE"/>
             </connections>
             <point key="canvasLocation" x="85" y="185"/>
         </tableViewCell>

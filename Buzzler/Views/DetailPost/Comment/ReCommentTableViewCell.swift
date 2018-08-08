@@ -11,6 +11,7 @@ import Reusable
 
 final class ReCommentTableViewCell: UITableViewCell, NibReusable  {
 
+    @IBOutlet weak var vw_shadow: UIView!
     @IBOutlet weak var vw_reCommentContainer: UIView!
     @IBOutlet weak var lbl_recomment: UILabel!
     @IBOutlet weak var lbl_author: UILabel!

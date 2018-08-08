@@ -57,6 +57,7 @@ class WritePostViewController: UIViewController {
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         bindToRx()
         setUI()
         setGetureToView()
@@ -73,6 +74,10 @@ class WritePostViewController: UIViewController {
                 placeholderLabel.isHidden = true
             }
         }
+        
+        // set title
+        let environment = Environment()
+        self.lbl_univ.text = environment.categoryTitle
     }
     
     func addImage() {
@@ -149,7 +154,7 @@ extension WritePostViewController {
                 print("posting result", posting)
 
                 if posting == true {
-                    self.messageView.backgroundView.backgroundColor = Config.UI.buttonActiveColor
+                    self.messageView.backgroundView.backgroundColor = Config.UI.doneUploadColor
                     self.messageView.bodyLabel?.textColor = UIColor.white
                     self.messageView.configureContent(body: "Success to upload")
                 } else {
