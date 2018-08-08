@@ -352,6 +352,7 @@ extension PostViewController: UITableViewDelegate {
                                 case let .success(moyaResponse):
                                     let statusCode = moyaResponse.statusCode
                                     if statusCode == 201 {
+                                        // self.img_heartPopup.image = UIImage(named: "img_like_heart")
                                         self.likeAnimation()
                                         cell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal)
                                         cell.lbl_likeCount.text = String(item.likeCount+1) + " Likes"

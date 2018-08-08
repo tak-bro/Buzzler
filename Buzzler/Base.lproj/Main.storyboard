@@ -1614,8 +1614,8 @@ Cg
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_big_like" translatesAutoresizingMaskIntoConstraints="NO" id="uOU-z7-oCH">
-                                <rect key="frame" x="142" y="295" width="91" height="76"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_like_coin" translatesAutoresizingMaskIntoConstraints="NO" id="uOU-z7-oCH">
+                                <rect key="frame" x="157.5" y="306" width="60" height="54"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ep3-q7-FFt">
                                 <rect key="frame" x="10" y="577" width="355" height="30"/>
@@ -1917,6 +1917,9 @@ Cg
                     </view>
                     <navigationItem key="navigationItem" id="2AJ-Ie-0wK"/>
                     <connections>
+                        <outlet property="lbl_buzAmount" destination="Q8r-oy-EpB" id="Rjq-ng-yGP"/>
+                        <outlet property="lbl_univInfo" destination="dS5-jb-RtG" id="hIQ-ef-7tc"/>
+                        <outlet property="lbl_userName" destination="kVq-ea-Rab" id="S0u-Sx-GvR"/>
                         <outlet property="tbl_category" destination="xpq-ig-XuA" id="mW5-gH-LrP"/>
                         <outlet property="vw_header" destination="vOV-tv-ZJ8" id="3sD-Kv-sf4"/>
                     </connections>
@@ -2071,8 +2074,8 @@ Cg
         <image name="btn_upload_img" width="28" height="23"/>
         <image name="btn_write" width="25" height="22"/>
         <image name="icon_select_box" width="10" height="6"/>
-        <image name="img_big_like" width="91" height="76"/>
         <image name="img_done_check" width="84" height="84"/>
+        <image name="img_like_coin" width="60" height="54"/>
         <image name="img_logo_new" width="102" height="105"/>
         <image name="img_tmp" width="885" height="590"/>
     </resources>

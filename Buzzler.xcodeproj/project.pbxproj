@@ -52,6 +52,7 @@
 		3BD6EE932105608E0094E318 /* BlackListPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */; };
 		3BD6EE96210560A40094E318 /* ApprovalPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */; };
 		3BD6EE97210560A40094E318 /* ApprovalPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD6EE95210560A40094E318 /* ApprovalPopUpViewController.xib */; };
+		3BFE9DAC211A8674006D435F /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE9DAB211A8674006D435F /* AccountInfo.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
 		84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB420907D3200B7C98A /* SignUpViewModel.swift */; };
 		8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421B2C92086D1A900CBF4E3 /* LoginViewController.swift */; };
@@ -154,6 +155,7 @@
 		3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlackListPopUpViewController.xib; sourceTree = "<group>"; };
 		3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalPopUpViewController.swift; sourceTree = "<group>"; };
 		3BD6EE95210560A40094E318 /* ApprovalPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApprovalPopUpViewController.xib; sourceTree = "<group>"; };
+		3BFE9DAB211A8674006D435F /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
 		84002EB22090613A00B7C98A /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				3BBE8D1F20D1162800634B2F /* Category.swift */,
+				3BFE9DAB211A8674006D435F /* AccountInfo.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -947,6 +950,7 @@
 				844BC386208C462900666486 /* SignUpDoneViewController.swift in Sources */,
 				84DFF8F1209C403800AC63B0 /* ActiviityIndicator.swift in Sources */,
 				84DFF8EE209C23E600AC63B0 /* ServerURL.swift in Sources */,
+				3BFE9DAC211A8674006D435F /* AccountInfo.swift in Sources */,
 				3B48A9CA20B5498700E0BDA1 /* UserInfo.swift in Sources */,
 				8421B2D42086DB7700CBF4E3 /* GlobalUIManager.swift in Sources */,
 				84F437AA2085C3E700E71358 /* WritePostViewController.swift in Sources */,

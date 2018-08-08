@@ -22,6 +22,9 @@ typealias SideSectionModel = SectionModel<String, SideModel>
 
 class SideViewController: UIViewController, UITableViewDelegate {
     
+    @IBOutlet weak var lbl_buzAmount: UILabel!
+    @IBOutlet weak var lbl_univInfo: UILabel!
+    @IBOutlet weak var lbl_userName: UILabel!
     @IBOutlet weak var tbl_category: UITableView!
     @IBOutlet weak var vw_header: UIView!
     
@@ -105,6 +108,11 @@ class SideViewController: UIViewController, UITableViewDelegate {
         tbl_category.rowHeight = UITableViewAutomaticDimension
         tbl_category.estimatedRowHeight = 200
         tbl_category.separatorStyle = .none
+        
+        // set accountInfo
+        self.lbl_userName.text = globalAccountInfo.username
+        self.lbl_buzAmount.text = String(globalAccountInfo.buzAmount)
+        self.lbl_univInfo.text = globalAccountInfo.email
     }
     
     fileprivate func resetEnv() {
