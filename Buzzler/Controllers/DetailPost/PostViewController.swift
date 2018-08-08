@@ -415,6 +415,7 @@ extension PostViewController: UITableViewDelegate {
                                 let statusCode = moyaResponse.statusCode
                                 if statusCode == 201 {
                                     self.likeAnimation()
+                                    cell.btn_like.setTitleColor(Config.UI.buttonActiveColor, for: .normal)
                                 } else {
                                     self.showAlert(message: "Already Liked before")
                                 }
@@ -433,6 +434,36 @@ extension PostViewController: UITableViewDelegate {
                 cell.lbl_recomment.numberOfLines = 0
                 cell.lbl_author.text = item.author.username
                 cell.lbl_createdAt.text = getDateFromString(date: item.createdAt).timeAgoSinceNow
+                // like post action
+                cell.btn_like.rx.tap.asDriver()
+                    .drive(onNext: { _ in
+                        let environment = Environment()
+                        guard let categoryId = environment.categoryId else { return }
+                        
+                        // set disabled like button
+                        cell.btn_like.isEnabled = false
+                        
+                        BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: item.id)) { result in
+                            // set enabled
+                            cell.btn_like.isEnabled = true
+                            
+                            switch result {
+                            case let .success(moyaResponse):
+                                let statusCode = moyaResponse.statusCode
+                                if statusCode == 201 {
+                                    self.likeAnimation()
+                                    cell.btn_like.setTitleColor(Config.UI.buttonActiveColor, for: .normal)
+                                } else {
+                                    self.showAlert(message: "Already Liked before")
+                                }
+                                
+                            case .failure(_):
+                                self.showAlert(message: "Server Error!")
+                            }
+                        }
+                    })
+                    .disposed(by: cell.bag)
+                
                 return cell
             }
         }
