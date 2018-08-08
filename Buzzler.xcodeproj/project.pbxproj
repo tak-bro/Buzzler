@@ -53,6 +53,7 @@
 		3BD6EE96210560A40094E318 /* ApprovalPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */; };
 		3BD6EE97210560A40094E318 /* ApprovalPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD6EE95210560A40094E318 /* ApprovalPopUpViewController.xib */; };
 		3BFE9DAC211A8674006D435F /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE9DAB211A8674006D435F /* AccountInfo.swift */; };
+		3BFE9DAE211A9956006D435F /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE9DAD211A9956006D435F /* Toast.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
 		84002EB520907D3200B7C98A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB420907D3200B7C98A /* SignUpViewModel.swift */; };
 		8421B2CB2086D1A900CBF4E3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8421B2C92086D1A900CBF4E3 /* LoginViewController.swift */; };
@@ -156,6 +157,7 @@
 		3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalPopUpViewController.swift; sourceTree = "<group>"; };
 		3BD6EE95210560A40094E318 /* ApprovalPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApprovalPopUpViewController.xib; sourceTree = "<group>"; };
 		3BFE9DAB211A8674006D435F /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
+		3BFE9DAD211A9956006D435F /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		818CD01BBF863A2454C8724C /* Pods-Buzzler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.release.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.release.xcconfig"; sourceTree = "<group>"; };
 		84002EB22090613A00B7C98A /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -670,6 +672,7 @@
 				AFBBA5CC1E06F783003605D1 /* Response+ObjectMapper.swift */,
 				8421B2CD2086D6CE00CBF4E3 /* UIKit+Extensions.swift */,
 				844BC389208C573000666486 /* HelperFunctions.swift */,
+				3BFE9DAD211A9956006D435F /* Toast.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -932,6 +935,7 @@
 				3B142A9C2106C4A100CE7E7A /* Author.swift in Sources */,
 				84A1BFCA208C898D00D0ADC7 /* StretchHeaderOptions.swift in Sources */,
 				AFBBA5CD1E06F783003605D1 /* Response+ObjectMapper.swift in Sources */,
+				3BFE9DAE211A9956006D435F /* Toast.swift in Sources */,
 				3B52E6C820AE94AA002B2BB6 /* SecondStepViewModel.swift in Sources */,
 				3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */,
 				3B2A42BB20B14D0100E37D72 /* SettingsViewController.swift in Sources */,

@@ -182,13 +182,6 @@ extension PostViewController: UITableViewDelegate {
                         imgCell.vw_remainLabelContainer.isHidden = false
                     }
                     
-                    // check rewarded
-                    if checkIsRewarded(createdAt: item.createdAt) {
-                        imgCell.btn_like.isEnabled = false
-                    } else {
-                        imgCell.btn_like.isEnabled = true
-                    }
-                    
                     // set origin info
                     self.originTitle = item.title
                     self.originContents = item.contents
@@ -201,6 +194,7 @@ extension PostViewController: UITableViewDelegate {
                     // add post action for edit
                     imgCell.btn_postAction.rx.tap.asDriver()
                         .drive(onNext: { [weak self] in
+
                             // save post data to local
                             self?.selectedPost = item
                             self?.addDimmedView()
@@ -231,6 +225,18 @@ extension PostViewController: UITableViewDelegate {
                     // like action
                     imgCell.btn_like.rx.tap.asDriver()
                         .drive(onNext: { _ in
+                            
+                            // check rewarded
+                            imgCell.btn_like.isEnabled = false
+                            if checkIsRewarded(createdAt: item.createdAt) {
+                                Toast.show(message: "등록한지 3일이 지난 글에는 좋아요를 할 수 없습니다.", controller: self, dismissHandler: {
+                                    imgCell.btn_like.isEnabled = true
+                                })
+                                return
+                            } else {
+                                imgCell.btn_like.isEnabled = true
+                            }
+                            
                             let environment = Environment()
                             guard let categoryId = environment.categoryId, let postId = self.selectedPostId else { return }
                             
@@ -297,13 +303,6 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_author.text = item.author.username
                     cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
 
-                    // check rewarded
-                    if checkIsRewarded(createdAt: item.createdAt) {
-                        cell.btn_like.isEnabled = false
-                    } else {
-                        cell.btn_like.isEnabled = true
-                    }
-                    
                     // set origin info
                     self.originTitle = item.title
                     self.originContents = item.contents
@@ -311,6 +310,7 @@ extension PostViewController: UITableViewDelegate {
                     // add post action for edit
                     cell.btn_postAction.rx.tap.asDriver()
                         .drive(onNext: { [weak self] in
+
                             self?.selectedPost = item
                             let controller = PopoverController(items:(self?.makePorverActions())!,
                                                                fromView: cell.btn_postAction,
@@ -338,6 +338,18 @@ extension PostViewController: UITableViewDelegate {
                     // like post action
                     cell.btn_like.rx.tap.asDriver()
                         .drive(onNext: { _ in
+                            
+                            // check rewarded
+                            cell.btn_like.isEnabled = false
+                            if checkIsRewarded(createdAt: item.createdAt) {
+                                Toast.show(message: "등록한지 3일이 지난 글에는 좋아요를 할 수 없습니다.", controller: self, dismissHandler: {
+                                    cell.btn_like.isEnabled = true
+                                })
+                                return
+                            } else {
+                                cell.btn_like.isEnabled = true
+                            }
+                            
                             let environment = Environment()
                             guard let categoryId = environment.categoryId, let postId = self.selectedPostId else { return }
                             
@@ -378,15 +390,6 @@ extension PostViewController: UITableViewDelegate {
                 cell.lbl_author.text = item.author.username
                 cell.lbl_createdAt.text = getDateFromString(date: item.createdAt).timeAgoSinceNow
 
-                // check rewarded with selected Post CreatedAt
-                if let postCreatedAt = self.selectedPostCreatedAt {
-                    if checkIsRewarded(createdAt: postCreatedAt){
-                        cell.btn_like.isEnabled = false
-                    } else {
-                        cell.btn_like.isEnabled = true
-                    }
-                }
-                
                 // define action to write comment
                 cell.btn_writeRecomment.rx.tap.asDriver()
                     .drive(onNext: { _ in
@@ -401,6 +404,20 @@ extension PostViewController: UITableViewDelegate {
                 // like post action
                 cell.btn_like.rx.tap.asDriver()
                     .drive(onNext: { _ in
+                        
+                        // check rewarded
+                        cell.btn_like.isEnabled = false
+                        if let postCreatedAt = self.selectedPostCreatedAt {
+                            if checkIsRewarded(createdAt: postCreatedAt){
+                                Toast.show(message: "등록한지 3일이 지난 글에는 좋아요를 할 수 없습니다.", controller: self, dismissHandler: {
+                                    cell.btn_like.isEnabled = true
+                                })
+                                return
+                            } else {
+                                cell.btn_like.isEnabled = true
+                            }
+                        }
+                        
                         let environment = Environment()
                         guard let categoryId = environment.categoryId else { return }
                         
@@ -435,9 +452,24 @@ extension PostViewController: UITableViewDelegate {
                 cell.lbl_recomment.numberOfLines = 0
                 cell.lbl_author.text = item.author.username
                 cell.lbl_createdAt.text = getDateFromString(date: item.createdAt).timeAgoSinceNow
+                
                 // like post action
                 cell.btn_like.rx.tap.asDriver()
                     .drive(onNext: { _ in
+                        cell.btn_like.isEnabled = false
+                        
+                        // check rewarded with selected Post CreatedAt
+                        if let postCreatedAt = self.selectedPostCreatedAt {
+                            if checkIsRewarded(createdAt: postCreatedAt) {
+                                Toast.show(message: "등록한지 3일이 지난 글에는 좋아요를 할 수 없습니다.", controller: self, dismissHandler: {
+                                    cell.btn_like.isEnabled = true
+                                })
+                                return
+                            } else {
+                                cell.btn_like.isEnabled = true
+                            }
+                        }
+                        
                         let environment = Environment()
                         guard let categoryId = environment.categoryId else { return }
                         
