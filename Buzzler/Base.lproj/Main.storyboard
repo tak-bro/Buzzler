@@ -1762,17 +1762,57 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyPage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BB9-Rs-78e">
-                                <rect key="frame" x="156" y="323" width="62" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="네이버학교 버즐러학과" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGw-7u-IaO">
+                                <rect key="frame" x="134" y="58.5" width="107" height="16.5"/>
+                                <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="12"/>
+                                <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="931,200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWk-LW-TZf">
+                                <rect key="frame" x="162" y="93" width="51" height="14"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="14"/>
+                                <color key="textColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rG6-yY-yMS">
+                                <rect key="frame" x="173" y="24.5" width="27.5" height="18"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="18"/>
+                                <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZqC-2Q-Ib9">
+                                <rect key="frame" x="0.0" y="147" width="375" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="abA-v3-fBU"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Seoul Univ"/>
+                                    <segment title="Economics"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlDidChange:" destination="sH1-LH-17u" eventType="valueChanged" id="Czv-IJ-M12"/>
+                                </connections>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="boI-HY-fj2">
+                                <rect key="frame" x="0.0" y="197" width="375" height="470"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="BB9-Rs-78e" firstAttribute="centerY" secondItem="Dep-0z-nOa" secondAttribute="centerY" id="OA1-Io-mkW"/>
-                            <constraint firstItem="BB9-Rs-78e" firstAttribute="centerX" secondItem="Dep-0z-nOa" secondAttribute="centerX" id="efL-4B-92k"/>
+                            <constraint firstItem="boI-HY-fj2" firstAttribute="top" secondItem="ZqC-2Q-Ib9" secondAttribute="bottom" constant="10" id="0zq-QI-yVg"/>
+                            <constraint firstItem="Ij7-az-644" firstAttribute="top" secondItem="boI-HY-fj2" secondAttribute="bottom" id="71b-xo-PR2"/>
+                            <constraint firstItem="yGw-7u-IaO" firstAttribute="centerY" secondItem="Dep-0z-nOa" secondAttribute="centerY" multiplier="0.2" id="8Q4-PH-9WY"/>
+                            <constraint firstAttribute="trailing" secondItem="ZqC-2Q-Ib9" secondAttribute="trailing" id="9R3-hN-8qB"/>
+                            <constraint firstItem="rG6-yY-yMS" firstAttribute="centerY" secondItem="Dep-0z-nOa" secondAttribute="centerY" multiplier="0.1" id="BFL-M8-v3B"/>
+                            <constraint firstItem="ZqC-2Q-Ib9" firstAttribute="centerY" secondItem="Dep-0z-nOa" secondAttribute="centerY" multiplier="0.5" id="CeM-AP-UP2"/>
+                            <constraint firstAttribute="trailing" secondItem="boI-HY-fj2" secondAttribute="trailing" id="Lhq-zS-VgF"/>
+                            <constraint firstItem="boI-HY-fj2" firstAttribute="leading" secondItem="Dep-0z-nOa" secondAttribute="leading" id="Ty9-06-UIh"/>
+                            <constraint firstItem="rG6-yY-yMS" firstAttribute="centerX" secondItem="Dep-0z-nOa" secondAttribute="centerX" id="U6B-hZ-PZv"/>
+                            <constraint firstItem="yGw-7u-IaO" firstAttribute="centerX" secondItem="Dep-0z-nOa" secondAttribute="centerX" id="XFQ-FD-eRD"/>
+                            <constraint firstItem="PWk-LW-TZf" firstAttribute="centerY" secondItem="Dep-0z-nOa" secondAttribute="centerY" multiplier="0.3" id="cQF-Fn-sev"/>
+                            <constraint firstItem="ZqC-2Q-Ib9" firstAttribute="leading" secondItem="Dep-0z-nOa" secondAttribute="leading" id="eri-By-V5c"/>
+                            <constraint firstItem="PWk-LW-TZf" firstAttribute="centerX" secondItem="Dep-0z-nOa" secondAttribute="centerX" id="sGo-7G-qWa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="u3z-x0-sz8">
@@ -1783,6 +1823,13 @@ Cg
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="lbl_buzAmount" destination="PWk-LW-TZf" id="24b-PR-7Yq"/>
+                        <outlet property="lbl_univInfo" destination="yGw-7u-IaO" id="enY-e8-XAY"/>
+                        <outlet property="lbl_userName" destination="rG6-yY-yMS" id="iBF-at-gRh"/>
+                        <outlet property="seg_univAndMajor" destination="ZqC-2Q-Ib9" id="0G4-wG-Blr"/>
+                        <outlet property="tbl_post" destination="boI-HY-fj2" id="DA9-yZ-cLm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PLC-ve-RJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2080,6 +2127,6 @@ Cg
         <image name="img_tmp" width="885" height="590"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gVB-h3-Ixr"/>
+        <segue reference="vVC-7V-vsg"/>
     </inferredMetricsTieBreakers>
 </document>
