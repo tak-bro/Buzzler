@@ -98,6 +98,8 @@ extension HomeViewController: UITableViewDelegate {
             let defaultCell: UITableViewCell
             if item.imageUrls.count > 0 {
                 let imgCell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeImageTableViewCell.self)
+                imgCell.vw_container.layer.cornerRadius = 3
+                imgCell.vw_bottomContainer.layer.cornerRadius = 3
                 imgCell.lbl_title.text = item.title
                 imgCell.lbl_content.text = item.contents
                 imgCell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)
@@ -123,6 +125,9 @@ extension HomeViewController: UITableViewDelegate {
                 defaultCell = imgCell
             } else {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
+                
+                cell.vw_container.layer.cornerRadius = 3
+                cell.vw_bottomContainer.layer.cornerRadius = 3
                 cell.lbl_title.text = item.title
                 cell.lbl_content.text = item.contents
                 cell.lbl_time.text = convertDateFormatter(dateStr: item.createdAt)

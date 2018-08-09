@@ -23,7 +23,8 @@ final class HomeTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var lbl_author: UILabel!
     @IBOutlet weak var vw_container: UIView!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var vw_bottomContainer: UIView!
+    
     var bag = DisposeBag()
     
     override func prepareForReuse() {
