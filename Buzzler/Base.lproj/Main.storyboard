@@ -1797,6 +1797,10 @@ Cg
                                 <rect key="frame" x="0.0" y="175" width="375" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNZ-7k-yLt">
+                                <rect key="frame" x="134" y="72.5" width="20" height="22"/>
+                                <state key="normal" image="btn_side_coin"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1812,7 +1816,9 @@ Cg
                             <constraint firstItem="yGw-7u-IaO" firstAttribute="centerX" secondItem="Dep-0z-nOa" secondAttribute="centerX" id="XFQ-FD-eRD"/>
                             <constraint firstItem="PWk-LW-TZf" firstAttribute="centerY" secondItem="Dep-0z-nOa" secondAttribute="centerY" multiplier="0.25" id="cQF-Fn-sev"/>
                             <constraint firstItem="ZqC-2Q-Ib9" firstAttribute="leading" secondItem="Dep-0z-nOa" secondAttribute="leading" id="eri-By-V5c"/>
+                            <constraint firstItem="NNZ-7k-yLt" firstAttribute="centerY" secondItem="PWk-LW-TZf" secondAttribute="centerY" id="nWh-HM-YPi"/>
                             <constraint firstItem="PWk-LW-TZf" firstAttribute="centerX" secondItem="Dep-0z-nOa" secondAttribute="centerX" id="sGo-7G-qWa"/>
+                            <constraint firstItem="PWk-LW-TZf" firstAttribute="leading" secondItem="NNZ-7k-yLt" secondAttribute="trailing" constant="8" id="wSj-IQ-uhZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="u3z-x0-sz8">

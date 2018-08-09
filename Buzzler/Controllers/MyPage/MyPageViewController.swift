@@ -37,6 +37,11 @@ class MyPageViewController: UIViewController {
         setSegmentControl()
         configureTableView()
         configBinding()
+        
+        // set accountInfo
+        self.lbl_userName.text = globalAccountInfo.username
+        self.lbl_buzAmount.text = String(globalAccountInfo.buzAmount)
+        self.lbl_univInfo.text = globalAccountInfo.email
     }
     
     func setSegmentControl() {
