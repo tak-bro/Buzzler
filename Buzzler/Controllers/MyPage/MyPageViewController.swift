@@ -12,13 +12,10 @@ import SVProgressHUD
 import RxSwift
 import RxCocoa
 import RxDataSources
+import SwiftyAttributes
 
 class MyPageViewController: UIViewController {
 
-    @IBOutlet weak var lbl_univInfo: UILabel!
-    @IBOutlet weak var lbl_buzAmount: UILabel!
-    @IBOutlet weak var lbl_userName: UILabel!
-    @IBOutlet weak var seg_univAndMajor: UISegmentedControl!
     @IBOutlet weak var tbl_post: UITableView!
     
     let disposeBag = DisposeBag()
@@ -29,41 +26,27 @@ class MyPageViewController: UIViewController {
     var categories: [UserCategory] = userCategories.filter { $0.id != 1 } // delete Secret Lounge
     var category: Int = 1
     
+    var isAddedShadow = false
+    let header = StretchHeader()
+    var segmentedControl: UISegmentedControl?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
         deleteShadow(from: self)
         title = " "
         
-        setSegmentControl()
+        setupHeaderView()
         configureTableView()
         configBinding()
-        
-        // set accountInfo
-        self.lbl_userName.text = globalAccountInfo.username
-        self.lbl_buzAmount.text = String(globalAccountInfo.buzAmount)
-        self.lbl_univInfo.text = globalAccountInfo.email
-    }
-    
-    func setSegmentControl() {
-        self.seg_univAndMajor.addUnderlineForSelectedSegment()
-
-        if let firstCategory = self.categories.first?.id {
-            self.category = firstCategory
-        }
-        // set segment control info frm global value
-        self.categories
-            .enumerated()
-            .map{ (index, category) in
-                self.seg_univAndMajor.setTitle(category.name, forSegmentAt: index)
-        }
     }
     
     @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
-        self.seg_univAndMajor.changeUnderlinePosition()
+        guard let segmentControl = self.segmentedControl else { return }
+        segmentControl.changeUnderlinePosition()
         
         // request new category
-        let index = seg_univAndMajor.selectedSegmentIndex
+        let index = segmentControl.selectedSegmentIndex
         self.category = categories[index].id
         self.viewModel.category(category: self.category)
         self.viewModel.loadPageTrigger.onNext(())
@@ -196,5 +179,117 @@ extension MyPageViewController: UITableViewDelegate {
             detailPostVC.selectedPostCreatedAt = detailPostViewModel.selectedPostCreatedAt
             self.navigationController?.pushViewController(detailPostVC, animated: true)
         }).disposed(by: disposeBag)
+    }
+}
+
+extension MyPageViewController {
+
+    // MARK: UITableViewDelegate
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let vw = UIView()
+        vw.backgroundColor = .clear
+        
+        self.segmentedControl = UISegmentedControl(frame: CGRect(x: 0, y: 0, width: self.tbl_post.frame.width, height: 40))
+        guard let segmentedControl = self.segmentedControl else { return vw }
+        
+        if let firstCategory = self.categories.first?.id {
+            self.category = firstCategory
+        }
+        // set segment control info frm global value
+        self.categories.enumerated().map { (arg) -> Void in
+            let (index, category) = arg
+            segmentedControl.insertSegment(withTitle: category.name, at: index, animated: true)
+        }
+        segmentedControl.addUnderlineForSelectedSegment()
+        segmentedControl.addTarget(self, action: #selector(MyPageViewController.segmentedControlDidChange(_:)), for: .valueChanged)
+        
+        vw.addSubview(segmentedControl)
+        return vw
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
+    }
+}
+
+
+extension MyPageViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    func setupHeaderView() {
+        let options = StretchHeaderOptions()
+        options.position = .fullScreenTop
+        header.stretchHeaderSize(headerSize: CGSize(width: view.frame.size.width, height: 90),
+                                 imageSize: CGSize(width: view.frame.size.width, height: 90),
+                                 controller: self,
+                                 options: options)
+        
+        //        self.lbl_userName.text = globalAccountInfo.username
+        //        self.lbl_buzAmount.text = String(globalAccountInfo.buzAmount)
+        //        self.lbl_univInfo.text = globalAccountInfo.email
+        
+        // add first header label
+        var firstHeaderLabel = HeaderLabel()
+        firstHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
+        firstHeaderLabel.text = globalAccountInfo.username
+        
+        // add second header label
+        var secondHeaderLabel = HeaderLabel()
+        secondHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
+        secondHeaderLabel.text = String(globalAccountInfo.buzAmount)
+//
+//        let peopleCnt = "1K".withAttributes([
+//            .textColor(Config.UI.fontColor),
+//            .font(.AvenirNext(type: .Book, size: 12))
+//            ])
+//        let staticPeople = "  peoples     ".withAttributes([
+//            .textColor(Config.UI.lightFontColor),
+//            .font(.AvenirNext(type: .Book, size: 12))
+//            ])
+//        let postCnt = "100K".withAttributes([
+//            .textColor(Config.UI.fontColor),
+//            .font(.AvenirNext(type: .Book, size: 12))
+//            ])
+//        let staticPost = "  posts".withAttributes([
+//            .textColor(Config.UI.lightFontColor),
+//            .font(.AvenirNext(type: .Book, size: 12))
+//            ])
+//        let finalString = peopleCnt + staticPeople + postCnt + staticPost
+//        secondHeaderLabel.attributedText = finalString
+        
+        header.addSubview(firstHeaderLabel)
+        header.addSubview(secondHeaderLabel)
+        
+        header.backgroundColor = Config.UI.themeColor
+        firstHeaderLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(header)
+            make.centerY.equalTo(header).multipliedBy(0.6)
+        }
+        secondHeaderLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(header)
+            make.centerY.equalTo(header).multipliedBy(1.4)
+        }
+        
+        self.tbl_post.tableHeaderView = header
+    }
+    
+    // MARK: - ScrollView Delegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        header.updateScrollViewOffset(scrollView)
+        
+        // NavigationHeader alpha update
+        let offset: CGFloat = scrollView.contentOffset.y
+        if (offset > 50) {
+            addShadowToNav(from: self)
+            self.isAddedShadow = true
+            title = "MyPage"
+        } else {
+            deleteShadow(from: self)
+            self.isAddedShadow = false
+            title = " "
+        }
     }
 }

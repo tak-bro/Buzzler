@@ -47,7 +47,7 @@ final class HomeViewController: UIViewController {
         
         // set title and Nav bar
         if !self.isAddedShadow {
-            deleteShadow()
+            deleteShadow(from: self)
             title = " "
         } else {
             let environment = Environment()
@@ -255,31 +255,14 @@ extension HomeViewController {
         // NavigationHeader alpha update
         let offset: CGFloat = scrollView.contentOffset.y
         if (offset > 50) {
-            addShadowToNav()
+            addShadowToNav(from: self)
             self.isAddedShadow = true
             let environment = Environment()
             title = environment.categoryTitle
         } else {
-            deleteShadow()
+            deleteShadow(from: self)
             self.isAddedShadow = false
             title = " "
         }
-    }
-    
-    func addShadowToNav() {
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        self.navigationController?.navigationBar.layer.shadowRadius = 1.0
-        self.navigationController?.navigationBar.layer.shadowOpacity = 0.5
-        self.navigationController?.navigationBar.layer.masksToBounds = false
-    }
-    
-    func deleteShadow() {
-        self.navigationController?.navigationBar.barTintColor = Config.UI.themeColor
-        self.navigationController?.navigationBar.layer.shadowColor = UIColor.clear.cgColor
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        self.navigationController?.navigationBar.layer.shadowRadius = 0.0
-        self.navigationController?.navigationBar.layer.shadowOpacity = 0.0
     }
 }
