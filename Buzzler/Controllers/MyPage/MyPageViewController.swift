@@ -26,6 +26,7 @@ class MyPageViewController: UIViewController {
     let dataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
     
     var refreshControl : UIRefreshControl?
+    var categories: [UserCategory] = userCategories.filter { $0.id != 1 } // delete Secret Lounge
     var category: Int = 1
     
     override func viewDidLoad() {
@@ -46,17 +47,24 @@ class MyPageViewController: UIViewController {
     
     func setSegmentControl() {
         self.seg_univAndMajor.addUnderlineForSelectedSegment()
+
+        if let firstCategory = self.categories.first?.id {
+            self.category = firstCategory
+        }
+        // set segment control info frm global value
+        self.categories
+            .enumerated()
+            .map{ (index, category) in
+                self.seg_univAndMajor.setTitle(category.name, forSegmentAt: index)
+        }
     }
     
     @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
         self.seg_univAndMajor.changeUnderlinePosition()
         
-        print(seg_univAndMajor.selectedSegmentIndex)
-        if (seg_univAndMajor.selectedSegmentIndex == 0) {
-            self.category = 1 // TODO:
-        } else {
-            self.category = 10006 // TODO: 버즐러학과
-        }
+        // request new category
+        let index = seg_univAndMajor.selectedSegmentIndex
+        self.category = categories[index].id
         self.viewModel.category(category: self.category)
         self.viewModel.loadPageTrigger.onNext(())
     }
