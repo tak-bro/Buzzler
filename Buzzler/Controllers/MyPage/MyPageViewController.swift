@@ -28,8 +28,7 @@ class MyPageViewController: UIViewController {
     
     var isAddedShadow = false
     let header = StretchHeader()
-    var segmentedControl: UISegmentedControl?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
@@ -40,24 +39,38 @@ class MyPageViewController: UIViewController {
         configureTableView()
         configBinding()
     }
-    
-    @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
-        guard let segmentControl = self.segmentedControl else { return }
-        segmentControl.changeUnderlinePosition()
-        
-        // request new category
-        let index = segmentControl.selectedSegmentIndex
-        self.category = categories[index].id
-        self.viewModel.category(category: self.category)
-        self.viewModel.loadPageTrigger.onNext(())
-    }
+
 }
 
 extension MyPageViewController: UITableViewDelegate {
     
+    // MARK: UITableViewDelegate
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let vw = UIView()
+        vw.backgroundColor = .clear
+        
+        let segmentedControl = UISegmentedControl(frame: CGRect(x: 0, y: 0, width: self.tbl_post.frame.width, height: 45))
+        // set segment control info frm global value
+        self.categories.enumerated().map { (index, category) -> Void in
+            segmentedControl.insertSegment(withTitle: category.name, at: index, animated: false)
+        }
+        vw.addSubview(segmentedControl)
+        
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.addUnderlineForSelectedSegment()
+        segmentedControl.addTarget(self, action: #selector(MyPageViewController.segmentedControlDidChange(_:)), for: .valueChanged)
+        
+        return vw
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
     // MARK: - Private Method
     
     fileprivate func configureTableView() {
+
         // set tableView
         tbl_post.register(cellType: HomeTableViewCell.self)
         tbl_post.register(cellType: HomeImageTableViewCell.self)
@@ -81,6 +94,9 @@ extension MyPageViewController: UITableViewDelegate {
     }
     
     fileprivate func configBinding() {
+        if let firstCategory = self.categories.first?.id {
+            self.category = firstCategory
+        }
         
         self.viewModel = MyPageViewModel()
         self.viewModel.category(category: self.category)
@@ -183,35 +199,20 @@ extension MyPageViewController: UITableViewDelegate {
 }
 
 extension MyPageViewController {
-
-    // MARK: UITableViewDelegate
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let vw = UIView()
-        vw.backgroundColor = .clear
-        
-        self.segmentedControl = UISegmentedControl(frame: CGRect(x: 0, y: 0, width: self.tbl_post.frame.width, height: 40))
-        guard let segmentedControl = self.segmentedControl else { return vw }
-        
-        if let firstCategory = self.categories.first?.id {
-            self.category = firstCategory
-        }
-        // set segment control info frm global value
-        self.categories.enumerated().map { (arg) -> Void in
-            let (index, category) = arg
-            segmentedControl.insertSegment(withTitle: category.name, at: index, animated: true)
-        }
-        segmentedControl.addUnderlineForSelectedSegment()
-        segmentedControl.addTarget(self, action: #selector(MyPageViewController.segmentedControlDidChange(_:)), for: .valueChanged)
-        
-        vw.addSubview(segmentedControl)
-        return vw
-    }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 45
-    }
-}
+    @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
+        sender.changeUnderlinePosition()
 
+        // request new category
+        let index = sender.selectedSegmentIndex
+        if self.category != categories[index].id {
+            self.category = categories[index].id
+            self.viewModel.category(category: self.category)
+            self.viewModel.loadPageTrigger.onNext(())
+        }
+    }
+
+}
 
 extension MyPageViewController {
     
@@ -222,53 +223,52 @@ extension MyPageViewController {
     func setupHeaderView() {
         let options = StretchHeaderOptions()
         options.position = .fullScreenTop
-        header.stretchHeaderSize(headerSize: CGSize(width: view.frame.size.width, height: 90),
-                                 imageSize: CGSize(width: view.frame.size.width, height: 90),
+        header.stretchHeaderSize(headerSize: CGSize(width: view.frame.size.width, height: 110),
+                                 imageSize: CGSize(width: view.frame.size.width, height: 110),
                                  controller: self,
                                  options: options)
-        
-        //        self.lbl_userName.text = globalAccountInfo.username
-        //        self.lbl_buzAmount.text = String(globalAccountInfo.buzAmount)
-        //        self.lbl_univInfo.text = globalAccountInfo.email
         
         // add first header label
         var firstHeaderLabel = HeaderLabel()
         firstHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
-        firstHeaderLabel.text = globalAccountInfo.username
+        let userName = globalAccountInfo.username.withAttributes([
+            .textColor(Config.UI.fontColor),
+            .font(.AvenirNext(type: .Book, size: 22))
+            ])
+        firstHeaderLabel.attributedText = userName
         
         // add second header label
         var secondHeaderLabel = HeaderLabel()
         secondHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
-        secondHeaderLabel.text = String(globalAccountInfo.buzAmount)
-//
-//        let peopleCnt = "1K".withAttributes([
-//            .textColor(Config.UI.fontColor),
-//            .font(.AvenirNext(type: .Book, size: 12))
-//            ])
-//        let staticPeople = "  peoples     ".withAttributes([
-//            .textColor(Config.UI.lightFontColor),
-//            .font(.AvenirNext(type: .Book, size: 12))
-//            ])
-//        let postCnt = "100K".withAttributes([
-//            .textColor(Config.UI.fontColor),
-//            .font(.AvenirNext(type: .Book, size: 12))
-//            ])
-//        let staticPost = "  posts".withAttributes([
-//            .textColor(Config.UI.lightFontColor),
-//            .font(.AvenirNext(type: .Book, size: 12))
-//            ])
-//        let finalString = peopleCnt + staticPeople + postCnt + staticPost
-//        secondHeaderLabel.attributedText = finalString
+        let univInfo = globalAccountInfo.email.withAttributes([
+            .textColor(Config.UI.lightFontColor),
+            .font(.AvenirNext(type: .Book, size: 14))
+            ])
+        secondHeaderLabel.attributedText = univInfo
+        
+        // add third header label
+        var thirdHeaderLabel = HeaderLabel()
+        thirdHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
+        let buzAmount = String(globalAccountInfo.buzAmount).withAttributes([
+            .textColor(Config.UI.buttonActiveColor),
+            .font(.AvenirNext(type: .Book, size: 16))
+            ])
+        thirdHeaderLabel.attributedText = buzAmount
         
         header.addSubview(firstHeaderLabel)
         header.addSubview(secondHeaderLabel)
+        header.addSubview(thirdHeaderLabel)
         
         header.backgroundColor = Config.UI.themeColor
         firstHeaderLabel.snp.makeConstraints { (make) -> Void in
             make.centerX.equalTo(header)
-            make.centerY.equalTo(header).multipliedBy(0.6)
+            make.centerY.equalTo(header).multipliedBy(0.2)
         }
         secondHeaderLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(header)
+            make.centerY.equalTo(header).multipliedBy(0.8)
+        }
+        thirdHeaderLabel.snp.makeConstraints { (make) -> Void in
             make.centerX.equalTo(header)
             make.centerY.equalTo(header).multipliedBy(1.4)
         }
@@ -285,7 +285,7 @@ extension MyPageViewController {
         if (offset > 50) {
             addShadowToNav(from: self)
             self.isAddedShadow = true
-            title = "MyPage"
+            title = "My Page"
         } else {
             deleteShadow(from: self)
             self.isAddedShadow = false
