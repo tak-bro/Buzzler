@@ -28,6 +28,7 @@ class MyPageViewController: UIViewController {
     
     var isAddedShadow = false
     let header = StretchHeader()
+    var segmentedControl = UISegmentedControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,16 +50,16 @@ extension MyPageViewController: UITableViewDelegate {
         let vw = UIView()
         vw.backgroundColor = .clear
         
-        let segmentedControl = UISegmentedControl(frame: CGRect(x: 0, y: 0, width: self.tbl_post.frame.width, height: 45))
+        self.segmentedControl = UISegmentedControl(frame: CGRect(x: 0, y: 0, width: self.tbl_post.frame.width, height: 45))
         // set segment control info frm global value
         self.categories.enumerated().map { (index, category) -> Void in
-            segmentedControl.insertSegment(withTitle: category.name, at: index, animated: false)
+            self.segmentedControl.insertSegment(withTitle: category.name, at: index, animated: true)
         }
-        vw.addSubview(segmentedControl)
+        vw.addSubview(self.segmentedControl)
         
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.addUnderlineForSelectedSegment()
-        segmentedControl.addTarget(self, action: #selector(MyPageViewController.segmentedControlDidChange(_:)), for: .valueChanged)
+        self.segmentedControl.addTarget(self, action: #selector(MyPageViewController.segmentedControlDidChange(_:)), for: .valueChanged)
+        self.segmentedControl.selectedSegmentIndex = 0
+        self.segmentedControl.addUnderlineForSelectedSegment()
         
         return vw
     }
@@ -201,7 +202,6 @@ extension MyPageViewController: UITableViewDelegate {
 extension MyPageViewController {
     
     @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
-        sender.changeUnderlinePosition()
 
         // request new category
         let index = sender.selectedSegmentIndex
@@ -210,6 +210,7 @@ extension MyPageViewController {
             self.viewModel.category(category: self.category)
             self.viewModel.loadPageTrigger.onNext(())
         }
+        self.segmentedControl.changeUnderlinePosition()
     }
 
 }
