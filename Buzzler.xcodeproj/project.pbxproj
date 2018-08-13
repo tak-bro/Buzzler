@@ -52,6 +52,7 @@
 		3BD6EE932105608E0094E318 /* BlackListPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */; };
 		3BD6EE96210560A40094E318 /* ApprovalPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */; };
 		3BD6EE97210560A40094E318 /* ApprovalPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD6EE95210560A40094E318 /* ApprovalPopUpViewController.xib */; };
+		3BD918AA211C41920017250E /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD918A9211C41920017250E /* MyPageViewModel.swift */; };
 		3BFE9DAC211A8674006D435F /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE9DAB211A8674006D435F /* AccountInfo.swift */; };
 		3BFE9DAE211A9956006D435F /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE9DAD211A9956006D435F /* Toast.swift */; };
 		84002EB32090613A00B7C98A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84002EB22090613A00B7C98A /* PostViewController.swift */; };
@@ -156,6 +157,7 @@
 		3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlackListPopUpViewController.xib; sourceTree = "<group>"; };
 		3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalPopUpViewController.swift; sourceTree = "<group>"; };
 		3BD6EE95210560A40094E318 /* ApprovalPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApprovalPopUpViewController.xib; sourceTree = "<group>"; };
+		3BD918A9211C41920017250E /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		3BFE9DAB211A8674006D435F /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		3BFE9DAD211A9956006D435F /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		629F8A6A225EB23A2F1F9B54 /* Pods_Buzzler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Buzzler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -394,6 +396,14 @@
 				3B2E9C462107111B00132C74 /* WaitUnivViewController.xib */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		3BD918A8211C41300017250E /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				3BD918A9211C41920017250E /* MyPageViewModel.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		84002EB12090611A00B7C98A /* DetailPost */ = {
@@ -711,6 +721,7 @@
 				3B52E6C420AE9447002B2BB6 /* ResetPassword */,
 				8421B2CF2086D81F00CBF4E3 /* Login */,
 				84F437A62085C3CB00E71358 /* WritePost */,
+				3BD918A8211C41300017250E /* MyPage */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -966,6 +977,7 @@
 				3B10BD202111983400C76562 /* DeletePostPopUpViewController.swift in Sources */,
 				3B0DC8F020F085D4001DE6DC /* AwsAPI.swift in Sources */,
 				84A1BFC3208C67AD00D0ADC7 /* BuzzlerPost.swift in Sources */,
+				3BD918AA211C41920017250E /* MyPageViewModel.swift in Sources */,
 				84A1BFC6208C7C6200D0ADC7 /* HomeImageTableViewCell.swift in Sources */,
 				3B823CBB20B81A5E000A68BA /* NewPasswordDoneViewController.swift in Sources */,
 				3B66DDCA20C0E1DF009944D1 /* BuzzlerComment.swift in Sources */,

@@ -27,7 +27,8 @@ final class HomeImageTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var vw_remainLabelContainer: UIView!
     @IBOutlet weak var vw_container: UIView!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var vw_bottomContainer: UIView!
+    
     static let height: CGFloat = UITableViewAutomaticDimension
 
     var bag = DisposeBag()

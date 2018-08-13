@@ -1762,17 +1762,17 @@ Cg
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyPage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BB9-Rs-78e">
-                                <rect key="frame" x="156" y="323" width="62" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="45" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="boI-HY-fj2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="BB9-Rs-78e" firstAttribute="centerY" secondItem="Dep-0z-nOa" secondAttribute="centerY" id="OA1-Io-mkW"/>
-                            <constraint firstItem="BB9-Rs-78e" firstAttribute="centerX" secondItem="Dep-0z-nOa" secondAttribute="centerX" id="efL-4B-92k"/>
+                            <constraint firstItem="boI-HY-fj2" firstAttribute="leading" secondItem="Dep-0z-nOa" secondAttribute="leading" id="DDs-AX-nBL"/>
+                            <constraint firstItem="Ij7-az-644" firstAttribute="top" secondItem="boI-HY-fj2" secondAttribute="bottom" id="Ehi-eb-QjD"/>
+                            <constraint firstItem="boI-HY-fj2" firstAttribute="top" secondItem="3zL-9A-ZvJ" secondAttribute="bottom" id="QtT-CF-ruA"/>
+                            <constraint firstAttribute="trailing" secondItem="boI-HY-fj2" secondAttribute="trailing" id="kBb-7N-kWR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="u3z-x0-sz8">
@@ -1783,10 +1783,13 @@ Cg
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tbl_post" destination="boI-HY-fj2" id="DA9-yZ-cLm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PLC-ve-RJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3238" y="876"/>
+            <point key="canvasLocation" x="-3239.1999999999998" y="875.71214392803608"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="KqQ-yV-Vpl">
@@ -1865,7 +1868,7 @@ Cg
                                         <state key="normal" image="btn_side_coin"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="931,200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8r-oy-EpB">
-                                        <rect key="frame" x="48" y="103" width="51" height="14"/>
+                                        <rect key="frame" x="48" y="104" width="51" height="14"/>
                                         <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="14"/>
                                         <color key="textColor" red="0.64313725489999995" green="0.83529411760000005" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1875,7 +1878,7 @@ Cg
                                 <constraints>
                                     <constraint firstItem="PaY-lX-M8L" firstAttribute="top" secondItem="vOV-tv-ZJ8" secondAttribute="top" constant="5" id="0BV-nA-ZWQ"/>
                                     <constraint firstItem="Q8r-oy-EpB" firstAttribute="leading" secondItem="GQu-df-hXH" secondAttribute="trailing" constant="8" id="1kU-Ht-0lS"/>
-                                    <constraint firstItem="Q8r-oy-EpB" firstAttribute="centerY" secondItem="GQu-df-hXH" secondAttribute="centerY" id="Csl-VE-y1Z"/>
+                                    <constraint firstItem="Q8r-oy-EpB" firstAttribute="centerY" secondItem="GQu-df-hXH" secondAttribute="centerY" multiplier="1.01" id="Csl-VE-y1Z"/>
                                     <constraint firstItem="dS5-jb-RtG" firstAttribute="top" secondItem="kVq-ea-Rab" secondAttribute="bottom" constant="10" id="EDc-Wl-xJO"/>
                                     <constraint firstAttribute="height" constant="150" id="WIe-Iz-tZc"/>
                                     <constraint firstItem="GQu-df-hXH" firstAttribute="leading" secondItem="vOV-tv-ZJ8" secondAttribute="leading" constant="20" id="Y6N-Tm-CCN"/>
@@ -2080,6 +2083,6 @@ Cg
         <image name="img_tmp" width="885" height="590"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gVB-h3-Ixr"/>
+        <segue reference="vVC-7V-vsg"/>
     </inferredMetricsTieBreakers>
 </document>

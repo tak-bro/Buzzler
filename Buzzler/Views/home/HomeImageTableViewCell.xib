@@ -195,6 +195,7 @@
                 <outlet property="lbl_time" destination="reZ-hO-dNc" id="FVE-VL-Dfb"/>
                 <outlet property="lbl_title" destination="UaF-Yh-QWZ" id="RYr-Xe-SVV"/>
                 <outlet property="leadingConstraint" destination="n4b-Fd-2QJ" id="Ph1-K9-7dj"/>
+                <outlet property="vw_bottomContainer" destination="Udu-4S-gPH" id="scX-cn-fws"/>
                 <outlet property="vw_container" destination="l8d-3u-n4y" id="mVp-eo-080"/>
                 <outlet property="vw_imgContainer" destination="qyo-kj-xzm" id="Zh4-58-aaz"/>
                 <outlet property="vw_remainLabelContainer" destination="1hH-Nb-2Mg" id="ho0-GJ-gzy"/>
