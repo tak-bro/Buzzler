@@ -35,32 +35,23 @@ class MyPageViewController: UIViewController {
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
         deleteShadow(from: self)
         title = " "
-        
+
         setupHeaderView()
         configureTableView()
         configBinding()
+        
+        setSegmentControlUI()
+     
     }
-
 }
 
 extension MyPageViewController: UITableViewDelegate {
     
     // MARK: UITableViewDelegate
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let vw = UIView()
-        vw.backgroundColor = .clear
-        
-        self.segmentedControl = UISegmentedControl(frame: CGRect(x: 0, y: 0, width: self.tbl_post.frame.width, height: 45))
-        // set segment control info frm global value
-        self.categories.enumerated().map { (index, category) -> Void in
-            self.segmentedControl.insertSegment(withTitle: category.name, at: index, animated: true)
-        }
         vw.addSubview(self.segmentedControl)
-        
-        self.segmentedControl.addTarget(self, action: #selector(MyPageViewController.segmentedControlDidChange(_:)), for: .valueChanged)
-        self.segmentedControl.selectedSegmentIndex = 0
-        self.segmentedControl.addUnderlineForSelectedSegment()
-        
         return vw
     }
     
@@ -71,6 +62,8 @@ extension MyPageViewController: UITableViewDelegate {
     // MARK: - Private Method
     
     fileprivate func configureTableView() {
+        tbl_post.rx.setDelegate(self)
+            .disposed(by: disposeBag)
 
         // set tableView
         tbl_post.register(cellType: HomeTableViewCell.self)
@@ -79,9 +72,7 @@ extension MyPageViewController: UITableViewDelegate {
         tbl_post.rowHeight = UITableViewAutomaticDimension
         tbl_post.estimatedRowHeight = 200
         tbl_post.separatorStyle = .none
-        tbl_post.rx.setDelegate(self)
-            .disposed(by: disposeBag)
-        
+
         self.refreshControl = UIRefreshControl()
         if let refreshControl = self.refreshControl {
             refreshControl.backgroundColor = .clear
@@ -92,6 +83,7 @@ extension MyPageViewController: UITableViewDelegate {
                 tbl_post.addSubview(refreshControl)
             }
         }
+        
     }
     
     fileprivate func configBinding() {
@@ -202,7 +194,6 @@ extension MyPageViewController: UITableViewDelegate {
 extension MyPageViewController {
     
     @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
-
         // request new category
         let index = sender.selectedSegmentIndex
         if self.category != categories[index].id {
@@ -211,6 +202,17 @@ extension MyPageViewController {
             self.viewModel.loadPageTrigger.onNext(())
         }
         self.segmentedControl.changeUnderlinePosition()
+    }
+    
+    func setSegmentControlUI() {
+        // set segment control
+        self.segmentedControl = UISegmentedControl(frame: CGRect(x: 0, y: 0, width: self.tbl_post.frame.width, height: 45))
+        self.categories.enumerated().map { (index, category) -> Void in
+            self.segmentedControl.insertSegment(withTitle: category.name, at: index, animated: false)
+        }
+        self.segmentedControl.addTarget(self, action: #selector(MyPageViewController.segmentedControlDidChange(_:)), for: .valueChanged)
+        self.segmentedControl.selectedSegmentIndex = 0
+        self.segmentedControl.addUnderlineForSelectedSegment()
     }
 
 }
