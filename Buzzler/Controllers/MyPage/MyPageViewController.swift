@@ -245,19 +245,35 @@ extension MyPageViewController {
         secondHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
         let univInfo = globalAccountInfo.email.withAttributes([
             .textColor(Config.UI.lightFontColor),
-            .font(.AvenirNext(type: .Book, size: 14))
+            .font(.AvenirNext(type: .Book, size: 13))
             ])
         secondHeaderLabel.attributedText = univInfo
         
         // add third header label
         var thirdHeaderLabel = HeaderLabel()
         thirdHeaderLabel = HeaderLabel(frame: CGRect(x: header.frame.size.width / 2, y: header.frame.size.height / 2, width: 200, height: 30))
-        let buzAmount = String(globalAccountInfo.buzAmount).withAttributes([
-            .textColor(Config.UI.buttonActiveColor),
-            .font(.AvenirNext(type: .Book, size: 16))
-            ])
-        thirdHeaderLabel.attributedText = buzAmount
         
+        // create Attachment
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(named: "btn_side_coin")
+        
+        let imageOffsetY: CGFloat = -4.0
+        imageAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: imageAttachment.image!.size.width, height: imageAttachment.image!.size.height)
+        
+        let attachmentString = NSAttributedString(attachment: imageAttachment)
+        let completeText = NSMutableAttributedString(string: "")
+        completeText.append(attachmentString)
+        
+        let buzStr = " " + String(globalAccountInfo.buzAmount)
+        let buzAmount = buzStr.withAttributes([
+            .textColor(Config.UI.buttonActiveColor),
+            .font(.AvenirNext(type: .Book, size: 14))
+            ])
+        
+        completeText.append(buzAmount)
+        thirdHeaderLabel.textAlignment = .center
+        thirdHeaderLabel.attributedText = completeText
+
         header.addSubview(firstHeaderLabel)
         header.addSubview(secondHeaderLabel)
         header.addSubview(thirdHeaderLabel)

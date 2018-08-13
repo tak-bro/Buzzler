@@ -1737,6 +1737,7 @@ Cg
                         <outlet property="commentBottom" destination="8y4-u1-zW4" id="enR-B1-9OU"/>
                         <outlet property="commentViewHeight" destination="eKE-JF-RLa" id="QPU-Sb-Yfz"/>
                         <outlet property="img_heartPopup" destination="uOU-z7-oCH" id="11M-He-M29"/>
+                        <outlet property="lbl_curUserName" destination="3ed-Ra-qTn" id="cOy-Bb-QZH"/>
                         <outlet property="lbl_parentAuthor" destination="0ML-eH-dvt" id="t6f-q7-O2Z"/>
                         <outlet property="lbl_parentCommentId" destination="PcM-B3-j00" id="6uo-o7-zKy"/>
                         <outlet property="tbl_post" destination="Zow-VQ-OZr" id="XJ3-22-JVW"/>
