@@ -61,6 +61,15 @@ func addShadowToNav(from source: UIViewController) {
     source.navigationController?.navigationBar.layer.masksToBounds = false
 }
 
+func addThinShadowToNav(from source: UIViewController) {
+    source.navigationController?.navigationBar.barTintColor = UIColor.white
+    source.navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
+    source.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+    source.navigationController?.navigationBar.layer.shadowRadius = 1.0
+    source.navigationController?.navigationBar.layer.shadowOpacity = 0.2
+    source.navigationController?.navigationBar.layer.masksToBounds = false
+}
+
 func deleteShadow(from source: UIViewController) {
     source.navigationController?.navigationBar.barTintColor = Config.UI.themeColor
     source.navigationController?.navigationBar.layer.shadowColor = UIColor.clear.cgColor

@@ -194,6 +194,7 @@ extension MyPageViewController: UITableViewDelegate {
 extension MyPageViewController {
     
     @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
+        self.segmentedControl.changeUnderlinePosition()
         // request new category
         let index = sender.selectedSegmentIndex
         if self.category != categories[index].id {
@@ -201,7 +202,6 @@ extension MyPageViewController {
             self.viewModel.category(category: self.category)
             self.viewModel.loadPageTrigger.onNext(())
         }
-        self.segmentedControl.changeUnderlinePosition()
     }
     
     func setSegmentControlUI() {
@@ -286,7 +286,7 @@ extension MyPageViewController {
         // NavigationHeader alpha update
         let offset: CGFloat = scrollView.contentOffset.y
         if (offset > 50) {
-            addShadowToNav(from: self)
+            addThinShadowToNav(from: self)
             self.isAddedShadow = true
             title = "My Page"
         } else {
