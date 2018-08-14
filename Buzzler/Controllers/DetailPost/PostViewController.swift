@@ -33,6 +33,7 @@ class PostViewController: UIViewController, ShowsAlert {
     @IBOutlet weak var vw_parentComment: UIView!
     @IBOutlet weak var btn_dismissParentComment: UIButton!
     @IBOutlet weak var lbl_parentCommentId: UILabel!
+    @IBOutlet weak var lbl_curUserName: UILabel!
     
     var placeholderLabel: UILabel!
     var viewModel: DetailPostViewModel?
@@ -548,6 +549,8 @@ extension PostViewController: UITextViewDelegate {
         self.img_heartPopup.alpha = 0.0
         self.resetNavBar()
         self.vw_dimmed.isHidden = true
+        
+        self.lbl_curUserName.text = globalAccountInfo.username
     }
     
     func resetNavBar() {
@@ -604,11 +607,6 @@ extension PostViewController {
             writePostVC.isUpdate = true
             writePostVC.originContents = self.originContents
             writePostVC.originTitle = self.originTitle
-            
-//            let deleteVC = CantDeletePostPopUpViewController(nibName: "CantDeletePostPopUpViewController", bundle: nil)
-//            deleteVC.modalPresentationStyle = .overCurrentContext
-//            deleteVC.modalTransitionStyle = .crossDissolve
-//            self.present(deleteVC, animated: true, completion: nil)
             
             self.present(writePostVC, animated: true, completion: nil)
         }
