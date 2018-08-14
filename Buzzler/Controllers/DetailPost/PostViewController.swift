@@ -682,3 +682,19 @@ extension PostViewController {
     }
 }
 
+extension PostViewController {
+    
+    // MARK: - ScrollView Delegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // NavigationHeader alpha update
+        let offset: CGFloat = scrollView.contentOffset.y
+        if (offset > 80) {
+            addShadowToNav(from: self)
+            self.isAddedShadow = true
+        } else {
+            deleteShadow(from: self)
+            self.isAddedShadow = false
+        }
+    }
+}
