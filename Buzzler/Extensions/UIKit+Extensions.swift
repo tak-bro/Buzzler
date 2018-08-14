@@ -233,7 +233,7 @@ extension UISegmentedControl {
         self.setBackgroundImage(backgroundImage, for: .selected, barMetrics: .default)
         self.setBackgroundImage(backgroundImage, for: .highlighted, barMetrics: .default)
         
-        let deviderImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: CGSize(width: 1.0, height: self.bounds.size.height))
+        let deviderImage = UIImage.getColoredRectImageWith(color: Config.UI.themeColor.cgColor, andSize: CGSize(width: 1.0, height: self.bounds.size.height))
         self.setDividerImage(deviderImage, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
         self.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AvenirLTStd-Medium", size: 14), NSForegroundColorAttributeName: Config.UI.buttonInActiveColor], for: .normal)
         self.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AvenirLTStd-Medium", size: 14), NSForegroundColorAttributeName: Config.UI.buttonActiveColor], for: .selected)
@@ -241,6 +241,14 @@ extension UISegmentedControl {
     
     func addUnderlineForSelectedSegment() {
         removeBorder()
+        // add default under line for border
+        let themeUnderLineYPosition = self.bounds.size.height
+        let themeUnderlineFrame = CGRect(x: 0, y: themeUnderLineYPosition, width: self.bounds.size.width, height: 1.0)
+        let themeUnderline = UIView(frame: themeUnderlineFrame)
+        themeUnderline.backgroundColor = Config.UI.textFieldColor
+        self.addSubview(themeUnderline)
+
+        // add active under line
         let underlineWidth: CGFloat = self.bounds.size.width / CGFloat(self.numberOfSegments)
         let underlineHeight: CGFloat = 2.0
         let underlineXPosition = CGFloat(selectedSegmentIndex * Int(underlineWidth))
