@@ -49,6 +49,7 @@ class PostViewController: UIViewController, ShowsAlert {
     
     var originTitle: String?
     var originContents: String?
+    var isAddedShadow = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,6 +177,15 @@ extension PostViewController: UITableViewDelegate {
                     imgCell.lbl_author.text = item.author.username
                     imgCell.lbl_remainImgCnt.text = "+" + String(item.imageUrls.count-1)
                     imgCell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
+                    
+                    // show popover button
+                    if item.author.id == globalAccountInfo.id {
+                        imgCell.btn_postAction.isHidden = false
+                        imgCell.btn_postAction.isEnabled = true
+                    } else {
+                        imgCell.btn_postAction.isHidden = true
+                        imgCell.btn_postAction.isEnabled = false
+                    }
 
                     if item.imageUrls.count == 1 {
                         imgCell.vw_remainLabelContainer.isHidden = true
@@ -303,6 +313,15 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_commentCount.text = String(item.commentCount) + " Comments"
                     cell.lbl_author.text = item.author.username
                     cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
+
+                    // show popover button
+                    if item.author.id == globalAccountInfo.id {
+                        cell.btn_postAction.isHidden = false
+                        cell.btn_postAction.isEnabled = true
+                    } else {
+                        cell.btn_postAction.isHidden = true
+                        cell.btn_postAction.isEnabled = false
+                    }
 
                     // set origin info
                     self.originTitle = item.title
@@ -660,5 +679,22 @@ extension PostViewController {
     
     func removeDimmedView() {
         self.vw_dimmed.isHidden = true
+    }
+}
+
+extension PostViewController {
+    
+    // MARK: - ScrollView Delegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // NavigationHeader alpha update
+        let offset: CGFloat = scrollView.contentOffset.y
+        if (offset > 80) {
+            addShadowToNav(from: self)
+            self.isAddedShadow = true
+        } else {
+            deleteShadow(from: self)
+            self.isAddedShadow = false
+        }
     }
 }

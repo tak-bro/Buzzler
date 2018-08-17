@@ -1651,7 +1651,7 @@ Cg
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="0.89999041411042935" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="PcM-B3-j00" firstAttribute="centerY" secondItem="Ep3-q7-FFt" secondAttribute="centerY" id="0xh-vC-KU2"/>
                                     <constraint firstItem="0ML-eH-dvt" firstAttribute="leading" secondItem="Ep3-q7-FFt" secondAttribute="leading" constant="15" id="2B3-gz-qi6"/>
