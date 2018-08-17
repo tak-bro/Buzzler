@@ -23,10 +23,3 @@ struct Config {
         static let doneUploadColor = UIColor(red: 165.0 / 255.0, green: 213.0 / 255.0, blue: 214.0 / 255.0, alpha: 1.0)
     }
 }
-
-extension Notification.Name {
-    /// Buzzler post when home category change
-    static let category = Notification.Name(rawValue: "homeCategory")
-    static let myPage = Notification.Name(rawValue: "myPage")
-    static let settings = Notification.Name(rawValue: "settings")
-}
