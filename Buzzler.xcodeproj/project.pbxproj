@@ -292,6 +292,7 @@
 		3B48A9C220B2B26700E0BDA1 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				844BC387208C539A00666486 /* SignUpResult.swift */,
 				3B48A9C320B2B27F00E0BDA1 /* University.swift */,
 				3B48A9C920B5498700E0BDA1 /* UserInfo.swift */,
 				3B48A9CB20B549A700E0BDA1 /* MajorInfo.swift */,
@@ -464,7 +465,6 @@
 		844BC37C208AFAA400666486 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				844BC387208C539A00666486 /* SignUpResult.swift */,
 				84002EB420907D3200B7C98A /* SignUpViewModel.swift */,
 				844BC383208B0C8300666486 /* VerifyCodeViewModel.swift */,
 				3B48A9BE20B2A37100E0BDA1 /* SelectUnivViewModel.swift */,
