@@ -120,6 +120,7 @@ extension HomeViewController: UITableViewDelegate {
                 
                 // hide action button
                 imgCell.btn_postAction.isHidden = true
+                imgCell.trailingConstraint.constant = 0
                 
                 defaultCell = imgCell
             } else {
@@ -132,7 +133,9 @@ extension HomeViewController: UITableViewDelegate {
                 cell.lbl_commentCount.text = String(item.commentCount)
                 cell.lbl_author.text = item.author.username
                 cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
+                
                 cell.btn_postAction.isHidden = true
+                cell.trailingConstraint.constant = 0
 
                 defaultCell = cell
             }

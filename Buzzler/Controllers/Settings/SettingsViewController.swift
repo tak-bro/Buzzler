@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
         deleteShadow(from: self)
-        title = " "
+        title = "Settings"
     }
     
 }

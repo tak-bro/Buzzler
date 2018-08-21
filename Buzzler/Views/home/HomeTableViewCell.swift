@@ -24,6 +24,7 @@ final class HomeTableViewCell: UITableViewCell, NibReusable {
     @IBOutlet weak var vw_container: UIView!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var vw_bottomContainer: UIView!
+    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
     
     var bag = DisposeBag()
     

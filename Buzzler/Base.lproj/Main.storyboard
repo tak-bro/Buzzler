@@ -1614,8 +1614,8 @@ Cg
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_like_coin" translatesAutoresizingMaskIntoConstraints="NO" id="uOU-z7-oCH">
-                                <rect key="frame" x="157.5" y="306" width="60" height="54"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_like_heart" translatesAutoresizingMaskIntoConstraints="NO" id="uOU-z7-oCH">
+                                <rect key="frame" x="166.5" y="312" width="42" height="42"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ep3-q7-FFt">
                                 <rect key="frame" x="10" y="577" width="355" height="30"/>
@@ -1803,19 +1803,7 @@ Cg
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="SettingsViewController" id="3yI-HY-wNK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpT-m1-mqa">
-                                <rect key="frame" x="155.5" y="323" width="63.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="LpT-m1-mqa" firstAttribute="centerX" secondItem="3yI-HY-wNK" secondAttribute="centerX" id="2GH-VW-1Nq"/>
-                            <constraint firstItem="LpT-m1-mqa" firstAttribute="centerY" secondItem="3yI-HY-wNK" secondAttribute="centerY" id="mah-ul-hoi"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZEr-MW-62W">
                         <barButtonItem key="leftBarButtonItem" image="btn_side_menu" style="plain" id="Bz3-LA-XFy">
@@ -2079,11 +2067,11 @@ Cg
         <image name="btn_write" width="25" height="22"/>
         <image name="icon_select_box" width="10" height="6"/>
         <image name="img_done_check" width="84" height="84"/>
-        <image name="img_like_coin" width="60" height="54"/>
+        <image name="img_like_heart" width="42" height="42"/>
         <image name="img_logo_new" width="102" height="105"/>
         <image name="img_tmp" width="885" height="590"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vVC-7V-vsg"/>
+        <segue reference="Mr9-nX-OXk"/>
     </inferredMetricsTieBreakers>
 </document>

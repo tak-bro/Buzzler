@@ -154,6 +154,7 @@
                 <outlet property="lbl_time" destination="Jfs-y9-c9F" id="1bQ-RL-35y"/>
                 <outlet property="lbl_title" destination="aAI-ZH-US2" id="loM-Z2-y1Y"/>
                 <outlet property="leadingConstraint" destination="CdB-zj-87w" id="sNN-y2-sX9"/>
+                <outlet property="trailingConstraint" destination="6mq-mv-PvA" id="sKS-4U-mcd"/>
                 <outlet property="vw_bottomContainer" destination="HUu-xd-0dD" id="YLC-E7-2E0"/>
                 <outlet property="vw_container" destination="BC8-If-PmK" id="g7M-kI-EmO"/>
             </connections>
