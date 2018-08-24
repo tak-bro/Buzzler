@@ -380,13 +380,6 @@
 			path = DetailPost;
 			sourceTree = "<group>";
 		};
-		3BA9D0E1212FA1360087F492 /* Response */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Response;
-			sourceTree = "<group>";
-		};
 		3BA9D0E6212FB3050087F492 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,7 +563,6 @@
 			children = (
 				3BA9D0E4212FA1A80087F492 /* ErrorResponse.swift */,
 				3BA9D0E6212FB3050087F492 /* Login */,
-				3BA9D0E1212FA1360087F492 /* Response */,
 				3BBE8D1E20D1161200634B2F /* User */,
 				AF9F0FCF1DF1A66E00FF8EC5 /* Home */,
 				3B66DDC820C0E1C6009944D1 /* DetailPost */,

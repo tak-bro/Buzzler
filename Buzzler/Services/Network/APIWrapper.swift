@@ -22,8 +22,8 @@ public protocol BuzzlerAPI {
     func getDetailPost(categoryId: Int, id: Int) -> Observable<[MultipleSectionModel]>
     func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<WritePostResponse>
     func writeComment(categoryId: Int, postId: Int, parentId: String?, contents: String) -> Observable<Bool>
+    func requestCode(receiver: String) -> Observable<Bool>
 }
-
 
 public class API: AwsAPI, BuzzlerAPI {
     
@@ -101,7 +101,7 @@ public class API: AwsAPI, BuzzlerAPI {
                             return commentsWithChild
                         }
                         .flatMap{ $0 }
-
+                    
                     // convert comments to CommentSection
                     var comments = commentsData
                         .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
@@ -147,8 +147,21 @@ public class API: AwsAPI, BuzzlerAPI {
             })
     }
     
-    
-    // AWS API
+    public func requestCode(receiver: String) -> Observable<Bool> {
+        return BuzzlerProvider.request(Buzzler.requestCode(receiver: receiver))
+            .retry(3)
+            .observeOn(MainScheduler.instance)
+            .filterSuccessfulStatusCodes()
+            .mapJSON()
+            .flatMap({ res -> Single<Bool> in
+                return Single.just(true)
+            })
+    }
+}
+
+// MARK: - AWS API
+
+extension API {
     
     public func uploadS3(_ categoryId: Int, fileName: String, encodedImage: String) -> Observable<String> {
         return AwsProvider.request(AWS.uploadS3(categoryId: categoryId, fileName: fileName, encodedImage: encodedImage))

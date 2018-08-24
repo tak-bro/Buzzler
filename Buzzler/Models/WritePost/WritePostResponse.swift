@@ -37,7 +37,6 @@ public struct WritePostSuccess: Mappable {
     }
 }
 
-
 public struct WritePostResponse: Mappable {
     var error: ErrorResponse?
     var result: WritePostSuccess?
