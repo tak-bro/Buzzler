@@ -150,19 +150,19 @@ extension WritePostViewController {
             .disposed(by: disposeBag)
         
         self.viewModel.outputs.posting
-            .drive(onNext: { posting in
-                print("posting result", posting)
-
-                if posting == true {
+            .drive(onNext: { res in
+                print("posting result", res)
+                // get error
+                if let error = res.error {
+                    self.messageView.backgroundView.backgroundColor = Config.UI.errorColor
+                    self.messageView.bodyLabel?.textColor = UIColor.white
+                    self.messageView.configureContent(body: error.message)
+                } else {
                     self.messageView.backgroundView.backgroundColor = Config.UI.doneUploadColor
                     self.messageView.bodyLabel?.textColor = UIColor.white
                     self.messageView.configureContent(body: "Success to upload")
-                } else {
-                    self.messageView.backgroundView.backgroundColor = Config.UI.errorColor
-                    self.messageView.bodyLabel?.textColor = UIColor.white
-                    self.messageView.configureContent(body: "Failed to upload")
                 }
-
+                
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5, execute: {
                     SwiftMessages.hideAll()
                 })

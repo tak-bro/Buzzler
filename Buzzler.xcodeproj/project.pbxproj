@@ -46,6 +46,9 @@
 		3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85701820A9A945009FEC48 /* ValidationService.swift */; };
 		3BA13D4320DB9A01009B8E5B /* ManuallyEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA13D4220DB9A01009B8E5B /* ManuallyEnterViewController.swift */; };
 		3BA13D4520DB9AE1009B8E5B /* ManuallyEnterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA13D4420DB9AE1009B8E5B /* ManuallyEnterViewModel.swift */; };
+		3BA9D0E3212FA1460087F492 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0E2212FA1460087F492 /* LoginResponse.swift */; };
+		3BA9D0E5212FA1A80087F492 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0E4212FA1A80087F492 /* ErrorResponse.swift */; };
+		3BA9D0E8212FB3270087F492 /* WritePostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0E7212FB3270087F492 /* WritePostResponse.swift */; };
 		3BB6109120F5DB1F0075748F /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB6109020F5DB1F0075748F /* APIWrapper.swift */; };
 		3BBE8D2020D1162800634B2F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE8D1F20D1162800634B2F /* Category.swift */; };
 		3BD6EE922105608E0094E318 /* BlackListPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6EE902105608E0094E318 /* BlackListPopUpViewController.swift */; };
@@ -149,6 +152,9 @@
 		3B85701820A9A945009FEC48 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		3BA13D4220DB9A01009B8E5B /* ManuallyEnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterViewController.swift; sourceTree = "<group>"; };
 		3BA13D4420DB9AE1009B8E5B /* ManuallyEnterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterViewModel.swift; sourceTree = "<group>"; };
+		3BA9D0E2212FA1460087F492 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		3BA9D0E4212FA1A80087F492 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		3BA9D0E7212FB3270087F492 /* WritePostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostResponse.swift; sourceTree = "<group>"; };
 		3BB6109020F5DB1F0075748F /* APIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWrapper.swift; sourceTree = "<group>"; };
 		3BBE8D1F20D1162800634B2F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		3BD6EE902105608E0094E318 /* BlackListPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackListPopUpViewController.swift; sourceTree = "<group>"; };
@@ -237,6 +243,7 @@
 		3B0DC8F420F0AA79001DE6DC /* WritePost */ = {
 			isa = PBXGroup;
 			children = (
+				3BA9D0E7212FB3270087F492 /* WritePostResponse.swift */,
 				3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */,
 			);
 			path = WritePost;
@@ -371,6 +378,21 @@
 				3B66DDCB20C0E961009944D1 /* MutipleSection.swift */,
 			);
 			path = DetailPost;
+			sourceTree = "<group>";
+		};
+		3BA9D0E1212FA1360087F492 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		3BA9D0E6212FB3050087F492 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3BA9D0E2212FA1460087F492 /* LoginResponse.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		3BBE8D1E20D1161200634B2F /* User */ = {
@@ -546,6 +568,9 @@
 		AF9F0FCE1DF1A66300FF8EC5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3BA9D0E4212FA1A80087F492 /* ErrorResponse.swift */,
+				3BA9D0E6212FB3050087F492 /* Login */,
+				3BA9D0E1212FA1360087F492 /* Response */,
 				3BBE8D1E20D1161200634B2F /* User */,
 				AF9F0FCF1DF1A66E00FF8EC5 /* Home */,
 				3B66DDC820C0E1C6009944D1 /* DetailPost */,
@@ -938,6 +963,7 @@
 				3B52E6C620AE9489002B2BB6 /* FirstStepViewModel.swift in Sources */,
 				3B2E9C472107111B00132C74 /* WaitUnivViewController.swift in Sources */,
 				3B48A9CE20B54FDF00E0BDA1 /* Environment.swift in Sources */,
+				3BA9D0E3212FA1460087F492 /* LoginResponse.swift in Sources */,
 				3B0DC8F620F0AA8F001DE6DC /* ImageResponse.swift in Sources */,
 				844BC372208AF05500666486 /* StartSignUpViewController.swift in Sources */,
 				8421B2D12086D82C00CBF4E3 /* LoginViewModel.swift in Sources */,
@@ -950,6 +976,7 @@
 				84DFF8F1209C403800AC63B0 /* ActiviityIndicator.swift in Sources */,
 				84DFF8EE209C23E600AC63B0 /* ServerURL.swift in Sources */,
 				3BFE9DAC211A8674006D435F /* AccountInfo.swift in Sources */,
+				3BA9D0E8212FB3270087F492 /* WritePostResponse.swift in Sources */,
 				3B48A9CA20B5498700E0BDA1 /* UserInfo.swift in Sources */,
 				8421B2D42086DB7700CBF4E3 /* GlobalUIManager.swift in Sources */,
 				84F437AA2085C3E700E71358 /* WritePostViewController.swift in Sources */,
@@ -970,6 +997,7 @@
 				3BA13D4520DB9AE1009B8E5B /* ManuallyEnterViewModel.swift in Sources */,
 				844BC380208B065200666486 /* SignUpRouter.swift in Sources */,
 				3B1CBD0520AAC8770018D156 /* SelectMajorViewModel.swift in Sources */,
+				3BA9D0E5212FA1A80087F492 /* ErrorResponse.swift in Sources */,
 				3B66DDCC20C0E961009944D1 /* MutipleSection.swift in Sources */,
 				3B2A42B820B140C000E37D72 /* MyPageViewController.swift in Sources */,
 				3B52E6C120AE93E3002B2BB6 /* SecondStepViewController.swift in Sources */,

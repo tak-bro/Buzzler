@@ -179,7 +179,7 @@ extension PostViewController: UITableViewDelegate {
                     imgCell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
                     
                     // show popover button
-                    if item.author.id == globalAccountInfo.id {
+                    if item.author.accountId == globalAccountInfo.id {
                         imgCell.btn_postAction.isHidden = false
                         imgCell.btn_postAction.isEnabled = true
                     } else {
@@ -315,7 +315,7 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
 
                     // show popover button
-                    if item.author.id == globalAccountInfo.id {
+                    if item.author.accountId == globalAccountInfo.id {
                         cell.btn_postAction.isHidden = false
                         cell.btn_postAction.isEnabled = true
                     } else {

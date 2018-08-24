@@ -29,7 +29,7 @@ public protocol WritePostViewModelOutputs {
     var validatedContents: Driver<ValidationResult> { get }
     var encodedImages: Driver<[PostImage]>{ get }
     var enablePost: Driver<Bool>{ get }
-    var posting: Driver<Bool> { get }
+    var posting: Driver<WritePostResponse> { get }
     var isLoading: Driver<Bool> { get }
 }
 
@@ -50,7 +50,7 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
     public var title: PublishSubject<String?>
     public var contents: PublishSubject<String?>
     // public var imageUrls: PublishSubject<[String]?>
-    public var posting: Driver<Bool>
+    public var posting: Driver<WritePostResponse>
     public var isLoading: Driver<Bool>
 
     public var inputs: WritePostViewModelInputs { return self }
@@ -126,13 +126,13 @@ class WritePostViewModel: WritePostViewModelInputs, WritePostViewModelOutputs, W
                                 .writePost(title!, contents: contents!, imageUrls: items, categoryId: categoryId!)
                                 .trackActivity(isLoading)
                         }
-                        .asDriver(onErrorJustReturn: false)
+                        .asDriver(onErrorJustReturn: WritePostResponse(error: ErrorResponse(code: 500, message: "Server Error!"), result: nil))
                 } else {
                     // just request Buzzler API
                     return API.sharedAPI
                         .writePost(title!, contents: contents!, imageUrls: [], categoryId: categoryId!)
                         .trackActivity(isLoading)
-                        .asDriver(onErrorJustReturn: false)
+                        .asDriver(onErrorJustReturn: WritePostResponse(error: ErrorResponse(code: 500, message: "Server Error!"), result: nil))
                 }
         }
     }

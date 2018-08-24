@@ -20,7 +20,7 @@ public protocol AwsAPI {
 public protocol BuzzlerAPI {
     func getPost(_ category: Int) -> Observable<[BuzzlerPost]>
     func getDetailPost(categoryId: Int, id: Int) -> Observable<[MultipleSectionModel]>
-    func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<Bool>
+    func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<WritePostResponse>
     func writeComment(categoryId: Int, postId: Int, parentId: String?, contents: String) -> Observable<Bool>
 }
 
@@ -123,15 +123,15 @@ public class API: AwsAPI, BuzzlerAPI {
             })
     }
     
-    public func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<Bool> {
+    public func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<WritePostResponse> {
         return BuzzlerProvider.request(Buzzler.writePost(title: title, contents: contents,  imageUrls: imageUrls, categoryId: categoryId))
             .retry(3)
             .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
             .filterSuccessfulStatusCodes()
-            .mapJSON()
-            .flatMap({ res -> Single<Bool> in
-                return Single.just(true)
+            .flatMap({ res -> Single<WritePostResponse> in
+                let responseData = try res.mapObject(WritePostResponse.self)
+                return Single.just(responseData)
             })
     }
     

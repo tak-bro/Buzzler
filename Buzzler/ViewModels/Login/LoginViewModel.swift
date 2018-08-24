@@ -93,28 +93,31 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
-                    .mapJSON()
-                    .flatMap({ token -> Single<Bool> in
-                        print("Token", token)
-                        if token is String {
+                    .flatMap({ res -> Single<Bool> in
+                        let responseData = try res.mapObject(LoginResponse.self)
+                        
+                        // if get error
+                        if let _ = responseData.error {
+                            return Single.just(false)
+                        }
+                        
+                        if let success = responseData.result {
+                            let token = success.authToken
                             // add userDefaults
                             var environment = Environment()
-                            environment.token = token as? String
+                            environment.token = token
                             // save auto login info
                             if let autoLogin = environment.autoLogin, autoLogin {
                                 environment.receiver = tuple.0!
                                 environment.password = tuple.1!
                             }
-                            
                             // save email info
                             if let saveEmail = environment.saveEmail, saveEmail {
                                 environment.receiver = tuple.0!
                             }
-                            
                             return Single.just(true)
-                        } else {
-                            return Single.just(false)
                         }
+                        return Single.just(false)
                     })
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)
