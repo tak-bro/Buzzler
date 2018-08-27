@@ -68,7 +68,12 @@ public class API: AwsAPI, BuzzlerAPI {
             .observeOn(MainScheduler.instance)
             .flatMap({ res -> Single<[BuzzlerPost]> in
                 do {
-                    let data = try res.mapArray(BuzzlerPost.self)
+                    let responseData = try res.mapObject(BuzzlerPostResponse.self)
+                    if let _ = responseData.error {
+                        return Single.just([])
+                    }
+                    
+                    let data = responseData.result
                     return Single.just(data)
                 } catch {
                     return Single.just([])

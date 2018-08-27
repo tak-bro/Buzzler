@@ -51,6 +51,7 @@
 		3BA9D0E8212FB3270087F492 /* WritePostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0E7212FB3270087F492 /* WritePostResponse.swift */; };
 		3BA9D0EA2133A30D0087F492 /* AccountsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0E92133A30D0087F492 /* AccountsResponse.swift */; };
 		3BA9D0EC2133A3850087F492 /* PostCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0EB2133A3850087F492 /* PostCategory.swift */; };
+		3BA9D0EE2133A6CA0087F492 /* BuzzlerPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0ED2133A6CA0087F492 /* BuzzlerPostResponse.swift */; };
 		3BB6109120F5DB1F0075748F /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB6109020F5DB1F0075748F /* APIWrapper.swift */; };
 		3BD6EE922105608E0094E318 /* BlackListPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6EE902105608E0094E318 /* BlackListPopUpViewController.swift */; };
 		3BD6EE932105608E0094E318 /* BlackListPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */; };
@@ -158,6 +159,7 @@
 		3BA9D0E7212FB3270087F492 /* WritePostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostResponse.swift; sourceTree = "<group>"; };
 		3BA9D0E92133A30D0087F492 /* AccountsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsResponse.swift; sourceTree = "<group>"; };
 		3BA9D0EB2133A3850087F492 /* PostCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCategory.swift; sourceTree = "<group>"; };
+		3BA9D0ED2133A6CA0087F492 /* BuzzlerPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuzzlerPostResponse.swift; sourceTree = "<group>"; };
 		3BB6109020F5DB1F0075748F /* APIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWrapper.swift; sourceTree = "<group>"; };
 		3BD6EE902105608E0094E318 /* BlackListPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackListPopUpViewController.swift; sourceTree = "<group>"; };
 		3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlackListPopUpViewController.xib; sourceTree = "<group>"; };
@@ -387,7 +389,6 @@
 			children = (
 				3BA9D0E2212FA1460087F492 /* LoginResponse.swift */,
 				3BA9D0E92133A30D0087F492 /* AccountsResponse.swift */,
-				3BA9D0EB2133A3850087F492 /* PostCategory.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -395,6 +396,7 @@
 		3BBE8D1E20D1161200634B2F /* User */ = {
 			isa = PBXGroup;
 			children = (
+				3BA9D0EB2133A3850087F492 /* PostCategory.swift */,
 				3BFE9DAB211A8674006D435F /* AccountInfo.swift */,
 			);
 			path = User;
@@ -580,6 +582,7 @@
 			children = (
 				84A1BFC2208C67AD00D0ADC7 /* BuzzlerPost.swift */,
 				3B142A9B2106C4A100CE7E7A /* Author.swift */,
+				3BA9D0ED2133A6CA0087F492 /* BuzzlerPostResponse.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -960,6 +963,7 @@
 				3B48A9CE20B54FDF00E0BDA1 /* Environment.swift in Sources */,
 				3BA9D0E3212FA1460087F492 /* LoginResponse.swift in Sources */,
 				3B0DC8F620F0AA8F001DE6DC /* ImageResponse.swift in Sources */,
+				3BA9D0EE2133A6CA0087F492 /* BuzzlerPostResponse.swift in Sources */,
 				844BC372208AF05500666486 /* StartSignUpViewController.swift in Sources */,
 				8421B2D12086D82C00CBF4E3 /* LoginViewModel.swift in Sources */,
 				3B52E6CA20AE94C7002B2BB6 /* LastStepViewModel.swift in Sources */,
