@@ -52,7 +52,6 @@
 		3BA9D0EA2133A30D0087F492 /* AccountsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0E92133A30D0087F492 /* AccountsResponse.swift */; };
 		3BA9D0EC2133A3850087F492 /* PostCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0EB2133A3850087F492 /* PostCategory.swift */; };
 		3BB6109120F5DB1F0075748F /* APIWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB6109020F5DB1F0075748F /* APIWrapper.swift */; };
-		3BBE8D2020D1162800634B2F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE8D1F20D1162800634B2F /* Category.swift */; };
 		3BD6EE922105608E0094E318 /* BlackListPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6EE902105608E0094E318 /* BlackListPopUpViewController.swift */; };
 		3BD6EE932105608E0094E318 /* BlackListPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */; };
 		3BD6EE96210560A40094E318 /* ApprovalPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */; };
@@ -160,7 +159,6 @@
 		3BA9D0E92133A30D0087F492 /* AccountsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsResponse.swift; sourceTree = "<group>"; };
 		3BA9D0EB2133A3850087F492 /* PostCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCategory.swift; sourceTree = "<group>"; };
 		3BB6109020F5DB1F0075748F /* APIWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWrapper.swift; sourceTree = "<group>"; };
-		3BBE8D1F20D1162800634B2F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		3BD6EE902105608E0094E318 /* BlackListPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackListPopUpViewController.swift; sourceTree = "<group>"; };
 		3BD6EE912105608E0094E318 /* BlackListPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlackListPopUpViewController.xib; sourceTree = "<group>"; };
 		3BD6EE94210560A40094E318 /* ApprovalPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalPopUpViewController.swift; sourceTree = "<group>"; };
@@ -397,7 +395,6 @@
 		3BBE8D1E20D1161200634B2F /* User */ = {
 			isa = PBXGroup;
 			children = (
-				3BBE8D1F20D1162800634B2F /* Category.swift */,
 				3BFE9DAB211A8674006D435F /* AccountInfo.swift */,
 			);
 			path = User;
@@ -1018,7 +1015,6 @@
 				844BC37B208AF8FE00666486 /* SignUpViewController.swift in Sources */,
 				3B66DDC420C0D752009944D1 /* DetailPostViewModel.swift in Sources */,
 				84C4DED02095931600FD6BFD /* SideTableViewCell.swift in Sources */,
-				3BBE8D2020D1162800634B2F /* Category.swift in Sources */,
 				8421B2CE2086D6CE00CBF4E3 /* UIKit+Extensions.swift in Sources */,
 				84A1BFCE208C8D8400D0ADC7 /* HeaderLabel.swift in Sources */,
 				3B1CBD0320AA9EB60018D156 /* SelectMajorViewController.swift in Sources */,

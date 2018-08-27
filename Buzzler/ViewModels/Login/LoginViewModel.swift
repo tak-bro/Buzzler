@@ -122,54 +122,37 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)
             }
-            .flatMapLatest{ loginResult -> SharedSequence<DriverSharingStrategy, Bool> in
-                if loginResult != true {
-                    return Driver.of(loginResult)
-                }
-                
-                return provider.request(Buzzler.getCategoriesByUser())
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-                    .filterSuccessfulStatusCodes()
-                    .flatMap({ res -> Single<Bool> in
-                        print("loginResult", loginResult)
-                        print("res", res)
-                        
-                        // TODO: save categories
-                        userCategories = try res.mapArray(UserCategory.self)
-                        // create SideModel for SideSectionModel
-                        sideCategories = userCategories.map{ category in
-                            return SideModel.category(id: category.id, title: category.name)
-                        }
-                        sideCategories.append(SideModel.myPage(navTitle: "MyPageNavigationController"))
-                        sideCategories.append(SideModel.settings(navTitle: "SettingsNavigationController"))
-                        print(sideCategories)
-                        // TODO: delete below
-                        // save default categoryId
-                        var environment = Environment()
-                        environment.categoryId = 1
-                        environment.categoryTitle = "익명"
-                        
-                        return Single.just(loginResult)
-                    })
-                    .trackActivity(isLoading)
-                    .asDriver(onErrorJustReturn: false)
-            }
             .flatMapLatest{ loginResult in
-                if loginResult != true {
-                    return Driver.of(loginResult)
-                }
-
                 return provider.request(Buzzler.getUserInfo())
                     .retry(3)
                     .observeOn(MainScheduler.instance)
                     .filterSuccessfulStatusCodes()
                     .flatMap({ res -> Single<Bool> in
-                        print("res", res)
+                        let responseData = try res.mapObject(AccountsResponse.self)
                         
-                        // TODO: save categories
-                        globalAccountInfo = try res.mapObject(AccountInfo.self)
-                        // TODO: delete below
+                        if let _ = responseData.error {
+                            return Single.just(false)
+                        }
+                        
+                        if let success = responseData.result {
+                            // save to static value
+                            globalPostCategories = success.postCategories
+                            globalAccountInfo = success.account
+                            
+                            // create SideModel for SideSectionModel
+                            sideCategories = globalPostCategories.map{ category in
+                                return SideModel.category(id: category.id, title: category.name)
+                            }
+                            sideCategories.append(SideModel.myPage(navTitle: "MyPageNavigationController"))
+                            sideCategories.append(SideModel.settings(navTitle: "SettingsNavigationController"))
+                            
+                            // save default categoryId
+                            var environment = Environment()
+                            environment.categoryId = 1
+                            environment.categoryTitle = "익명"
+                            
+                            return Single.just(loginResult)
+                        }
                         return Single.just(loginResult)
                     })
                     .trackActivity(isLoading)

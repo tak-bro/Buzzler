@@ -30,3 +30,6 @@ public struct PostCategory: Mappable {
         self.name = name
     }
 }
+
+var globalPostCategories = [PostCategory]()
+var sideCategories: [SideModel] = []

@@ -18,7 +18,6 @@ public enum Buzzler {
     case getMajor()
     case getUniv(email: String)
     case getDetailPost(categoryId: Int, id: Int)
-    case getCategoriesByUser()
     case getUserInfo()
     
     // POST
@@ -58,8 +57,6 @@ extension Buzzler: TargetType {
             return "/v1/categories"
         case .getDetailPost(let categoryId, let id):
             return "v1/categories/\(categoryId)/posts/\(id)"
-        case .getCategoriesByUser():
-            return "v1/accounts"
         case .getUserInfo():
             return "v1/accounts"
             
@@ -102,7 +99,6 @@ extension Buzzler: TargetType {
              .getMajor(_),
              .getUniv(_),
              .getDetailPost(_, _),
-             .getCategoriesByUser(),
              .getUserInfo():
             return .get
             
@@ -139,8 +135,6 @@ extension Buzzler: TargetType {
         case .getMajor():
             return ["depth": 2]
         case .getDetailPost(categoryId: _, id: _):
-            return nil
-        case .getCategoriesByUser():
             return nil
         case .getUserInfo():
             return nil
@@ -205,8 +199,7 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newParameterEncoding: URLEncoding.default)
         
-    case .getCategoriesByUser,
-         .writeComment,
+    case .writeComment,
          .writePost,
          .getPost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
