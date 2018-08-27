@@ -59,7 +59,7 @@ extension Buzzler: TargetType {
         case .getDetailPost(let categoryId, let id):
             return "v1/categories/\(categoryId)/posts/\(id)"
         case .getCategoriesByUser():
-            return "v1/accounts/categories"
+            return "v1/accounts"
         case .getUserInfo():
             return "v1/accounts"
             
