@@ -25,6 +25,7 @@ public struct Author: Equatable, Mappable {
     
     mutating public func mapping(map: Map) {
         accountId <- map["accountId"]
+        accountId <- map["id"]
         username <- map["username"]
     }
     

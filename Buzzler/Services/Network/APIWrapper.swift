@@ -88,40 +88,47 @@ public class API: AwsAPI, BuzzlerAPI {
             .observeOn(MainScheduler.instance)
             .flatMap({ res -> Single<[MultipleSectionModel]> in
                 do {
-                    let data = try res.mapObject(DetailBuzzlerPost.self)
-                    // convert response to BuzzlerPost model
-                    let defaultPost = BuzzlerPost(id: data.id, title: data.title, contents: data.contents,
-                                                  commentCount: data.commentCount, imageUrls: data.imageUrls, likeCount: data.likeCount,
-                                                  createdAt: data.createdAt, author: data.author)
+                    let responseData = try res.mapObject(DetailPostResponse.self)
+                    if let _ = responseData.error {
+                        return Single.just([])
+                    }
                     
-                    // join comments with child
-                    let commentsData = data.comments
-                        .map { item -> [BuzzlerComment] in
-                            var commentsWithChild = [BuzzlerComment]()
-                            commentsWithChild.insertFirst(item)
-                            
-                            if item.childComments.count > 0 {
-                                commentsWithChild = commentsWithChild + item.childComments
+                    if let data = responseData.result {
+                        // convert response to BuzzlerPost model
+                        let defaultPost = BuzzlerPost(id: data.id, title: data.title, contents: data.contents,
+                                                      commentCount: data.commentCount, imageUrls: data.imageUrls, likeCount: data.likeCount,
+                                                      createdAt: data.createdAt, author: data.author)
+                        
+                        // join comments with child
+                        let commentsData = data.commentList
+                            .map { item -> [BuzzlerComment] in
+                                var commentsWithChild = [BuzzlerComment]()
+                                commentsWithChild.insertFirst(item)
+                                
+                                if item.childComments.count > 0 {
+                                    commentsWithChild = commentsWithChild + item.childComments
+                                }
+                                return commentsWithChild
                             }
-                            return commentsWithChild
-                        }
-                        .flatMap{ $0 }
-                    
-                    // convert comments to CommentSection
-                    var comments = commentsData
-                        .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
-                            if data.id != comment.parentId {
-                                return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
-                            } else {
-                                return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
-                            }
-                        })
-                    
-                    // add PostSection to first index
-                    comments.insertFirst(.PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]))
-                    
-                    // return datasource for Table
-                    return Single.just(comments)
+                            .flatMap{ $0 }
+                        
+                        // convert comments to CommentSection
+                        var comments = commentsData
+                            .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
+                                if data.id != comment.parentId {
+                                    return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
+                                } else {
+                                    return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
+                                }
+                            })
+                        
+                        // add PostSection to first index
+                        comments.insertFirst(.PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]))
+                        
+                        // return datasource for Table
+                        return Single.just(comments)
+                    }
+                    return Single.just([])
                 } catch {
                     return Single.just([])
                 }

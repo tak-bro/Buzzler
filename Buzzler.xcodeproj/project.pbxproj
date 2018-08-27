@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0410AB2133B0C9001D9B1A /* DetailPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0410AA2133B0C9001D9B1A /* DetailPostResponse.swift */; };
 		3B0DC8F020F085D4001DE6DC /* AwsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */; };
 		3B0DC8F620F0AA8F001DE6DC /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */; };
 		3B0DC99920BBF76700A5D274 /* DetailBuzzlerPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */; };
@@ -115,6 +116,7 @@
 
 /* Begin PBXFileReference section */
 		08F076F0908B7F9506698A2F /* Pods-Buzzler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Buzzler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Buzzler/Pods-Buzzler.debug.xcconfig"; sourceTree = "<group>"; };
+		3B0410AA2133B0C9001D9B1A /* DetailPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostResponse.swift; sourceTree = "<group>"; };
 		3B0DC8EF20F085D4001DE6DC /* AwsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwsAPI.swift; sourceTree = "<group>"; };
 		3B0DC8F520F0AA8F001DE6DC /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuzzlerPost.swift; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */,
 				3B66DDC920C0E1DF009944D1 /* BuzzlerComment.swift */,
 				3B66DDCB20C0E961009944D1 /* MutipleSection.swift */,
+				3B0410AA2133B0C9001D9B1A /* DetailPostResponse.swift */,
 			);
 			path = DetailPost;
 			sourceTree = "<group>";
@@ -1002,6 +1005,7 @@
 				3B2A42B820B140C000E37D72 /* MyPageViewController.swift in Sources */,
 				3B52E6C120AE93E3002B2BB6 /* SecondStepViewController.swift in Sources */,
 				84BA76F32086E21F0097FFD2 /* BuzzlerAPI.swift in Sources */,
+				3B0410AB2133B0C9001D9B1A /* DetailPostResponse.swift in Sources */,
 				AF69F0EB1E0E055D00735284 /* SideMenuNavigationController.swift in Sources */,
 				3B2E9C4B2109B06B00132C74 /* AppLogoView.swift in Sources */,
 				3BA9D0EC2133A3850087F492 /* PostCategory.swift in Sources */,
