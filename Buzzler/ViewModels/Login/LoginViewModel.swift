@@ -89,72 +89,14 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(emailAndPassword)
             .flatMapLatest{ tuple in
-                return provider.request(Buzzler.signIn(email: tuple.0!, password: tuple.1!))
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-                    .filterSuccessfulStatusCodes()
-                    .flatMap({ res -> Single<Bool> in
-                        let responseData = try res.mapObject(LoginResponse.self)
-                        
-                        // if get error
-                        if let _ = responseData.error {
-                            return Single.just(false)
-                        }
-                        
-                        if let success = responseData.result {
-                            let token = success.authToken
-                            // add userDefaults
-                            var environment = Environment()
-                            environment.token = token
-                            // save auto login info
-                            if let autoLogin = environment.autoLogin, autoLogin {
-                                environment.receiver = tuple.0!
-                                environment.password = tuple.1!
-                            }
-                            // save email info
-                            if let saveEmail = environment.saveEmail, saveEmail {
-                                environment.receiver = tuple.0!
-                            }
-                            return Single.just(true)
-                        }
-                        return Single.just(false)
-                    })
+                return API.sharedAPI
+                    .signIn(email: tuple.0!, password: tuple.1!)
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)
             }
             .flatMapLatest{ loginResult in
-                return provider.request(Buzzler.getUserInfo())
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-                    .filterSuccessfulStatusCodes()
-                    .flatMap({ res -> Single<Bool> in
-                        let responseData = try res.mapObject(AccountsResponse.self)
-                        
-                        if let _ = responseData.error {
-                            return Single.just(false)
-                        }
-                        
-                        if let success = responseData.result {
-                            // save to static value
-                            globalPostCategories = success.postCategories
-                            globalAccountInfo = success.account
-                            
-                            // create SideModel for SideSectionModel
-                            sideCategories = globalPostCategories.map{ category in
-                                return SideModel.category(id: category.id, title: category.name)
-                            }
-                            sideCategories.append(SideModel.myPage(navTitle: "MyPageNavigationController"))
-                            sideCategories.append(SideModel.settings(navTitle: "SettingsNavigationController"))
-                            
-                            // save default categoryId
-                            var environment = Environment()
-                            environment.categoryId = 1
-                            environment.categoryTitle = "익명"
-                            
-                            return Single.just(loginResult)
-                        }
-                        return Single.just(loginResult)
-                    })
+                return API.sharedAPI
+                    .getUserInfo(loginResult: loginResult)
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)
         }

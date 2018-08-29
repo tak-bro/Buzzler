@@ -379,10 +379,10 @@
 		3B66DDC820C0E1C6009944D1 /* DetailPost */ = {
 			isa = PBXGroup;
 			children = (
+				3B0410AA2133B0C9001D9B1A /* DetailPostResponse.swift */,
 				3B0DC99820BBF76700A5D274 /* DetailBuzzlerPost.swift */,
 				3B66DDC920C0E1DF009944D1 /* BuzzlerComment.swift */,
 				3B66DDCB20C0E961009944D1 /* MutipleSection.swift */,
-				3B0410AA2133B0C9001D9B1A /* DetailPostResponse.swift */,
 			);
 			path = DetailPost;
 			sourceTree = "<group>";

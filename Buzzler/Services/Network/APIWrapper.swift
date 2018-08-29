@@ -23,6 +23,8 @@ public protocol BuzzlerAPI {
     func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<WritePostResponse>
     func writeComment(categoryId: Int, postId: Int, parentId: String?, contents: String) -> Observable<Bool>
     func requestCode(receiver: String) -> Observable<Bool>
+    func signIn(email: String, password: String) -> Observable<Bool>
+    func getUserInfo(loginResult: Bool) -> Observable<Bool>
 }
 
 public class API: AwsAPI, BuzzlerAPI {
@@ -167,6 +169,74 @@ public class API: AwsAPI, BuzzlerAPI {
             .mapJSON()
             .flatMap({ res -> Single<Bool> in
                 return Single.just(true)
+            })
+    }
+
+    public func signIn(email: String, password: String) -> Observable<Bool> {
+        return BuzzlerProvider.request(Buzzler.signIn(email: email, password: password))
+            .retry(3)
+            .observeOn(MainScheduler.instance)
+            .filterSuccessfulStatusCodes()
+            .flatMap({ res -> Single<Bool> in
+                let responseData = try res.mapObject(LoginResponse.self)
+                
+                // if get error
+                if let _ = responseData.error {
+                    return Single.just(false)
+                }
+                
+                if let success = responseData.result {
+                    let token = success.authToken
+                    // add userDefaults
+                    var environment = Environment()
+                    environment.token = token
+                    // save auto login info
+                    if let autoLogin = environment.autoLogin, autoLogin {
+                        environment.receiver = email
+                        environment.password = password
+                    }
+                    // save email info
+                    if let saveEmail = environment.saveEmail, saveEmail {
+                        environment.receiver = email
+                    }
+                    return Single.just(true)
+                }
+                return Single.just(false)
+            })
+    }
+    
+    public func getUserInfo(loginResult: Bool) -> Observable<Bool> {
+        return BuzzlerProvider.request(Buzzler.getUserInfo())
+            .retry(3)
+            .observeOn(MainScheduler.instance)
+            .filterSuccessfulStatusCodes()
+            .flatMap({ res -> Single<Bool> in
+                let responseData = try res.mapObject(AccountsResponse.self)
+                
+                if let _ = responseData.error {
+                    return Single.just(false)
+                }
+                
+                if let success = responseData.result {
+                    // save to static value
+                    globalPostCategories = success.postCategories
+                    globalAccountInfo = success.account
+                    
+                    // create SideModel for SideSectionModel
+                    sideCategories = globalPostCategories.map{ category in
+                        return SideModel.category(id: category.id, title: category.name)
+                    }
+                    sideCategories.append(SideModel.myPage(navTitle: "MyPageNavigationController"))
+                    sideCategories.append(SideModel.settings(navTitle: "SettingsNavigationController"))
+                    
+                    // save default categoryId
+                    var environment = Environment()
+                    environment.categoryId = 1
+                    environment.categoryTitle = "익명"
+                    
+                    return Single.just(loginResult)
+                }
+                return Single.just(loginResult)
             })
     }
 }
