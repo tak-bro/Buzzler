@@ -1,17 +1,17 @@
 //
-//  DetailPostResponse.swift
+//  LikeResponse.swift
 //  Buzzler
 //
-//  Created by 진형탁 on 27/08/2018.
+//  Created by 진형탁 on 30/08/2018.
 //  Copyright © 2018 Maru. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-public struct DetailPostResponse: Mappable {
+public struct LikePostResponse: Mappable {
     var error: ErrorResponse?
-    var result: DetailBuzzlerPost?
+    var result: String?
     
     public init?(map: Map) { }
     
@@ -22,7 +22,7 @@ public struct DetailPostResponse: Mappable {
         result <- map["result"]
     }
     
-    init(error: ErrorResponse?, result: DetailBuzzlerPost?) {
+    init(error: ErrorResponse?, result: String?) {
         self.error = error
         self.result = result
     }

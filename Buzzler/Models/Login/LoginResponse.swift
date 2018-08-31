@@ -39,7 +39,7 @@ public struct LoginResponse: Mappable {
         result <- map["result"]
     }
     
-    init(error: ErrorResponse, result: LoginSuccess) {
+    init(error: ErrorResponse?, result: LoginSuccess?) {
         self.error = error
         self.result = result
     }

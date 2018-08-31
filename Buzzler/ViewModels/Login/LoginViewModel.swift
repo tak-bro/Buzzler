@@ -16,16 +16,16 @@ import RxDataSources
 private let disposeBag = DisposeBag()
 
 public protocol LoginViewModelInputs {
-    var email:PublishSubject<String?> { get}
-    var password:PublishSubject<String?> { get }
-    var loginTaps:PublishSubject<Void> { get }
+    var email: PublishSubject<String?> { get}
+    var password: PublishSubject<String?> { get }
+    var loginTaps: PublishSubject<Void> { get }
 }
 
 public protocol LoginViewModelOutputs {
     var validatedEmail: Driver<ValidationResult> { get }
     var validatedPassword: Driver<ValidationResult> { get }
     var enableLogin: Driver<Bool>{ get }
-    var signedIn: Driver<Bool> { get }
+    var signedIn: Driver<LoginResponse> { get }
     var isLoading: Driver<Bool> { get }
 }
 
@@ -43,7 +43,7 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
     public var loginTaps: PublishSubject<Void>
     public var password: PublishSubject<String?>
     public var email: PublishSubject<String?>
-    public var signedIn: Driver<Bool>
+    public var signedIn: Driver<LoginResponse>
     public var isLoading: Driver<Bool>
     
     public var inputs: LoginViewModelInputs { return self }
@@ -92,13 +92,13 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
                 return API.sharedAPI
                     .signIn(email: tuple.0!, password: tuple.1!)
                     .trackActivity(isLoading)
-                    .asDriver(onErrorJustReturn: false)
+                    .asDriver(onErrorJustReturn: LoginResponse(error: ErrorResponse(code: 500, message: "Server Error!"), result: nil))
             }
             .flatMapLatest{ loginResult in
                 return API.sharedAPI
                     .getUserInfo(loginResult: loginResult)
                     .trackActivity(isLoading)
-                    .asDriver(onErrorJustReturn: false)
+                    .asDriver(onErrorJustReturn: LoginResponse(error: ErrorResponse(code: 500, message: "Server Error!"), result: nil))
         }
     }
 }

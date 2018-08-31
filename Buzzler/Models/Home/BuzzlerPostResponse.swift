@@ -22,7 +22,7 @@ public struct BuzzlerPostResponse: Mappable {
         result <- map["result"]
     }
     
-    init(error: ErrorResponse, result: [BuzzlerPost]) {
+    init(error: ErrorResponse?, result: [BuzzlerPost]) {
         self.error = error
         self.result = result
     }

@@ -151,9 +151,9 @@ extension Buzzler: TargetType {
             return ["email": email, "password": password]
         case .newPassword(let email, let password):
             return ["email": email, "newPassword": password]
-        case .writeComment(_, _, let parentId, let contents):
-            guard let parentId = parentId else { return ["content": contents] }
-            return ["parentId": parentId, "content": contents]
+        case .writeComment(_, let postId, let parentId, let contents):
+            guard let parentId = parentId else { return ["contents": contents, "postId": postId] }
+            return ["parentId": parentId, "contents": contents, "postId": postId]
         case .createCategory(let depth, let name, let baseUrl):
             guard let baseUrl = baseUrl else { return ["depth": depth, "name": name] }
             return ["depth": depth, "name": name, "baseUrl": baseUrl]

@@ -23,8 +23,11 @@ public protocol BuzzlerAPI {
     func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<WritePostResponse>
     func writeComment(categoryId: Int, postId: Int, parentId: String?, contents: String) -> Observable<Bool>
     func requestCode(receiver: String) -> Observable<Bool>
-    func signIn(email: String, password: String) -> Observable<Bool>
-    func getUserInfo(loginResult: Bool) -> Observable<Bool>
+    func signIn(email: String, password: String) -> Observable<LoginResponse>
+    func getUserInfo(loginResult: LoginResponse) -> Observable<LoginResponse>
+    func likePost(categoryId: Int, postId: Int) -> Observable<LikePostResponse>
+//    func requestCodeForNewPassword(receiver: String) -> Observable<RequestCodePassword>
+//    func verifyCodeForNewPassword(receiver: String, verificationCode: String) -> Observable<VerifyCodeResponse>
 }
 
 public class API: AwsAPI, BuzzlerAPI {
@@ -33,18 +36,14 @@ public class API: AwsAPI, BuzzlerAPI {
     
     // Buzzler API
     
-    public func likePost(categoryId: Int, postId: Int) -> Observable<Bool> {
+    public func likePost(categoryId: Int, postId: Int) -> Observable<LikePostResponse> {
         return BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: postId))
             .retry(3)
             .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
-            .flatMap({ res -> Single<Bool> in
-                do {
-                    print(res)
-                    return Single.just(true)
-                } catch {
-                    return Single.just(false)
-                }
+            .flatMap({ res -> Single<LikePostResponse> in
+                let responseData = try res.mapObject(LikePostResponse.self)
+                return Single.just(responseData)
             })
     }
     
@@ -142,7 +141,6 @@ public class API: AwsAPI, BuzzlerAPI {
             .retry(3)
             .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
-            .filterSuccessfulStatusCodes()
             .flatMap({ res -> Single<WritePostResponse> in
                 let responseData = try res.mapObject(WritePostResponse.self)
                 return Single.just(responseData)
@@ -154,7 +152,6 @@ public class API: AwsAPI, BuzzlerAPI {
             .retry(3)
             .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
-            .filterSuccessfulStatusCodes()
             .mapJSON()
             .flatMap({ res -> Single<Bool> in
                 return Single.just(true)
@@ -172,18 +169,13 @@ public class API: AwsAPI, BuzzlerAPI {
             })
     }
 
-    public func signIn(email: String, password: String) -> Observable<Bool> {
+    public func signIn(email: String, password: String) -> Observable<LoginResponse> {
         return BuzzlerProvider.request(Buzzler.signIn(email: email, password: password))
             .retry(3)
             .observeOn(MainScheduler.instance)
             .filterSuccessfulStatusCodes()
-            .flatMap({ res -> Single<Bool> in
+            .flatMap({ res -> Single<LoginResponse> in
                 let responseData = try res.mapObject(LoginResponse.self)
-                
-                // if get error
-                if let _ = responseData.error {
-                    return Single.just(false)
-                }
                 
                 if let success = responseData.result {
                     let token = success.authToken
@@ -199,22 +191,21 @@ public class API: AwsAPI, BuzzlerAPI {
                     if let saveEmail = environment.saveEmail, saveEmail {
                         environment.receiver = email
                     }
-                    return Single.just(true)
                 }
-                return Single.just(false)
+                return Single.just(responseData)
             })
     }
     
-    public func getUserInfo(loginResult: Bool) -> Observable<Bool> {
+    public func getUserInfo(loginResult: LoginResponse) -> Observable<LoginResponse> {
         return BuzzlerProvider.request(Buzzler.getUserInfo())
             .retry(3)
             .observeOn(MainScheduler.instance)
             .filterSuccessfulStatusCodes()
-            .flatMap({ res -> Single<Bool> in
+            .flatMap({ res -> Single<LoginResponse> in
                 let responseData = try res.mapObject(AccountsResponse.self)
                 
                 if let _ = responseData.error {
-                    return Single.just(false)
+                    return Single.just(loginResult)
                 }
                 
                 if let success = responseData.result {

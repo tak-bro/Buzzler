@@ -24,7 +24,7 @@ public protocol SelectUnivViewModelInputs {
 public protocol SelectUnivViewModelOutputs {
     var validatedUniv: Driver<ValidationResult> { get }
     var enableNextButton: Driver<Bool> { get }
-    var getMajorList: Driver<Any> { get }
+    var getMajorList: Driver<[MajorInfo]> { get }
     var isLoading: Driver<Bool> { get }
     // set univInfo
     var setUniv: Driver<String?> { get }
@@ -42,7 +42,7 @@ class SelectUnivViewModel: SelectUnivViewModelInputs, SelectUnivViewModelOutputs
     
     public var nextTaps: PublishSubject<Void>
     public var univ: PublishSubject<String?>
-    public var getMajorList: Driver<Any>
+    public var getMajorList: Driver<[MajorInfo]>
     public var isLoading: Driver<Bool>
     
     public var inputs: SelectUnivViewModelInputs { return self }
@@ -99,7 +99,7 @@ class SelectUnivViewModel: SelectUnivViewModelInputs, SelectUnivViewModelOutputs
                     .filterSuccessfulStatusCodes()
                     .mapJSON()
                     .map { JSON($0) }
-                    .flatMap({ res -> Single<Any> in
+                    .flatMap({ res -> Single<[MajorInfo]> in
                         print("getMajorList res", res)
                         var majors: [MajorInfo] = []
                         
@@ -114,7 +114,7 @@ class SelectUnivViewModel: SelectUnivViewModelInputs, SelectUnivViewModelOutputs
                         return Single.just(majors)
                     })
                     .trackActivity(isLoading)
-                    .asDriver(onErrorJustReturn: false)
+                    .asDriver(onErrorJustReturn: [])
         }
     }
 }

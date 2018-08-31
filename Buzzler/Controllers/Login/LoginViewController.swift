@@ -72,16 +72,17 @@ class LoginViewController: UIViewController, ShowsAlert {
             .disposed(by: disposeBag)
         
         self.viewModel.outputs.signedIn
-            .drive(onNext: { signedIn in
-                if signedIn == true {
-                    GlobalUIManager.loadHomeVC()
-                } else {
-                    self.showAlert(message: "Login Error!")
+            .drive(onNext: { loginResult in
+                if let error = loginResult.error {
+                    self.showAlert(message: error.message)
                     self.environment.autoLogin = false
                     self.environment.saveEmail = false
                     self.btn_saveEmail.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
                     self.btn_autoLogin.setImage(UIImage(named: "btn_checkbox_empty"), for: .normal)
                     self.removeAppLogoView()
+                } else {
+                    // success
+                    GlobalUIManager.loadHomeVC()
                 }
             }).disposed(by: disposeBag)
         

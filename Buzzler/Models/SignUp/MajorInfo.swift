@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MajorInfo {
+public struct MajorInfo {
     var categoryDepth: Int?
     var id: String?
     var name: String?
