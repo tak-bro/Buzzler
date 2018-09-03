@@ -106,8 +106,8 @@ public class API: AwsAPI, BuzzlerAPI {
                                 var commentsWithChild = [BuzzlerComment]()
                                 commentsWithChild.insertFirst(item)
                                 
-                                if item.childComments.count > 0 {
-                                    commentsWithChild = commentsWithChild + item.childComments
+                                if item.childComment.count > 0 {
+                                    commentsWithChild = commentsWithChild + item.childComment
                                 }
                                 return commentsWithChild
                             }
@@ -116,8 +116,12 @@ public class API: AwsAPI, BuzzlerAPI {
                         // convert comments to CommentSection
                         var comments = commentsData
                             .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
-                                if data.id != comment.parentId {
-                                    return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
+                                if let parentId = comment.parentId {
+                                    if data.id != comment.parentId {
+                                        return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
+                                    } else {
+                                        return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
+                                    }
                                 } else {
                                     return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
                                 }

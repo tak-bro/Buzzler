@@ -29,6 +29,7 @@ public enum Buzzler {
     case newPassword(email: String, password: String)
     case writeComment(categoryId: Int, postId: Int, parentId: String?, contents: String)
     case createCategory(depth: Int, name: String, baseUrl: String?)
+    case likePost(categoryId: Int, postId: Int)
 
     // PUT
     case verifyCode(receiver: String, verificationCode: String)
@@ -36,9 +37,6 @@ public enum Buzzler {
 
     // DELETE
     case deletePost(postId: Int)
-    
-    // POST
-    case likePost(categoryId: Int, postId: Int)
 }
 
 extension Buzzler: TargetType {
@@ -151,9 +149,9 @@ extension Buzzler: TargetType {
             return ["email": email, "password": password]
         case .newPassword(let email, let password):
             return ["email": email, "newPassword": password]
-        case .writeComment(_, let postId, let parentId, let contents):
-            guard let parentId = parentId else { return ["contents": contents, "postId": postId] }
-            return ["parentId": parentId, "contents": contents, "postId": postId]
+        case .writeComment(_, _, let parentId, let contents):
+            guard let parentId = parentId else { return ["contents": contents] }
+            return ["parentId": parentId, "contents": contents]
         case .createCategory(let depth, let name, let baseUrl):
             guard let baseUrl = baseUrl else { return ["depth": depth, "name": name] }
             return ["depth": depth, "name": name, "baseUrl": baseUrl]
