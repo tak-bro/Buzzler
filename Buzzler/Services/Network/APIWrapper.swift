@@ -98,7 +98,7 @@ public class API: AwsAPI, BuzzlerAPI {
                         // convert response to BuzzlerPost model
                         let defaultPost = BuzzlerPost(id: data.id, title: data.title, contents: data.contents,
                                                       commentCount: data.commentCount, imageUrls: data.imageUrls, likeCount: data.likeCount,
-                                                      createdAt: data.createdAt, author: data.author)
+                                                      createdAt: data.createdAt, author: data.author, liked: data.liked)
                         
                         // join comments with child
                         let commentsData = data.commentList
@@ -112,7 +112,7 @@ public class API: AwsAPI, BuzzlerAPI {
                                         // create new recomment data with parentId
                                         let recomment = BuzzlerComment(id: recommentItem.id, author: recommentItem.author, postId: recommentItem.postId,
                                                                        parentId: item.id, contents: recommentItem.contents, createdAt: recommentItem.createdAt,
-                                                                       likeCount: item.likeCount, childrenComment: item.childrenComment)
+                                                                       likeCount: item.likeCount, childrenComment: item.childrenComment, liked: recommentItem.liked)
                                         return recomment
                                     }
                                     
@@ -125,15 +125,10 @@ public class API: AwsAPI, BuzzlerAPI {
                         // convert comments to CommentSection
                         var comments = commentsData
                             .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
-                                if let parentId = comment.parentId {
-                                    if data.id != parentId {
-                                        return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
-                                    } else {
-                                        return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
-                                    }
-                                } else {
+                                guard let _ = comment.parentId else {
                                     return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
                                 }
+                                return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
                             })
                         
                         // add PostSection to first index

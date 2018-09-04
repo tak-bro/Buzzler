@@ -21,6 +21,7 @@ public struct DetailBuzzlerPost: Equatable, Mappable {
     var createdAt: String = ""
     var author: Author = Author()
     var commentList: [BuzzlerComment] = []
+    var liked: Bool = false
     
     public static func == (lhs: DetailBuzzlerPost, rhs: DetailBuzzlerPost) -> Bool {
         return lhs.id == rhs.id ? true : false
@@ -40,6 +41,7 @@ public struct DetailBuzzlerPost: Equatable, Mappable {
         author <- map["author"]
         commentList <- map["commentList"]
         commentCount <- map["commentCount"]
+        liked <- map["liked"]
     }
     
 }

@@ -20,6 +20,7 @@ public struct BuzzlerComment: Equatable, Mappable {
     var likeCount: Int = 0
     var createdAt: String = ""
     var childrenComment: [BuzzlerComment] = [BuzzlerComment]()
+    var liked: Bool = false
     
     public static func == (lhs: BuzzlerComment, rhs: BuzzlerComment) -> Bool {
         return lhs.id == rhs.id ? true : false
@@ -38,11 +39,12 @@ public struct BuzzlerComment: Equatable, Mappable {
         createdAt <- map["createdAt"]
         likeCount <- map["likeCount"]
         childrenComment <- map["childrenComment"]
+        liked <- map["liked"]
     }
     
     init(id: Int, author: Author, postId: Int, parentId: Int?,
          contents: String, createdAt: String, likeCount: Int,
-         childrenComment: [BuzzlerComment]) {
+         childrenComment: [BuzzlerComment], liked: Bool) {
         self.id = id
         self.author = author
         self.postId = postId
@@ -51,6 +53,7 @@ public struct BuzzlerComment: Equatable, Mappable {
         self.createdAt = createdAt
         self.likeCount = likeCount
         self.childrenComment = childrenComment
+        self.liked = liked
     }
     
 }
