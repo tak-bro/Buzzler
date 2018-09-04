@@ -50,6 +50,7 @@
 		3B85701920A9A945009FEC48 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85701820A9A945009FEC48 /* ValidationService.swift */; };
 		3BA13D4320DB9A01009B8E5B /* ManuallyEnterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA13D4220DB9A01009B8E5B /* ManuallyEnterViewController.swift */; };
 		3BA13D4520DB9AE1009B8E5B /* ManuallyEnterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA13D4420DB9AE1009B8E5B /* ManuallyEnterViewModel.swift */; };
+		3BA99714213E73C8003D5389 /* SettingsAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA99713213E73C8003D5389 /* SettingsAccountViewController.swift */; };
 		3BA9D0E3212FA1460087F492 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0E2212FA1460087F492 /* LoginResponse.swift */; };
 		3BA9D0E5212FA1A80087F492 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0E4212FA1A80087F492 /* ErrorResponse.swift */; };
 		3BA9D0E8212FB3270087F492 /* WritePostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9D0E7212FB3270087F492 /* WritePostResponse.swift */; };
@@ -162,6 +163,7 @@
 		3B85701820A9A945009FEC48 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		3BA13D4220DB9A01009B8E5B /* ManuallyEnterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterViewController.swift; sourceTree = "<group>"; };
 		3BA13D4420DB9AE1009B8E5B /* ManuallyEnterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterViewModel.swift; sourceTree = "<group>"; };
+		3BA99713213E73C8003D5389 /* SettingsAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountViewController.swift; sourceTree = "<group>"; };
 		3BA9D0E2212FA1460087F492 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		3BA9D0E4212FA1A80087F492 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		3BA9D0E7212FB3270087F492 /* WritePostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostResponse.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				3B2A42BA20B14D0100E37D72 /* SettingsViewController.swift */,
+				3BA99713213E73C8003D5389 /* SettingsAccountViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -986,6 +989,7 @@
 				3BA9D0E3212FA1460087F492 /* LoginResponse.swift in Sources */,
 				3B0DC8F620F0AA8F001DE6DC /* ImageResponse.swift in Sources */,
 				3BA9D0EE2133A6CA0087F492 /* BuzzlerPostResponse.swift in Sources */,
+				3BA99714213E73C8003D5389 /* SettingsAccountViewController.swift in Sources */,
 				844BC372208AF05500666486 /* StartSignUpViewController.swift in Sources */,
 				8421B2D12086D82C00CBF4E3 /* LoginViewModel.swift in Sources */,
 				3B52E6CA20AE94C7002B2BB6 /* LastStepViewModel.swift in Sources */,
