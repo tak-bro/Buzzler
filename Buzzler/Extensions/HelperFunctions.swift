@@ -117,3 +117,8 @@ func getRemainTimeString(createdAt: String) -> String {
         return formatter.string(from: Date(), to: rewardTime)! + " left"
     }
 }
+
+func setSimpleBorderToView(view: UIView) {
+    view.layer.borderWidth = 1
+    view.layer.borderColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.00).cgColor
+}

@@ -1867,6 +1867,9 @@ Cg
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzw-XT-o2L">
                                         <rect key="frame" x="346" y="14" width="9" height="22"/>
                                         <state key="normal" image="btn_next"/>
+                                        <connections>
+                                            <segue destination="NNd-ey-ZJW" kind="show" id="KkO-hc-VrB"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="고객센터" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1b-Hx-RFJ">
                                         <rect key="frame" x="20" y="15" width="49" height="20"/>
@@ -1915,6 +1918,418 @@ Cg
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naf-od-1o6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3238" y="95"/>
+        </scene>
+        <!--Customer Center View Controller-->
+        <scene sceneID="xvH-i8-Oa0">
+            <objects>
+                <viewController storyboardIdentifier="CustomerCenterViewController" id="NNd-ey-ZJW" customClass="CustomerCenterViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iSy-1K-DeO"/>
+                        <viewControllerLayoutGuide type="bottom" id="GAG-rW-3tR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="urP-J3-xZu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약관 및 정책" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozc-6Q-iVi">
+                                <rect key="frame" x="20" y="79" width="68" height="19.5"/>
+                                <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DQH-BZ-hj9">
+                                <rect key="frame" x="0.0" y="113.5" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이용약관" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJh-cr-Tab">
+                                        <rect key="frame" x="20" y="15" width="48.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Lt-d7-Eh8">
+                                        <rect key="frame" x="346" y="14" width="9" height="22"/>
+                                        <state key="normal" image="btn_next"/>
+                                        <connections>
+                                            <segue destination="a6b-hX-FLh" kind="show" id="KkW-26-7Dx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="7Lt-d7-Eh8" firstAttribute="centerY" secondItem="DQH-BZ-hj9" secondAttribute="centerY" id="Dsa-oF-mWh"/>
+                                    <constraint firstItem="bJh-cr-Tab" firstAttribute="leading" secondItem="DQH-BZ-hj9" secondAttribute="leading" constant="20" id="MPc-Ed-BUK"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Lt-d7-Eh8" secondAttribute="trailing" constant="20" id="fVh-Z5-SZe"/>
+                                    <constraint firstItem="bJh-cr-Tab" firstAttribute="centerY" secondItem="DQH-BZ-hj9" secondAttribute="centerY" id="pgz-V3-Rpb"/>
+                                    <constraint firstAttribute="height" constant="50" id="soo-Xi-lba"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8g-Nj-FfN">
+                                <rect key="frame" x="0.0" y="162.5" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개인정보처리방침" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVD-Fx-WW4">
+                                        <rect key="frame" x="20" y="15" width="97" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uoT-dR-V31">
+                                        <rect key="frame" x="346" y="14" width="9" height="22"/>
+                                        <state key="normal" image="btn_next"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4vZ-1G-5fu"/>
+                                    <constraint firstAttribute="trailing" secondItem="uoT-dR-V31" secondAttribute="trailing" constant="20" id="7ZP-Ez-NIf"/>
+                                    <constraint firstItem="uoT-dR-V31" firstAttribute="centerY" secondItem="e8g-Nj-FfN" secondAttribute="centerY" id="ByM-1P-kU7"/>
+                                    <constraint firstItem="ZVD-Fx-WW4" firstAttribute="leading" secondItem="e8g-Nj-FfN" secondAttribute="leading" constant="20" id="IfD-cs-lpO"/>
+                                    <constraint firstItem="ZVD-Fx-WW4" firstAttribute="centerY" secondItem="e8g-Nj-FfN" secondAttribute="centerY" id="K28-6P-bVB"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="회사정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEL-eL-hOy">
+                                <rect key="frame" x="20" y="227.5" width="48.5" height="19.5"/>
+                                <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5iA-gs-ezy">
+                                <rect key="frame" x="0.0" y="262" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdr-4p-k4M">
+                                        <rect key="frame" x="20" y="15" width="24.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(주)패일나이슬리" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4o1-Xh-pnw">
+                                        <rect key="frame" x="261.5" y="16" width="93.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="4o1-Xh-pnw" firstAttribute="centerY" secondItem="5iA-gs-ezy" secondAttribute="centerY" id="4tt-ui-Sql"/>
+                                    <constraint firstAttribute="trailing" secondItem="4o1-Xh-pnw" secondAttribute="trailing" constant="20" id="Mef-PB-W4j"/>
+                                    <constraint firstAttribute="height" constant="50" id="SY0-79-oVA"/>
+                                    <constraint firstItem="rdr-4p-k4M" firstAttribute="centerY" secondItem="5iA-gs-ezy" secondAttribute="centerY" id="kWz-NS-6Ay"/>
+                                    <constraint firstItem="rdr-4p-k4M" firstAttribute="leading" secondItem="5iA-gs-ezy" secondAttribute="leading" constant="20" id="w1M-ff-a4f"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lz7-lr-IUD">
+                                <rect key="frame" x="0.0" y="311" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대표" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RH-C0-Vgk">
+                                        <rect key="frame" x="20" y="15" width="24.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="김윤희" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nE-s0-AdS">
+                                        <rect key="frame" x="318.5" y="16" width="36.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="1RH-C0-Vgk" firstAttribute="leading" secondItem="Lz7-lr-IUD" secondAttribute="leading" constant="20" id="BHO-vt-C7a"/>
+                                    <constraint firstAttribute="height" constant="50" id="bib-ho-Agp"/>
+                                    <constraint firstItem="1RH-C0-Vgk" firstAttribute="centerY" secondItem="Lz7-lr-IUD" secondAttribute="centerY" id="dCy-7I-SSI"/>
+                                    <constraint firstItem="5nE-s0-AdS" firstAttribute="centerY" secondItem="Lz7-lr-IUD" secondAttribute="centerY" id="mJQ-6g-6b5"/>
+                                    <constraint firstAttribute="trailing" secondItem="5nE-s0-AdS" secondAttribute="trailing" constant="20" id="pgK-a8-dcd"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zD-Ph-ayH">
+                                <rect key="frame" x="0.0" y="360" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MsW-6J-odX">
+                                        <rect key="frame" x="20" y="15" width="24.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서울시 송파구" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgY-4B-vXT">
+                                        <rect key="frame" x="278.5" y="16" width="76.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="mgY-4B-vXT" firstAttribute="centerY" secondItem="5zD-Ph-ayH" secondAttribute="centerY" id="8yS-HD-Uzi"/>
+                                    <constraint firstAttribute="height" constant="50" id="GPs-iA-ll7"/>
+                                    <constraint firstAttribute="trailing" secondItem="mgY-4B-vXT" secondAttribute="trailing" constant="20" id="MC1-MI-c6V"/>
+                                    <constraint firstItem="MsW-6J-odX" firstAttribute="leading" secondItem="5zD-Ph-ayH" secondAttribute="leading" constant="20" id="XYt-U7-Gy9"/>
+                                    <constraint firstItem="MsW-6J-odX" firstAttribute="centerY" secondItem="5zD-Ph-ayH" secondAttribute="centerY" id="ydR-4o-yQN"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4pz-G6-zhu">
+                                <rect key="frame" x="0.0" y="409" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홈페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0BM-Qa-f2q">
+                                        <rect key="frame" x="20" y="15" width="48.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.buzzler.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g27-Mo-SlC">
+                                        <rect key="frame" x="239.5" y="16" width="115.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="g27-Mo-SlC" firstAttribute="centerY" secondItem="4pz-G6-zhu" secondAttribute="centerY" id="QJZ-Lv-Pfq"/>
+                                    <constraint firstItem="0BM-Qa-f2q" firstAttribute="leading" secondItem="4pz-G6-zhu" secondAttribute="leading" constant="20" id="R3V-eW-uX5"/>
+                                    <constraint firstAttribute="trailing" secondItem="g27-Mo-SlC" secondAttribute="trailing" constant="20" id="Rf6-Cf-8bV"/>
+                                    <constraint firstAttribute="height" constant="50" id="ZHa-rt-T3j"/>
+                                    <constraint firstItem="0BM-Qa-f2q" firstAttribute="centerY" secondItem="4pz-G6-zhu" secondAttribute="centerY" id="n1P-hu-FRB"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4IP-kM-PEg">
+                                <rect key="frame" x="0.0" y="458" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사업자등록번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4T-fn-KuV">
+                                        <rect key="frame" x="20" y="15" width="85" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123-11-12345" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQj-Hq-0Aj">
+                                        <rect key="frame" x="265.5" y="16" width="89.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="23e-pr-dzC"/>
+                                    <constraint firstItem="JQj-Hq-0Aj" firstAttribute="centerY" secondItem="4IP-kM-PEg" secondAttribute="centerY" id="7ya-eU-ONg"/>
+                                    <constraint firstItem="v4T-fn-KuV" firstAttribute="centerY" secondItem="4IP-kM-PEg" secondAttribute="centerY" id="eZa-Hp-Hex"/>
+                                    <constraint firstAttribute="trailing" secondItem="JQj-Hq-0Aj" secondAttribute="trailing" constant="20" id="jWy-k3-Nj1"/>
+                                    <constraint firstItem="v4T-fn-KuV" firstAttribute="leading" secondItem="4IP-kM-PEg" secondAttribute="leading" constant="20" id="k26-HY-g5e"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PgI-OQ-DVS">
+                                <rect key="frame" x="0.0" y="507" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이용문의" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jc-GC-EGv">
+                                        <rect key="frame" x="20" y="15" width="48.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="help@buzzler.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29P-9a-8QO">
+                                        <rect key="frame" x="234.5" y="16" width="120.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" name="NotoSans-Regular" family="Noto Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="29P-9a-8QO" secondAttribute="trailing" constant="20" id="83G-Aa-PRL"/>
+                                    <constraint firstItem="29P-9a-8QO" firstAttribute="centerY" secondItem="PgI-OQ-DVS" secondAttribute="centerY" id="FOh-Xk-3iJ"/>
+                                    <constraint firstItem="5Jc-GC-EGv" firstAttribute="leading" secondItem="PgI-OQ-DVS" secondAttribute="leading" constant="20" id="M0A-ga-lk6"/>
+                                    <constraint firstAttribute="height" constant="50" id="RDF-Ld-pez"/>
+                                    <constraint firstItem="5Jc-GC-EGv" firstAttribute="centerY" secondItem="PgI-OQ-DVS" secondAttribute="centerY" id="RUg-Yd-3ha"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5iA-gs-ezy" firstAttribute="top" secondItem="fEL-eL-hOy" secondAttribute="bottom" constant="15" id="0ix-r4-oQx"/>
+                            <constraint firstItem="5zD-Ph-ayH" firstAttribute="top" secondItem="Lz7-lr-IUD" secondAttribute="bottom" constant="-1" id="10a-zZ-UHM"/>
+                            <constraint firstAttribute="trailing" secondItem="Lz7-lr-IUD" secondAttribute="trailing" id="2jx-Yx-MSm"/>
+                            <constraint firstItem="4pz-G6-zhu" firstAttribute="leading" secondItem="urP-J3-xZu" secondAttribute="leading" id="5C9-hO-VP0"/>
+                            <constraint firstAttribute="trailing" secondItem="e8g-Nj-FfN" secondAttribute="trailing" id="7wv-q9-sAw"/>
+                            <constraint firstItem="DQH-BZ-hj9" firstAttribute="leading" secondItem="urP-J3-xZu" secondAttribute="leading" id="8Z3-ea-IGb"/>
+                            <constraint firstItem="ozc-6Q-iVi" firstAttribute="leading" secondItem="urP-J3-xZu" secondAttribute="leading" constant="20" id="8jQ-Ke-qsA"/>
+                            <constraint firstItem="ozc-6Q-iVi" firstAttribute="top" secondItem="iSy-1K-DeO" secondAttribute="bottom" constant="15" id="CS4-U5-xJ7"/>
+                            <constraint firstItem="e8g-Nj-FfN" firstAttribute="leading" secondItem="urP-J3-xZu" secondAttribute="leading" id="Dzd-nk-3P6"/>
+                            <constraint firstItem="e8g-Nj-FfN" firstAttribute="top" secondItem="DQH-BZ-hj9" secondAttribute="bottom" constant="-1" id="EII-Ue-672"/>
+                            <constraint firstItem="PgI-OQ-DVS" firstAttribute="leading" secondItem="urP-J3-xZu" secondAttribute="leading" id="FLN-VW-2k4"/>
+                            <constraint firstItem="4IP-kM-PEg" firstAttribute="leading" secondItem="urP-J3-xZu" secondAttribute="leading" id="GdU-B0-0ug"/>
+                            <constraint firstItem="fEL-eL-hOy" firstAttribute="top" secondItem="e8g-Nj-FfN" secondAttribute="bottom" constant="15" id="K8H-oy-2cp"/>
+                            <constraint firstItem="5iA-gs-ezy" firstAttribute="leading" secondItem="urP-J3-xZu" secondAttribute="leading" id="KNZ-74-kyk"/>
+                            <constraint firstItem="fEL-eL-hOy" firstAttribute="leading" secondItem="urP-J3-xZu" secondAttribute="leading" constant="20" id="LPG-L4-brB"/>
+                            <constraint firstAttribute="trailing" secondItem="4pz-G6-zhu" secondAttribute="trailing" id="PSE-dF-K5Y"/>
+                            <constraint firstItem="5zD-Ph-ayH" firstAttribute="leading" secondItem="urP-J3-xZu" secondAttribute="leading" id="TV5-R7-fzM"/>
+                            <constraint firstAttribute="trailing" secondItem="PgI-OQ-DVS" secondAttribute="trailing" id="Xbn-0Z-phf"/>
+                            <constraint firstAttribute="trailing" secondItem="4IP-kM-PEg" secondAttribute="trailing" id="XeM-iI-lL4"/>
+                            <constraint firstItem="PgI-OQ-DVS" firstAttribute="top" secondItem="4IP-kM-PEg" secondAttribute="bottom" constant="-1" id="Xo6-kQ-6RF"/>
+                            <constraint firstAttribute="trailing" secondItem="5iA-gs-ezy" secondAttribute="trailing" id="azK-Wy-urr"/>
+                            <constraint firstItem="Lz7-lr-IUD" firstAttribute="top" secondItem="5iA-gs-ezy" secondAttribute="bottom" constant="-1" id="edS-kg-4He"/>
+                            <constraint firstItem="DQH-BZ-hj9" firstAttribute="top" secondItem="ozc-6Q-iVi" secondAttribute="bottom" constant="15" id="oRq-12-VxR"/>
+                            <constraint firstAttribute="trailing" secondItem="5zD-Ph-ayH" secondAttribute="trailing" id="r2o-vy-Uhs"/>
+                            <constraint firstItem="4IP-kM-PEg" firstAttribute="top" secondItem="4pz-G6-zhu" secondAttribute="bottom" constant="-1" id="sN2-v6-RCt"/>
+                            <constraint firstItem="4pz-G6-zhu" firstAttribute="top" secondItem="5zD-Ph-ayH" secondAttribute="bottom" constant="-1" id="yDW-KR-9S3"/>
+                            <constraint firstAttribute="trailing" secondItem="DQH-BZ-hj9" secondAttribute="trailing" id="ypo-jF-I2q"/>
+                            <constraint firstItem="Lz7-lr-IUD" firstAttribute="leading" secondItem="urP-J3-xZu" secondAttribute="leading" id="zUr-BS-j1z"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="vw_ceo" destination="Lz7-lr-IUD" id="6OX-CJ-WKv"/>
+                        <outlet property="vw_companyAddress" destination="5zD-Ph-ayH" id="g34-lm-7qn"/>
+                        <outlet property="vw_companyHome" destination="4pz-G6-zhu" id="5j9-jb-cMv"/>
+                        <outlet property="vw_companyName" destination="5iA-gs-ezy" id="N5G-mK-wn4"/>
+                        <outlet property="vw_helper" destination="PgI-OQ-DVS" id="uzW-zQ-TXG"/>
+                        <outlet property="vw_privacyPolicy" destination="e8g-Nj-FfN" id="eaR-VA-fNg"/>
+                        <outlet property="vw_registrationNumber" destination="4IP-kM-PEg" id="093-z5-8Kg"/>
+                        <outlet property="vw_termsConditions" destination="DQH-BZ-hj9" id="CbU-S9-UFZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ik8-dq-Sud" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2743.1999999999998" y="-752.47376311844084"/>
+        </scene>
+        <!--Terms And Conditions View Controller-->
+        <scene sceneID="JrO-4Q-Noh">
+            <objects>
+                <viewController storyboardIdentifier="TermsAndConditionsViewController" id="a6b-hX-FLh" customClass="TermsAndConditionsViewController" customModule="Buzzler" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="doI-VI-BZH"/>
+                        <viewControllerLayoutGuide type="bottom" id="zIN-uO-gtK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5P0-29-JFr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ev-gZ-Kmw">
+                                <rect key="frame" x="15" y="79" width="345" height="588"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="[ 버즐러 이용 약관 ]">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="AppleSDGothicNeo-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="환영합니다!">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="AppleSDGothicNeo-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <mutableString key="content">㈜패일나이슬리(이하 “회사”)가 제공하는 서비스를 이용해 주셔서 감사합니다. 본 이용약관(“본 약관”)은 귀하가 당사의 각종 웹 사이트, SMS, API, 이메일 알림, 애플리케이션, 버튼, 위젯, 광고, 상거래 서비스를 포함한 당사의 서비스를 비롯해 본 약관과 관련된 당사의 기타 서비스(이하 “본 서비스”라 총칭)와 본 서비스상에 업로드 또는 다운로드되거나 표시되는 모든 정보, 텍스트, 링크, 그래픽, 사진, 음성, 동영상 또는 기타 자료나 자료의 배열(이하 “콘텐츠” 라 총칭)에 접근하여 이를 이용하는 행위를 규율합니다. 귀하는 본 서비스를 이용함으로써 본 약관의 적용을 받는 것에 동의합니다.</mutableString>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="AppleSDGothicNeo-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="11" name="AppleSDGothicNeo-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="1. 서비스 이용 주체">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="AppleSDGothicNeo-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <mutableString key="content">귀하는 버즐러와 구속력 있는 계약을 체결하는 데 동의하고 해당 관할권의 법률에 의거 서비스 이용이 금지된 자가 아닐 경우에만 본 서비스를 이용할 수 있습니다. 어떤 경우에도 본 서비스를 이용하려면 귀하는 13세 이상이어야 하며, 페리스코프(Periscope)의 경우에는 16세 이상이어야 합니다. 귀하가 회사, 단체, 정부 또는 그 외 법인을 대신하여 본 약관에 동의하고 본 서비스를 이용하는 경우, 귀하는 귀하에게 그에 대한 권한이 있으며 해당 권리주체를 본 약관에 구속시킬 권한이 있음을 진술 및 보증합니다. 이 경우, 본 약관에서 사용되는 “귀하” 및 “귀하의”라는 용어는 해당 권리주체를 의미합니다.</mutableString>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="AppleSDGothicNeo-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+CgoKA
+</string>
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="2. 개인정보">
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="AppleSDGothicNeo-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">당사의 개인정보 처리방침은 귀하가 본 서비스 이용 시 제공하는 정보를 당사가 취급하는 방식을 기술합니다. 귀하는 본 서비스를 이용함으로써 버즐러 및 그 계열사가 이러한 정보를 저장, 처리 및 이용할 목적으로 미국, 아일랜드 및/또는 그 밖의 국가로 이전하는 등 (개인정보 처리방침에 규정된 바와 같이) 수집 및 이용하는 것에 대해 동의하는 것임을 이해합니다.</string>
+                                        <attributes>
+                                            <font key="NSFont" size="14" name="AppleSDGothicNeo-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1ev-gZ-Kmw" secondAttribute="trailing" constant="15" id="3IN-tk-CxT"/>
+                            <constraint firstItem="1ev-gZ-Kmw" firstAttribute="leading" secondItem="5P0-29-JFr" secondAttribute="leading" constant="15" id="Eys-cN-z57"/>
+                            <constraint firstItem="zIN-uO-gtK" firstAttribute="top" secondItem="1ev-gZ-Kmw" secondAttribute="bottom" id="TNw-YO-9BA"/>
+                            <constraint firstItem="1ev-gZ-Kmw" firstAttribute="top" secondItem="doI-VI-BZH" secondAttribute="bottom" constant="15" id="VG0-BT-tqU"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wB4-OH-sNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1978" y="-753"/>
         </scene>
         <!--Settings Account View Controller-->
         <scene sceneID="Xn7-UD-0c8">
@@ -2099,7 +2514,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ffZ-Dh-nDS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2350" y="-176"/>
+            <point key="canvasLocation" x="-3596" y="-752"/>
         </scene>
         <!--Side View Controller-->
         <scene sceneID="0PQ-R8-aDY">

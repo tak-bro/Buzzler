@@ -25,13 +25,17 @@ class SettingsAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.topItem?.title = " "
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
         addThinShadowToNav(from: self)
-        title = "계정"
-        
+
         setUI()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = "계정"
+    }
 }
 
 extension SettingsAccountViewController {
@@ -47,17 +51,14 @@ extension SettingsAccountViewController {
     }
     
     func setUI() {
-        setBorderToView(view: self.vw_userName)
-        setBorderToView(view: self.vw_email)
-        setBorderToView(view: self.vw_univ)
-        setBorderToView(view: self.vw_major)
-        setBorderToView(view: self.vw_changePassword)
+        setSimpleBorderToView(view: self.vw_userName)
+        setSimpleBorderToView(view: self.vw_email)
+        setSimpleBorderToView(view: self.vw_univ)
+        setSimpleBorderToView(view: self.vw_major)
+        setSimpleBorderToView(view: self.vw_changePassword)
         
         setUserInfoLabel()
     }
 
-    func setBorderToView(view: UIView) {
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.00).cgColor
-    }
+
 }

@@ -18,11 +18,17 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.topItem?.title = " "
         SideMenuManager.menuWidth = view.frame.width * CGFloat(0.64)
         addThinShadowToNav(from: self)
-        title = "Settings"
-        
+
         setUI()
+        setGesture()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = "Settings"
     }
     
     func setUI() {
@@ -35,5 +41,28 @@ class SettingsViewController: UIViewController {
         
         self.vw_csCenter.layer.borderWidth = 1
         self.vw_csCenter.layer.borderColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.00).cgColor
+    }
+    
+    func setGesture() {
+        let accountGesture = UITapGestureRecognizer(target: self, action: #selector(self.pushAccountVC(sender:)))
+        self.vw_account.addGestureRecognizer(accountGesture)
+        
+        let csGesture = UITapGestureRecognizer(target: self, action: #selector(self.pushCsCenterVC(sender:)))
+        self.vw_csCenter.addGestureRecognizer(csGesture)
+    }
+}
+
+extension SettingsViewController {
+    
+    func pushAccountVC(sender: UITapGestureRecognizer) {
+        let settingsAccountVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "SettingsAccountViewController") as! SettingsAccountViewController
+        self.navigationController?.pushViewController(settingsAccountVC, animated: true)
+    }
+    
+    func pushCsCenterVC(sender: UITapGestureRecognizer) {
+        let customerVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "CustomerCenterViewController") as! CustomerCenterViewController
+        self.navigationController?.pushViewController(customerVC, animated: true)
     }
 }
