@@ -179,7 +179,7 @@ extension PostViewController: UITableViewDelegate {
                     imgCell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
                     
                     // show popover button
-                    if item.author.id == globalAccountInfo.id {
+                    if item.author.accountId == globalAccountInfo.id {
                         imgCell.btn_postAction.isHidden = false
                         imgCell.btn_postAction.isEnabled = true
                     } else {
@@ -233,10 +233,11 @@ extension PostViewController: UITableViewDelegate {
                         })
                         .disposed(by: imgCell.bag)
                     
+                    item.liked ? imgCell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal) : imgCell.btn_like.setImage(UIImage(named: "icon_like_empty"), for: .normal)
+                    
                     // like action
                     imgCell.btn_like.rx.tap.asDriver()
                         .drive(onNext: { _ in
-                            
                             // check rewarded
                             imgCell.btn_like.isEnabled = false
                             if checkIsRewarded(createdAt: item.createdAt) {
@@ -315,7 +316,7 @@ extension PostViewController: UITableViewDelegate {
                     cell.lbl_remainTime.text = getRemainTimeString(createdAt: item.createdAt)
 
                     // show popover button
-                    if item.author.id == globalAccountInfo.id {
+                    if item.author.accountId == globalAccountInfo.id {
                         cell.btn_postAction.isHidden = false
                         cell.btn_postAction.isEnabled = true
                     } else {
@@ -355,6 +356,7 @@ extension PostViewController: UITableViewDelegate {
                         })
                         .disposed(by: cell.bag)
                     
+                    item.liked ? cell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal) : cell.btn_like.setImage(UIImage(named: "icon_like_empty"), for: .normal)
                     // like post action
                     cell.btn_like.rx.tap.asDriver()
                         .drive(onNext: { _ in
@@ -421,6 +423,7 @@ extension PostViewController: UITableViewDelegate {
                         self.lbl_parentAuthor.text = item.author.username
                     }).disposed(by: cell.bag)
                 
+                item.liked ? cell.btn_like.setTitleColor(Config.UI.buttonActiveColor, for: .normal) : cell.btn_like.setTitleColor(Config.UI.lightFontColor, for: .normal)
                 // like post action
                 cell.btn_like.rx.tap.asDriver()
                     .drive(onNext: { _ in
@@ -473,6 +476,8 @@ extension PostViewController: UITableViewDelegate {
                 cell.lbl_author.text = item.author.username
                 cell.lbl_createdAt.text = getDateFromString(date: item.createdAt).timeAgoSinceNow
                 
+                item.liked ? cell.btn_like.setTitleColor(Config.UI.buttonActiveColor, for: .normal) : cell.btn_like.setTitleColor(Config.UI.lightFontColor, for: .normal)
+                
                 // like post action
                 cell.btn_like.rx.tap.asDriver()
                     .drive(onNext: { _ in
@@ -516,7 +521,6 @@ extension PostViewController: UITableViewDelegate {
                         }
                     })
                     .disposed(by: cell.bag)
-                
                 return cell
             }
         }

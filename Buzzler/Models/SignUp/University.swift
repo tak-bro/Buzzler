@@ -29,12 +29,7 @@ extension University: Decodable {
         let secondUrl = json["secondUrl"].stringValue
         let createdAt = json["createdAt"].stringValue
 
-        return University(id: id,
-                          categoryDepth: categoryDepth,
-                          name: name,
-                          baseUrl: baseUrl,
-                          secondUrl: secondUrl,
-                          createdAt: createdAt
-        )
+        return University(id: id, categoryDepth: categoryDepth, name: name,
+                          baseUrl: baseUrl, secondUrl: secondUrl,createdAt: createdAt)
     }
 }

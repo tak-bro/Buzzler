@@ -16,16 +16,16 @@ import RxDataSources
 private let disposeBag = DisposeBag()
 
 public protocol LoginViewModelInputs {
-    var email:PublishSubject<String?> { get}
-    var password:PublishSubject<String?> { get }
-    var loginTaps:PublishSubject<Void> { get }
+    var email: PublishSubject<String?> { get}
+    var password: PublishSubject<String?> { get }
+    var loginTaps: PublishSubject<Void> { get }
 }
 
 public protocol LoginViewModelOutputs {
     var validatedEmail: Driver<ValidationResult> { get }
     var validatedPassword: Driver<ValidationResult> { get }
     var enableLogin: Driver<Bool>{ get }
-    var signedIn: Driver<Bool> { get }
+    var signedIn: Driver<LoginResponse> { get }
     var isLoading: Driver<Bool> { get }
 }
 
@@ -43,7 +43,7 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
     public var loginTaps: PublishSubject<Void>
     public var password: PublishSubject<String?>
     public var email: PublishSubject<String?>
-    public var signedIn: Driver<Bool>
+    public var signedIn: Driver<LoginResponse>
     public var isLoading: Driver<Bool>
     
     public var inputs: LoginViewModelInputs { return self }
@@ -89,88 +89,16 @@ class LoginViewModel: LoginViewModelType, LoginViewModelInputs, LoginViewModelOu
             .asDriver(onErrorJustReturn:())
             .withLatestFrom(emailAndPassword)
             .flatMapLatest{ tuple in
-                return provider.request(Buzzler.signIn(email: tuple.0!, password: tuple.1!))
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-                    .filterSuccessfulStatusCodes()
-                    .mapJSON()
-                    .flatMap({ token -> Single<Bool> in
-                        print("Token", token)
-                        if token is String {
-                            // add userDefaults
-                            var environment = Environment()
-                            environment.token = token as? String
-                            // save auto login info
-                            if let autoLogin = environment.autoLogin, autoLogin {
-                                environment.receiver = tuple.0!
-                                environment.password = tuple.1!
-                            }
-                            
-                            // save email info
-                            if let saveEmail = environment.saveEmail, saveEmail {
-                                environment.receiver = tuple.0!
-                            }
-                            
-                            return Single.just(true)
-                        } else {
-                            return Single.just(false)
-                        }
-                    })
+                return API.sharedAPI
+                    .signIn(email: tuple.0!, password: tuple.1!)
                     .trackActivity(isLoading)
-                    .asDriver(onErrorJustReturn: false)
-            }
-            .flatMapLatest{ loginResult -> SharedSequence<DriverSharingStrategy, Bool> in
-                if loginResult != true {
-                    return Driver.of(loginResult)
-                }
-                
-                return provider.request(Buzzler.getCategoriesByUser())
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-                    .filterSuccessfulStatusCodes()
-                    .flatMap({ res -> Single<Bool> in
-                        print("loginResult", loginResult)
-                        print("res", res)
-                        
-                        // TODO: save categories
-                        userCategories = try res.mapArray(UserCategory.self)
-                        // create SideModel for SideSectionModel
-                        sideCategories = userCategories.map{ category in
-                            return SideModel.category(id: category.id, title: category.name)
-                        }
-                        sideCategories.append(SideModel.myPage(navTitle: "MyPageNavigationController"))
-                        sideCategories.append(SideModel.settings(navTitle: "SettingsNavigationController"))
-                        print(sideCategories)
-                        // TODO: delete below
-                        // save default categoryId
-                        var environment = Environment()
-                        environment.categoryId = 1
-                        environment.categoryTitle = "익명"
-                        
-                        return Single.just(loginResult)
-                    })
-                    .trackActivity(isLoading)
-                    .asDriver(onErrorJustReturn: false)
+                    .asDriver(onErrorJustReturn: LoginResponse(error: ErrorResponse(code: 500, message: "Server Error!"), result: nil))
             }
             .flatMapLatest{ loginResult in
-                if loginResult != true {
-                    return Driver.of(loginResult)
-                }
-
-                return provider.request(Buzzler.getUserInfo())
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-                    .filterSuccessfulStatusCodes()
-                    .flatMap({ res -> Single<Bool> in
-                        print("res", res)
-                        
-                        // TODO: save categories
-                        globalAccountInfo = try res.mapObject(AccountInfo.self)
-                        // TODO: delete below
-                        return Single.just(loginResult)
-                    })
+                return API.sharedAPI
+                    .getUserInfo(loginResult: loginResult)
                     .trackActivity(isLoading)
-                    .asDriver(onErrorJustReturn: false)
+                    .asDriver(onErrorJustReturn: LoginResponse(error: ErrorResponse(code: 500, message: "Server Error!"), result: nil))
         }
     }
 }

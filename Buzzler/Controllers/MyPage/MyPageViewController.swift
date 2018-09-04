@@ -23,7 +23,7 @@ class MyPageViewController: UIViewController {
     let dataSource = RxTableViewSectionedReloadDataSource<BuzzlerSection>()
     
     var refreshControl : UIRefreshControl?
-    var categories: [UserCategory] = userCategories.filter { $0.id != 1 } // delete Secret Lounge
+    var categories: [PostCategory] = globalPostCategories.filter { $0.id != 1 } // delete Secret Lounge
     var category: Int = 1
     
     var isAddedShadow = false

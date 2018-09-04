@@ -139,15 +139,8 @@ class SignUpViewModel: SignUpViewModelInputs, SignUpViewModelOutputs, SignUpView
                 environment.password = data.1
                 environment.nickName = data.2
                 
-                return provider.request(Buzzler.requestCode(receiver: data.0!))
-                    .retry(3)
-                    .observeOn(MainScheduler.instance)
-                    .filterSuccessfulStatusCodes()
-                    .mapJSON()
-                    .flatMap({ res -> Single<Bool> in
-                        print("requestCode res", res)
-                        return Single.just(true)
-                    })
+                return API.sharedAPI
+                    .requestCode(receiver: environment.receiver!)
                     .trackActivity(isLoading)
                     .asDriver(onErrorJustReturn: false)
         }

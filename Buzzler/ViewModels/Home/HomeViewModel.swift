@@ -105,7 +105,7 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelInputs, HomeViewMode
             }
             .shareReplay(1)
         
-        //combine data when get more data by paging
+        // combine data when get more data by paging
         Observable
             .combineLatest(request, response, elements.asObservable()) { request, response, elements in
                 return self.pageIndex == 1 ? response : elements + response
@@ -114,7 +114,7 @@ public class HomeViewModel: HomeViewModelType, HomeViewModelInputs, HomeViewMode
             .bind(to: elements)
             .disposed(by: disposeBag)
         
-        //binding selected item
+        // binding selected item
         self.selectedViewModel = self.post.asDriver()
             .filterNil()
             .flatMapLatest{ post -> Driver<DetailPostViewModel> in

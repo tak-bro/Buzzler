@@ -12,11 +12,11 @@ import ObjectMapper
 
 public struct Author: Equatable, Mappable {
     
-    var id: Int = 0
+    var accountId: Int = 0
     var username: String = ""
 
     public static func == (lhs: Author, rhs: Author) -> Bool {
-        return lhs.id == rhs.id ? true : false
+        return lhs.accountId == rhs.accountId ? true : false
     }
     
     public init?(map: Map) { }
@@ -24,12 +24,13 @@ public struct Author: Equatable, Mappable {
     init() { }
     
     mutating public func mapping(map: Map) {
-        id <- map["id"]
+        accountId <- map["id"]
+        accountId <- map["accountId"]
         username <- map["username"]
     }
     
-    init(id: Int, username: String) {
-        self.id = id
+    init(accountId: Int, username: String) {
+        self.accountId = accountId
         self.username = username
     }
     

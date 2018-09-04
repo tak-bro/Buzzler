@@ -18,7 +18,6 @@ public enum Buzzler {
     case getMajor()
     case getUniv(email: String)
     case getDetailPost(categoryId: Int, id: Int)
-    case getCategoriesByUser()
     case getUserInfo()
     
     // POST
@@ -30,6 +29,7 @@ public enum Buzzler {
     case newPassword(email: String, password: String)
     case writeComment(categoryId: Int, postId: Int, parentId: String?, contents: String)
     case createCategory(depth: Int, name: String, baseUrl: String?)
+    case likePost(categoryId: Int, postId: Int)
 
     // PUT
     case verifyCode(receiver: String, verificationCode: String)
@@ -37,9 +37,6 @@ public enum Buzzler {
 
     // DELETE
     case deletePost(postId: Int)
-    
-    // POST
-    case likePost(categoryId: Int, postId: Int)
 }
 
 extension Buzzler: TargetType {
@@ -58,8 +55,6 @@ extension Buzzler: TargetType {
             return "/v1/categories"
         case .getDetailPost(let categoryId, let id):
             return "v1/categories/\(categoryId)/posts/\(id)"
-        case .getCategoriesByUser():
-            return "v1/accounts/categories"
         case .getUserInfo():
             return "v1/accounts"
             
@@ -102,7 +97,6 @@ extension Buzzler: TargetType {
              .getMajor(_),
              .getUniv(_),
              .getDetailPost(_, _),
-             .getCategoriesByUser(),
              .getUserInfo():
             return .get
             
@@ -140,8 +134,6 @@ extension Buzzler: TargetType {
             return ["depth": 2]
         case .getDetailPost(categoryId: _, id: _):
             return nil
-        case .getCategoriesByUser():
-            return nil
         case .getUserInfo():
             return nil
             
@@ -158,8 +150,8 @@ extension Buzzler: TargetType {
         case .newPassword(let email, let password):
             return ["email": email, "newPassword": password]
         case .writeComment(_, _, let parentId, let contents):
-            guard let parentId = parentId else { return ["content": contents] }
-            return ["parentId": parentId, "content": contents]
+            guard let parentId = parentId else { return ["contents": contents] }
+            return ["parentId": parentId, "contents": contents]
         case .createCategory(let depth, let name, let baseUrl):
             guard let baseUrl = baseUrl else { return ["depth": depth, "name": name] }
             return ["depth": depth, "name": name, "baseUrl": baseUrl]
@@ -205,8 +197,7 @@ var endpointClosure = { (target: Buzzler) -> Endpoint<Buzzler> in
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])
             .adding(newParameterEncoding: URLEncoding.default)
         
-    case .getCategoriesByUser,
-         .writeComment,
+    case .writeComment,
          .writePost,
          .getPost:
         return endpoint.adding(newHTTPHeaderFields: ["Content-Type": "application/json"])

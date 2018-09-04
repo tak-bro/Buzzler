@@ -36,11 +36,12 @@ class WritePostViewController: UIViewController {
     
     fileprivate let selectAnonymous = ["소속학교 비노출", "소속학교 노출"]
     fileprivate let disposeBag = DisposeBag()
-    let viewModel = WritePostViewModel()
-    var placeholderLabel: UILabel!
     
+    let viewModel = WritePostViewModel()
     let pickerController = DKImagePickerController()
+    
     var varAssets = Variable<[DKAsset]?>([]) // picked images from picker
+    var placeholderLabel: UILabel!
 
     // for image viewer
     fileprivate let tapGesture = UITapGestureRecognizer()
@@ -62,28 +63,8 @@ class WritePostViewController: UIViewController {
         setUI()
         setGetureToView()
         setPicker()
+    }
 
-        if isUpdate {
-            self.txt_title.text = self.originTitle
-            self.txt_contents.text = self.originContents
-            
-            self.viewModel.inputs.title.on(.next(self.originTitle))
-            self.viewModel.inputs.contents.on(.next(self.originContents))
-            
-            if self.txt_contents.text.count > 0 {
-                placeholderLabel.isHidden = true
-            }
-        }
-        
-        // set title
-        let environment = Environment()
-        self.lbl_univ.text = environment.categoryTitle
-    }
-    
-    func addImage() {
-        showAlbum()
-    }
-    
     // MARK: - Actions
     
     @IBAction func pressDismiss(_ sender: UIButton) {
@@ -150,19 +131,18 @@ extension WritePostViewController {
             .disposed(by: disposeBag)
         
         self.viewModel.outputs.posting
-            .drive(onNext: { posting in
-                print("posting result", posting)
-
-                if posting == true {
+            .drive(onNext: { res in
+                print("posting result", res)
+                // get error
+                if let error = res.error {
+                    self.messageView.backgroundView.backgroundColor = Config.UI.errorColor
+                    self.messageView.bodyLabel?.textColor = UIColor.white
+                    self.messageView.configureContent(body: error.message)
+                } else {
                     self.messageView.backgroundView.backgroundColor = Config.UI.doneUploadColor
                     self.messageView.bodyLabel?.textColor = UIColor.white
                     self.messageView.configureContent(body: "Success to upload")
-                } else {
-                    self.messageView.backgroundView.backgroundColor = Config.UI.errorColor
-                    self.messageView.bodyLabel?.textColor = UIColor.white
-                    self.messageView.configureContent(body: "Failed to upload")
                 }
-
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5, execute: {
                     SwiftMessages.hideAll()
                 })
@@ -200,6 +180,23 @@ extension WritePostViewController {
         
         // set toolbar
         self.setToolbar()
+        
+        // check update
+        if isUpdate {
+            self.txt_title.text = self.originTitle
+            self.txt_contents.text = self.originContents
+            
+            self.viewModel.inputs.title.on(.next(self.originTitle))
+            self.viewModel.inputs.contents.on(.next(self.originContents))
+            
+            if self.txt_contents.text.count > 0 {
+                placeholderLabel.isHidden = true
+            }
+        }
+        
+        // set title
+        let environment = Environment()
+        self.lbl_univ.text = environment.categoryTitle
     }
     
     func setToolbar() {
@@ -246,7 +243,10 @@ extension WritePostViewController {
         self.messageConfig.presentationContext = .window(windowLevel: UIWindowLevelNormal)
         self.messageConfig.preferredStatusBarStyle = .lightContent
     }
-
+    
+    func addImage() {
+        self.showAlbum()
+    }
 }
 
 extension WritePostViewController: UITextViewDelegate {
@@ -268,7 +268,6 @@ extension WritePostViewController: UITextViewDelegate {
         placeholderLabel.frame.origin = CGPoint(x: 5, y: (txt_contents.font?.pointSize)! / 2)
         placeholderLabel.isHidden = !txt_contents.text.isEmpty
     }
-    
 }
 
 // MARK: - ImagePickerViewController

@@ -20,10 +20,15 @@ public protocol AwsAPI {
 public protocol BuzzlerAPI {
     func getPost(_ category: Int) -> Observable<[BuzzlerPost]>
     func getDetailPost(categoryId: Int, id: Int) -> Observable<[MultipleSectionModel]>
-    func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<Bool>
+    func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<WritePostResponse>
     func writeComment(categoryId: Int, postId: Int, parentId: String?, contents: String) -> Observable<Bool>
+    func requestCode(receiver: String) -> Observable<Bool>
+    func signIn(email: String, password: String) -> Observable<LoginResponse>
+    func getUserInfo(loginResult: LoginResponse) -> Observable<LoginResponse>
+    func likePost(categoryId: Int, postId: Int) -> Observable<LikePostResponse>
+//    func requestCodeForNewPassword(receiver: String) -> Observable<RequestCodePassword>
+//    func verifyCodeForNewPassword(receiver: String, verificationCode: String) -> Observable<VerifyCodeResponse>
 }
-
 
 public class API: AwsAPI, BuzzlerAPI {
     
@@ -31,18 +36,14 @@ public class API: AwsAPI, BuzzlerAPI {
     
     // Buzzler API
     
-    public func likePost(categoryId: Int, postId: Int) -> Observable<Bool> {
+    public func likePost(categoryId: Int, postId: Int) -> Observable<LikePostResponse> {
         return BuzzlerProvider.request(Buzzler.likePost(categoryId: categoryId, postId: postId))
             .retry(3)
             .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
-            .flatMap({ res -> Single<Bool> in
-                do {
-                    print(res)
-                    return Single.just(true)
-                } catch {
-                    return Single.just(false)
-                }
+            .flatMap({ res -> Single<LikePostResponse> in
+                let responseData = try res.mapObject(LikePostResponse.self)
+                return Single.just(responseData)
             })
     }
     
@@ -68,7 +69,12 @@ public class API: AwsAPI, BuzzlerAPI {
             .observeOn(MainScheduler.instance)
             .flatMap({ res -> Single<[BuzzlerPost]> in
                 do {
-                    let data = try res.mapArray(BuzzlerPost.self)
+                    let responseData = try res.mapObject(BuzzlerPostResponse.self)
+                    if let _ = responseData.error {
+                        return Single.just([])
+                    }
+                    
+                    let data = responseData.result
                     return Single.just(data)
                 } catch {
                     return Single.just([])
@@ -83,55 +89,69 @@ public class API: AwsAPI, BuzzlerAPI {
             .observeOn(MainScheduler.instance)
             .flatMap({ res -> Single<[MultipleSectionModel]> in
                 do {
-                    let data = try res.mapObject(DetailBuzzlerPost.self)
-                    // convert response to BuzzlerPost model
-                    let defaultPost = BuzzlerPost(id: data.id, title: data.title, contents: data.contents,
-                                                  commentCount: data.commentCount, imageUrls: data.imageUrls, likeCount: data.likeCount,
-                                                  createdAt: data.createdAt, author: data.author)
+                    let responseData = try res.mapObject(DetailPostResponse.self)
+                    if let _ = responseData.error {
+                        return Single.just([])
+                    }
                     
-                    // join comments with child
-                    let commentsData = data.comments
-                        .map { item -> [BuzzlerComment] in
-                            var commentsWithChild = [BuzzlerComment]()
-                            commentsWithChild.insertFirst(item)
-                            
-                            if item.childComments.count > 0 {
-                                commentsWithChild = commentsWithChild + item.childComments
+                    if let data = responseData.result {
+                        // convert response to BuzzlerPost model
+                        let defaultPost = BuzzlerPost(id: data.id, title: data.title, contents: data.contents,
+                                                      commentCount: data.commentCount, imageUrls: data.imageUrls, likeCount: data.likeCount,
+                                                      createdAt: data.createdAt, author: data.author, liked: data.liked)
+                        
+                        // join comments with child
+                        let commentsData = data.commentList
+                            .map { item -> [BuzzlerComment] in
+                                var commentsWithChild = [BuzzlerComment]()
+                                commentsWithChild.insertFirst(item)
+                                
+                                if item.childrenComment.count > 0 {
+                                    // add parentId for children comment
+                                    let children = item.childrenComment.map { recommentItem -> (BuzzlerComment) in
+                                        // create new recomment data with parentId
+                                        let recomment = BuzzlerComment(id: recommentItem.id, author: recommentItem.author, postId: recommentItem.postId,
+                                                                       parentId: item.id, contents: recommentItem.contents, createdAt: recommentItem.createdAt,
+                                                                       likeCount: item.likeCount, childrenComment: item.childrenComment, liked: recommentItem.liked)
+                                        return recomment
+                                    }
+                                    
+                                    commentsWithChild = commentsWithChild + children
+                                }
+                                return commentsWithChild
                             }
-                            return commentsWithChild
-                        }
-                        .flatMap{ $0 }
-
-                    // convert comments to CommentSection
-                    var comments = commentsData
-                        .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
-                            if data.id != comment.parentId {
+                            .flatMap{ $0 }
+                        
+                        // convert comments to CommentSection
+                        var comments = commentsData
+                            .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
+                                guard let _ = comment.parentId else {
+                                    return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
+                                }
                                 return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
-                            } else {
-                                return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
-                            }
-                        })
-                    
-                    // add PostSection to first index
-                    comments.insertFirst(.PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]))
-                    
-                    // return datasource for Table
-                    return Single.just(comments)
+                            })
+                        
+                        // add PostSection to first index
+                        comments.insertFirst(.PostSection(title: "PostSection", items: [.PostItem(item: defaultPost)]))
+                        
+                        // return datasource for Table
+                        return Single.just(comments)
+                    }
+                    return Single.just([])
                 } catch {
                     return Single.just([])
                 }
             })
     }
     
-    public func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<Bool> {
+    public func writePost(_ title: String, contents: String, imageUrls: [String], categoryId: Int) -> Observable<WritePostResponse> {
         return BuzzlerProvider.request(Buzzler.writePost(title: title, contents: contents,  imageUrls: imageUrls, categoryId: categoryId))
             .retry(3)
             .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
-            .filterSuccessfulStatusCodes()
-            .mapJSON()
-            .flatMap({ res -> Single<Bool> in
-                return Single.just(true)
+            .flatMap({ res -> Single<WritePostResponse> in
+                let responseData = try res.mapObject(WritePostResponse.self)
+                return Single.just(responseData)
             })
     }
     
@@ -140,15 +160,89 @@ public class API: AwsAPI, BuzzlerAPI {
             .retry(3)
             .filterSuccessfulStatusCodes()
             .observeOn(MainScheduler.instance)
-            .filterSuccessfulStatusCodes()
             .mapJSON()
             .flatMap({ res -> Single<Bool> in
                 return Single.just(true)
             })
     }
     
+    public func requestCode(receiver: String) -> Observable<Bool> {
+        return BuzzlerProvider.request(Buzzler.requestCode(receiver: receiver))
+            .retry(3)
+            .observeOn(MainScheduler.instance)
+            .filterSuccessfulStatusCodes()
+            .mapJSON()
+            .flatMap({ res -> Single<Bool> in
+                return Single.just(true)
+            })
+    }
+
+    public func signIn(email: String, password: String) -> Observable<LoginResponse> {
+        return BuzzlerProvider.request(Buzzler.signIn(email: email, password: password))
+            .retry(3)
+            .observeOn(MainScheduler.instance)
+            .filterSuccessfulStatusCodes()
+            .flatMap({ res -> Single<LoginResponse> in
+                let responseData = try res.mapObject(LoginResponse.self)
+                
+                if let success = responseData.result {
+                    let token = success.authToken
+                    // add userDefaults
+                    var environment = Environment()
+                    environment.token = token
+                    // save auto login info
+                    if let autoLogin = environment.autoLogin, autoLogin {
+                        environment.receiver = email
+                        environment.password = password
+                    }
+                    // save email info
+                    if let saveEmail = environment.saveEmail, saveEmail {
+                        environment.receiver = email
+                    }
+                }
+                return Single.just(responseData)
+            })
+    }
     
-    // AWS API
+    public func getUserInfo(loginResult: LoginResponse) -> Observable<LoginResponse> {
+        return BuzzlerProvider.request(Buzzler.getUserInfo())
+            .retry(3)
+            .observeOn(MainScheduler.instance)
+            .filterSuccessfulStatusCodes()
+            .flatMap({ res -> Single<LoginResponse> in
+                let responseData = try res.mapObject(AccountsResponse.self)
+                
+                if let _ = responseData.error {
+                    return Single.just(loginResult)
+                }
+                
+                if let success = responseData.result {
+                    // save to static value
+                    globalPostCategories = success.postCategories
+                    globalAccountInfo = success.account
+                    
+                    // create SideModel for SideSectionModel
+                    sideCategories = globalPostCategories.map{ category in
+                        return SideModel.category(id: category.id, title: category.name)
+                    }
+                    sideCategories.append(SideModel.myPage(navTitle: "MyPageNavigationController"))
+                    sideCategories.append(SideModel.settings(navTitle: "SettingsNavigationController"))
+                    
+                    // save default categoryId
+                    var environment = Environment()
+                    environment.categoryId = 1
+                    environment.categoryTitle = "익명"
+                    
+                    return Single.just(loginResult)
+                }
+                return Single.just(loginResult)
+            })
+    }
+}
+
+// MARK: - AWS API
+
+extension API {
     
     public func uploadS3(_ categoryId: Int, fileName: String, encodedImage: String) -> Observable<String> {
         return AwsProvider.request(AWS.uploadS3(categoryId: categoryId, fileName: fileName, encodedImage: encodedImage))

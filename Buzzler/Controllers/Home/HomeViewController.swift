@@ -122,6 +122,9 @@ extension HomeViewController: UITableViewDelegate {
                 imgCell.btn_postAction.isHidden = true
                 imgCell.trailingConstraint.constant = 0
                 
+                // set heart image
+                item.liked ? imgCell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal) : imgCell.btn_like.setImage(UIImage(named: "icon_like_empty"), for: .normal)
+
                 defaultCell = imgCell
             } else {
                 let cell = tableView.dequeueReusableCell(for: indexPath, cellType: HomeTableViewCell.self)
@@ -136,6 +139,8 @@ extension HomeViewController: UITableViewDelegate {
                 
                 cell.btn_postAction.isHidden = true
                 cell.trailingConstraint.constant = 0
+                
+                item.liked ? cell.btn_like.setImage(UIImage(named: "icon_like"), for: .normal) : cell.btn_like.setImage(UIImage(named: "icon_like_empty"), for: .normal)
 
                 defaultCell = cell
             }
