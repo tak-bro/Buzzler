@@ -106,8 +106,17 @@ public class API: AwsAPI, BuzzlerAPI {
                                 var commentsWithChild = [BuzzlerComment]()
                                 commentsWithChild.insertFirst(item)
                                 
-                                if item.childComment.count > 0 {
-                                    commentsWithChild = commentsWithChild + item.childComment
+                                if item.childrenComment.count > 0 {
+                                    // add parentId for children comment
+                                    let children = item.childrenComment.map { recommentItem -> (BuzzlerComment) in
+                                        // create new recomment data with parentId
+                                        let recomment = BuzzlerComment(id: recommentItem.id, author: recommentItem.author, postId: recommentItem.postId,
+                                                                       parentId: item.id, contents: recommentItem.contents, createdAt: recommentItem.createdAt,
+                                                                       likeCount: item.likeCount, childrenComment: item.childrenComment)
+                                        return recomment
+                                    }
+                                    
+                                    commentsWithChild = commentsWithChild + children
                                 }
                                 return commentsWithChild
                             }
@@ -117,7 +126,7 @@ public class API: AwsAPI, BuzzlerAPI {
                         var comments = commentsData
                             .map({ (comment: BuzzlerComment) -> MultipleSectionModel in
                                 if let parentId = comment.parentId {
-                                    if data.id != comment.parentId {
+                                    if data.id != parentId {
                                         return .ReCommentSection(title: "ReCommentSection", items: [.ReCommentItem(item: comment)])
                                     } else {
                                         return .CommentSection(title: "CommentSection", items: [.CommentItem(item: comment)])
