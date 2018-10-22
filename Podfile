@@ -16,7 +16,7 @@ def shared_pods
     pod 'PullToRefresher', '~> 2.0'
     pod 'Action', '3.2.0'
     pod 'RxOptional', '3.2.0'
-    pod 'ObjectMapper', '2.2.8'
+    pod 'ObjectMapper', '~> 3.3'
     pod 'NoticeBar', '0.1.5'
     pod 'SwiftWebVC', '0.4.1'
     pod 'SideMenu', '2.3.3'
